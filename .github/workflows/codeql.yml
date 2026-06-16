@@ -1,0 +1,42 @@
+name: CodeQL
+
+# Analyse statique de sécurité (CodeQL) — StackProtocol
+# Couvre le JavaScript du site (leftnav.js, config/, scripts inline).
+# Niveau 0 de la doctrine sécurité code (cf. DOCTRINE-SECURITE-CODE-OUTILS).
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '27 4 * * 1'  # tous les lundis 04h27 UTC
+
+jobs:
+  analyze:
+    name: Analyse CodeQL
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [javascript-typescript]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Initialiser CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          queries: security-and-quality
+
+      - name: Analyse
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{ matrix.language }}"
