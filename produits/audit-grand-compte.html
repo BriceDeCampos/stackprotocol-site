@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Audit Grand Compte — 7 790€ HT · StackProtocol</title>
+<meta name="description" content="J'audite ton Cahier des Charges existant sur 6 volets (cohérence, sécurité, RGPD, accessibilité, souveraineté) + 2 sessions de coaching. Rapport 30-50 pages. ~50% du prix d'un cabinet senior." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Spectral:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="../leftnav.css" />
+<link rel="stylesheet" href="../subpage.css" />
+<style>
+  .phero { padding: 56px 0 32px; }
+  .phero .grid { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 44px; align-items: start; }
+  .phero h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(32px, 4.6vw, 48px); line-height: 1.05; letter-spacing: -0.03em; margin-top: 16px; }
+  .phero .sub { margin-top: 18px; font-size: 17px; line-height: 1.55; color: var(--ink-2); max-width: 560px; }
+  .phero .sub b { color: var(--ink); }
+  .hero-points { list-style: none; margin: 22px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; max-width: 560px; }
+  .hero-points li { position: relative; padding-left: 22px; font-size: 16.5px; line-height: 1.5; color: var(--ink-2); }
+  .hero-points li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px rgba(60,229,163,0.6); }
+  .hero-points li b { color: var(--ink); }
+  .buy { padding: 26px; position: sticky; top: 88px; }
+  .buy .amt { font-family: var(--font-display); font-weight: 700; font-size: 40px; letter-spacing: -0.02em; background: var(--grad-135); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .buy .amt small { font-size: 15px; color: var(--muted); -webkit-text-fill-color: var(--muted); font-weight: 500; margin-left: 6px; }
+  .buy .ttc { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .buy .btn { width: 100%; margin-top: 20px; }
+  .buy ul { list-style: none; margin: 20px 0 0; display: flex; flex-direction: column; gap: 10px; }
+  .buy ul li { font-size: 13.5px; color: var(--ink-2); display: flex; align-items: flex-start; gap: 10px; }
+  .buy ul li svg { width: 16px; height: 16px; color: var(--green); flex-shrink: 0; margin-top: 2px; }
+  .buy .guar { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--muted); }
+
+  .volets { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .compare { width: 100%; border-collapse: collapse; }
+  .compare th, .compare td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+  .compare th { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-2); }
+  .compare td.prod { font-weight: 600; color: var(--ink); }
+  .compare tr.us td { background: linear-gradient(100deg, rgba(60,229,163,0.08), rgba(24,180,204,0.03)); }
+  .compare tr.us td.prod { color: var(--green); }
+  .compare td .amt { font-family: var(--font-display); font-weight: 600; color: var(--ink); }
+
+  .timeline { display: flex; flex-direction: column; gap: 0; max-width: 760px; }
+  .tl { display: flex; gap: 18px; padding: 14px 0; }
+  .tl .dc { display: flex; flex-direction: column; align-items: center; }
+  .tl .d { width: 13px; height: 13px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px rgba(60,229,163,0.5); flex-shrink: 0; margin-top: 4px; }
+  .tl .line { width: 2px; flex: 1; background: var(--line); margin-top: 4px; }
+  .tl:last-child .line { display: none; }
+  .tl .ph { font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--green); }
+  .tl h4 { font-size: 15px; font-weight: 600; margin-top: 2px; }
+  .tl p { font-size: 13.5px; color: var(--muted); margin-top: 3px; }
+
+  .notwhat { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .notwhat .n { font-size: 14px; color: var(--ink-2); display: flex; align-items: flex-start; gap: 10px; padding: 14px 16px; border-radius: var(--r); background: rgba(224,145,90,0.06); border: 1px solid rgba(224,145,90,0.2); }
+  .notwhat .n .x { color: var(--orange); font-weight: 700; flex-shrink: 0; }
+
+  .cible { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 860px) { .phero .grid { grid-template-columns: 1fr; } .buy { position: static; } .volets { grid-template-columns: 1fr; } .notwhat, .cible { grid-template-columns: 1fr; } .compare { font-size: 13px; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 11V7a4 4 0 0 1 8 0v4" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 22V4s2-1 5-1 5 2 8 2 3-1 3-1v11s-1 1-3 1-5-2-8-2-5 1-5 1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-a11y" viewBox="0 0 24 24"><circle cx="12" cy="4" r="2" fill="currentColor"/><path d="M4 8h16M12 8v6m0 0-3 6m3-6 3 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+</defs></svg>
+
+<template id="mark-svg">
+  <svg viewBox="0 0 250 286" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="StackProtocol">
+    <defs>
+      <linearGradient id="solGreen" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#2ECE93"/></linearGradient>
+      <linearGradient id="solTeal" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#2ECE93"/><stop offset="100%" stop-color="#1593C6"/></linearGradient>
+      <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/><stop offset="45%" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+      <pattern id="stpGreen" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#43E7A6"/></pattern>
+      <pattern id="stpTeal" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#2ECE93"/></pattern>
+      <pattern id="stpBlue" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#1593C6"/></pattern>
+      <filter id="depth" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0a1414" flood-opacity="0.45"/></filter>
+    </defs>
+    <g transform="rotate(-7 125 143)">
+      <polygon points="139,8 179,48 139,88 99,48" fill="url(#stpGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#solGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#sheen)"/>
+      <polygon points="139,100 179,140 139,180 99,140" fill="url(#stpTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#solTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#sheen)"/>
+      <polygon points="139,192 179,232 139,272 99,232" fill="url(#stpBlue)" filter="url(#depth)"/>
+    </g>
+  </svg>
+</template>
+
+<header class="subnav">
+  <div class="wrap">
+    <a class="logo" href="../index.html" aria-label="Accueil StackProtocol"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="links" aria-label="Navigation principale">
+      <a href="../pour-qui.html">Pour qui</a>
+      <a href="../la-methode.html">La méthode</a>
+      <a href="../octans.html">Octans</a>
+      <a href="../les-experts.html">Les experts</a>
+      <a href="../souverainete.html">Souveraineté</a>
+      <a href="../index.html#produits">Produits</a>
+      <a href="../faq.html">FAQ</a>
+      <a href="../cpf.html">CPF</a>
+    </nav>
+    <span class="spacer"></span>
+    <div class="actions">
+      <a class="login" href="../login.html">Se connecter</a>
+      <a class="btn btn-primary btn-sm" href="../orientation-gratuite.html">Orientation gratuite<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <button class="burger" aria-label="Menu" onclick="var l=document.querySelector('.subnav .links');l.style.display=l.style.display==='flex'?'':'flex';"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<main>
+  <section class="phero" data-ln="J'audite ton Cahier des…">
+    <div class="wrap grid">
+      <div>
+        <span class="pill">B2B Premium · Grand Compte</span>
+        <h1>J'audite ton Cahier des Charges. <span class="em">6 angles, 1 mois.</span></h1>
+        <p class="sub">Je viens auditer ton CDC <b>existant</b> — pas en démarrer un nouveau.</p>
+        <ul class="hero-points">
+          <li><b>6 volets</b> passés au crible</li>
+          <li>Rapport <b>30 à 50 pages</b> · 15 à 30 points concrets</li>
+          <li><b>2 sessions de coaching</b> pour calibrer ton plan d'action</li>
+          <li><b>~50 % du prix</b> d'un cabinet senior</li>
+        </ul>
+      </div>
+      <aside class="card buy">
+        <div class="amt">7 790€<small>HT</small></div>
+        <div class="ttc">soit 9 348€ TTC · ~155€ / point d'audit</div>
+        <a class="btn btn-primary" href="mailto:contact@stackprotocol.fr?subject=Audit%20Grand%20Compte%20StackProtocol">Appel découverte (30 min)<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <ul>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Rapport 30-50 pages (Markdown + PDF)</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>2 sessions coaching 90 min</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Templates 23 ADRs + 5 patterns RLS adaptés</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>NDA signé avant démarrage</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Paiement 50% / 50% (Stripe ou virement)</li>
+        </ul>
+        <div class="guar">Loi Hamon 14j avant démarrage · garantie satisfaction (avoir 50% si &lt;15 points) · données stockées en local.</div>
+      </aside>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider-line"></div></div>
+
+  <section class="section" data-ln="6 volets audités.">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow"><span class="dot"></span>Le rapport</span><h2>6 volets audités.</h2></div>
+      <div class="volets">
+        <div class="card cardx"><span class="ic"><svg aria-hidden="true"><use href="#i-doc"/></svg></span><h3>Cohérence</h3><p>Architecture, cascade documentaire, doctrines, naming.</p></div>
+        <div class="card cardx"><span class="ic"><svg aria-hidden="true"><use href="#i-shield"/></svg></span><h3>Sécurité</h3><p>OWASP Top 10:2025, dépendances, threat model.</p></div>
+        <div class="card cardx"><span class="ic"><svg aria-hidden="true"><use href="#i-lock"/></svg></span><h3>RGPD</h3><p>Consentements, bases légales, AIPD si applicable, Article 20.</p></div>
+        <div class="card cardx"><span class="ic"><svg aria-hidden="true"><use href="#i-a11y"/></svg></span><h3>Accessibilité</h3><p>WCAG 2.2 AA + RGAA 4 français.</p></div>
+        <div class="card cardx"><span class="ic"><svg aria-hidden="true"><use href="#i-flag"/></svg></span><h3>Souveraineté</h3><p>Stack souverain, alternatives, dépendances critiques.</p></div>
+        <div class="card cardx"><span class="ic"><svg aria-hidden="true"><use href="#i-user"/></svg></span><h3>Coaching plan d'action</h3><p>2 sessions de 90 min pour calibrer la mise en œuvre.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;" data-ln="6 angles pour ~50% du prix…">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow"><span class="dot"></span>Comparatif honnête</span><h2>6 angles pour ~50% du prix d'un cabinet senior.</h2></div>
+      <div class="card" style="padding:8px 8px;overflow-x:auto;">
+        <table class="compare">
+          <thead><tr><th>Solution</th><th>Coût</th><th>Équivalent</th></tr></thead>
+          <tbody>
+            <tr class="us"><td class="prod">StackProtocol — Audit Grand Compte</td><td><span class="amt">7 790€ HT</span></td><td>1 mois · 6 angles</td></tr>
+            <tr><td class="prod">Cabinet conseil niveau 1 (3 juniors)</td><td>~25 000€ HT</td><td>1 mois</td></tr>
+            <tr><td class="prod">Cabinet conseil niveau 2 (1 senior) — regards externes et failles</td><td>~15 000€ HT</td><td>1 mois</td></tr>
+            <tr><td class="prod">Auditeur sécurité freelance</td><td>~6 000€ HT</td><td>2-3 sem. (sécu seule)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;" data-ln="Timeline : 1 mois.">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow"><span class="dot"></span>Comment ça se passe</span><h2>Timeline : 1 mois.</h2></div>
+      <div class="timeline">
+        <div class="tl"><div class="dc"><span class="d"></span><span class="line"></span></div><div><div class="ph">J+0 → J+2</div><h4>Contact + appel découverte (30 min, gratuit)</h4><p>On évalue si l'audit est pertinent pour ton contexte. Sans pression vente.</p></div></div>
+        <div class="tl"><div class="dc"><span class="d"></span><span class="line"></span></div><div><div class="ph">J+3 → J+5</div><h4>NDA signé + accès à ton CDC</h4><p>Confidentialité contractuelle avant tout. Notion, Obsidian ou repo Git.</p></div></div>
+        <div class="tl"><div class="dc"><span class="d"></span><span class="line"></span></div><div><div class="ph">J+7 → J+10</div><h4>Audit (4-6h focus sur ton dossier)</h4><p>Les 6 volets, point par point.</p></div></div>
+        <div class="tl"><div class="dc"><span class="d"></span><span class="line"></span></div><div><div class="ph">J+12 → J+20</div><h4>Rapport PDF + 2 debriefs 90 min</h4><p>Tu reçois le rapport, on calibre ton plan d'action ensemble.</p></div></div>
+        <div class="tl"><div class="dc"><span class="d"></span></div><div><div class="ph">J+30</div><h4>Templates adaptés livrés</h4><p>23 ADRs sécurité + 5 patterns RLS PostgreSQL personnalisés à ton contexte.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;" data-ln="Pour qui c'est fait">
+    <div class="wrap">
+      <div class="grid-2">
+        <div>
+          <div class="section-head" style="margin-bottom:20px;"><h2 style="font-size:24px;">Pour qui c'est fait</h2></div>
+          <div class="card cardx">
+            <ul>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><b>Tech Lead / CTO</b> avec équipe 5+ devs</span></li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><b>Fondateur en levée</b> Seed / Série A (audit indépendant)</span></li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><b>DGS / DSI mairie</b> civic-tech (conformité projet public)</span></li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><b>Cabinet conseil / agence senior</b> (regard externe)</span></li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="section-head" style="margin-bottom:20px;"><h2 style="font-size:24px;">Ce que ce n'est PAS</h2></div>
+          <div class="notwhat">
+            <div class="n"><span class="x">✕</span>Une certification officielle (CNIL / ANSSI)</div>
+            <div class="n"><span class="x">✕</span>Un pentest (scan vuln + intrusion)</div>
+            <div class="n"><span class="x">✕</span>Un audit comptable / financier</div>
+            <div class="n"><span class="x">✕</span>Une refonte de ton CDC à ta place</div>
+          </div>
+          <p style="font-size:13px;color:var(--muted);margin-top:14px;line-height:1.5;">Cible inadaptée : solo early-stage (→ Pack Pro Accompagnement 697€), étudiant (→ Pack Autonomie 77€), projet sans CDC existant (on audite un existant).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;" data-ln="On regarde ton projet…">
+    <div class="wrap">
+      <div class="card cta-strip">
+        <h2>On regarde ton projet <span class="em">ensemble</span> ?</h2>
+        <p>Appel de découverte de 30 minutes, gratuit et sans engagement. Si tu n'es pas la bonne cible, on te le dit franchement.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="mailto:contact@stackprotocol.fr?subject=Audit%20Grand%20Compte%20StackProtocol">Demander l'appel découverte<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-ghost" href="../cabinet-vs-stackprotocol.html">Comparer à un cabinet</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="subfoot">
+  <div class="wrap">
+    <a class="logo" href="../index.html"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="links" aria-label="Pied de page">
+      <a href="../index.html">Accueil</a>
+      <a href="pack-methode.html">Packs</a>
+      <a href="../cabinet-vs-stackprotocol.html">Cabinet vs StackProtocol</a>
+      <a href="../legal/cgv.html">CGV</a>
+    </nav>
+    <span class="fin">🇫🇷 OVH · Plausible · Stripe FR · 0 tracking</span>
+  </div>
+</footer>
+
+<script>
+  (function(){var t=document.getElementById('mark-svg');document.querySelectorAll('[data-mark]').forEach(function(s,i){var n=t.content.cloneNode(true);var svg=n.querySelector('svg');svg.innerHTML=svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,'$1$2_'+i);s.appendChild(n);});})();
+</script>
+<script src="../leftnav.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+# ============================================================
+# _headers — En-têtes HTTP (Cloudflare Pages / Netlify)
+# Cible : securityheaders.com niveau A (A+ après ajout du CSP, voir plus bas)
+# ------------------------------------------------------------
+# Ces en-têtes sont SÛRS : ils ne cassent aucune page existante.
+# À tester en préprod (*.pages.dev) avant la bascule du domaine.
+# Si le site est servi par OVH/Apache au lieu de Cloudflare Pages,
+# transposer ces règles dans un fichier .htaccess.
+# ============================================================
+
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), interest-cohort=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  X-Permitted-Cross-Domain-Policies: none
+
+# ------------------------------------------------------------
+# 🔒 CONTENT-SECURITY-POLICY — à activer pour passer A → A+
+# ------------------------------------------------------------
+# NON activé pour l'instant : 2 bloquants à lever d'abord (passe Claude Design)
+#   1. Google Fonts externes (fonts.googleapis.com / fonts.gstatic.com)
+#      → contraire à la souveraineté + RGPD. Self-host les .woff2 d'abord.
+#   2. Scripts/styles inline présents dans les pages (ex. générateur SVG)
+#      → à externaliser OU à hasher (sha256) pour un CSP strict sans 'unsafe-inline'.
+#
+# CSP CIBLE une fois les polices self-hostées et les inline retirés/hashés :
+#   Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+#
+# CSP TRANSITOIRE (si on garde Google Fonts un temps — A+ possible mais GAFAM) :
+#   Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+# ------------------------------------------------------------

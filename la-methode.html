@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>La méthode — 5 piliers universels · StackProtocol</title>
+<meta name="description" content="Cascade pédagogique, Pattern Vue d'ensemble, 14 règles adaptables, Conseil prismes anti-biais, des centaines de skills &amp; agents. Le moteur reproductible derrière chaque projet StackProtocol." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Spectral:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="subpage.css" />
+<link rel="stylesheet" href="leftnav.css" />
+<style>
+  .pilier { padding: 32px; display: grid; grid-template-columns: 64px 1fr; gap: 24px; align-items: start; }
+  .pilier + .pilier { margin-top: 16px; }
+  .pilier .np { font-family: var(--font-display); font-weight: 700; font-size: 26px; width: 64px; height: 64px; border-radius: 16px; display: grid; place-items: center; background: linear-gradient(150deg, rgba(60,229,163,0.16), rgba(24,180,204,0.10)); border: 1px solid rgba(60,229,163,0.22); color: var(--green); }
+  .pilier h3 { font-family: var(--font-display); font-weight: 600; font-size: 22px; letter-spacing: -0.01em; }
+  .pilier .lead { color: var(--ink-2); font-size: 15.5px; margin-top: 10px; line-height: 1.6; }
+  .pilier .lead b { color: var(--ink); font-weight: 600; }
+  .pilier .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .pilier .chips .c { font-size: 12.5px; color: var(--ink-2); background: var(--surface); border: 1px solid var(--line); padding: 6px 12px; border-radius: 99px; }
+  .cascade { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+  .cascade .lvl { flex: 1; min-width: 130px; padding: 14px 16px; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); }
+  .cascade .lvl .t { font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--green); }
+  .cascade .lvl .d { font-size: 12.5px; color: var(--muted); margin-top: 4px; }
+  @media (max-width:860px){ .pilier { grid-template-columns: 1fr; gap: 16px; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+</defs></svg>
+
+<template id="mark-svg">
+  <svg viewBox="0 0 250 286" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="StackProtocol">
+    <defs>
+      <linearGradient id="solGreen" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#2ECE93"/></linearGradient>
+      <linearGradient id="solTeal" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#2ECE93"/><stop offset="100%" stop-color="#1593C6"/></linearGradient>
+      <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/><stop offset="45%" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+      <pattern id="stpGreen" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#43E7A6"/></pattern>
+      <pattern id="stpTeal" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#2ECE93"/></pattern>
+      <pattern id="stpBlue" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#1593C6"/></pattern>
+      <filter id="depth" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0a1414" flood-opacity="0.45"/></filter>
+    </defs>
+    <g transform="rotate(-7 125 143)">
+      <polygon points="139,8 179,48 139,88 99,48" fill="url(#stpGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#solGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#sheen)"/>
+      <polygon points="139,100 179,140 139,180 99,140" fill="url(#stpTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#solTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#sheen)"/>
+      <polygon points="139,192 179,232 139,272 99,232" fill="url(#stpBlue)" filter="url(#depth)"/>
+    </g>
+  </svg>
+</template>
+
+<header class="subnav">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Accueil StackProtocol"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="links" aria-label="Navigation principale">
+      <a href="pour-qui.html">Pour qui</a>
+      <a href="la-methode.html" class="on">La méthode</a>
+      <a href="octans.html">Octans</a>
+      <a href="les-experts.html">Les experts</a>
+      <a href="souverainete.html">Souveraineté</a>
+      <a href="index.html#produits">Produits</a>
+      <a href="faq.html">FAQ</a>
+      <a href="cpf.html">CPF</a>
+    </nav>
+    <span class="spacer"></span>
+    <div class="actions">
+      <a class="login" href="login.html">Se connecter</a>
+      <a class="btn btn-primary btn-sm" href="orientation-gratuite.html">Orientation gratuite<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <button class="burger" aria-label="Menu" onclick="var l=document.querySelector('.subnav .links');l.style.display=l.style.display==='flex'?'':'flex';"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<main>
+  <div class="phead center wrap">
+    <span class="pill">La méthode</span>
+    <h1>Le moteur derrière <span class="em">chaque projet.</span></h1>
+    <p class="intro">5 piliers universels, testés 6 mois sur un projet civic-tech complexe. Le même socle, que tu construises un SaaS, une app mobile ou une marketplace.</p>
+  </div>
+
+  <section class="section" id="cascade" data-ln="Cascade pédagogique" style="padding-top:32px;">
+    <div class="wrap">
+
+      <article class="card pilier">
+        <div class="np">1</div>
+        <div>
+          <h3>Cascade pédagogique</h3>
+          <p class="lead">Tout projet se documente du <b>pourquoi</b> vers le <b>comment</b>. La méthode enchaîne plusieurs niveaux de lecture — de la vision stratégique jusqu'au détail technique — pour que ton projet reste lisible de bout en bout : par toi, par <span class="claude-mark">Claude Code</span>, par un futur associé.</p>
+          <p class="lead" style="margin-top:12px;color:var(--muted);">Le découpage précis des niveaux ? Il fait partie de la méthode — livré dans le pack.</p>
+        </div>
+      </article>
+
+      <article class="card pilier">
+        <div class="np">2</div>
+        <div>
+          <h3>Pattern « Vue d'ensemble »</h3>
+          <p class="lead">Chaque brique de ton projet — une page, un composant, une décision — se documente toujours de la même façon, avec <b>5 sous-sections canoniques</b>. Tu cadres ce que chaque chose fait, et surtout ce qu'elle ne fait pas.</p>
+          <div class="chips"><span class="c">Rôle &amp; intention</span><span class="c">Périmètre</span><span class="c">Dépendances</span><span class="c">etc…</span></div>
+        </div>
+      </article>
+
+      <article class="card pilier">
+        <div class="np">3</div>
+        <div>
+          <h3>14 règles adaptables</h3>
+          <p class="lead">Tout projet a des règles qu'il ne veut pas casser. Tu pars de <b>14 templates non-négociables</b> et tu les adaptes à ton contexte : une même règle se décline différemment pour un SaaS, un e-commerce ou une association.</p>
+          <div class="chips"><span class="c">Sécurité par défaut</span><span class="c">Anti-tracking</span><span class="c">Accessibilité</span><span class="c">+ 11 autres</span></div>
+        </div>
+      </article>
+
+      <article class="card pilier">
+        <div class="np">4</div>
+        <div>
+          <h3>Conseil prismes anti-biais</h3>
+          <p class="lead">Le piège du solo : décider seul, avec ses biais. Le <b>Conseil prismes ingénieur</b> — conçu par des profils MLOps, Data et Ingénierie IA — fait passer chaque décision structurante à travers <b>8 angles complémentaires</b> pour trancher sans angle mort.</p>
+          <p class="lead" style="margin-top:12px;color:var(--muted);">Une mécanique affinée sur le terrain, très difficile à reproduire sans la méthode.</p>
+        </div>
+      </article>
+
+      <article class="card pilier">
+        <div class="np">5</div>
+        <div>
+          <h3>Des centaines de skills &amp; agents</h3>
+          <p class="lead">Tout projet a des tâches récurrentes. La méthode te donne <b>des centaines de skills et d'agents spécialistes</b>, invocables d'une commande dans <span class="claude-mark">Claude Code</span>. Le travail est fait, proprement, à chaque fois.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section" id="applique" data-ln="Une méthode, pas un cours" style="padding-top:0;">
+    <div class="wrap"><div class="card cta-strip">
+      <h2>Une méthode · pas un cours.</h2>
+      <p>Tu repars avec des artefacts concrets : archétypes, templates, doctrines. Applicables le jour même.</p>
+      <div class="cta"><a class="btn btn-primary" href="index.html#produits">Voir les packs<svg aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="btn btn-ghost" href="le-cdc-portable.html">Le CDC portable</a></div>
+    </div></div>
+  </section>
+</main>
+
+<footer class="subfoot">
+  <div class="wrap">
+    <a class="logo" href="index.html"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="links" aria-label="Pied de page"><a href="les-experts.html">Les experts</a><a href="le-cdc-portable.html">Le CDC portable</a><a href="faq.html">FAQ</a><a href="legal/cgv.html">CGV</a></nav>
+    <span class="fin">🇫🇷 OVH · Plausible · Stripe FR · 0 tracking</span>
+  </div>
+</footer>
+
+<script>
+  (function(){var t=document.getElementById('mark-svg');document.querySelectorAll('[data-mark]').forEach(function(s,i){var n=t.content.cloneNode(true);var svg=n.querySelector('svg');svg.innerHTML=svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,'$1$2_'+i);s.appendChild(n);});})();
+</script>
+<script src="leftnav.js"></script>
+</body>
+</html>

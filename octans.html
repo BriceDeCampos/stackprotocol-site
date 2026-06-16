@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Octans — la constellation d'agents et de skills · StackProtocol</title>
+<meta name="description" content="Octans, c'est le moteur de StackProtocol : une constellation d'agents et de skills — le cerveau d'ingénierie qui déploie ton cahier des charges, boosté par Claude. Toujours à jour." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Spectral:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="leftnav.css" />
+<link rel="stylesheet" href="subpage.css" />
+<style>
+  /* hero octans */
+  .oct-hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 36px; align-items: center; }
+  .oct-hero .oname { font-family: var(--font-display); font-weight: 700; font-size: clamp(34px,5vw,56px); letter-spacing: -0.02em; line-height: 1.02; }
+  .oct-hero .oname .em { color: var(--orange); }
+  .oct-hero .otag { font-size: 17px; color: var(--ink-2); margin-top: 16px; line-height: 1.5; }
+  .oct-hero .otag b { color: var(--ink); font-weight: 600; }
+  /* constellation visual */
+  .constel { position: relative; aspect-ratio: 1/1; max-width: 360px; margin: 0 auto; }
+  .constel svg { width: 100%; height: 100%; }
+  .constel .star { fill: var(--green); }
+  .constel .star.b { fill: var(--cyan, #18B4CC); }
+  .constel .core { fill: url(#octCore); }
+  .constel line { stroke: rgba(60,229,163,0.28); stroke-width: 1; }
+
+  .pillars { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .pil { padding: 26px; }
+  .pil .ic { width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; background: linear-gradient(150deg, rgba(60,229,163,0.16), rgba(24,180,204,0.08)); border: 1px solid rgba(60,229,163,0.22); color: var(--green); }
+  .pil .ic svg { width: 22px; height: 22px; }
+  .pil h3 { font-family: var(--font-display); font-weight: 600; font-size: 17px; margin-top: 16px; }
+  .pil .k { font-size: 12px; font-family: var(--font-display); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); margin-top: 4px; }
+  .pil p { font-size: 14px; color: var(--muted); margin-top: 10px; line-height: 1.55; }
+
+  .flow { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+  .fl { padding: 20px; text-align: center; }
+  .fl .n { font-family: var(--font-display); font-weight: 700; font-size: 13px; color: var(--green); }
+  .fl h4 { font-family: var(--font-display); font-weight: 600; font-size: 14.5px; margin-top: 8px; }
+  .fl p { font-size: 12.5px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+
+  .cats { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+  .cat { padding: 16px 18px; }
+  .cat .cn { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--ink); display: flex; align-items: center; gap: 9px; }
+  .cat .cn .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; box-shadow: 0 0 8px rgba(60,229,163,0.7); }
+  .cat p { font-size: 12.5px; color: var(--muted); margin-top: 7px; line-height: 1.5; }
+
+  .evo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .evo .card { padding: 24px; }
+  .evo h3 { font-family: var(--font-display); font-weight: 600; font-size: 16px; display: flex; align-items: center; gap: 10px; }
+  .evo h3 .ic { color: var(--green); display: inline-grid; place-items: center; }
+  .evo h3 .ic svg { width: 19px; height: 19px; }
+  .evo ul { list-style: none; margin: 16px 0 0; display: flex; flex-direction: column; gap: 12px; }
+  .evo li { font-size: 14px; line-height: 1.45; color: var(--ink-2); display: flex; align-items: flex-start; gap: 11px; }
+  .evo li .m { color: var(--green); font-weight: 700; flex-shrink: 0; }
+  .evo li b { color: var(--ink); font-weight: 600; }
+
+  .ptable { width: 100%; border-collapse: collapse; }
+  .ptable th, .ptable td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--line); font-size: 14px; vertical-align: top; }
+  .ptable thead th { font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .ptable td .pp { font-family: var(--font-display); font-weight: 600; color: var(--ink); }
+  .ptable td .pr { color: var(--green); font-weight: 600; font-size: 13px; }
+  .ptable td.feat { color: var(--ink-2); }
+  .ptable tr.hl td { background: linear-gradient(100deg, rgba(60,229,163,0.07), rgba(24,180,204,0.03)); }
+
+  @media (max-width:860px){ .oct-hero,.pillars,.flow,.cats,.evo{ grid-template-columns:1fr; } .constel{ max-width:260px; } .ptable{ font-size:13px; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 19v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 9a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm13 10v-2a4 4 0 0 0-3-3.87M16 2.13A4 4 0 0 1 16 9.9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-hook" viewBox="0 0 24 24"><path d="M18 6a3 3 0 1 0-6 0v9a4 4 0 1 1-8 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4" cy="18" r="2" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.64-6.36M21 3v6h-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+</defs></svg>
+
+<template id="mark-svg">
+  <svg viewBox="0 0 250 286" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="StackProtocol">
+    <defs>
+      <linearGradient id="solGreen" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#2ECE93"/></linearGradient>
+      <linearGradient id="solTeal" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#2ECE93"/><stop offset="100%" stop-color="#1593C6"/></linearGradient>
+      <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/><stop offset="45%" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+      <pattern id="stpGreen" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#43E7A6"/></pattern>
+      <pattern id="stpTeal" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#2ECE93"/></pattern>
+      <pattern id="stpBlue" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#1593C6"/></pattern>
+      <filter id="depth" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0a1414" flood-opacity="0.45"/></filter>
+    </defs>
+    <g transform="rotate(-7 125 143)">
+      <polygon points="139,8 179,48 139,88 99,48" fill="url(#stpGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#solGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#sheen)"/>
+      <polygon points="139,100 179,140 139,180 99,140" fill="url(#stpTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#solTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#sheen)"/>
+      <polygon points="139,192 179,232 139,272 99,232" fill="url(#stpBlue)" filter="url(#depth)"/>
+    </g>
+  </svg>
+</template>
+
+<header class="subnav">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Accueil StackProtocol"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="links" aria-label="Navigation principale">
+      <a href="pour-qui.html">Pour qui</a>
+      <a href="la-methode.html">La méthode</a>
+      <a href="octans.html" class="on">Octans</a>
+      <a href="les-experts.html">Les experts</a>
+      <a href="souverainete.html">Souveraineté</a>
+      <a href="index.html#produits">Produits</a>
+      <a href="faq.html">FAQ</a>
+      <a href="cpf.html">CPF</a>
+    </nav>
+    <span class="spacer"></span>
+    <div class="actions">
+      <a class="login" href="login.html">Se connecter</a>
+      <a class="btn btn-primary btn-sm" href="orientation-gratuite.html">Orientation gratuite<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <button class="burger" aria-label="Menu" onclick="var l=document.querySelector('.subnav .links');l.style.display=l.style.display==='flex'?'':'flex';"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="section" style="padding-top:42px;" data-ln="Le moteur">
+    <div class="wrap">
+      <div class="oct-hero">
+        <div>
+          <span class="pill">Le moteur de StackProtocol</span>
+          <div class="oname">Voici <span class="em">Octans</span>.</div>
+          <p class="otag">La <b>constellation</b> d'<b>agents</b> et de <b>skills</b> — le <b>cerveau d'ingénierie</b> qui déploie ton cahier des charges, boosté par <span class="claude-mark">Claude</span>.</p>
+          <p class="otag" style="font-size:15px;color:var(--muted);margin-top:14px;">StackProtocol, c'est la <b>méthode</b>. Octans, c'est le moteur qui la fait tourner. On suit et anticipe les meilleures IA : agents et skills <b>toujours à jour</b>.</p>
+          <div class="cta" style="margin-top:26px;">
+            <a class="btn btn-primary" href="index.html#produits">Voir les packs<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn-ghost" href="les-experts.html">Découvrir les 30 experts</a>
+          </div>
+        </div>
+        <div class="constel" aria-hidden="true">
+          <svg viewBox="0 0 200 200">
+            <defs><radialGradient id="octCore" cx="0.5" cy="0.5" r="0.5"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#159FCB"/></radialGradient></defs>
+            <line x1="100" y1="100" x2="42" y2="40"/><line x1="100" y1="100" x2="160" y2="52"/>
+            <line x1="100" y1="100" x2="170" y2="120"/><line x1="100" y1="100" x2="120" y2="172"/>
+            <line x1="100" y1="100" x2="48" y2="158"/><line x1="100" y1="100" x2="28" y2="104"/>
+            <line x1="42" y1="40" x2="160" y2="52"/><line x1="160" y1="52" x2="170" y2="120"/>
+            <line x1="170" y1="120" x2="120" y2="172"/><line x1="120" y1="172" x2="48" y2="158"/>
+            <line x1="48" y1="158" x2="28" y2="104"/><line x1="28" y1="104" x2="42" y2="40"/>
+            <circle class="core" cx="100" cy="100" r="11"/>
+            <circle class="star" cx="42" cy="40" r="4.5"/><circle class="star b" cx="160" cy="52" r="5.5"/>
+            <circle class="star" cx="170" cy="120" r="4"/><circle class="star b" cx="120" cy="172" r="5"/>
+            <circle class="star" cx="48" cy="158" r="4.5"/><circle class="star b" cx="28" cy="104" r="4"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 PILIERS -->
+  <section class="section" style="padding-top:8px;" data-ln="De quoi Octans est faite">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow"><span class="dot"></span>De quoi c'est fait</span><h2>Trois briques, un seul moteur.</h2></div>
+      <div class="pillars">
+        <div class="card pil">
+          <span class="ic"><svg aria-hidden="true"><use href="#i-users"/></svg></span>
+          <div class="k">Les experts</div>
+          <h3>30 agents spécialisés</h3>
+          <p>Juridique, sécurité, RGPD, technique, business, méthode… Chaque agent porte un rôle précis et le défend. Tu en utilises 7 à 10 par projet, les autres veillent.</p>
+        </div>
+        <div class="card pil">
+          <span class="ic"><svg aria-hidden="true"><use href="#i-bolt"/></svg></span>
+          <div class="k">Les skills</div>
+          <h3>Des compétences réutilisables</h3>
+          <p>Cadrer un CDC, auditer la sécurité, vérifier les liens, router vers le bon pack métier… Des savoir-faire encodés, déclenchés au bon moment.</p>
+        </div>
+        <div class="card pil">
+          <span class="ic"><svg aria-hidden="true"><use href="#i-hook"/></svg></span>
+          <div class="k">Les hooks</div>
+          <h3>Les garde-fous automatiques</h3>
+          <p>Des contrôles qui se déclenchent tout seuls : lexique surveillé, cohérence vérifiée, doctrines appliquées. Octans ne dérape pas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMENT ÇA MARCHE -->
+  <section class="section" style="padding-top:0;" data-ln="Comment Octans déploie ton CDC">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow"><span class="dot"></span>Le flux</span><h2>Comment Octans déploie ton CDC.</h2></div>
+      <div class="flow">
+        <div class="card fl"><div class="n">1</div><h4>Tu poses ton projet</h4><p>Le questionnaire cadre ton idée — métier, ambition, contraintes.</p></div>
+        <div class="card fl"><div class="n">2</div><h4>Octans route</h4><p>Le bon pack métier se charge, les bons experts entrent en scène.</p></div>
+        <div class="card fl"><div class="n">3</div><h4><span class="claude-mark">Claude</span> exécute</h4><p>Agents et skills produisent ton CDC, en local, sur ta machine.</p></div>
+        <div class="card fl"><div class="n">4</div><h4>Les garde-fous veillent</h4><p>Hooks et audits vérifient sécurité, RGPD, cohérence à chaque étape.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LES 7 CATÉGORIES -->
+  <section class="section" style="padding-top:0;" data-ln="Les 7 catégories d'experts">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow"><span class="dot"></span>L'équipe</span><h2>30 experts, 7 catégories.</h2></div>
+      <div class="cats">
+        <div class="card cat"><div class="cn"><span class="dot"></span>Juridique &amp; conformité</div><p>CGV, RGPD, mentions, droits d'auteur, secteurs réglementés.</p></div>
+        <div class="card cat"><div class="cn"><span class="dot"></span>Sécurité</div><p>OWASP, ANSSI, RLS, secrets, durcissement par défaut.</p></div>
+        <div class="card cat"><div class="cn"><span class="dot"></span>Méthode &amp; cadrage</div><p>CDC, cascade pédagogique, doctrines, Conseil prismes.</p></div>
+        <div class="card cat"><div class="cn"><span class="dot"></span>Technique</div><p>Architecture, données, API, qualité du code, tests.</p></div>
+        <div class="card cat"><div class="cn"><span class="dot"></span>Business</div><p>Modèle économique, pricing, go-to-market, vente B2B.</p></div>
+        <div class="card cat"><div class="cn"><span class="dot"></span>Produit &amp; UX</div><p>Parcours, accessibilité (WCAG), anti-dark-pattern.</p></div>
+        <div class="card cat"><div class="cn"><span class="dot"></span>Accompagnement</div><p>Mentor, posture, cadence, suivi quotidien.</p></div>
+        <div class="card cat" style="display:grid;place-items:center;text-align:center;"><a href="les-experts.html" style="color:var(--green);font-weight:600;font-size:13px;">Voir les 30 →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OCTANS ÉVOLUE -->
+  <section class="section" style="padding-top:0;" data-ln="Octans évolue avec toi">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow"><span class="dot"></span>Vivant, pas figé</span><h2>Octans évolue — tu n'achètes pas une photo.</h2></div>
+      <div class="evo">
+        <div class="card">
+          <h3><span class="ic"><svg aria-hidden="true"><use href="#i-refresh"/></svg></span>Toujours à jour</h3>
+          <ul>
+            <li><span class="m">›</span><span>On <b>suit et anticipe</b> les meilleures IA. Quand un modèle progresse, Octans en profite.</span></li>
+            <li><span class="m">›</span><span>De <b>nouveaux skills et agents</b> arrivent par vagues — métiers, audits, garde-fous.</span></li>
+            <li><span class="m">›</span><span>Les packs <b>Maîtrise et Pro Accompagnement</b> reçoivent ces mises à jour <b>à vie</b>.</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3><span class="ic"><svg aria-hidden="true"><use href="#i-cpu"/></svg></span>Portable, jamais captif</h3>
+          <ul>
+            <li><span class="m">›</span><span>Octans tourne <b>chez toi</b>, en local. Tes idées ne quittent pas ta machine.</span></li>
+            <li><span class="m">›</span><span>La méthode reste <b>la tienne</b> : tu peux changer d'IA, Octans s'adapte.</span></li>
+            <li><span class="m">›</span><span><em>« L'IA se remplace. Ta méthode, non. »</em></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OCTANS × PACKS -->
+  <section class="section" style="padding-top:0;" data-ln="Octans dans chaque pack">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow"><span class="dot"></span>Ce que tu débloques</span><h2>Octans dans chaque pack.</h2></div>
+      <div class="card" style="padding:6px 6px;overflow-x:auto;">
+        <table class="ptable">
+          <thead><tr><th>Pack</th><th>Ce que tu obtiens d'Octans</th><th>Téléchargements</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="pp">Pack Autonomie</span><br /><span class="pr">77€</span></td>
+              <td class="feat">La méthode + les templates pour <b>configurer Octans toi-même</b> : skills et agents de base, prêts à coller dans Claude Code.</td>
+              <td class="feat">Archétypes CDC · templates CLAUDE.md · guide méthode (PDF)</td>
+            </tr>
+            <tr class="hl">
+              <td><span class="pp">Pack Maîtrise</span><br /><span class="pr">297€</span></td>
+              <td class="feat">Les <b>30 experts orchestrés</b> + audits automatiques (sécurité, RGPD, a11y). La configuration Octans <b>complète</b>.</td>
+              <td class="feat">Tout Autonomie + <b>bundle Octans</b> : skills/ · agents/ · hooks/ · settings.json</td>
+            </tr>
+            <tr>
+              <td><span class="pp">Pack Pro Accompagnement</span><br /><span class="pr">697€</span></td>
+              <td class="feat">Tout Maîtrise + Octans <b>réglé sur-mesure pour ton projet</b> : 3 doctrines dédiées + 1 séance de coaching 1h45.</td>
+              <td class="feat">Tout Maîtrise + <b>3 doctrines sur-mesure</b> (livrées sous 24 h ouvrés) · mises à jour à vie</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:14px;"><svg aria-hidden="true" style="width:15px;height:15px;color:var(--green)"><use href="#i-shield"/></svg>Téléchargements en liens signés, valables 24&nbsp;h — renouvelables autant de fois que tu veux, dans ton espace.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="padding-top:0;" data-ln="Mets Octans au travail">
+    <div class="wrap"><div class="card cta-strip">
+      <h2>Mets <span class="em">Octans</span> au travail sur ton projet.</h2>
+      <p>Un CDC complet, des experts orchestrés, des garde-fous automatiques — en local, à toi.</p>
+      <div class="cta"><a class="btn btn-primary" href="index.html#produits">Voir les packs<svg aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="btn btn-ghost" href="orientation-gratuite.html">Orientation gratuite (5 min)</a></div>
+    </div></div>
+  </section>
+</main>
+
+<footer class="subfoot">
+  <div class="wrap">
+    <a class="logo" href="index.html"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="links" aria-label="Pied de page"><a href="octans.html">Octans</a><a href="les-experts.html">Les experts</a><a href="la-methode.html">La méthode</a><a href="faq.html">FAQ</a></nav>
+    <span class="fin">🇫🇷 OVH · Plausible · Stripe FR · 0 tracking</span>
+  </div>
+</footer>
+
+<script>
+  (function(){var t=document.getElementById('mark-svg');document.querySelectorAll('[data-mark]').forEach(function(s,i){var n=t.content.cloneNode(true);var svg=n.querySelector('svg');svg.innerHTML=svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,'$1$2_'+i);s.appendChild(n);});})();
+</script>
+<script src="leftnav.js"></script>
+</body>
+</html>

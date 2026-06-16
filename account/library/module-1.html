@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Module 1 — Fondations CDC · StackProtocol</title>
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+<link rel="stylesheet" href="../../styles.css" />
+<link rel="stylesheet" href="../account.css" />
+<style>
+  .main { max-width: 880px; }
+  .lessonhead { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .lessonhead .pill { white-space: nowrap; }
+  .qwin { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 600; color: var(--green); }
+  .qwin svg { width: 15px; height: 15px; }
+
+  /* player */
+  .player { position: relative; aspect-ratio: 16/9; border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--line); background: radial-gradient(600px 300px at 50% 38%, rgba(24,180,204,0.14), transparent 60%), linear-gradient(160deg, var(--bg-3), var(--bg-2)); display: grid; place-items: center; margin-top: 18px; box-shadow: var(--sh-card); }
+  .player .pbtn { width: 76px; height: 76px; border-radius: 50%; background: rgba(60,229,163,0.16); border: 1px solid rgba(60,229,163,0.45); display: grid; place-items: center; color: var(--green); cursor: pointer; transition: transform .2s, background .2s; box-shadow: 0 10px 30px rgba(24,180,204,0.25); }
+  .player .pbtn:hover { transform: scale(1.06); background: rgba(60,229,163,0.24); }
+  .player .pbtn svg { width: 30px; height: 30px; margin-left: 3px; }
+  .player .meta { position: absolute; left: 16px; bottom: 14px; font-size: 12.5px; color: var(--ink-2); display: flex; align-items: center; gap: 10px; }
+  .player .meta .who { display: inline-flex; align-items: center; gap: 7px; }
+  .player .meta .av { width: 22px; height: 22px; border-radius: 50%; background: var(--grad-135); color: #303434; display: grid; place-items: center; font-weight: 700; font-size: 11px; }
+  .player .timecode { position: absolute; right: 16px; bottom: 14px; font-family: var(--font-display); font-size: 12.5px; color: var(--muted); }
+
+  /* progress steps */
+  .qbar { display: flex; align-items: center; gap: 14px; margin-top: 24px; }
+  .qbar .bar { flex: 1; height: 8px; border-radius: 99px; background: rgba(255,255,255,0.08); overflow: hidden; }
+  .qbar .bar i { display: block; height: 100%; width: 0; background: var(--grad); border-radius: 99px; transition: width .4s ease; }
+  .qbar .pct { font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--ink-2); min-width: 92px; text-align: right; }
+
+  /* checklist */
+  .checklist { margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .ck { display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px; border-radius: var(--r); border: 1px solid var(--line); background: var(--surface); transition: border-color .18s, background .18s; }
+  .ck.done { border-color: rgba(60,229,163,0.3); background: linear-gradient(100deg, rgba(60,229,163,0.07), rgba(24,180,204,0.03)); }
+  .ck .box { width: 24px; height: 24px; border-radius: 7px; border: 2px solid var(--line-2); flex-shrink: 0; display: grid; place-items: center; cursor: pointer; transition: all .18s; margin-top: 1px; }
+  .ck .box svg { width: 14px; height: 14px; color: #303434; opacity: 0; transition: opacity .15s; }
+  .ck.done .box { background: var(--green); border-color: var(--green); }
+  .ck.done .box svg { opacity: 1; }
+  .ck.auto .box { background: rgba(60,229,163,0.18); border-color: rgba(60,229,163,0.4); cursor: default; }
+  .ck.auto .box svg { opacity: 1; color: var(--green); }
+  .ck .cm { flex: 1; min-width: 0; }
+  .ck .cm h4 { font-size: 15px; font-weight: 600; color: var(--ink); }
+  .ck.done .cm h4 { color: var(--ink-2); }
+  .ck .cm p { font-size: 13px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+  .ck .cm .acts { display: flex; gap: 10px; margin-top: 11px; flex-wrap: wrap; }
+  .ck .cm .acts .lk { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; color: var(--green); cursor: pointer; }
+  .ck .cm .acts .lk svg { width: 14px; height: 14px; }
+  .ck .tag { font-size: 11px; color: var(--muted-2); font-weight: 600; flex-shrink: 0; }
+
+  /* badge unlock */
+  .badge-wrap { margin-top: 20px; }
+  .badge { display: flex; align-items: center; gap: 18px; padding: 22px; border-radius: var(--r-lg); border: 1px dashed var(--line-2); background: var(--surface); transition: all .3s; }
+  .badge.unlocked { border-style: solid; border-color: rgba(60,229,163,0.4); background: linear-gradient(150deg, rgba(60,229,163,0.12), rgba(24,180,204,0.06)); box-shadow: var(--sh-glow); }
+  .badge .medal { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; background: var(--surface-2); border: 1px solid var(--line-2); color: var(--muted-2); transition: all .3s; }
+  .badge.unlocked .medal { background: rgba(60,229,163,0.16); border-color: rgba(60,229,163,0.5); color: var(--green); }
+  .badge .medal svg { width: 28px; height: 28px; }
+  .badge .bt { flex: 1; }
+  .badge .bt h4 { font-family: var(--font-display); font-weight: 600; font-size: 16px; color: var(--ink); }
+  .badge .bt p { font-size: 13px; color: var(--muted); margin-top: 3px; }
+  .badge.unlocked .bt p { color: var(--ink-2); }
+
+  .help { margin-top: 24px; padding: 20px 22px; border-radius: var(--r); border: 1px solid var(--line); background: var(--surface); }
+  .help h4 { font-family: var(--font-display); font-weight: 600; font-size: 15px; }
+  .help ul { list-style: none; margin: 12px 0 0; display: flex; flex-direction: column; gap: 8px; }
+  .help li { font-size: 13.5px; color: var(--ink-2); display: flex; align-items: center; gap: 10px; }
+  .help li svg { width: 16px; height: 16px; color: var(--green); flex-shrink: 0; }
+  .help li a { color: var(--green); }
+  .help .ps { font-size: 12.5px; color: var(--muted); margin-top: 12px; }
+
+  .lnav { display: flex; justify-content: space-between; margin-top: 28px; gap: 12px; }
+
+  @media (max-width: 720px) { .qbar .pct { min-width: 0; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="sp-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#159FCB"/></linearGradient>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="14" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="14" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="m22 10-10-5L2 10l10 5 10-5zM6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M2 10h20" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4v16l13-8z" fill="currentColor"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-dl" viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="13" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-medal" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m8.5 14-2 7 5.5-3 5.5 3-2-7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5m7 7-7-7 7-7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<template id="mark-svg">
+  <svg viewBox="0 0 250 286" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="StackProtocol">
+    <defs>
+      <linearGradient id="solGreen" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#2ECE93"/></linearGradient>
+      <linearGradient id="solTeal" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#2ECE93"/><stop offset="100%" stop-color="#1593C6"/></linearGradient>
+      <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/><stop offset="45%" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+      <pattern id="stpGreen" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#43E7A6"/></pattern>
+      <pattern id="stpTeal" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#2ECE93"/></pattern>
+      <pattern id="stpBlue" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#1593C6"/></pattern>
+      <filter id="depth" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0a1414" flood-opacity="0.45"/></filter>
+    </defs>
+    <g transform="rotate(-7 125 143)">
+      <polygon points="139,8 179,48 139,88 99,48" fill="url(#stpGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#solGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#sheen)"/>
+      <polygon points="139,100 179,140 139,180 99,140" fill="url(#stpTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#solTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#sheen)"/>
+      <polygon points="139,192 179,232 139,272 99,232" fill="url(#stpBlue)" filter="url(#depth)"/>
+    </g>
+  </svg>
+</template>
+
+<div class="app">
+  <aside class="side">
+    <a class="logo brand" href="../../index.html"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="navg" aria-label="Espace membre">
+      <a class="it" href="../dashboard.html"><svg aria-hidden="true"><use href="#i-grid"/></svg>Tableau de bord</a>
+      <span class="lbl">Mes contenus</span>
+      <a class="it on" href="pack-methode.html" aria-current="page"><svg aria-hidden="true"><use href="#i-book"/></svg>Pack Méthode</a>
+      <a class="it" href="../dashboard.html"><svg aria-hidden="true"><use href="#i-play"/></svg>Replays webinar</a>
+      <span class="lbl">Accompagnement</span>
+      <a class="it" href="../dashboard.html"><svg aria-hidden="true"><use href="#i-cap"/></svg>Coaching</a>
+      <a class="it" href="../dashboard.html"><svg aria-hidden="true"><use href="#i-cal"/></svg>Pass Série</a>
+      <span class="lbl">Compte</span>
+      <a class="it" href="../billing.html"><svg aria-hidden="true"><use href="#i-card"/></svg>Facturation</a>
+      <a class="it" href="../settings.html"><svg aria-hidden="true"><use href="#i-gear"/></svg>Paramètres</a>
+    </nav>
+    <div class="who">
+      <span class="av">B</span>
+      <div><div class="nm">Brice D.</div><div class="lv">Pack Méthode · L1</div></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="crumb"><a href="pack-methode.html">Pack Méthode</a> › <span>Module 1</span></div>
+    <div class="lessonhead">
+      <h1 class="title">Module 1 — Fondations CDC</h1>
+    </div>
+    <p class="sublead"><span class="qwin"><svg aria-hidden="true"><use href="#i-check"/></svg>15 min · quick win garanti</span> — pose toutes les bases, repars avec ton premier CDC.</p>
+
+    <!-- PLAYER -->
+    <div class="player">
+      <button class="pbtn" type="button" aria-label="Lire la vidéo"><svg aria-hidden="true"><use href="#i-play"/></svg></button>
+      <div class="meta"><span class="who"><span class="av">B</span>Brice — Fondations CDC</span></div>
+      <div class="timecode">0:00 / 8:00</div>
+    </div>
+
+    <!-- PROGRESS -->
+    <div class="qbar">
+      <div class="bar"><i id="qfill"></i></div>
+      <span class="pct" id="qpct">0 / 5 fait</span>
+    </div>
+
+    <!-- CHECKLIST -->
+    <div class="sec-h">Étapes interactives</div>
+    <div class="checklist" id="checklist">
+      <div class="ck auto done" data-auto="1">
+        <span class="box"><svg aria-hidden="true"><use href="#i-check"/></svg></span>
+        <div class="cm"><h4>Télécharger l'archétype SAAS</h4><p>Fait automatiquement à l'ouverture du module.</p></div>
+        <span class="tag">AUTO</span>
+      </div>
+      <div class="ck auto done" data-auto="1">
+        <span class="box"><svg aria-hidden="true"><use href="#i-check"/></svg></span>
+        <div class="cm"><h4>Lire le README-SAAS.md</h4><p>Suivi automatiquement à la lecture.</p></div>
+        <span class="tag">AUTO</span>
+      </div>
+      <div class="ck" data-step>
+        <span class="box" role="checkbox" aria-checked="false" tabindex="0"><svg aria-hidden="true"><use href="#i-check"/></svg></span>
+        <div class="cm">
+          <h4>Créer ton fichier CLAUDE.md</h4>
+          <p>Le fichier qui cadre tout ce que <span class="claude-mark">Claude Code</span> fait sur ton projet.</p>
+          <div class="acts">
+            <span class="lk" data-dl><svg aria-hidden="true"><use href="#i-dl"/></svg>Télécharger le template</span>
+          </div>
+        </div>
+      </div>
+      <div class="ck" data-step>
+        <span class="box" role="checkbox" aria-checked="false" tabindex="0"><svg aria-hidden="true"><use href="#i-check"/></svg></span>
+        <div class="cm">
+          <h4>Créer ta 1ʳᵉ note « Vue d'ensemble »</h4>
+          <p>Le pattern qui garde ton projet lisible et cohérent.</p>
+          <div class="acts">
+            <span class="lk" data-dl><svg aria-hidden="true"><use href="#i-dl"/></svg>Template de note</span>
+          </div>
+        </div>
+      </div>
+      <div class="ck" data-step>
+        <span class="box" role="checkbox" aria-checked="false" tabindex="0"><svg aria-hidden="true"><use href="#i-check"/></svg></span>
+        <div class="cm">
+          <h4>Partager une capture à la commu <span style="color:var(--muted-2);font-weight:500">(optionnel)</span></h4>
+          <p>Montre ton premier CDC — c'est motivant, et la commu adore.</p>
+          <div class="acts">
+            <span class="lk" data-dl><svg aria-hidden="true"><use href="#i-camera"/></svg>Partager mon premier CDC</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BADGE -->
+    <div class="badge-wrap">
+      <div class="badge" id="badge">
+        <span class="medal"><svg aria-hidden="true"><use href="#i-medal"/></svg></span>
+        <div class="bt">
+          <h4 id="badge-title">Badge « Premier CDC créé »</h4>
+          <p id="badge-sub">Termine les étapes ci-dessus pour le débloquer.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- HELP -->
+    <div class="help">
+      <h4>Tu rencontres un problème&nbsp;?</h4>
+      <ul>
+        <li><svg aria-hidden="true"><use href="#i-help"/></svg>Pose ta question dans le Discord <a data-link="DISCORD_INVITE" href="#">#quick-help</a></li>
+        <li><svg aria-hidden="true"><use href="#i-help"/></svg>Écris à <a href="mailto:contact@stackprotocol.fr">contact@stackprotocol.fr</a> (réponse 24&nbsp;h)</li>
+      </ul>
+      <p class="ps">Ne reste pas bloqué·e. Vraiment. 🤝</p>
+    </div>
+
+    <div class="lnav">
+      <a class="btn btn-ghost btn-sm" href="pack-methode.html"><svg aria-hidden="true" style="width:15px;height:15px"><use href="#i-back"/></svg>Tous les modules</a>
+      <a class="btn btn-primary btn-sm" href="pack-methode.html">Module suivant<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </main>
+</div>
+
+<script>
+  (function(){
+    var t=document.getElementById('mark-svg');
+    document.querySelectorAll('[data-mark]').forEach(function(s,i){var node=t.content.cloneNode(true);var svg=node.querySelector('svg');svg.innerHTML=svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,'$1$2_'+i);s.appendChild(node);});
+
+    var KEY='sp_module1_steps';
+    var steps=Array.prototype.slice.call(document.querySelectorAll('.ck[data-step]'));
+    var saved={};
+    try { saved=JSON.parse(localStorage.getItem(KEY)||'{}'); } catch(e){}
+
+    function totalDone(){
+      var auto=document.querySelectorAll('.ck.auto').length;
+      var manual=steps.filter(function(s){return s.classList.contains('done');}).length;
+      return auto+manual;
+    }
+    function render(){
+      var total=document.querySelectorAll('.ck').length;
+      var done=totalDone();
+      document.getElementById('qfill').style.width=(done/total*100)+'%';
+      document.getElementById('qpct').textContent=done+' / '+total+' fait';
+      // badge : débloqué quand les 2 étapes clés (CLAUDE.md + note) sont faites
+      var key1=steps[0].classList.contains('done');
+      var key2=steps[1].classList.contains('done');
+      var badge=document.getElementById('badge');
+      if(key1&&key2){
+        badge.classList.add('unlocked');
+        document.getElementById('badge-title').textContent='🏆 Badge « Premier CDC créé » débloqué !';
+        document.getElementById('badge-sub').textContent='Bravo — tu as posé les fondations. Partage-le à la commu si tu veux.';
+      } else {
+        badge.classList.remove('unlocked');
+        document.getElementById('badge-title').textContent='Badge « Premier CDC créé »';
+        document.getElementById('badge-sub').textContent='Crée ton CLAUDE.md + ta 1ʳᵉ note pour le débloquer.';
+      }
+    }
+    steps.forEach(function(s,i){
+      if(saved['s'+i]) s.classList.add('done');
+      var box=s.querySelector('.box');
+      function toggle(){
+        s.classList.toggle('done');
+        box.setAttribute('aria-checked', s.classList.contains('done')?'true':'false');
+        saved['s'+i]=s.classList.contains('done');
+        try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch(e){}
+        render();
+      }
+      box.addEventListener('click',toggle);
+      box.addEventListener('keydown',function(e){ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); toggle(); } });
+      // clicking download also marks done
+      var dl=s.querySelector('[data-dl]');
+      if(dl) dl.addEventListener('click',function(){ if(!s.classList.contains('done')) toggle(); });
+      box.setAttribute('aria-checked', s.classList.contains('done')?'true':'false');
+    });
+    render();
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+/* ============================================================
+   StackProtocol — Menu gauche fixe (navigation intra-page)
+   Style Notion / Linear / Stripe docs. Réf archi v3.2 §3.
+   Activé automatiquement par leftnav.js si la page a ≥2 [data-ln].
+   ============================================================ */
+.left-nav {
+  position: fixed; top: 70px; left: 0; width: 240px; height: calc(100vh - 70px);
+  overflow-y: auto; padding: 26px 16px; z-index: 40;
+  background: var(--bg-2); border-right: 1px solid var(--line);
+}
+.left-nav .ln-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 4px 12px 12px; }
+.left-nav .ln-collapse { flex-shrink: 0; width: 30px; height: 30px; border-radius: 8px; border: 1px solid var(--line-2); background: var(--surface); color: var(--ink-2); cursor: pointer; display: grid; place-items: center; transition: background .18s, border-color .18s, color .18s; }
+.left-nav .ln-collapse:hover { background: var(--surface-2); border-color: var(--green); color: var(--ink); }
+.left-nav .ln-collapse svg { width: 17px; height: 17px; }
+.left-nav .ln-title {
+  font-family: var(--font-display); font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.10em; text-transform: uppercase; white-space: nowrap;
+  background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  padding: 0;
+}
+.left-nav .ln-list { display: flex; flex-direction: column; gap: 2px; }
+.left-nav a.ln-top { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted-2); border-bottom: 1px solid var(--line); border-radius: 0; margin-bottom: 6px; padding-bottom: 10px; }
+.left-nav a.ln-top:hover { color: var(--green); background: none; }
+.left-nav a {
+  display: block; padding: 9px 12px; font-size: 13.5px; line-height: 1.35;
+  color: var(--muted); border-left: 3px solid transparent; border-radius: 0 8px 8px 0;
+  transition: color .18s, background .18s, border-color .18s;
+}
+.left-nav a:hover { color: var(--ink); background: rgba(255,255,255,0.03); }
+.left-nav a .ln-count { margin-left: 8px; font-family: var(--font-display); font-size: 11.5px; font-weight: 700; color: var(--green); }
+.left-nav a.active {
+  border-left: 3px solid var(--green); background: var(--bg-3);
+  color: var(--ink); font-weight: 600;
+  animation: lnBreathe 4.5s ease-in-out infinite;
+}
+@keyframes lnBreathe {
+  0%, 100% { border-left-color: var(--muted-2); }
+  50% { border-left-color: var(--green); }
+}
+@media (prefers-reduced-motion: reduce) { .left-nav a.active { animation: none; } }
+/* fine scrollbar */
+.left-nav::-webkit-scrollbar { width: 8px; }
+.left-nav::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 8px; }
+
+/* desktop : on dégage le contenu pour le rail */
+@media (min-width: 1024px) {
+  body.has-leftnav main { padding-left: 240px; transition: padding-left .3s ease; }
+  .left-nav { transition: transform .3s ease; }
+  .ln-overlay { display: none !important; }
+  .ln-toggle { display: none !important; }
+  /* bouton flottant visible uniquement quand le rail est rétracté */
+  body.has-leftnav.ln-collapsed .ln-toggle { display: grid !important; }
+  /* état rétracté (desktop) : rail caché, contenu pleine largeur */
+  body.has-leftnav.ln-collapsed main { padding-left: 0; }
+  body.ln-collapsed .left-nav { transform: translateX(-100%); }
+}
+
+/* mobile / tablette : drawer + bouton flottant */
+.ln-toggle {
+  position: fixed; left: 16px; top: 86px; z-index: 60;
+  width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--line-2);
+  background: var(--bg-2); color: var(--ink); cursor: pointer;
+  display: grid; place-items: center; box-shadow: var(--sh-card); transition: background .18s, border-color .18s; }
+.ln-toggle:hover { background: var(--bg-3); border-color: var(--green); }
+.ln-toggle svg { width: 18px; height: 18px; }
+.ln-overlay {
+  position: fixed; inset: 0; z-index: 39; background: rgba(0,0,0,0.5);
+  opacity: 0; pointer-events: none; transition: opacity .25s;
+}
+.ln-overlay.show { opacity: 1; pointer-events: auto; }
+@media (max-width: 1023px) {
+  .left-nav { transform: translateX(-100%); transition: transform .3s ease; box-shadow: 0 20px 60px rgba(0,0,0,0.5); width: 260px; }
+  .left-nav.open { transform: translateX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .left-nav { transition: none; }
+  html { scroll-behavior: auto; }
+}

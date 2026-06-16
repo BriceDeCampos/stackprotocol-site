@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Les packs — 197 / 247 / 547 / 7790€ · StackProtocol</title>
+<meta name="description" content="Octans en quatre niveaux : Pack Autonomie 197€ (le moteur), Pack Autonomie Pro 247€ (+ actualisations à vie + Discord), Pack Accompagné 547€ (+ 2×30 min appels visio sur RDV), Audit Grand Compte 7790€ HT (B2B). Paiement unique. Garantie Légale Hamon 14j." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Spectral:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="../leftnav.css" />
+<link rel="stylesheet" href="../subpage.css" />
+<style>
+  .nav { position: sticky; top: 0; z-index: 50; background: rgba(43,46,46,0.72); backdrop-filter: blur(14px) saturate(140%); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; gap: 24px; height: 70px; }
+  .nav .spacer { flex: 1; }
+  .nav .back { font-size: 14.5px; font-weight: 500; color: var(--muted); display: inline-flex; align-items: center; gap: 8px; }
+  .nav .back:hover { color: var(--ink); }
+  .nav .back svg { width: 16px; height: 16px; transform: rotate(180deg); }
+
+  .phero { padding: 56px 0 28px; text-align: center; }
+  .phero h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(32px, 4.6vw, 48px); line-height: 1.05; letter-spacing: -0.03em; margin-top: 16px; }
+  .phero .sub { margin: 16px auto 0; font-size: 18px; line-height: 1.55; color: var(--ink-2); max-width: 560px; }
+  .packs3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; align-items: stretch; }
+  .pk { padding: 30px 26px; display: flex; flex-direction: column; position: relative; }
+  .pk.feat { border-color: rgba(60,229,163,0.4); box-shadow: 0 24px 54px rgba(255,255,255,0.10), 0 0 0 1px rgba(60,229,163,0.14), var(--sh-glow); }
+  .pk .badge { position: absolute; top: 16px; right: 16px; }
+  .pk .pn { font-family: var(--font-display); font-weight: 600; font-size: 20px; }
+  .pk .ptag { font-size: 13px; color: var(--muted); margin-top: 6px; min-height: 36px; }
+  .pk .amt { font-family: var(--font-display); font-weight: 700; font-size: 42px; letter-spacing: -0.02em; margin-top: 8px; background: var(--grad-135); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .pk .amt small { font-size: 14px; color: var(--muted); -webkit-text-fill-color: var(--muted); font-weight: 500; margin-left: 5px; }
+  .pk ul { list-style: none; margin: 18px 0 0; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .pk ul li { font-size: 13.5px; color: var(--ink-2); display: flex; align-items: flex-start; gap: 9px; line-height: 1.4; }
+  .pk ul li svg { width: 15px; height: 15px; color: var(--green); flex-shrink: 0; margin-top: 2px; }
+  .pk ul li b { color: var(--ink); font-weight: 600; }
+  .pk .btn { width: 100%; margin-top: 22px; }
+  .reassure { text-align:center; color: var(--muted); font-size: 13px; margin-top: 26px; display:flex; align-items:center; justify-content:center; gap:9px; }
+  .reassure svg { width: 16px; height: 16px; color: var(--green); }
+  .phero .sublist { list-style: none; margin: 16px 0 0; display: flex; flex-direction: column; gap: 9px; max-width: 520px; }
+  .phero .sublist li { font-size: 15px; color: var(--ink-2); display: flex; align-items: center; gap: 11px; }
+  .phero .sublist li svg { width: 16px; height: 16px; color: var(--green); flex-shrink: 0; }
+  .phero .subend { margin-top: 16px; font-size: 15px; color: var(--muted); max-width: 520px; }
+  .cg { background: linear-gradient(90deg, #E0915A, #E0915A); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-weight: 600; }
+  .phero .meta { display: flex; gap: 22px; margin-top: 26px; flex-wrap: wrap; }
+  .phero .meta .mi { font-size: 13.5px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .phero .meta .mi svg { width: 16px; height: 16px; color: var(--green); }
+
+  /* buy card */
+  .buy { padding: 28px; position: sticky; top: 90px; }
+  .buy .amt { font-family: var(--font-display); font-weight: 700; font-size: 46px; letter-spacing: -0.02em; background: var(--grad-135); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .buy .amt small { font-size: 16px; color: var(--muted); -webkit-text-fill-color: var(--muted); font-weight: 500; margin-left: 6px; }
+  .buy .once { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .buy .btn { width: 100%; margin-top: 22px; }
+  .buy ul { list-style: none; margin: 22px 0 0; display: flex; flex-direction: column; gap: 11px; }
+  .buy ul li { font-size: 14px; color: var(--ink-2); display: flex; align-items: flex-start; gap: 10px; }
+  .buy ul li svg { width: 16px; height: 16px; color: var(--green); flex-shrink: 0; margin-top: 2px; }
+  .buy .guar { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--muted); display: flex; align-items: center; gap: 9px; }
+  .buy .guar svg { width: 16px; height: 16px; color: var(--green); flex-shrink: 0; }
+
+  .modules { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .mod { padding: 22px; display: flex; gap: 16px; align-items: flex-start; }
+  .mod .num { font-family: var(--font-display); font-weight: 700; font-size: 17px; width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; background: linear-gradient(150deg, rgba(60,229,163,0.16), rgba(24,180,204,0.10)); border: 1px solid rgba(60,229,163,0.22); color: var(--green); flex-shrink: 0; }
+  .mod h4 { font-family: var(--font-display); font-weight: 600; font-size: 16px; }
+  .mod p { font-size: 13.5px; color: var(--muted); margin-top: 5px; line-height: 1.5; }
+
+  footer { border-top: 1px solid var(--line); padding: 44px 0; margin-top: 60px; }
+  footer .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  footer .links { display: flex; gap: 22px; flex-wrap: wrap; }
+  footer .links a { font-size: 13.5px; color: var(--muted); }
+  footer .links a:hover { color: var(--green); }
+  footer .fin { font-size: 12.5px; color: var(--muted-2); }
+
+  @media (max-width: 860px) {
+    .phero .grid { grid-template-columns: 1fr; }
+    .buy { position: static; }
+    .modules { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="sp-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#159FCB"/></linearGradient>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-infinity" viewBox="0 0 24 24"><path d="M6.5 8a4 4 0 1 0 0 8c2 0 3-2 5.5-4s3.5-4 5.5-4a4 4 0 1 1 0 8c-2 0-3-2-5.5-4S8.5 8 6.5 8Z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+</defs></svg>
+
+<template id="mark-svg">
+  <svg viewBox="0 0 250 286" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="StackProtocol">
+    <defs>
+      <linearGradient id="solGreen" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#2ECE93"/></linearGradient>
+      <linearGradient id="solTeal" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#2ECE93"/><stop offset="100%" stop-color="#1593C6"/></linearGradient>
+      <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/><stop offset="45%" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+      <pattern id="stpGreen" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#43E7A6"/></pattern>
+      <pattern id="stpTeal" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#2ECE93"/></pattern>
+      <pattern id="stpBlue" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#1593C6"/></pattern>
+      <filter id="depth" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0a1414" flood-opacity="0.45"/></filter>
+    </defs>
+    <g transform="rotate(-7 125 143)">
+      <polygon points="139,8 179,48 139,88 99,48" fill="url(#stpGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#solGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#sheen)"/>
+      <polygon points="139,100 179,140 139,180 99,140" fill="url(#stpTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#solTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#sheen)"/>
+      <polygon points="139,192 179,232 139,272 99,232" fill="url(#stpBlue)" filter="url(#depth)"/>
+    </g>
+  </svg>
+</template>
+
+<header class="subnav">
+  <div class="wrap">
+    <a class="logo" href="../index.html" aria-label="Accueil StackProtocol"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="links" aria-label="Navigation principale">
+      <a href="../pour-qui.html">Pour qui</a>
+      <a href="../la-methode.html">La méthode</a>
+      <a href="../octans.html">Octans</a>
+      <a href="../les-experts.html">Les experts</a>
+      <a href="../souverainete.html">Souveraineté</a>
+      <a href="../index.html#produits">Produits</a>
+      <a href="../faq.html">FAQ</a>
+      <a href="../cpf.html">CPF</a>
+    </nav>
+    <span class="spacer"></span>
+    <div class="actions">
+      <a class="login" href="../login.html">Se connecter</a>
+      <a class="btn btn-primary btn-sm" href="../orientation-gratuite.html">Orientation gratuite<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <button class="burger" aria-label="Menu" onclick="var l=document.querySelector('.subnav .links');l.style.display=l.style.display==='flex'?'':'flex';"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<main>
+  <section class="phero" data-ln="Une méthode, trois niveaux.">
+    <div class="wrap">
+      <span class="pill">Les packs</span>
+      <h1>Une méthode · <span class="grad-text">trois niveaux.</span></h1>
+      <p class="sub">Tu paies une fois. Tu repars avec ta méthode à vie, mise à jour chaque mois. Accès immédiat avec <span class="cg"><span class="claude-mark">Claude Code</span></span>.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:24px;">
+    <div class="wrap">
+      <div class="packs3">
+        <article class="card pk" id="etudiant">
+          <div class="pn">Pack Autonomie</div>
+          <div class="ptag">Octans complet en autonomie. Moteur entier, tutoriels, support async. Pour démarrer seul.</div>
+          <div class="amt">197€<small>une fois</small></div>
+          <ul>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>La méthode complète en autonomie</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Archétype MICRO + templates</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Guide PDF 30 pages</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><b>Accès à vie</b> + mises à jour</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Whitelist écoles</li>
+          </ul>
+          <a class="btn btn-ghost" data-checkout="STRIPE_LINK_PACK_ETUDIANT" href="#">Choisir Autonomie</a>
+        </article>
+
+        <article class="card pk feat" id="standard">
+          <span class="pill badge">Le plus choisi</span>
+          <div class="pn">Pack Accompagné</div>
+          <div class="ptag">Pack Autonomie Pro + 2×30 min d’appels visio sur RDV pour valider ton approche en direct.</div>
+          <div class="amt">547€<small>une fois</small></div>
+          <ul>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Tout le Pack Autonomie</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><b>5 archétypes</b> (MICRO · SAAS · PLATFORM · MOBILE · DATA)</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>30 experts virtuels</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Audits automatiques (sécurité, RGPD, a11y)</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Discord communauté</li>
+          </ul>
+          <a class="btn btn-primary" data-checkout="STRIPE_LINK_PACK_STANDARD" href="#">Choisir Maîtrise<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </article>
+
+        <article class="card pk" id="pro">
+          <div class="pn">Audit Grand Compte</div>
+          <div class="ptag">Pour les orgs : audit CDC complet (6 volets) + 2 sessions coaching. Rapport 30-50 pages.</div>
+          <div class="amt">7 790€<small>HT</small></div>
+          <ul>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Audit 6 volets (cohérence, sécurité, RGPD, a11y, souveraineté, technique)</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><b>2 sessions coaching 1h</b> (installation + relecture)</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Rapport complet 30-50 pages + recommandations</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Support Phase 1 (installation)</li>
+          </ul>
+          <a class="btn btn-ghost" href="../produits/audit-grand-compte.html">Détails Audit Grand Compte</a>
+        </article>
+      </div>
+      <p class="reassure"><svg aria-hidden="true"><use href="#i-shield"/></svg>Garantie Légale Hamon 14 jours + clause d'essai 60% · accès à vie · 0 mot de passe · sans tracking.</p>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider-line"></div></div>
+
+  <section class="section" data-ln="6 modules, du cadrage au…">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Le programme</span>
+        <h2>6 modules · du cadrage au lancement.</h2>
+        <p>Inclus dans tous les packs.</p>
+      </div>
+      <div class="modules">
+        <div class="card mod"><span class="num">01</span><div><h4>Poser les fondations</h4><p>Installer <span class="claude-mark">Claude Code</span> proprement, comprendre le pattern « Vue d'ensemble » et la doctrine.</p></div></div>
+        <div class="card mod"><span class="num">02</span><div><h4>Construire ton CDC</h4><p>Partir d'un archétype, l'adapter à ton projet, viser une cohérence totale entre tous tes fichiers.</p></div></div>
+        <div class="card mod"><span class="num">03</span><div><h4>Orchestrer les 30 experts</h4><p>Faire travailler ensemble juridique, sécurité, technique, business et méthode.</p></div></div>
+        <div class="card mod"><span class="num">04</span><div><h4>Auto-audits</h4><p>Services, produits, admin, lancement : automatiser les vérifications, réduire les hallucinations.</p></div></div>
+        <div class="card mod"><span class="num">05</span><div><h4>Sécurité &amp; souveraineté</h4><p>OWASP, RGPD, ANSSI : poser les garde-fous par défaut, sans GAFAM.</p></div></div>
+        <div class="card mod"><span class="num">06</span><div><h4>Suivi quotidien</h4><p>Tenir le cap : ToDo planifié, ADRs, cadence — 1 semaine de travail = 4 mois de résultats.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;" data-ln="Commence aujourd'hui.">
+    <div class="wrap">
+      <div class="card ctaband" style="text-align:center;">
+        <div style="padding:56px 40px;">
+          <h2 style="font-family:var(--font-display);font-weight:700;font-size:clamp(26px,3.6vw,38px);letter-spacing:-0.02em;">Commence aujourd'hui.</h2>
+          <p style="color:var(--muted);margin:14px auto 0;max-width:460px;">Accès délivré sous 24h ouvrées après paiement (Phase de lancement). Garantie Légale Hamon 14 jours + clause d'essai 60%.</p>
+          <div style="margin-top:26px;"><a class="btn btn-primary" data-checkout="STRIPE_LINK_PACK_STANDARD" href="#">Choisir le Pack Accompagné — 547€<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="../index.html"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="links" aria-label="Pied de page">
+      <a href="../index.html">Accueil</a>
+      <a href="webinar.html">Webinar</a>
+      <a href="../legal/cgv.html">CGV</a>
+      <a href="../legal/rgpd.html">RGPD</a>
+    </nav>
+    <span class="fin">🇫🇷 OVH · Plausible · Stripe FR · 0 tracking</span>
+  </div>
+</footer>
+
+<script>
+  (function(){var t=document.getElementById('mark-svg');document.querySelectorAll('[data-mark]').forEach(function(s,i){var node=t.content.cloneNode(true);var svg=node.querySelector('svg');svg.innerHTML=svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,'$1$2_'+i);s.appendChild(node);});})();
+</script>
+<script src="../config/stripe-links.js"></script>
+<script src="../leftnav.js"></script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>L'équipe — 30 spécialistes, 5 piliers · StackProtocol</title>
+<meta name="description" content="Une équipe IA de 30 spécialistes, organisée en 5 piliers : méthode, business, marketing, technique, sécurité, juridique, international. Le bon expert, au bon moment, dans Claude Code." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Spectral:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="leftnav.css" />
+<link rel="stylesheet" href="subpage.css" />
+<style>
+  .doctrine { display: flex; gap: 14px; align-items: flex-start; padding: 20px 24px; border-radius: var(--r); background: rgba(60,229,163,0.07); border: 1px solid rgba(60,229,163,0.25); max-width: 720px; margin: 0 auto; }
+  .doctrine svg { width: 20px; height: 20px; color: var(--green); flex-shrink: 0; margin-top: 2px; }
+  .doctrine p { font-size: 15px; color: var(--ink-2); line-height: 1.6; }
+  .doctrine b { color: var(--ink); }
+  /* 7 catégories publiques (le détail des experts = zone membre) */
+  .cats { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+  .catcard { padding: 30px 28px; display: flex; flex-direction: column; }
+  .catcard .ic { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; background: rgba(60,229,163,0.12); border: 1px solid rgba(60,229,163,0.22); color: var(--green); }
+  .catcard .ic svg { width: 26px; height: 26px; }
+  .catcard h3 { font-family: var(--font-display); font-weight: 600; font-size: 19px; letter-spacing: -0.01em; margin-top: 20px; }
+  .catcard .tl { font-family: var(--font-editorial); font-size: 16px; color: var(--ink-2); margin-top: 10px; line-height: 1.5; }
+  .catcard.wide { grid-column: span 3; flex-direction: row; align-items: center; gap: 24px; }
+  .catcard.wide .ic { flex-shrink: 0; }
+  .catcard.wide .body h3 { margin-top: 0; }
+  .catcard.wide .scope { font-size: 13.5px; color: var(--muted); margin-top: 10px; line-height: 1.7; }
+  .moat { max-width: 760px; margin: 36px auto 0; text-align: center; }
+  .moat p { font-size: 17px; color: var(--ink-2); line-height: 1.6; }
+  .moat .cta { margin-top: 22px; }
+  @media (max-width:860px){ .cats{ grid-template-columns:1fr; } .catcard.wide{ grid-column:span 1; flex-direction:column; align-items:flex-start; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 16v-5M12 8h.01" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M7 7l-4 7a4 4 0 0 0 8 0zM17 7l-4 7a4 4 0 0 0 8 0zM5 7h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 6-6 6 6 6M16 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-data" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m16 8-2 6-6 2 2-6 6-2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+
+  <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1.6" fill="currentColor"/><circle cx="18" cy="21" r="1.6" fill="currentColor"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L23 6H6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-mega" viewBox="0 0 24 24"><path d="M3 11v2a1 1 0 0 0 1 1h2l4 4V6L6 10H4a1 1 0 0 0-1 1zM14 8a4 4 0 0 1 0 8M17 5a8 8 0 0 1 0 14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20A15 15 0 0 1 12 2z" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+</defs></svg>
+
+<template id="mark-svg">
+  <svg viewBox="0 0 250 286" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="StackProtocol">
+    <defs>
+      <linearGradient id="solGreen" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#2ECE93"/></linearGradient>
+      <linearGradient id="solTeal" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#2ECE93"/><stop offset="100%" stop-color="#1593C6"/></linearGradient>
+      <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/><stop offset="45%" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+      <pattern id="stpGreen" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#43E7A6"/></pattern>
+      <pattern id="stpTeal" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#2ECE93"/></pattern>
+      <pattern id="stpBlue" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#1593C6"/></pattern>
+      <filter id="depth" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0a1414" flood-opacity="0.45"/></filter>
+    </defs>
+    <g transform="rotate(-7 125 143)">
+      <polygon points="139,8 179,48 139,88 99,48" fill="url(#stpGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#solGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#sheen)"/>
+      <polygon points="139,100 179,140 139,180 99,140" fill="url(#stpTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#solTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#sheen)"/>
+      <polygon points="139,192 179,232 139,272 99,232" fill="url(#stpBlue)" filter="url(#depth)"/>
+    </g>
+  </svg>
+</template>
+
+<header class="subnav">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Accueil StackProtocol"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="links" aria-label="Navigation principale">
+      <a href="pour-qui.html">Pour qui</a>
+      <a href="la-methode.html">La méthode</a>
+      <a href="octans.html">Octans</a>
+      <a href="les-experts.html" class="on">Les experts</a>
+      <a href="souverainete.html">Souveraineté</a>
+      <a href="index.html#produits">Produits</a>
+      <a href="faq.html">FAQ</a>
+      <a href="cpf.html">CPF</a>
+    </nav>
+    <span class="spacer"></span>
+    <div class="actions">
+      <a class="login" href="login.html">Se connecter</a>
+      <a class="btn btn-primary btn-sm" href="orientation-gratuite.html">Orientation gratuite<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <button class="burger" aria-label="Menu" onclick="var l=document.querySelector('.subnav .links');l.style.display=l.style.display==='flex'?'':'flex';"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<main>
+  <div class="phead center wrap">
+    <span class="pill">L'équipe</span>
+    <h1>30 spécialistes. <span class="em">5 piliers.</span></h1>
+    <p class="intro">Une équipe virtuelle pluridisciplinaire.<br />Dans <span class="claude-mark">Claude</span> Code.</p>
+    <p class="intro" style="margin-top:14px;">Chacun anticipe le stratégique sur son terrain.</p>
+  </div>
+
+  <section class="wrap" style="padding-bottom:8px;">
+    <div class="doctrine">
+      <svg aria-hidden="true"><use href="#i-info"/></svg>
+      <p><b>La bonne dose. Pas la surcharge.</b><br />Sur un projet courant, tu en utilises 7 à 10 au quotidien.<br />Les autres sont là au cas où — prêts le jour où ton projet en a besoin.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:32px;" data-ln="Méthode &amp; cadrage">
+    <div class="wrap">
+
+      <div class="cats">
+        <div class="card catcard">
+          <span class="ic"><svg aria-hidden="true"><use href="#i-compass"/></svg></span>
+          <h3>Méthode &amp; cadrage</h3>
+          <div class="tl">« Avant de coder, on cadre. »</div>
+        </div>
+        <div class="card catcard">
+          <span class="ic"><svg aria-hidden="true"><use href="#i-cart"/></svg></span>
+          <h3>Business &amp; commerce</h3>
+          <div class="tl">« Vendre. Acheter. Faire tourner. »</div>
+        </div>
+        <div class="card catcard">
+          <span class="ic"><svg aria-hidden="true"><use href="#i-mega"/></svg></span>
+          <h3>Marketing &amp; acquisition</h3>
+          <div class="tl">« Faire venir. Faire revenir. »</div>
+        </div>
+        <div class="card catcard">
+          <span class="ic"><svg aria-hidden="true"><use href="#i-code"/></svg></span>
+          <h3>Technique &amp; architecture</h3>
+          <div class="tl">« Robuste. Maintenable. Évolutif. »</div>
+        </div>
+        <div class="card catcard">
+          <span class="ic"><svg aria-hidden="true"><use href="#i-shield"/></svg></span>
+          <h3>Sécurité &amp; accessibilité</h3>
+          <div class="tl">« Sûr par défaut. Pour tout le monde. »</div>
+        </div>
+        <div class="card catcard">
+          <span class="ic"><svg aria-hidden="true"><use href="#i-scale"/></svg></span>
+          <h3>Juridique &amp; finance</h3>
+          <div class="tl">« Tu dors mieux. »</div>
+        </div>
+        <div class="card catcard wide">
+          <span class="ic"><svg aria-hidden="true"><use href="#i-globe"/></svg></span>
+          <div class="body">
+            <h3>International &amp; audits</h3>
+            <div class="tl">« Quand tu grandis. Quand tu veux savoir. »</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="moat">
+        <p>Et chaque pilier peut faire l'objet d'un <b>audit dédié</b>.<br />Disponible à la demande dans le Pack Audit Grand Compte.</p>
+        <div class="cta"><a class="btn btn-primary" href="produits/audit-grand-compte.html">Découvrir le Pack Audit<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:8px;" data-ln="Toute l'équipe, dans une…">
+    <div class="wrap"><div class="card cta-strip">
+      <h2>Toute l'équipe · <span class="em">dans une commande.</span></h2>
+      <p>Tu n'engages personne.<br />Tu invoques le bon expert au bon moment.<br />Dans <span class="claude-mark">Claude</span> Code.</p>
+      <div class="cta"><a class="btn btn-primary" href="index.html#produits">Voir les packs<svg aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="btn btn-ghost" href="la-methode.html">La méthode</a></div>
+    </div></div>
+  </section>
+</main>
+
+<footer class="subfoot">
+  <div class="wrap">
+    <a class="logo" href="index.html"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="links" aria-label="Pied de page"><a href="la-methode.html">La méthode</a><a href="pour-qui.html">Pour qui</a><a href="faq.html">FAQ</a><a href="legal/cgv.html">CGV</a></nav>
+    <span class="fin">🇫🇷 OVH · Plausible · Stripe FR · 0 tracking</span>
+  </div>
+</footer>
+
+<script>
+  (function(){var t=document.getElementById('mark-svg');document.querySelectorAll('[data-mark]').forEach(function(s,i){var n=t.content.cloneNode(true);var svg=n.querySelector('svg');svg.innerHTML=svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,'$1$2_'+i);s.appendChild(n);});})();
+</script>
+<script src="leftnav.js"></script>
+</body>
+</html>

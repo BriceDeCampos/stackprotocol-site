@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mon espace — Pack Méthode · StackProtocol</title>
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Spectral:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  .app { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+
+  /* sidebar */
+  .side { border-right: 1px solid var(--line); padding: 22px 16px; display: flex; flex-direction: column; gap: 6px; position: sticky; top: 0; height: 100vh; }
+  .side .brand { padding: 6px 10px 18px; }
+  .side .navg { display: flex; flex-direction: column; gap: 3px; }
+  .side .navg .lbl { font-family: var(--font-display); font-size: 10.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted-2); padding: 14px 12px 7px; }
+  .side a.it { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 11px; font-size: 14px; font-weight: 500; color: var(--muted); transition: background .18s, color .18s; }
+  .side a.it svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .side a.it:hover { background: var(--surface); color: var(--ink); }
+  .side a.it.on { background: linear-gradient(100deg, rgba(60,229,163,0.14), rgba(24,180,204,0.08)); color: var(--ink); box-shadow: inset 0 0 0 1px rgba(60,229,163,0.2); }
+  .side a.it.on svg { color: var(--green); }
+  .side .who { margin-top: auto; padding: 12px; border-top: 1px solid var(--line); display: flex; align-items: center; gap: 11px; }
+  .side .who .av { width: 34px; height: 34px; border-radius: 50%; background: var(--grad-135); color: #303434; display: grid; place-items: center; font-weight: 700; font-size: 14px; }
+  .side .who .nm { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .side .who .lv { font-size: 11px; color: var(--green); }
+
+  /* content */
+  .main { padding: 34px 40px 60px; max-width: 980px; }
+  .crumb { font-size: 12.5px; color: var(--muted-2); display: flex; align-items: center; gap: 8px; }
+  .crumb a { color: var(--muted); } .crumb a:hover { color: var(--green); }
+  h1.title { font-family: var(--font-display); font-weight: 700; font-size: 32px; letter-spacing: -0.02em; margin-top: 12px; }
+  .sublead { color: var(--muted); font-size: 15px; margin-top: 8px; }
+
+  .progress { display: flex; align-items: center; gap: 14px; margin-top: 22px; }
+  .progress .bar { flex: 1; height: 7px; border-radius: 99px; background: rgba(255,255,255,0.08); overflow: hidden; }
+  .progress .bar i { display: block; height: 100%; width: 33%; background: var(--grad); border-radius: 99px; }
+  .progress .pct { font-family: var(--font-display); font-size: 13px; font-weight: 600; color: var(--ink-2); }
+
+  .sec-h { font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 40px 0 16px; }
+
+  .vid { display: flex; align-items: center; gap: 16px; padding: 16px; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); margin-bottom: 11px; transition: border-color .2s; }
+  .vid:hover { border-color: rgba(60,229,163,0.32); }
+  .vid .thumb { width: 96px; height: 58px; border-radius: 9px; flex-shrink: 0; position: relative; background: linear-gradient(150deg, var(--bg-3), var(--bg-2)); border: 1px solid var(--line); display: grid; place-items: center; }
+  .vid .thumb .pl { width: 30px; height: 30px; border-radius: 50%; background: rgba(60,229,163,0.16); border: 1px solid rgba(60,229,163,0.4); display: grid; place-items: center; color: var(--green); }
+  .vid .thumb .pl svg { width: 13px; height: 13px; }
+  .vid .info { flex: 1; min-width: 0; }
+  .vid .info .n { font-size: 11px; font-family: var(--font-display); font-weight: 600; color: var(--muted-2); letter-spacing: 0.06em; }
+  .vid .info h4 { font-size: 15px; font-weight: 600; color: var(--ink); margin-top: 3px; }
+  .vid .info .meta { font-size: 12.5px; color: var(--muted); margin-top: 3px; }
+  .vid .stat { flex-shrink: 0; }
+  .vid .done { color: var(--green); display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; }
+  .vid .done svg { width: 15px; height: 15px; }
+  .vid .watch { font-size: 13px; font-weight: 600; color: var(--green); display: inline-flex; align-items: center; gap: 6px; }
+  .vid .watch svg { width: 15px; height: 15px; }
+
+  .files { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .file { display: flex; align-items: center; gap: 13px; padding: 15px; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); transition: border-color .2s; }
+  .file:hover { border-color: rgba(60,229,163,0.32); }
+  .file .fi { width: 40px; height: 40px; border-radius: 11px; flex-shrink: 0; display: grid; place-items: center; background: linear-gradient(150deg, rgba(60,229,163,0.16), rgba(24,180,204,0.10)); border: 1px solid rgba(60,229,163,0.22); color: var(--green); }
+  .file .fi svg { width: 19px; height: 19px; }
+  .file .ft { flex: 1; min-width: 0; }
+  .file .ft .t { font-size: 14px; font-weight: 600; color: var(--ink); }
+  .file .ft .s { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .file .dl { width: 38px; height: 38px; border-radius: 10px; background: var(--surface-2); border: 1px solid var(--line-2); display: grid; place-items: center; color: var(--ink-2); flex-shrink: 0; transition: all .2s; }
+  .file .dl:hover { color: var(--green); border-color: var(--green); }
+  .file .dl svg { width: 17px; height: 17px; }
+
+  .signed-note { display: flex; align-items: center; gap: 9px; margin-top: 16px; font-size: 12.5px; color: var(--muted); }
+  .signed-note svg { width: 15px; height: 15px; color: var(--green); }
+
+  .discord { display: flex; align-items: center; gap: 16px; padding: 20px; border-radius: var(--r-lg); background: linear-gradient(150deg, rgba(88,101,242,0.14), rgba(24,180,204,0.06)); border: 1px solid rgba(88,101,242,0.28); margin-top: 14px; }
+  .discord .di { width: 46px; height: 46px; border-radius: 13px; background: rgba(88,101,242,0.2); border: 1px solid rgba(88,101,242,0.4); display: grid; place-items: center; color: #A9B2FF; flex-shrink: 0; }
+  .discord .di svg { width: 24px; height: 24px; }
+  .discord .dt { flex: 1; }
+  .discord .dt h4 { font-family: var(--font-display); font-weight: 600; font-size: 16px; }
+  .discord .dt p { font-size: 13px; color: var(--muted); margin-top: 3px; }
+  .discord .dt .left { color: #A9B2FF; }
+
+  @media (max-width: 820px) {
+    .app { grid-template-columns: 1fr; }
+    .side { position: static; height: auto; flex-direction: row; flex-wrap: wrap; align-items: center; }
+    .side .navg { flex-direction: row; flex-wrap: wrap; }
+    .side .navg .lbl, .side .who { display: none; }
+    .main { padding: 24px 20px 50px; }
+    .files { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="sp-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#159FCB"/></linearGradient>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="14" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="14" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="m22 10-10-5L2 10l10 5 10-5zM6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M2 10h20" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4v16l13-8z" fill="currentColor"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-zip" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M10 7h2M10 10h2M10 13h2" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-pdf" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-dl" viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 11V7a4 4 0 0 1 8 0v4" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-discord" viewBox="0 0 24 24"><path d="M19 5a16 16 0 0 0-4-1l-.3.6a12 12 0 0 1 3.3 1.5 14 14 0 0 0-12 0A12 12 0 0 1 9.3 4.6 16 16 0 0 0 5 5C2.5 9 2 13 2.2 17a16 16 0 0 0 4.8 2l1-1.6a9 9 0 0 1-1.6-.8l.4-.3a11 11 0 0 0 10.4 0l.4.3a9 9 0 0 1-1.6.8l1 1.6a16 16 0 0 0 4.8-2C22 13 21.5 9 19 5ZM9 14a1.6 1.6 0 0 1 0-3.2A1.6 1.6 0 0 1 9 14Zm6 0a1.6 1.6 0 0 1 0-3.2A1.6 1.6 0 0 1 15 14Z" fill="currentColor"/></symbol>
+</defs></svg>
+
+<template id="mark-svg">
+  <svg viewBox="0 0 250 286" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="StackProtocol">
+    <defs>
+      <linearGradient id="solGreen" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#2ECE93"/></linearGradient>
+      <linearGradient id="solTeal" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#2ECE93"/><stop offset="100%" stop-color="#1593C6"/></linearGradient>
+      <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/><stop offset="45%" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+      <pattern id="stpGreen" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#43E7A6"/></pattern>
+      <pattern id="stpTeal" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#2ECE93"/></pattern>
+      <pattern id="stpBlue" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#1593C6"/></pattern>
+      <filter id="depth" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0a1414" flood-opacity="0.45"/></filter>
+    </defs>
+    <g transform="rotate(-7 125 143)">
+      <polygon points="139,8 179,48 139,88 99,48" fill="url(#stpGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#solGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#sheen)"/>
+      <polygon points="139,100 179,140 139,180 99,140" fill="url(#stpTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#solTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#sheen)"/>
+      <polygon points="139,192 179,232 139,272 99,232" fill="url(#stpBlue)" filter="url(#depth)"/>
+    </g>
+  </svg>
+</template>
+
+<div class="app">
+  <!-- SIDEBAR -->
+  <aside class="side">
+    <a class="logo brand" href="../../index.html"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="navg" aria-label="Espace membre">
+      <a class="it" href="../dashboard.html"><svg aria-hidden="true"><use href="#i-grid"/></svg>Tableau de bord</a>
+      <span class="lbl">Mes contenus</span>
+      <a class="it on" href="pack-methode.html" aria-current="page"><svg aria-hidden="true"><use href="#i-book"/></svg>Pack Méthode</a>
+      <a class="it" href="octans.html"><svg aria-hidden="true"><use href="#i-cpu"/></svg>Octans</a>
+      <a class="it" href="../dashboard.html"><svg aria-hidden="true"><use href="#i-play"/></svg>Replays webinar</a>
+      <span class="lbl">Accompagnement</span>
+      <a class="it" href="../dashboard.html"><svg aria-hidden="true"><use href="#i-cap"/></svg>Coaching</a>
+      <a class="it" href="../dashboard.html"><svg aria-hidden="true"><use href="#i-cal"/></svg>Pass Série</a>
+      <span class="lbl">Compte</span>
+      <a class="it" href="../billing.html"><svg aria-hidden="true"><use href="#i-card"/></svg>Facturation</a>
+      <a class="it" href="../settings.html"><svg aria-hidden="true"><use href="#i-gear"/></svg>Paramètres</a>
+    </nav>
+    <div class="who">
+      <span class="av">B</span>
+      <div><div class="nm">Brice D.</div><div class="lv">Pack Méthode · L1</div></div>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="main">
+    <div class="crumb"><a href="../dashboard.html">Mes contenus</a> › <span>Pack Méthode</span></div>
+    <h1 class="title">Pack Méthode autonome</h1>
+    <p class="sublead">6 modules vidéo + tes archétypes, templates et guide. Accès à vie.</p>
+
+    <div class="progress">
+      <div class="bar"><i></i></div>
+      <span class="pct">2 / 6 modules</span>
+    </div>
+
+    <!-- VIDEOS -->
+    <div class="sec-h">Modules vidéo</div>
+
+    <div class="vid">
+      <div class="thumb"><span class="pl"><svg aria-hidden="true"><use href="#i-play"/></svg></span></div>
+      <div class="info"><div class="n">MODULE 01</div><h4>Poser les fondations</h4><div class="meta">14 min · <span class="claude-mark">Claude Code</span> + doctrine</div></div>
+      <div class="stat"><span class="done"><svg aria-hidden="true"><use href="#i-check"/></svg>Terminé</span></div>
+    </div>
+    <div class="vid">
+      <div class="thumb"><span class="pl"><svg aria-hidden="true"><use href="#i-play"/></svg></span></div>
+      <div class="info"><div class="n">MODULE 02</div><h4>Construire ton CDC</h4><div class="meta">22 min · archétypes &amp; cohérence</div></div>
+      <div class="stat"><span class="done"><svg aria-hidden="true"><use href="#i-check"/></svg>Terminé</span></div>
+    </div>
+    <div class="vid">
+      <div class="thumb"><span class="pl"><svg aria-hidden="true"><use href="#i-play"/></svg></span></div>
+      <div class="info"><div class="n">MODULE 03</div><h4>Orchestrer les 30 experts</h4><div class="meta">19 min · juridique · sécurité · business</div></div>
+      <div class="stat"><a class="watch" href="module-1.html"><svg aria-hidden="true"><use href="#i-play"/></svg>Reprendre</a></div>
+    </div>
+    <div class="vid">
+      <div class="thumb"><span class="pl"><svg aria-hidden="true"><use href="#i-play"/></svg></span></div>
+      <div class="info"><div class="n">MODULE 04</div><h4>Auto-audits</h4><div class="meta">17 min · services · produits · admin</div></div>
+      <div class="stat"><a class="watch" href="module-1.html"><svg aria-hidden="true"><use href="#i-play"/></svg>Regarder</a></div>
+    </div>
+    <div class="vid">
+      <div class="thumb"><span class="pl"><svg aria-hidden="true"><use href="#i-play"/></svg></span></div>
+      <div class="info"><div class="n">MODULE 05</div><h4>Sécurité &amp; souveraineté</h4><div class="meta">21 min · OWASP · RGPD · ANSSI</div></div>
+      <div class="stat"><a class="watch" href="module-1.html"><svg aria-hidden="true"><use href="#i-play"/></svg>Regarder</a></div>
+    </div>
+    <div class="vid">
+      <div class="thumb"><span class="pl"><svg aria-hidden="true"><use href="#i-play"/></svg></span></div>
+      <div class="info"><div class="n">MODULE 06</div><h4>Suivi quotidien</h4><div class="meta">16 min · ToDo · ADRs · cadence</div></div>
+      <div class="stat"><a class="watch" href="module-1.html"><svg aria-hidden="true"><use href="#i-play"/></svg>Regarder</a></div>
+    </div>
+
+    <!-- FICHIERS -->
+    <div class="sec-h">Ressources à télécharger</div>
+    <div class="files">
+      <div class="file"><span class="fi"><svg aria-hidden="true"><use href="#i-zip"/></svg></span><div class="ft"><div class="t">5 archétypes CDC</div><div class="s">ZIP · 18 Mo · MICRO·SAAS·CIVIC·MOBILE·DATA</div></div><a class="dl" href="#" aria-label="Télécharger les archétypes"><svg aria-hidden="true"><use href="#i-dl"/></svg></a></div>
+      <div class="file"><span class="fi"><svg aria-hidden="true"><use href="#i-pdf"/></svg></span><div class="ft"><div class="t">Guide méthode</div><div class="s">PDF · 30 pages · 4 Mo</div></div><a class="dl" href="#" aria-label="Télécharger le guide"><svg aria-hidden="true"><use href="#i-dl"/></svg></a></div>
+      <div class="file"><span class="fi"><svg aria-hidden="true"><use href="#i-zip"/></svg></span><div class="ft"><div class="t">Templates CLAUDE.md</div><div class="s">ZIP · 240 Ko</div></div><a class="dl" href="#" aria-label="Télécharger les templates"><svg aria-hidden="true"><use href="#i-dl"/></svg></a></div>
+      <div class="file"><span class="fi"><svg aria-hidden="true"><use href="#i-zip"/></svg></span><div class="ft"><div class="t">Settings.json types</div><div class="s">ZIP · 90 Ko</div></div><a class="dl" href="#" aria-label="Télécharger les settings"><svg aria-hidden="true"><use href="#i-dl"/></svg></a></div>
+    </div>
+    <p class="signed-note"><svg aria-hidden="true"><use href="#i-lock"/></svg>Liens de téléchargement signés, valables 24&nbsp;h — renouvelables autant de fois que tu veux.</p>
+
+    <!-- DISCORD -->
+    <div class="sec-h">Communauté</div>
+    <div class="discord">
+      <span class="di"><svg aria-hidden="true"><use href="#i-discord"/></svg></span>
+      <div class="dt"><h4>Discord StackProtocol</h4><p>Pose tes questions, partage tes CDC. <span class="left">Accès actif — 23 jours restants.</span></p></div>
+      <a class="btn btn-ghost btn-sm" data-link="DISCORD_INVITE" href="#">Rejoindre</a>
+    </div>
+  </main>
+</div>
+
+<script>
+  (function(){var t=document.getElementById('mark-svg');document.querySelectorAll('[data-mark]').forEach(function(s,i){var node=t.content.cloneNode(true);var svg=node.querySelector('svg');svg.innerHTML=svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,'$1$2_'+i);s.appendChild(node);});})();
+</script>
+</body>
+</html>

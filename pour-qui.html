@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pour qui ? — StackProtocol</title>
+<meta name="description" content="Développeur indépendant, métier libéral, commerçant, fondateur SaaS, association, collectivité… 24 profils, 35 types de projets. Si tu te reconnais ici, la méthode est faite pour toi." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Spectral:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="leftnav.css" />
+<link rel="stylesheet" href="subpage.css" />
+<style>
+  /* ===== personas ===== */
+  .personas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: start; }
+  .personas + .personas { margin-top: 12px; }
+  .pcard { padding: 0; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+  .pcard.open { border-color: rgba(60,229,163,0.4); }
+  .pcard:hover { transform: translateY(-2px); border-color: rgba(60,229,163,0.35); box-shadow: 0 18px 44px rgba(0,0,0,0.30), 0 0 0 1px rgba(60,229,163,0.10), 0 8px 26px rgba(60,229,163,0.10); }
+  .pcard .ph { width: 100%; display: flex; align-items: center; gap: 12px; padding: 14px 18px; min-height: 84px; background: none; border: 0; cursor: pointer; text-align: left; color: var(--ink); }
+  .pcard .ph .chev { width: 15px; height: 15px; color: var(--muted); margin-left: auto; flex-shrink: 0; transition: transform .3s ease; }
+  .pcard.open .ph .chev { transform: rotate(90deg); }
+  .pcard .pbody { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+  .pcard.open .pbody { max-height: 420px; }
+    .pcard h3 { font-family: var(--font-display); font-weight: 600; font-size: 17px; letter-spacing: -0.01em; line-height: 1.25; }
+  .pcard h3 small { display: block; font-family: var(--font-body); font-weight: 500; font-size: 12.5px; color: var(--muted); margin-top: 4px; letter-spacing: 0; }
+  .pcard ul { list-style: none; margin: 0; padding: 2px 18px 16px; display: flex; flex-direction: column; gap: 9px; }
+  .pcard li { font-size: 13.5px; line-height: 1.5; color: var(--ink-2); display: flex; align-items: flex-start; gap: 9px; }
+  .pcard li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--green); flex-shrink: 0; margin-top: 7px; }
+
+  /* ===== 35 types — dépliants (clic, fermés par défaut) ===== */
+  .tj { border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); overflow: hidden; transition: border-color .2s; }
+  .tj + .tj { margin-top: 10px; }
+  .tj.open { border-color: rgba(60,229,163,0.4); }
+  .tj-head { width: 100%; display: flex; align-items: center; gap: 12px; padding: 18px 20px; background: none; border: 0; cursor: pointer; font-family: var(--font-display); font-weight: 600; font-size: 15.5px; color: var(--ink); text-align: left; }
+  .tj-head:hover { color: var(--green); }
+  .tj-head .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+  .tj-head .cnt { margin-left: auto; font-family: var(--font-display); font-size: 12px; font-weight: 700; color: var(--green); }
+  .tj-head .chev { width: 15px; height: 15px; color: var(--muted); transition: transform .3s ease; flex-shrink: 0; }
+  .tj.open .chev { transform: rotate(90deg); }
+  .tj-body { max-height: 0; overflow: hidden; transition: max-height .45s ease; }
+  .tj.open .tj-body { max-height: 700px; }
+  .tj-body ul { list-style: none; margin: 0; padding: 2px 20px 18px 39px; display: flex; flex-direction: column; gap: 8px; }
+  .tj-body li { font-size: 13.5px; line-height: 1.5; color: var(--ink-2); display: flex; align-items: flex-start; gap: 9px; }
+  .tj-body li::before { content: ""; width: 4px; height: 4px; border-radius: 50%; background: var(--muted-2); flex-shrink: 0; margin-top: 8px; }
+  @media (prefers-reduced-motion: reduce) { .tj-body { transition: none; } .pcard { transition: none; } }
+
+  /* ===== honnêteté ===== */
+  .limites { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .lim { font-size: 14px; color: var(--ink-2); display: flex; align-items: flex-start; gap: 11px; padding: 15px 18px; border-radius: var(--r); background: rgba(224,145,90,0.06); border: 1px solid rgba(224,145,90,0.2); line-height: 1.45; }
+  .lim .x { color: var(--orange); font-weight: 700; flex-shrink: 0; }
+
+  @media (max-width: 980px) { .personas { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 680px) { .personas, .limites { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+</defs></svg>
+
+<template id="mark-svg">
+  <svg viewBox="0 0 250 286" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="StackProtocol">
+    <defs>
+      <linearGradient id="solGreen" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#2ECE93"/></linearGradient>
+      <linearGradient id="solTeal" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#2ECE93"/><stop offset="100%" stop-color="#1593C6"/></linearGradient>
+      <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/><stop offset="45%" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+      <pattern id="stpGreen" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#43E7A6"/></pattern>
+      <pattern id="stpTeal" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#2ECE93"/></pattern>
+      <pattern id="stpBlue" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#1593C6"/></pattern>
+      <filter id="depth" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0a1414" flood-opacity="0.45"/></filter>
+    </defs>
+    <g transform="rotate(-7 125 143)">
+      <polygon points="139,8 179,48 139,88 99,48" fill="url(#stpGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#solGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#sheen)"/>
+      <polygon points="139,100 179,140 139,180 99,140" fill="url(#stpTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#solTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#sheen)"/>
+      <polygon points="139,192 179,232 139,272 99,232" fill="url(#stpBlue)" filter="url(#depth)"/>
+    </g>
+  </svg>
+</template>
+
+<header class="subnav">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Accueil StackProtocol"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="links" aria-label="Navigation principale">
+      <a href="pour-qui.html" class="on">Pour qui</a>
+      <a href="la-methode.html">La méthode</a>
+      <a href="octans.html">Octans</a>
+      <a href="les-experts.html">Les experts</a>
+      <a href="souverainete.html">Souveraineté</a>
+      <a href="index.html#produits">Produits</a>
+      <a href="faq.html">FAQ</a>
+      <a href="cpf.html">CPF</a>
+    </nav>
+    <span class="spacer"></span>
+    <div class="actions">
+      <a class="login" href="login.html">Se connecter</a>
+      <a class="btn btn-primary btn-sm" href="orientation-gratuite.html">Orientation gratuite<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <button class="burger" aria-label="Menu" onclick="var l=document.querySelector('.subnav .links');l.style.display=l.style.display==='flex'?'':'flex';"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<main>
+  <!-- 1 · H1 + sous-titre court -->
+  <div class="phead center wrap">
+    <span class="pill">Pour qui</span>
+    <h1>Pour qui&nbsp;?</h1>
+    <p class="intro">Si tu te reconnais ci-dessous, la méthode est faite pour toi.</p>
+  </div>
+
+  <!-- 2 · 24 personas — 4 blocs de 6, sans titres -->
+  <section class="section" id="personas" data-ln="Tu te reconnais ?" style="padding-top:32px;">
+    <div class="wrap">
+
+      <div class="personas">
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Cabinet conseil / expertise comptable</h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Plateforme client unique (docs + signature + factu)</li>
+            <li>Livraison missions packagées</li>
+            <li>Wiki interne pour capitaliser</li>
+          </ul></div>
+        </article>
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Direction marketing scale-up</h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Refonte site qui convertit (ABM ciblé)</li>
+            <li>CRM intégré avec sales (lifecycle complet)</li>
+            <li>Reporting attribution multi-touch</li>
+          </ul></div>
+        </article>
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Coach / formateur indépendant</h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Plateforme formations (cours + quiz + communauté)</li>
+            <li>Calendrier masterclass live mensuelles</li>
+            <li>Espace membre privé avec ressources évolutives</li>
+          </ul></div>
+        </article>
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Freelance créatif<small>graphiste, copywriter, vidéaste, UX</small></h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Portfolio premium qui convertit</li>
+            <li>Tunnel de vente pour services packagés</li>
+            <li>Abonnement mensuel (revenus stables)</li>
+          </ul></div>
+        </article>
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Métier libéral<small>kiné, psychologue, avocat, sage-femme, notaire, médecin</small></h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Site cabinet + agenda en ligne (fini les 30 appels/jour)</li>
+            <li>Espace patient sécurisé (fiches, exercices, ordonnances)</li>
+            <li>Newsletter mensuelle pour fidéliser</li>
+          </ul></div>
+        </article>
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Cabinet pluridisciplinaire<small>médical, paramédical, juridique</small></h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Espace patient/client unique pour tous les praticiens</li>
+            <li>Agenda partagé avec gestion des spécialités</li>
+            <li>Facturation centralisée avec relances auto</li>
+          </ul></div>
+        </article>
+      </div>
+
+      <div class="personas">
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Fondateur SaaS B2B early-stage</h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>MVP avec architecture documentée pour passer au scale</li>
+            <li>Pricing tiers + onboarding self-serve</li>
+            <li>Dossier investisseur prêt (tech + business + équipe)</li>
+          </ul></div>
+        </article>
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Direction PME industrielle<small>50-250 employés</small></h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Digitalisation atelier (production + qualité + traçabilité)</li>
+            <li>ERP léger sur-mesure (au lieu de SAP coûteux)</li>
+            <li>Portail B2B gros clients</li>
+          </ul></div>
+        </article>
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Studio créatif<small>agence design, studio vidéo, com'</small></h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Plateforme projets clients (timeline + livrables + validation)</li>
+            <li>Devis-factures + relances automatisées</li>
+            <li>Portfolio interactif (case studies)</li>
+          </ul></div>
+        </article>
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Réseau professionnel<small>ordre, syndicat pro, fédération</small></h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Annuaire adhérents (recherche par expertise / zone)</li>
+            <li>Communication descendante (newsletter + alertes)</li>
+            <li>Ressources métier (templates contrats, modèles)</li>
+          </ul></div>
+        </article>
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Commerçant de proximité<small>boulanger, fleuriste, fromager, libraire</small></h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Vitrine vivante + horaires précis + photos quotidiennes</li>
+            <li>Précommande sur-mesure (gâteau, bouquet, sélection)</li>
+            <li>Click&amp;Collect avec créneaux de retrait</li>
+          </ul></div>
+        </article>
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Restaurateur / bar / café</h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Carte digitale + menu du jour mis à jour quotidien</li>
+            <li>Réservation en ligne + relances SMS anti-no-show</li>
+            <li>Programme fidélité digital (carte wallet)</li>
+          </ul></div>
+        </article>
+      </div>
+
+      <div class="personas">
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Artisan d'art<small>potier, ébéniste, bijoutier, restaurateur d'œuvres</small></h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Boutique en ligne + storytelling atelier</li>
+            <li>Système de commandes sur-mesure</li>
+            <li>Page atelier ouvert (cours, stages, événements)</li>
+          </ul></div>
+        </article>
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Atelier artisans<small>cordonnerie, menuiserie, garage, mécanique</small></h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Suivi atelier par client (devis → en cours → terminé)</li>
+            <li>Devis-factures mobile pour démarchage terrain</li>
+            <li>Page transparence (matières, fournisseurs, temps)</li>
+          </ul></div>
+        </article>
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Producteur local<small>vigneron, brasseur, maraîcher, éleveur</small></h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Vente directe + abonnements paniers / box mensuels</li>
+            <li>AMAP / précommande saisonnière</li>
+            <li>Traçabilité QR-code (parcelle, méthode, récolte)</li>
+          </ul></div>
+        </article>
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Association loi 1901<small>médiation sociale, environnement, culture</small></h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Plateforme bénévoles (planning + missions + reconnaissance)</li>
+            <li>Espace adhérents avec ressources + événements</li>
+            <li>Projets territoriaux co-construits</li>
+          </ul></div>
+        </article>
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Fondation culturelle / patrimoine</h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Catalogue numérisé avec exposition virtuelle</li>
+            <li>Mécénat (campagne + suivi donateurs)</li>
+            <li>Archives sécurisées long-terme</li>
+          </ul></div>
+        </article>
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Collectivité territoriale<small>mairie, CCI, EPCI</small></h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Civic-tech locale (services usagers + transparence)</li>
+            <li>Annuaire de proximité</li>
+            <li>Open data territorial</li>
+          </ul></div>
+        </article>
+      </div>
+
+      <div class="personas">
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Coopérative<small>SCOP, SCIC, AMAP organisée</small></h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Plateforme coopérateurs (votes, AG)</li>
+            <li>Reporting redistribution démocratique</li>
+            <li>Espace transmission des pratiques</li>
+          </ul></div>
+        </article>
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Mouvement citoyen organisé</h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Plateforme campagne (mobilisation + suivi promesses)</li>
+            <li>Sections locales décentralisées par territoire</li>
+            <li>Transparence des financements</li>
+          </ul></div>
+        </article>
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Étudiant en fin de cursus</h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Projet de fin d'études à 100&nbsp;% (mémoire + portfolio)</li>
+            <li>Site portfolio pour décrocher CDI / alternance</li>
+            <li>Side-project pour se démarquer</li>
+            <li>Apprentissage <span class="claude-mark">Claude Code</span> + setup local</li>
+          </ul></div>
+        </article>
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Développeur indépendant</h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Lancer un side-project SaaS pour revenus passifs</li>
+            <li>Structurer un MVP pour early-adopters payants</li>
+            <li>Documenter une stack perso reproductible</li>
+          </ul></div>
+        </article>
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Direction technique startup IA</h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Agent IA spécialisé avec garde-fous</li>
+            <li>RAG + pipeline ETL avec dashboard métier</li>
+            <li>Architecture multi-LLM (pas de dépendance unique)</li>
+          </ul></div>
+        </article>
+        <article class="card pcard">
+          <button class="ph" type="button" aria-expanded="false"><h3>Direction R&amp;D PME tech</h3><svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pbody"><ul>
+            <li>Data product vendable (API à intégrer)</li>
+            <li>ML déployé en production (monitoring + drift)</li>
+            <li>Brevets + propriété intellectuelle documentés</li>
+          </ul></div>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3 · 35 types de projets — dépliants fermés par défaut -->
+  <section class="section" id="types" data-ln="35 types de projets" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow"><span class="dot"></span>Et côté projets</span><h2>35 types de projets possibles.</h2></div>
+
+      <div class="tj">
+        <button class="tj-head" type="button" aria-expanded="false"><span class="dot"></span>Sites web simples<svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <div class="tj-body"><ul>
+          <li>Site vitrine d'entreprise (avocat, comptable, consultant)</li>
+          <li>Blog personnel ou professionnel</li>
+          <li>Portfolio créatif (artiste, photographe, designer)</li>
+          <li>Landing page produit unique</li>
+          <li>Site événement ponctuel (mariage, conférence, festival)</li>
+          <li>Site associatif loi 1901</li>
+          <li>Site campagne politique ou cause publique</li>
+        </ul></div>
+      </div>
+
+      <div class="tj">
+        <button class="tj-head" type="button" aria-expanded="false"><span class="dot"></span>SaaS B2B<svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <div class="tj-body"><ul>
+          <li>SaaS productivity (gestion tâches, notes, CRM léger)</li>
+          <li>SaaS HR-tech (paie, recrutement, formation interne)</li>
+          <li>SaaS legal-tech (générateur contrats, automation juridique)</li>
+          <li>SaaS fintech (compta auto, facturation, trésorerie)</li>
+          <li>SaaS health-tech (cabinet, télémédecine, dossier patient)</li>
+          <li>SaaS edtech (LMS interne entreprise, formation continue)</li>
+          <li>SaaS sales-tech (CRM, prospection, follow-up)</li>
+          <li>SaaS marketing-tech (newsletters, automation, analytics)</li>
+        </ul></div>
+      </div>
+
+      <div class="tj">
+        <button class="tj-head" type="button" aria-expanded="false"><span class="dot"></span>Plateformes multi-acteurs<svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <div class="tj-body"><ul>
+          <li>Marketplace B2C ou B2B</li>
+          <li>Civic-tech locale</li>
+          <li>Plateforme cours en ligne</li>
+          <li>Plateforme freelances</li>
+          <li>Plateforme contenus (podcasts, vidéos, articles)</li>
+          <li>Plateforme collaborative (open source, co-création)</li>
+          <li>Plateforme événements (festivals, rencontres, ateliers)</li>
+        </ul></div>
+      </div>
+
+      <div class="tj">
+        <button class="tj-head" type="button" aria-expanded="false"><span class="dot"></span>Apps mobiles<svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <div class="tj-body"><ul>
+          <li>App mobile native iOS ou Android</li>
+          <li>App mobile Flutter cross-platform</li>
+          <li>App messagerie privée (chiffrée bout-en-bout)</li>
+          <li>App tracking sportif / santé / habitudes</li>
+          <li>App mobile B2B (compagnon d'un SaaS)</li>
+          <li>PWA (Progressive Web App, hybride)</li>
+        </ul></div>
+      </div>
+
+      <div class="tj">
+        <button class="tj-head" type="button" aria-expanded="false"><span class="dot"></span>Projets data + IA<svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <div class="tj-body"><ul>
+          <li>Pipeline ETL + dashboard décisionnel</li>
+          <li>Modèle ML déployé + interface utilisateur</li>
+          <li>AI Agent spécialisé (juriste, médecin, etc.)</li>
+          <li>Outil scraping / monitoring marché concurrentiel</li>
+          <li>Analytics produit (mesure usage, A/B test)</li>
+          <li>Data product vendable (datasets, API publique)</li>
+          <li>SaaS RAG (Retrieval Augmented Generation)</li>
+        </ul></div>
+      </div>
+
+      <div class="tj">
+        <button class="tj-head" type="button" aria-expanded="false"><span class="dot"></span>Et bien d'autres encore…<svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <div class="tj-body"><ul>
+          <li>Boutique e-commerce classique ou headless</li>
+          <li>Restaurant + commande / réservation</li>
+          <li>Cabinet libéral + RDV en ligne</li>
+          <li>Hôtel + booking + parcours client</li>
+          <li>Artisan BTP + portfolio + devis</li>
+          <li>Coopérative agricole, AMAP, marché de producteurs</li>
+          <li>Outil interne entreprise, documentation, open source, IoT…</li>
+        </ul></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4 · Honnêteté radicale -->
+  <section class="section" id="pas-pour-toi" data-ln="Pas pour toi ?" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow"><span class="dot"></span>Honnêteté radicale</span><h2>Les 5 cas où ce n'est PAS pour toi.</h2></div>
+      <div class="limites">
+        <div class="lim"><span class="x">✕</span><span>Projet <b>100% physique, 0 numérique</b> (restaurant sans aucune présence en ligne)</span></div>
+        <div class="lim"><span class="x">✕</span><span>Projet <b>hyper-académique</b> (recherche pure, thèse théorique sans application)</span></div>
+        <div class="lim"><span class="x">✕</span><span>Projet <b>artistique pur</b> sans structure ni diffusion organisée</span></div>
+        <div class="lim"><span class="x">✕</span><span>Projet <b>100% bureaucratique</b> (dossiers papier sans digitalisation)</span></div>
+        <div class="lim"><span class="x">⚠</span><span>Projet <b>ultra-réglementé</b> (finance, médical) → méthode OK mais expert humain requis</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · CTA double -->
+  <section class="section" id="commencer" data-ln="Commencer" style="padding-top:0;">
+    <div class="wrap"><div class="card cta-strip">
+      <h2>Pas sûr de ta catégorie&nbsp;?</h2>
+      <p>5 questions, 5 minutes : on te dit ton archétype, ton pack et tes 3 priorités.</p>
+      <div class="cta"><a class="btn btn-primary" href="orientation-gratuite.html">Faire l'orientation gratuite<svg aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="btn btn-ghost" href="index.html#produits">Voir les packs</a></div>
+    </div></div>
+  </section>
+</main>
+
+<footer class="subfoot">
+  <div class="wrap">
+    <a class="logo" href="index.html"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="links" aria-label="Pied de page"><a href="la-methode.html">La méthode</a><a href="les-experts.html">Les experts</a><a href="faq.html">FAQ</a><a href="legal/cgv.html">CGV</a></nav>
+    <span class="fin">🇫🇷 OVH · Plausible · Stripe FR · 0 tracking</span>
+  </div>
+</footer>
+
+<script>
+  (function(){var t=document.getElementById('mark-svg');document.querySelectorAll('[data-mark]').forEach(function(s,i){var n=t.content.cloneNode(true);var svg=n.querySelector('svg');svg.innerHTML=svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,'$1$2_'+i);s.appendChild(n);});})();
+  // dépliants personas — fermés par défaut, ouverture au clic
+  (function(){
+    document.querySelectorAll('.pcard .ph').forEach(function(h){
+      h.addEventListener('click', function(){
+        var c = h.closest('.pcard');
+        c.classList.toggle('open');
+        h.setAttribute('aria-expanded', c.classList.contains('open') ? 'true' : 'false');
+      });
+    });
+  })();
+  // dépliants 35 types — fermés par défaut, ouverture au clic
+  (function(){
+    document.querySelectorAll('.tj-head').forEach(function(h){
+      h.addEventListener('click', function(){
+        var tj = h.parentElement;
+        tj.classList.toggle('open');
+        h.setAttribute('aria-expanded', tj.classList.contains('open') ? 'true' : 'false');
+      });
+    });
+  })();
+</script>
+<script src="leftnav.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+# ============================================================
+# .gitignore — DÉPÔT DE DÉPLOIEMENT DU SITE StackProtocol
+# ------------------------------------------------------------
+# RÈGLE D'OR (ordre de mission §10.1) :
+#   Ce dépôt = LE SITE PUBLIC SEULEMENT.
+#   JAMAIS le vault Octans, l'atelier, un vault client, ni _ARCHIVES.
+#   Le moteur ne se versionne JAMAIS ici (repo séparé et privé si un jour).
+#
+# Ce dépôt doit avoir sa racine DANS ce dossier `site/` (git init ici),
+# surtout PAS à la racine du home (~) ni à la racine du vault.
+# Vérifier avant le 1er commit :  git rev-parse --show-toplevel
+#   → doit pointer sur ...\stackprotocol-cdc\site
+# ============================================================
+
+# --- Documents internes de travail (NE PAS publier) ---
+AUDIT-NAVIGATION-SECURITE.md
+CHARTE-GRAPHIQUE-STACKPROTOCOL.md
+CHARTE-STYLE.md
+CONTENU-INTEGRAL-PAGES.md
+EXPORT-CLAUDE-CODE.md
+RECAP-SITE-STACKPROTOCOL.md
+STRUCTURE-ET-MANQUANTS.md
+TEXTES-A-CORRIGER.md
+# Par sécurité : aucun Markdown ne doit partir en prod (site = HTML/CSS/JS/assets)
+*.md
+!README.md
+
+# --- Secrets / environnement (ne JAMAIS committer) ---
+.env
+.env.*
+*.local
+secrets.*
+*.key
+*.pem
+config/*.secret.js
+
+# --- Dépendances / build (si un outil est ajouté plus tard) ---
+node_modules/
+dist/
+.cache/
+.parcel-cache/
+.wrangler/
+
+# --- Éditeurs / OS ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Logs ---
+*.log
+npm-debug.log*

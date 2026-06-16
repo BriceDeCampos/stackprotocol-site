@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>StackProtocol — Construis ton projet sans envoyer une ligne sur leurs serveurs</title>
+<meta name="description" content="Octans — La méthode pour structurer ton projet en local : Claude Code + 30 experts. Tes idées 100% chez toi. À partir de 197€. Garanti 7 jours, sans tracking." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Spectral:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="leftnav.css" />
+<style>
+  /* ===== NAV ===== */
+  .nav { position: sticky; top: 0; z-index: 50; background: rgba(43,46,46,0.72); backdrop-filter: blur(14px) saturate(140%); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; gap: 18px; height: 70px; max-width: none; padding: 0 28px 0 8px; }
+  .nav .links { display: flex; align-items: center; gap: 26px; margin-left: 8px; flex-wrap: nowrap; white-space: nowrap; }
+  .nav .links a { position: relative; font-size: 15.5px; font-weight: 500; color: var(--muted); transition: color .2s; padding-bottom: 4px; }
+  .nav .links a:hover, .nav .links a.on { color: var(--ink); }
+  .nav .links a.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--green), var(--cyan)); transform-origin: left center; animation: liseret .45s cubic-bezier(.5,0,.2,1) both; }
+  .nav .links a:hover::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, #D9772E, #F2C879); opacity: .95; transform-origin: left center; animation: liseret .3s cubic-bezier(.5,0,.2,1) both; }
+  .nav .links a.on:hover::after { background: linear-gradient(90deg, var(--green), var(--cyan)); opacity: 1; }
+  @keyframes liseret { from { transform: scaleX(0); opacity: 0; } to { transform: scaleX(1); opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .nav .links a.on::after, .nav .links a:hover::after { animation: none; } }
+  .nav .spacer { flex: 1; }
+  .nav .actions { display: flex; align-items: center; gap: 12px; }
+  .nav .login { font-size: 14.5px; font-weight: 600; color: var(--ink-2); }
+  .nav .login:hover { color: var(--green); }
+  .nav .burger { display: none; background: none; border: 0; color: var(--ink); cursor: pointer; padding: 6px; }
+  .nav .burger svg { width: 24px; height: 24px; }
+
+  /* ===== HERO ===== */
+  .hero { position: relative; padding: 56px 0 64px; overflow: hidden; }
+  .hero .roles-line { display: flex; align-items: center; gap: 11px; white-space: nowrap; font-size: 13.5px; font-weight: 500; letter-spacing: 0.04em; color: var(--muted); margin: -26px 0 34px; }
+  .hero .roles-line .sep { width: 5px; height: 5px; border-radius: 50%; background: var(--green); flex-shrink: 0; opacity: .85; }
+  .hero .roles-line .tl { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-weight: 600; }
+  @media (max-width: 900px) { .hero .roles-line { flex-wrap: wrap; white-space: normal; } }
+  .hero .grid { display: grid; grid-template-columns: 1.12fr 0.88fr; gap: 56px; align-items: center; }
+  .hero .lede { margin-top: -24px; }
+  .hero .mark-xl { width: 270px; height: 338px; margin: 0 auto; filter: drop-shadow(0 20px 50px rgba(24,180,204,0.32)); animation: float 7s ease-in-out infinite; }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+  @keyframes turnR { 0%,14% { transform: scaleY(1); } 20% { filter: brightness(1.55); } 30% { transform: scaleY(-1); } 46%,100% { transform: scaleY(1); } }
+  @keyframes pulseSolid { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.34); } }
+  .hero .mark-xl svg { overflow: visible; }
+  .hero .mark-xl svg g polygon { transform-box: fill-box; transform-origin: center top; }
+  .hero .mark-xl svg g polygon:nth-of-type(1) { transform-origin: center bottom; animation: turnR 9s cubic-bezier(.55,0,.3,1) infinite 0s; }
+  .hero .mark-xl svg g polygon:nth-of-type(4) { animation: turnR 9s cubic-bezier(.55,0,.3,1) infinite 1.5s; }
+  .hero .mark-xl svg g polygon:nth-of-type(7) { animation: turnR 9s cubic-bezier(.55,0,.3,1) infinite 3s; }
+  .hero .mark-xl svg g polygon:nth-of-type(2) { transform-origin: center; animation: pulseSolid 3.4s ease-in-out infinite; }
+  .hero .mark-xl svg g polygon:nth-of-type(5) { transform-origin: center; animation: pulseSolid 3.4s ease-in-out infinite 1.7s; }
+  @media (prefers-reduced-motion: reduce) { .hero .mark-xl { animation: none; } .hero .mark-xl svg g polygon { animation: none !important; } }
+  .hero .mark-md { width: 110px; height: 138px; margin: -26px auto 6px; animation: none; filter: drop-shadow(0 12px 32px rgba(24,180,204,0.32)); }
+  .hero .mark-corner { position: absolute; right: -8px; top: -18px; width: 72px; height: 90px; margin: 0; z-index: 5; }
+
+  /* carrousel zone art : logo ↔ stats */
+  .hero .art-carousel { position: relative; width: 100%; height: 230px; margin-top: 8px; }
+  .hero .art-slide { position: absolute; inset: 0; display: grid; place-items: start stretch; opacity: 0; transform: scale(0.96); transition: opacity .6s ease, transform .6s ease; pointer-events: none; }
+  .hero .art-slide.is-active { opacity: 1; transform: scale(1); pointer-events: auto; }
+  .hero .art-stat { flex-direction: column; text-align: center; }
+  .hero .art-stat .as-n { font-family: var(--font-display); font-weight: 700; font-size: clamp(72px, 11vw, 124px); line-height: 1; letter-spacing: -0.03em; background: var(--grad-135); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero .art-stat .as-l { margin-top: 16px; font-size: 16px; color: var(--muted); max-width: 280px; line-height: 1.5; }
+  .hero .art-stat .as-l .orange { color: var(--orange); }
+  .hero .art-stat .as-w { font-family: var(--font-display); font-weight: 700; font-size: clamp(34px, 4.6vw, 52px); line-height: 1.12; letter-spacing: -0.02em; text-align: center; background: var(--grad-135); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero .art-stat .as-w .d { -webkit-text-fill-color: var(--green); }
+  .hero .art-stat .as-stack { display: inline-block; margin-top: 14px; font-family: var(--font-display); font-weight: 600; font-size: 0.62em; letter-spacing: 0.14em; text-transform: uppercase; -webkit-text-fill-color: var(--ink); color: var(--ink); }
+  .hero .art-stat .as-stack b { font-weight: 600; -webkit-text-fill-color: var(--ink-2); color: var(--ink-2); }
+  /* slide « La promesse » */
+  .hero .art-promise { text-align: left; }
+  .hero .art-promise .pp-k { font-family: var(--font-display); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+  .hero .art-promise .pp-t { font-family: var(--font-display); font-weight: 700; font-size: 24px; letter-spacing: -0.01em; margin-top: 10px; color: var(--ink); }
+  .hero .art-promise .pp-t .d { color: var(--green); }
+  .hero .art-promise .pp-list { list-style: none; margin: 16px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .hero .art-promise .pp-list li { display: flex; align-items: center; gap: 10px; font-size: 16px; color: var(--ink-2); }
+  .hero .art-promise .pp-list li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+  .hero .art-promise .pp-list b { font-family: var(--font-display); font-weight: 700; background: var(--grad-135); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero .art-promise .claude-mark { color: var(--orange); }
+  .hero .art-promise .pp-s { margin: 12px 0 0; font-size: 15px; line-height: 1.55; color: var(--muted); max-width: 330px; }
+  /* liste à révélation douce, trait par trait */
+  .pp-reveal li { opacity: 0; }
+  .art-slide.is-active .pp-reveal li { animation: ppReveal 0.9s ease forwards; }
+  .art-slide.is-active .pp-reveal li:nth-child(1) { animation-delay: .3s; }
+  .art-slide.is-active .pp-reveal li:nth-child(2) { animation-delay: .8s; }
+  .art-slide.is-active .pp-reveal li:nth-child(3) { animation-delay: 1.3s; }
+  .art-slide.is-active .pp-reveal li:nth-child(4) { animation-delay: 1.8s; }
+  .art-slide.is-active .pp-reveal li:nth-child(5) { animation-delay: 2.3s; }
+  @keyframes ppReveal { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+  .pp-2col { display: grid !important; grid-template-columns: 1fr 1fr; gap: 9px 20px; }
+  .art-slide.is-active .pp-reveal li:nth-child(6) { animation-delay: 2.8s; }
+  .art-slide.is-active .pp-reveal li:nth-child(7) { animation-delay: 3.3s; }
+  .art-slide.is-active .pp-reveal li:nth-child(8) { animation-delay: 3.8s; }
+  .art-slide.is-active .pp-reveal li:nth-child(9) { animation-delay: 4.3s; }
+  .art-slide.is-active .pp-reveal li:nth-child(10) { animation-delay: 4.8s; }
+  @media (prefers-reduced-motion: reduce) { .pp-reveal li { opacity: 1 !important; animation: none !important; } }
+  @media (prefers-reduced-motion: reduce) { .hero .art-slide { transition: none; } }
+
+  /* ===== Le Cortex — constellation neuronale ===== */
+  .hero .art { position: relative; }
+  .cortex-wrap { display: flex; flex-direction: column; align-items: center; gap: 0; margin-top: -136px; }
+  #cortex { width: 100%; max-width: 380px; margin: 0 auto 0 -40px; }
+  #cortex svg { width: 100%; height: auto; display: block; }
+  .cortex-legend { font-size: 13.5px; line-height: 1.55; color: var(--muted); text-align: left; margin: -34px 0 0; align-self: flex-start; }
+  .cx-syn { stroke: url(#cxgrad); stroke-width: 1; fill: none; opacity: 0.22; }
+  .cx-syn.fire { opacity: 0.9; stroke: #3CE5A3; stroke-width: 1.6; stroke-dasharray: 14 100; stroke-dashoffset: 114; animation: cxinflux 1.6s linear forwards; filter: drop-shadow(0 0 4px rgba(60,229,163,0.8)); }
+  .cx-syn.fire.fire-orange { stroke: #E0915A; filter: drop-shadow(0 0 4px rgba(224,145,90,0.8)); }
+  .cx-rot { animation: cxspin 90s linear infinite; transform-origin: 218px 196px; }
+  @keyframes cxspin { to { transform: rotate(360deg); } }
+  .pair-ind { animation: pairPulse var(--pd, 12s) ease-in-out infinite; animation-delay: var(--pdl, 0s); transform-box: view-box; transform-origin: 218px 196px; }
+  @keyframes pairPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(var(--ps, 0.86)); } }
+  @keyframes cxinflux { to { stroke-dashoffset: 0; } }
+  .cx-node { fill: url(#cxgrad); }
+  .cx-node.p { animation: cxpulse 5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  @keyframes cxpulse { 0%,100% { opacity: 0.55; transform: scale(1); } 50% { opacity: 1; transform: scale(1.35); } }
+  .cx-claude { fill: var(--orange); filter: drop-shadow(0 0 10px rgba(224,145,90,0.65)); }
+  .cx-claude-halo { fill: none; stroke: rgba(224,145,90,0.35); stroke-width: 1.5; animation: cxhalo 4.5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  @keyframes cxhalo { 0%,100% { transform: scale(1); opacity: .7; } 50% { transform: scale(1.5); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .cx-node.p, .cx-claude-halo, .cx-rot, .pair-ind { animation: none; }
+    .cx-syn.fire { animation: none; stroke-dasharray: none; opacity: 0.22; stroke: url(#cxgrad); filter: none; }
+  }
+  /* pause carrousel (WCAG 2.2.2) */
+  .car-pause { position: absolute; right: 4px; bottom: -6px; width: 34px; height: 34px; border-radius: 9px; border: 1px solid var(--line-2); background: var(--surface); color: var(--ink-2); cursor: pointer; display: grid; place-items: center; transition: border-color .18s, background .18s; }
+  .car-pause:hover { border-color: var(--green); background: var(--surface-2); }
+  .car-pause svg { width: 15px; height: 15px; }
+  .car-pause .ic-play { display: none; }
+  .car-pause[aria-pressed="true"] .ic-pause { display: none; }
+  .car-pause[aria-pressed="true"] .ic-play { display: block; }
+
+  .hero h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(30px, 4vw, 46px); line-height: 1.08; letter-spacing: -0.03em; margin-top: 20px; }
+  .hero h1 .h1-sub { display: block; margin-top: 12px; font-size: 0.52em; font-weight: 600; letter-spacing: -0.01em; color: var(--ink-2); }
+  .hero h1 .h1-sub.small { margin-top: 8px; font-size: 0.34em; font-weight: 500; color: var(--muted); }
+  .hero h1 .h1-eyebrow { display: inline-flex; margin-top: 10px; }
+  .hero h1 .h1-subline { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+  .hero h1 .h1-souv { display: inline-flex; align-items: center; gap: 8px; }
+  .hero h1 .h1-souv .dot-souv { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px rgba(60,229,163,0.8); flex-shrink: 0; }
+  .hero h1 .h1-souv .eq-souv { font-weight: 700; color: var(--green); text-shadow: 0 0 10px rgba(60,229,163,0.8); flex-shrink: 0; }
+  .hero h1 .h1-line { display: flex; align-items: center; gap: 12px; margin-top: 10px; }
+  .hero h1 .gtag { font-size: 10.5px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(70,232,168,0.75); background: rgba(60,229,163,0.06); border: 1px solid rgba(60,229,163,0.16); padding: 4px 11px; border-radius: 999px; }
+  .hero .sub .em-txt { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-weight: 600; }
+  .hero .sub .sub-small { font-size: 0.82em; color: var(--muted); }
+  /* tooltip OCTANS */
+  .octans-tip { position: relative; background: linear-gradient(100deg, #E0915A 0%, #F2B186 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .octans-side { margin-left: 12px; font-size: 0.72em; color: var(--muted); }
+  .octans-tip .tip { position: absolute; left: 0; bottom: calc(100% + 10px); z-index: 30; width: 300px; padding: 12px 15px; border-radius: 12px; background: var(--bg-2); border: 1px solid rgba(60,229,163,0.3); box-shadow: 0 16px 40px rgba(0,0,0,0.45); font-weight: 400; font-size: 13.5px; line-height: 1.55; color: var(--ink-2); opacity: 0; transform: translateY(4px); pointer-events: none; transition: opacity .2s ease, transform .2s ease; }
+  .octans-tip:hover .tip, .octans-tip:focus-visible .tip { opacity: 1; transform: translateY(0); }
+  .hero .note .gtag-note { margin-left: 8px; font-size: 8px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: #3CE5A3; background: rgba(60,229,163,0.10); border: 1px solid rgba(60,229,163,0.35); padding: 2px 7px; border-radius: 999px; text-shadow: 0 0 8px rgba(60,229,163,0.6); }
+  .hero h1 .em { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero .sub { margin-top: 22px; font-size: 18px; line-height: 1.55; color: var(--ink-2); max-width: 520px; }
+  .hero .sub b { color: var(--ink); font-weight: 600; }
+  .hero .cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+  .hero .note { margin-top: 16px; font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .hero .note svg { width: 15px; height: 15px; color: var(--green); flex-shrink: 0; }
+
+  .metric-row { display: flex; gap: 0; margin-top: 40px; flex-wrap: wrap; }
+  .metric-row .m { padding-right: 28px; margin-right: 28px; border-right: 1px solid var(--line); }
+  .metric-row .m:last-child { border-right: 0; }
+  .metric-row .m .n { font-family: var(--font-display); font-weight: 700; font-size: 28px; letter-spacing: -0.01em; background: var(--grad-135); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .metric-row .m .l { font-size: 12px; color: var(--muted); margin-top: 3px; max-width: 130px; }
+  .metric-row .m .l .cl { color: var(--orange); }
+
+  /* ===== 3 CAS band ===== */
+  .cas { background: linear-gradient(160deg, rgba(60,229,163,0.05), rgba(24,180,204,0.03)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .cas .wrap { padding: 40px 28px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 36px; align-items: center; }
+  .cas .qs { display: flex; flex-direction: column; gap: 12px; }
+  .cas .qs .q { font-family: var(--font-display); font-weight: 600; font-size: clamp(19px, 2.4vw, 25px); letter-spacing: -0.01em; color: var(--ink); display: flex; align-items: center; gap: 13px; }
+  .cas .qs .q .ic { width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; background: rgba(60,229,163,0.12); border: 1px solid rgba(60,229,163,0.25); color: var(--green); flex-shrink: 0; }
+  .cas .qs .q .ic svg { width: 19px; height: 19px; }
+  .cas .ans { border-left: 2px solid var(--green); padding-left: 22px; }
+  .cas .ans p { font-size: 16px; line-height: 1.5; color: var(--ink-2); }
+  .cas .ans p b { color: var(--ink); font-weight: 600; }
+  .cas .ans .price { margin-top: 12px; font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--green); }
+  /* dépliants types de projets */
+  .cas .pjwrap { padding: 0 28px 40px; }
+  .cas .pj-intro { font-family: var(--font-display); font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 9px; margin-bottom: 14px; }
+  .cas .pj-intro .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+  .pjgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: start; }
+  .pj { border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); overflow: hidden; transition: border-color .2s, background .2s; }
+  .pj:hover { border-color: rgba(60,229,163,0.4); background: var(--surface-2); }
+  .pj-head { width: 100%; display: flex; align-items: center; gap: 10px; padding: 14px 16px; background: none; border: 0; cursor: pointer; font-family: var(--font-display); font-weight: 600; font-size: 14.5px; color: var(--ink); text-align: left; }
+  .pj-head .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+  .pj-head .cnt { margin-left: auto; font-family: var(--font-display); font-size: 11.5px; font-weight: 700; color: var(--green); }
+  .pj-head .chev { width: 14px; height: 14px; color: var(--muted); transition: transform .25s; flex-shrink: 0; }
+  .pj.open .chev, .pj:hover .chev { transform: rotate(90deg); }
+  .pj-body { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+  .pj:hover .pj-body, .pj.open .pj-body { max-height: 640px; }
+  .pj-body ul { list-style: none; margin: 0; padding: 2px 16px 14px 33px; display: flex; flex-direction: column; gap: 6px; }
+  .pj-body li { font-size: 13px; line-height: 1.45; color: var(--ink-2); display: flex; align-items: flex-start; gap: 8px; }
+  .pj-body li::before { content: ""; width: 4px; height: 4px; border-radius: 50%; background: var(--muted-2); flex-shrink: 0; margin-top: 7px; }
+  .pj.wide { grid-column: 1 / -1; }
+  .pj.wide .pj-body ul { display: block; columns: 3; column-gap: 28px; }
+  .pj.wide .pj-body li { break-inside: avoid; margin-bottom: 6px; }
+  @media (prefers-reduced-motion: reduce) { .pj-body { transition: none; } }
+
+  /* ===== MANIFESTE ===== */
+  .manifeste { max-width: 760px; margin: 0; text-align: left; }
+  .manifeste h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(24px, 3.4vw, 34px); letter-spacing: -0.02em; line-height: 1.15; }
+  .manifeste .body { margin-top: 22px; font-family: var(--font-editorial); font-size: 19px; line-height: 1.65; color: var(--ink-2); }
+  .manifeste .body p { margin-top: 28px; }
+  .manifeste .lead-in { font-family: var(--font-editorial); font-size: 19px; }
+  .manifeste .domains { list-style: none; display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 10px 22px; margin: 18px 0 0; max-width: 640px; padding: 0; }
+  .manifeste .domains li { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-size: 15px; font-weight: 500; color: var(--ink-2); }
+  .manifeste .domains li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+  .manifeste .body strong { color: var(--ink); font-weight: 600; }
+  .manifeste .sign { margin-top: 22px; font-family: var(--font-display); font-weight: 600; color: var(--green); }
+
+  /* ===== SOUVERAINETÉ ===== */
+  .sov-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .sov-col { padding: 28px; }
+  .sov-col.bad { border-color: rgba(224,145,90,0.25); }
+  .sov-col.good { border-color: rgba(60,229,163,0.3); }
+  .sov-col h3 { font-family: var(--font-display); font-weight: 600; font-size: 16px; display: flex; align-items: center; gap: 10px; }
+  .sov-col.bad h3 { color: var(--orange); }
+  .sov-col.good h3 { color: var(--green); }
+  .sov-col ul { list-style: none; margin: 18px 0 0; display: flex; flex-direction: column; gap: 12px; }
+  .sov-col li { font-size: 14px; line-height: 1.45; color: var(--ink-2); display: flex; align-items: flex-start; gap: 11px; }
+  .sov-col li .x { color: var(--orange); flex-shrink: 0; font-weight: 700; }
+  .sov-col li .v { color: var(--green); flex-shrink: 0; font-weight: 700; }
+  .sov-col li b { color: var(--ink); font-weight: 600; }
+  .sov-foot { text-align: center; margin-top: 26px; }
+  .sov-foot a { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--green); font-size: 15px; }
+  .sov-foot a svg { width: 16px; height: 16px; }
+
+  /* ===== PRODUITS ===== */
+  .packs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: -28px; }
+  .pack { padding: 28px; display: flex; flex-direction: column; transition: transform .2s ease, border-color .2s ease; position: relative; }
+  .pack:hover { transform: translateY(-4px); border-color: rgba(60,229,163,0.4); }
+  .pack.feat { border-color: rgba(60,229,163,0.4); box-shadow: 0 24px 54px rgba(255,255,255,0.10), 0 0 0 1px rgba(60,229,163,0.14), var(--sh-glow); }
+  .pack .badge { position: absolute; top: 18px; right: 18px; }
+  .pack .picon { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: linear-gradient(150deg, rgba(60,229,163,0.16), rgba(24,180,204,0.10)); border: 1px solid rgba(60,229,163,0.22); color: var(--green); }
+  .pack .picon svg { width: 22px; height: 22px; }
+  .pack .pn { font-family: var(--font-display); font-weight: 600; font-size: 19px; margin-top: 0; }
+  .pack .ptag { font-size: 13px; color: var(--muted); margin-top: 4px; min-height: 34px; }
+  .pack .amt { font-family: var(--font-display); font-weight: 700; font-size: 38px; letter-spacing: -0.02em; margin-top: 8px; background: var(--grad-135); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .pack .amt small { font-size: 14px; color: var(--muted); -webkit-text-fill-color: var(--muted); font-weight: 500; margin-left: 5px; }
+  .pack ul { list-style: none; margin: 18px 0 0; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .pack ul li { font-size: 13.5px; color: var(--ink-2); display: flex; align-items: flex-start; gap: 9px; line-height: 1.4; }
+  .pack ul li svg { width: 15px; height: 15px; color: var(--green); flex-shrink: 0; margin-top: 2px; }
+  .pack ul li b { color: var(--ink); font-weight: 600; }
+  .pack .btn { width: 100%; margin-top: 22px; }
+
+  .b2b { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+  .b2b .card { padding: 26px; display: flex; align-items: center; gap: 22px; }
+  .b2b .picon { width: 50px; height: 50px; border-radius: 13px; display: grid; place-items: center; background: linear-gradient(150deg, rgba(60,229,163,0.16), rgba(24,180,204,0.10)); border: 1px solid rgba(60,229,163,0.22); color: var(--green); flex-shrink: 0; }
+  .b2b .picon svg { width: 24px; height: 24px; }
+  .b2b .bi { flex: 1; }
+  .b2b .bi h3 { font-family: var(--font-display); font-weight: 600; font-size: 17px; }
+  .b2b .bi p { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .b2b .bi .amt { font-family: var(--font-display); font-weight: 700; font-size: 22px; margin-top: 8px; background: var(--grad-135); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+  /* ===== MÉTHODE / EXPERTS teasers ===== */
+  .piliers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .pilier { padding: 24px; }
+  .pilier .pill { margin-bottom: 14px; }
+  .pilier h3 { font-family: var(--font-display); font-weight: 600; font-size: 17px; }
+  .pilier p { color: var(--muted); font-size: 14px; margin-top: 8px; line-height: 1.5; }
+  .seemore { text-align: center; margin-top: 28px; }
+  .seemore a { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--green); font-size: 15px; }
+  .seemore a svg { width: 16px; height: 16px; }
+
+  .expnums { display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: wrap; margin-top: 8px; }
+  .expnums .e { text-align: center; padding: 0 30px; border-right: 1px solid var(--line); }
+  .expnums .e:last-child { border-right: 0; }
+  .expnums .e .n { font-family: var(--font-display); font-weight: 700; font-size: 34px; background: var(--grad-135); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .expnums .e .l { font-size: 12.5px; color: var(--muted); margin-top: 4px; }
+
+  /* ===== GARANTIES ===== */
+  .guar-band { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .guar-band .g { font-size: 13px; color: var(--ink-2); display: flex; align-items: center; gap: 9px; background: var(--surface); border: 1px solid var(--line); padding: 10px 16px; border-radius: var(--r-pill); }
+  .guar-band .g svg { width: 15px; height: 15px; color: var(--green); flex-shrink: 0; }
+
+  /* ===== CTA band ===== */
+  .ctaband { text-align: center; }
+  .ctaband .inner { padding: 60px 40px; border-radius: var(--r-xl); }
+  .ctaband h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(26px, 4vw, 40px); letter-spacing: -0.02em; line-height: 1.1; }
+  .ctaband h2 .em { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .ctaband p { color: var(--muted); margin: 16px auto 0; max-width: 480px; font-size: 17px; }
+  .ctaband .cta { display: flex; gap: 14px; justify-content: center; margin-top: 28px; flex-wrap: wrap; }
+
+  /* ===== FOOTER ===== */
+  footer { border-top: 1px solid var(--line); padding: 60px 0 40px; margin-top: 40px; }
+  footer .cols { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 40px; }
+  footer .about { max-width: 300px; }
+  footer .about p { color: var(--muted); font-size: 14px; margin-top: 16px; line-height: 1.6; }
+  footer .fcol h4 { font-family: var(--font-display); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted-2); margin-bottom: 16px; }
+  footer .fcol a { display: block; font-size: 14px; color: var(--muted); padding: 5px 0; transition: color .2s; }
+  footer .fcol a:hover { color: var(--green); }
+  footer .doctrines { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--line); }
+  footer .doctrines .d { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 7px; background: var(--surface); border: 1px solid var(--line); padding: 7px 13px; border-radius: var(--r-pill); }
+  footer .doctrines .d svg { width: 13px; height: 13px; color: var(--green); }
+  footer .legal { margin-top: 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 13px; color: var(--muted-2); flex-wrap: wrap; }
+
+  @media (max-width: 900px) {
+    .nav .links { display: none; }
+    .nav .burger { display: block; }
+    .hero .grid { grid-template-columns: 1fr; }
+    .hero .mark-xl { width: 190px; height: 238px; order: -1; }
+    .hero .art-carousel { height: 250px; }
+    .cas .wrap { grid-template-columns: 1fr; gap: 24px; }
+    .pjgrid { grid-template-columns: 1fr; }
+    .pj.wide .pj-body ul { columns: 1; }
+    .sov-grid { grid-template-columns: 1fr; }
+    .packs { grid-template-columns: 1fr; }
+    .b2b { grid-template-columns: 1fr; }
+    .piliers { grid-template-columns: 1fr; }
+    .expnums .e { padding: 12px 20px; }
+    footer .cols { grid-template-columns: 1fr 1fr; gap: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== SVG SYMBOLS ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="sp-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#159FCB"/></linearGradient>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5z M3 8l9 5 9-5M12 13v8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 11V7a4 4 0 0 1 8 0v4" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 16v-5M12 8h.01" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="m22 10-10-5L2 10l10 5 10-5zM6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-build" viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 9h0M9 13h0M9 17h0" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="7" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="13" width="18" height="7" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7 7.5h0M7 16.5h0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-store" viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9M4 9v10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9M3 9h18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m16 8-2 6-6 2 2-6 6-2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<!-- Logo mark template -->
+<template id="mark-svg">
+  <svg viewBox="0 0 250 286" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="StackProtocol">
+    <defs>
+      <linearGradient id="solGreen" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#2ECE93"/></linearGradient>
+      <linearGradient id="solTeal" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#2ECE93"/><stop offset="100%" stop-color="#1593C6"/></linearGradient>
+      <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/><stop offset="45%" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+      <pattern id="stpGreen" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#43E7A6"/></pattern>
+      <pattern id="stpTeal" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#2ECE93"/></pattern>
+      <pattern id="stpBlue" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#1593C6"/></pattern>
+      <filter id="depth" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0a1414" flood-opacity="0.45"/></filter>
+    </defs>
+    <g transform="rotate(-7 125 143)">
+      <polygon points="139,8 179,48 139,88 99,48" fill="url(#stpGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#solGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#sheen)"/>
+      <polygon points="139,100 179,140 139,180 99,140" fill="url(#stpTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#solTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#sheen)"/>
+      <polygon points="139,192 179,232 139,272 99,232" fill="url(#stpBlue)" filter="url(#depth)"/>
+    </g>
+  </svg>
+</template>
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Accueil StackProtocol">
+      <span class="mark" data-mark></span>
+      <span class="wm">Stack<b>Protocol</b></span>
+    </a>
+    <nav class="links" aria-label="Navigation principale">
+      <a href="pour-qui.html">Pour qui</a>
+      <a href="la-methode.html">La méthode</a>
+      <a href="octans.html">Octans</a>
+      <a href="les-experts.html">Les experts</a>
+      <a href="souverainete.html">Souveraineté</a>
+      <a href="#produits">Produits</a>
+      <a href="faq.html">FAQ</a>
+      <a href="cpf.html">CPF</a>
+    </nav>
+    <span class="spacer"></span>
+    <div class="actions">
+      <a class="login" href="login.html">Se connecter</a>
+      <a class="btn btn-primary btn-sm" href="orientation-gratuite.html">Orientation gratuite<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <button class="burger" aria-label="Menu" onclick="document.querySelector('.nav .links').style.display='flex'">
+      <svg aria-hidden="true"><use href="#i-menu"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="roles-line">
+        <span class="tl">AI Method Conductor</span><span class="sep"></span>
+        <span>Spécialiste de CDC avant production par vos IA et autres services !</span>
+      </div>
+    </div>
+    <div class="wrap grid">
+      <div class="lede">
+        <h1 style="margin-top:0;font-size:clamp(26px,3.2vw,36px);">Préparer son projet · son CDC.
+          <span class="h1-subline"><span class="h1-sub small h1-souv" style="margin-top:0;"><span class="dot-souv"></span>Cahier des charges en local.</span><span class="h1-sub small h1-souv" style="margin-top:0;"><span class="eq-souv">&gt;</span>Souveraineté.</span></span>
+        </h1>
+        <p class="note" style="margin-top:10px;"><svg aria-hidden="true"><use href="#i-shield"/></svg>1 Jour de travail = 2 Mois de production<span class="gtag gtag-note">Garantie</span></p>
+        <p class="sub" style="margin-top:46px;"><b class="octans-tip">OCTANS</b><br /><span class="octans-side" style="margin-left:0;">Elle s'appelle <b style="color:#F2B186;font-weight:400;">Octans</b> — la <b style="color:var(--ink);font-weight:600;text-shadow:0 0 10px rgba(255,255,255,0.25);">constellation</b> d'<b style="color:var(--ink);font-weight:600;">agents</b> et de <b style="color:var(--ink);font-weight:600;">skills</b>.</span><br /><span class="sub-small">Architecte d'équipes <span class="em-txt">IA Experts</span> — le cerveau moteur puissant de StackProtocol, boosté par <span class="claude-mark">Claude</span>.</span><br /><span class="sub-small" style="color:var(--muted);">On suit et anticipe les meilleures IA — agents et skills toujours à jour.</span></p>
+        <div class="cta" style="margin-top:56px;">
+          <a class="btn btn-sm btn-primary btn-breathe" href="#produits">Commencer<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-sm btn-ghost" href="orientation-gratuite.html">Orientation gratuite (5 min)</a>
+        </div>
+      </div>
+      <div class="art">
+        <div class="cortex-wrap">
+          <div id="cortex" aria-hidden="true"></div>
+          <p class="cortex-legend"><b style="color:var(--orange);font-weight:600;">Octans</b><br />Le cerveau d'ingénierie qui déploie ton cahier des charges.</p>
+        </div>
+        <div class="art-carousel" aria-label="Présentation animée">
+          <div class="art-slide is-active art-stat art-promise" data-art>
+            <div>
+              <ul class="pp-list pp-reveal">
+                <li>Des <b>semaines de cadrage</b> gagnées</li>
+                <li><b>Zéro angle mort</b> : juridique, sécurité, RGPD anticipés</li>
+                <li>Les <b>erreurs coûteuses</b> évitées !</li>
+                <li>Un <b>cap clair</b> du premier jour au lancement</li>
+                <li><b>Budget maîtrisé</b> — pas de refonte à mi-chemin</li>
+                <li><b>Décisions tranchées</b> — fini les allers-retours</li>
+                <li>Ton projet <b>lisible par n'importe quel dev</b></li>
+              </ul>
+            </div>
+          </div>
+          <div class="art-slide art-stat art-promise" data-art>
+            <div>
+              <div class="pp-t" style="font-size:19px;">Petits et grands projets !</div>
+              <ul class="pp-list pp-reveal pp-2col">
+                <li>Site vitrine · portfolio</li>
+                <li>Commerce · e-commerce</li>
+                <li>SaaS · app mobile</li>
+                <li>Marketplace · plateforme</li>
+                <li>Association · collectivité</li>
+                <li>Cabinet libéral · santé</li>
+                <li>Restaurant · hôtellerie</li>
+                <li>Artisan · producteur</li>
+                <li>Coaching · formation</li>
+                <li>Data · IA · agents</li>
+              </ul>
+            </div>
+          </div>
+          <div class="art-slide art-stat art-promise" data-art>
+            <div>
+              <div class="pp-t" style="font-size:19px;">Ce que tu obtiens</div>
+              <ul class="pp-list pp-reveal">
+                <li>Un <b>CDC complet</b>, prêt pour <span class="claude-mark">Claude Code</span></li>
+                <li>Des <b>doctrines tranchées</b> — fini l'indécision</li>
+                <li>Des <b>audits automatiques</b> à chaque étape</li>
+                <li>Un <b>suivi quotidien</b> planifié</li>
+              </ul>
+            </div>
+          </div>
+          <div class="art-slide art-stat art-promise" data-art>
+            <div>
+              <div class="pp-t" style="font-size:19px;">Souveraineté totale</div>
+              <ul class="pp-list pp-reveal">
+                <li>Tout <b>en local</b>, sur ton disque</li>
+                <li>Tes idées <b>restent chez toi</b></li>
+                <li><b>Zéro tracking</b>, zéro cloud imposé</li>
+                <li>Aucune <b>dépendance</b> à une plateforme</li>
+                <li>Tu gardes le <b>contrôle total</b> de ton CDC</li>
+              </ul>
+            </div>
+          </div>
+          <div class="art-slide art-stat art-promise" data-art>
+            <div>
+              <div class="pp-t" style="font-size:19px;">Sans prérequis</div>
+              <ul class="pp-list pp-reveal">
+                <li><b>Pas besoin d'être dev</b> — guidé pas à pas</li>
+                <li>À <b>ton rythme</b>, en autonomie</li>
+                <li>Une méthode <b>reproductible</b> à volonté</li>
+                <li><b>Garanti 7 jours</b>, sans condition</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <button id="car-pause" class="car-pause" type="button" aria-pressed="false" aria-label="Mettre en pause l'animation">
+          <svg class="ic-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+          <svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRODUITS ===== -->
+  <section class="section" id="produits" data-ln="Les packs" data-ln-count="5" style="padding-top:0;margin-top:-44px;">
+    <div class="wrap">
+      <div class="section-head" style="display:flex;align-items:center;gap:26px;flex-wrap:nowrap;">
+        <span class="eyebrow" style="margin-bottom:0;white-space:nowrap;flex-shrink:0;"><span class="dot"></span>Les packs</span>
+        <p style="white-space:nowrap;max-width:none;display:flex;align-items:center;gap:22px;font-size:14.5px;color:var(--ink);text-shadow:0 0 12px rgba(238,241,241,0.25);margin-top:0;">3 niveaux d'accompagnement <span style="color:var(--green);text-shadow:0 0 8px rgba(60,229,163,0.7);">·</span> Votre espace personnel</p>
+      </div>
+
+      <div class="packs">
+        <!-- Autonomie -->
+        <article class="card pack">
+          <div class="pn">Pack Autonomie</div>
+          <div class="ptag">Octans complet en autonomie. Moteur entier, tutoriels, support async. Pour démarrer seul.</div>
+          <div class="amt">197€<small>une fois</small></div>
+          <ul>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>La méthode complète en autonomie</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Archétypes de CDC + templates</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Accès à vie + mises à jour</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><b>Whitelist écoles</b></li>
+          </ul>
+          <a class="btn btn-ghost" href="produits/pack-methode.html#etudiant">Détails</a>
+        </article>
+
+        <!-- Accompagné -->
+        <article class="card pack feat">
+          <span class="pill badge">Le plus choisi</span>
+          <div class="pn">Pack Accompagné</div>
+          <div class="ptag">Pack Autonomie Pro + 2×30 min d'appels visio sur RDV pour valider ton approche en direct.</div>
+          <div class="amt">547€<small>une fois</small></div>
+          <ul>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Tout le Pack Autonomie</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>30 experts virtuels</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Audits automatiques (sécurité, RGPD, a11y)</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Discord communauté</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Votre suivi</li>
+          </ul>
+          <a class="btn btn-primary" href="produits/pack-methode.html#standard">Détails<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </article>
+
+        <!-- Grand Compte -->
+        <article class="card pack">
+          <div class="pn">Audit Grand Compte</div>
+          <div class="ptag">Pour les orgs : audit CDC complet (6 volets) + 2 sessions coaching. Rapport 30-50 pages.</div>
+          <div class="amt">7 790€<small>HT</small></div>
+          <ul>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Audit 6 volets (cohérence, sécurité, RGPD, a11y, souveraineté, technique)</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><b>2 sessions coaching 1h</b> (installation + relecture)</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Rapport complet 30-50 pages + recommandations</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Support Phase 1 (installation)</li>
+          </ul>
+          <a class="btn btn-ghost" href="produits/audit-grand-compte.html">Détails</a>
+        </article>
+      </div>
+
+      <div class="b2b">
+        <article class="card">
+          <div class="bi">
+            <h3>Coaching individuel</h3>
+            <p>En visio, sur ton projet réel. Audit + plan d'action.</p>
+            <div class="amt">197€ <small style="font-size:14px;color:var(--muted);-webkit-text-fill-color:var(--muted)">la séance 1h45 · ou 497€ le forfait 3 séances</small></div>
+          </div>
+          <a class="btn btn-ghost btn-sm" href="produits/coaching.html">Détails</a>
+        </article>
+        <article class="card">
+          <div class="bi">
+            <h3>Grand Compte — Accompagnement Souverain</h3>
+            <p>B2B premium · 6 volets · timeline 1 mois.</p>
+            <div class="amt">7 790€ <small style="font-size:14px;color:var(--muted);-webkit-text-fill-color:var(--muted)">HT</small></div>
+          </div>
+          <a class="btn btn-ghost btn-sm" href="produits/audit-grand-compte.html">Détails</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3 CAS CONCRETS ===== -->
+  <section class="cas" id="cas" data-ln="Cas concrets" data-ln-count="60">
+    <div class="wrap">
+      <div class="qs">
+        <div class="q"><span class="ic"><svg aria-hidden="true"><use href="#i-cpu"/></svg></span>Tu construis un SaaS B2B&nbsp;?</div>
+        <div class="q"><span class="ic"><svg aria-hidden="true"><use href="#i-server"/></svg></span>Un AI Agent spécialisé&nbsp;?</div>
+        <div class="q"><span class="ic"><svg aria-hidden="true"><use href="#i-store"/></svg></span>Une plateforme civic-tech ou marketplace&nbsp;?</div>
+      </div>
+      <div class="ans">
+        <p><b>Une seule méthode. Une seule formation.</b> Tes idées 100&nbsp;% chez toi, quel que soit le type de projet que tu construis.</p>
+        <div class="price">À partir de 197€ · <a href="pour-qui.html" style="text-decoration:underline">tu fais quoi exactement&nbsp;?</a></div>
+      </div>
+    </div>
+
+    <div class="pjwrap wrap" style="display:block;">
+      <div class="pj-intro"><span class="dot"></span>Tous les types de projets possibles avec la méthode</div>
+      <div class="pjgrid">
+
+        <div class="pj">
+          <button class="pj-head" type="button" aria-expanded="false"><span class="dot"></span>Sites web simples<svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pj-body"><ul>
+            <li>Site vitrine (avocat, comptable, consultant)</li>
+            <li>Blog personnel ou professionnel</li>
+            <li>Portfolio créatif</li>
+            <li>Landing page produit</li>
+            <li>Site événement (mariage, conférence, festival)</li>
+            <li>Site associatif loi 1901</li>
+            <li>Campagne politique ou cause publique</li>
+          </ul></div>
+        </div>
+
+        <div class="pj">
+          <button class="pj-head" type="button" aria-expanded="false"><span class="dot"></span>SaaS B2B<svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pj-body"><ul>
+            <li>Productivity (tâches, notes, CRM léger)</li>
+            <li>HR-tech (paie, recrutement, formation)</li>
+            <li>Legal-tech (contrats, automation juridique)</li>
+            <li>Fintech (compta auto, facturation, trésorerie)</li>
+            <li>Health-tech (cabinet, télémédecine)</li>
+            <li>Edtech (LMS, formation continue)</li>
+            <li>Sales-tech (CRM, prospection)</li>
+            <li>Marketing-tech (newsletters, analytics)</li>
+          </ul></div>
+        </div>
+
+        <div class="pj">
+          <button class="pj-head" type="button" aria-expanded="false"><span class="dot"></span>Plateformes multi-acteurs<svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pj-body"><ul>
+            <li>Marketplace B2C ou B2B</li>
+            <li>Civic-tech locale</li>
+            <li>Cours en ligne</li>
+            <li>Plateforme freelances</li>
+            <li>Plateforme contenus (podcasts, vidéos)</li>
+            <li>Plateforme collaborative / open source</li>
+            <li>Plateforme événements</li>
+          </ul></div>
+        </div>
+
+        <div class="pj">
+          <button class="pj-head" type="button" aria-expanded="false"><span class="dot"></span>Apps mobiles<svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pj-body"><ul>
+            <li>Native iOS ou Android</li>
+            <li>Flutter cross-platform</li>
+            <li>Messagerie chiffrée bout-en-bout</li>
+            <li>Tracking sportif / santé / habitudes</li>
+            <li>App B2B (compagnon d'un SaaS)</li>
+            <li>PWA (Progressive Web App)</li>
+          </ul></div>
+        </div>
+
+        <div class="pj">
+          <button class="pj-head" type="button" aria-expanded="false"><span class="dot"></span>Data + IA<svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pj-body"><ul>
+            <li>Pipeline ETL + dashboard décisionnel</li>
+            <li>Modèle ML déployé + interface</li>
+            <li>AI Agent spécialisé (juriste, médecin…)</li>
+            <li>Scraping / monitoring concurrentiel</li>
+            <li>Analytics produit (usage, A/B test)</li>
+            <li>Data product vendable (datasets, API)</li>
+            <li>SaaS RAG</li>
+          </ul></div>
+        </div>
+
+        <div class="pj">
+          <button class="pj-head" type="button" aria-expanded="false"><span class="dot"></span>E-commerce &amp; commerces<svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pj-body"><ul>
+            <li>Boutique e-commerce classique</li>
+            <li>E-commerce headless (custom)</li>
+            <li>Restaurant + commande / réservation</li>
+            <li>Salon de coiffure + agenda + fidélité</li>
+            <li>Hôtel + booking + parcours client</li>
+            <li>Marque B2C — partie digitale</li>
+          </ul></div>
+        </div>
+
+        <div class="pj wide">
+          <button class="pj-head" type="button" aria-expanded="false"><span class="dot"></span>Et bien d'autres encore…<svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="pj-body"><ul>
+            <li>Plateforme éducative pour écoles</li>
+            <li>Outil interne entreprise (HRIS custom)</li>
+            <li>Documentation produit publique</li>
+            <li>Méthodologie business (livre + formation)</li>
+            <li>Process interne (manuel qualité)</li>
+            <li>Audit / migration de système existant</li>
+            <li>Projet open source pur</li>
+            <li>IoT + cloud (smart home, ville intelligente)</li>
+            <li>Quantum computing R&amp;D</li>
+            <li>Hardware connecté + app</li>
+            <li>Cabinet libéral + RDV en ligne</li>
+            <li>Centre médical + portail patient</li>
+            <li>Artisan BTP + portfolio + devis</li>
+            <li>Association sportive + adhésions</li>
+            <li>Coopérative agricole + commercialisation</li>
+            <li>Tiers-lieu + agenda + community</li>
+            <li>AMAP + paniers + circuit court</li>
+            <li>Marché de producteurs + planning</li>
+            <li>École d'art + portfolio + admissions</li>
+          </ul></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MANIFESTE ===== -->
+  <section class="section manifeste" id="manifeste" data-ln="Pourquoi" data-ln-count="13">
+    <div class="wrap manifeste">
+      <span class="eyebrow"><span class="dot"></span>Pourquoi StackProtocol existe</span>
+      <h2>On ne peut pas tout faire seul. Il faut de la structure pour avancer.</h2>
+      <div class="body">
+        <p class="lead-in">Lancer un projet aujourd'hui, c'est jongler avec tout à la fois :</p>
+        <ul class="domains">
+          <li>Le code</li>
+          <li>Le design</li>
+          <li>Le copywriting</li>
+          <li>Le RGPD</li>
+          <li>La sécurité</li>
+          <li>L'accessibilité</li>
+          <li>Le SEO</li>
+          <li>Le marketing</li>
+          <li>La communication</li>
+          <li>Le financement</li>
+          <li>Le prévisionnel</li>
+          <li>La compta</li>
+          <li>Le juridique</li>
+        </ul>
+        <p><strong>Personne ne peut tout faire seul.</strong> Sauf une élite avec des moyens. Pour tous les autres, le manque de structure coûte du temps, de l'argent, et de la fatigue.</p>
+        <p>Cette méthode a été construite et testée pendant 6 mois sur un projet civic-tech français complexe : <strong>470 fichiers cohérents, 9 doctrines tranchées, 4 audits passés.</strong> Aujourd'hui, je la rends accessible.</p>
+      </div>
+      <div class="sign">— Brice DeCampos</div>
+    </div>
+  </section>
+
+
+
+
+
+  <!-- ===== SOUVERAINETÉ ===== -->
+  <section class="section" id="souverainete" data-ln="Souveraineté" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head" style="text-align:center;max-width:none;margin-bottom:36px;">
+        <span class="eyebrow" style="justify-content:center"><span class="dot"></span>Le différenciateur</span>
+        <h2>Tes idées restent chez toi. Vraiment.</h2>
+        <p style="margin-left:auto;margin-right:auto;">La plupart des outils font vivre ton projet sur leurs serveurs. Pas StackProtocol.</p>
+      </div>
+      <div class="sov-grid">
+        <div class="card sov-col bad">
+          <h3><svg aria-hidden="true" style="width:18px;height:18px"><use href="#i-server"/></svg>Ce que les autres font</h3>
+          <ul>
+            <li><span class="x">✕</span><span><b>Lovable / Bolt / v0</b> → ton projet vit sur LEURS serveurs</span></li>
+            <li><span class="x">✕</span><span><b>Notion AI</b> → tes notes nourrissent leur modèle</span></li>
+            <li><span class="x">✕</span><span><b>ChatGPT Plus</b> → conversations indexées</span></li>
+            <li><span class="x">✕</span><span><b>Cabinet conseil</b> → ton brief partagé avec une équipe entière</span></li>
+          </ul>
+        </div>
+        <div class="card sov-col good">
+          <h3><svg aria-hidden="true" style="width:18px;height:18px"><use href="#i-shield"/></svg>Ce que tu fais avec StackProtocol</h3>
+          <ul>
+            <li><span class="v">✓</span><span>Tes fichiers sur <b>TON disque dur</b></span></li>
+            <li><span class="v">✓</span><span><span class="claude-mark">Claude Code</span> = <b>appels API directs</b> depuis ta machine</span></li>
+            <li><span class="v">✓</span><span>Git local = ton repo n'a pas besoin d'être public</span></li>
+            <li><span class="v">✓</span><span><b>Aucune base de données StackProtocol</b> = on n'a pas tes données</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="sov-foot">
+        <a href="souverainete.html">Pour qui c'est critique (santé, juridique, R&D…)<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <!-- ===== MÉTHODE (5 piliers teaser) ===== -->
+  <section class="section" id="methode" data-ln="La méthode" data-ln-count="3" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>La méthode</span>
+        <h2>5 piliers universels.</h2>
+        <p>Le même socle, quel que soit ton projet.</p>
+      </div>
+      <div class="piliers">
+        <div class="card pilier"><span class="pill">Pilier 1</span><h3>Cascade pédagogique</h3><p>Pourquoi → UI → Backend → Data. Ton projet devient lisible de bout en bout.</p></div>
+        <div class="card pilier"><span class="pill">Pilier 2</span><h3>Pattern Vue d'ensemble</h3><p>5 sous-sections canoniques pour cadrer ce que chaque brique fait — et ne fait pas.</p></div>
+        <div class="card pilier"><span class="pill">Pilier 3</span><h3>14 règles adaptables</h3><p>Tu pars de templates non-négociables, tu les adaptes à ton projet.</p></div>
+        <div class="card pilier"><span class="pill">Pilier 4</span><h3>Conseil prismes anti-biais</h3><p>8 angles, 8 niveaux. Des décisions tranchées sans biais du solo.</p></div>
+        <div class="card pilier"><span class="pill">Pilier 5</span><h3>Des centaines de skills &amp; agents</h3><p>Tu invoques une commande dans <span class="claude-mark">Claude Code</span>, c'est fait.</p></div>
+        <div class="card pilier" style="display:flex;flex-direction:column;justify-content:center;background:linear-gradient(150deg,rgba(60,229,163,0.10),rgba(24,180,204,0.06));">
+          <a href="la-methode.html" style="font-weight:600;color:var(--green);display:inline-flex;align-items:center;gap:8px;">Voir la méthode en détail<svg aria-hidden="true" style="width:16px;height:16px"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERTS teaser ===== -->
+  <section class="section" id="experts" data-ln="Les experts" data-ln-count="30" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head" style="text-align:center;max-width:none;">
+        <span class="eyebrow" style="justify-content:center"><span class="dot"></span>L'équipe</span>
+        <h2>30 spécialistes · orchestrés pour ton projet.</h2>
+        <p style="margin-left:auto;margin-right:auto;">Juridique, sécurité, technique, business, méthode — une équipe virtuelle qui anticipe le stratégique.</p>
+      </div>
+      <div class="expnums">
+        <div class="e"><div class="n">29</div><div class="l">experts spécialistes</div></div>
+        <div class="e"><div class="n">7</div><div class="l">catégories</div></div>
+        <div class="e"><div class="n">7–10</div><div class="l">utilisés au quotidien</div></div>
+      </div>
+      <div class="seemore"><a href="les-experts.html">Découvrir les 30 experts<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+    </div>
+  </section>
+
+  <!-- ===== GARANTIES ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="guar-band">
+        <span class="g"><svg aria-hidden="true"><use href="#i-shield"/></svg>Remboursé 7 jours (Loi Hamon + clause d'essai)</span>
+        <span class="g"><svg aria-hidden="true"><use href="#i-lock"/></svg>0 mot de passe (magic links)</span>
+        <span class="g"><svg aria-hidden="true"><use href="#i-check"/></svg>0 tracking comportemental</span>
+        <span class="g"><svg aria-hidden="true"><use href="#i-check"/></svg>WCAG 2.2 AA</span>
+        <span class="g"><svg aria-hidden="true"><use href="#i-shield"/></svg>Hébergement OVH France</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA BAND ===== -->
+  <section class="section" id="contact" data-ln="Commencer" style="padding-top:0;">
+    <div class="wrap">
+      <div class="card ctaband">
+        <div class="inner">
+          <h2>Tu ne sais pas par où <span class="em">commencer</span>&nbsp;?</h2>
+          <p>Fais l'orientation gratuite (5 min) : ton archétype, le pack recommandé et tes 3 priorités. Sans inscription, sans tracker.</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="orientation-gratuite.html">Faire l'orientation gratuite<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn-ghost" href="#produits">Voir les packs</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div class="about">
+        <a class="logo" href="index.html"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+        <p>Une méthode reproductible pour structurer ton projet en local, avec <span class="claude-mark">Claude Code</span>. Tes idées restent chez toi. Souveraineté française · OVH · sans tracking.</p>
+      </div>
+      <div class="fcol">
+        <h4>Explorer</h4>
+        <a href="pour-qui.html">Pour qui</a>
+        <a href="la-methode.html">La méthode</a>
+        <a href="les-experts.html">Les experts</a>
+        <a href="le-cdc-portable.html">Le CDC portable</a>
+        <a href="souverainete.html">Souveraineté</a>
+        <a href="cabinet-vs-stackprotocol.html">Cabinet vs StackProtocol</a>
+      </div>
+      <div class="fcol">
+        <h4>Produits</h4>
+        <a href="produits/pack-methode.html">Packs (197 / 247 / 547 / 7790€)</a>
+        <a href="produits/coaching.html">Coaching</a>
+        <a href="produits/audit-grand-compte.html">Grand Compte — Accompagnement Souverain</a>
+        <a href="orientation-gratuite.html">Orientation gratuite</a>
+        <a href="cpf.html">Bientôt éligible CPF</a>
+      </div>
+      <div class="fcol">
+        <h4>Compte &amp; légal</h4>
+        <a href="login.html">Se connecter</a>
+        <a href="qui-je-suis.html">À propos</a>
+        <a href="faq.html">FAQ</a>
+        <a href="legal/cgv.html">CGV</a>
+        <a href="legal/mentions.html">Mentions légales</a>
+        <a href="legal/rgpd.html">RGPD &amp; données</a>
+      </div>
+    </div>
+
+    <div class="doctrines">
+      <span class="d"><svg aria-hidden="true"><use href="#i-lock"/></svg>0 mot de passe — magic links</span>
+      <span class="d"><svg aria-hidden="true"><use href="#i-shield"/></svg>Sans tracking comportemental</span>
+      <span class="d"><svg aria-hidden="true"><use href="#i-check"/></svg>Remboursement 7 jours</span>
+      <span class="d"><svg aria-hidden="true"><use href="#i-check"/></svg>WCAG 2.2 AA</span>
+      <span class="d"><svg aria-hidden="true"><use href="#i-shield"/></svg>OVH France</span>
+    </div>
+
+    <div class="legal">
+      <span>© 2026 StackProtocol — Brice DeCampos. Tous droits réservés. · contact@stackprotocol.fr</span>
+      <span>🇫🇷 Hébergement OVH · Plausible self-host · Brevo FR · Stripe FR · 0 tracking GAFAM</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var tpl = document.getElementById('mark-svg');
+    document.querySelectorAll('[data-mark]').forEach(function (slot, i) {
+      var node = tpl.content.cloneNode(true);
+      var svg = node.querySelector('svg');
+      svg.innerHTML = svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g, '$1$2_' + i);
+      slot.appendChild(node);
+    });
+  })();
+</script>
+<script src="leftnav.js"></script>
+<script>
+  // dépliants types de projets (clic = épingle ouvert, survol = aperçu)
+  (function(){
+    document.querySelectorAll('.pj-head').forEach(function(h){
+      h.addEventListener('click', function(){
+        var pj = h.parentElement;
+        pj.classList.toggle('open');
+        h.setAttribute('aria-expanded', pj.classList.contains('open') ? 'true' : 'false');
+      });
+    });
+  })();
+</script>
+<script>
+  // ===== Le Cortex + carrousel (avec pause WCAG 2.2.2) =====
+  (function(){
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var NS = 'http://www.w3.org/2000/svg';
+    var host = document.getElementById('cortex');
+    var paths = [];
+    if (host) {
+      // silhouette cortex abstraite (vue de profil) — 30 nœuds experts
+      var nodes = [
+        [120,120],[160,86],[210,68],[262,64],[308,78],[344,108],[362,148],[364,192],[350,232],[322,264],
+        [284,286],[240,296],[196,292],[156,276],[128,248],[112,212],[110,170],
+        [170,140],[210,120],[255,110],[300,140],[322,190],[300,236],[255,256],[205,250],[165,220],
+        [150,180],[252,182],[282,158],[230,148]
+      ];
+      var C = [218,196]; // nœud central Claude
+      var svg = document.createElementNS(NS,'svg');
+      svg.setAttribute('viewBox','0 0 440 360');
+      var defs = document.createElementNS(NS,'defs');
+      defs.innerHTML = '<linearGradient id="cxgrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3CE5A3"/><stop offset="100%" stop-color="#18B4CC"/></linearGradient>';
+      svg.appendChild(defs);
+      var g = document.createElementNS(NS,'g');
+      if (!reduced) g.setAttribute('class','cx-rot');
+      // paires (synapse + nœud) indépendantes : rétraction/repousse aléatoire douce
+      nodes.forEach(function(p,i){
+        var mx = (C[0]+p[0])/2 + (p[1]-C[1])*0.12;
+        var my = (C[1]+p[1])/2 - (p[0]-C[0])*0.12;
+        var pair = document.createElementNS(NS,'g');
+        if (!reduced) {
+          pair.setAttribute('class','pair-ind');
+          pair.style.setProperty('--pd', (9 + Math.random()*9).toFixed(2)+'s');
+          pair.style.setProperty('--pdl', (-Math.random()*14).toFixed(2)+'s');
+          pair.style.setProperty('--ps', (0.82 + Math.random()*0.1).toFixed(2));
+        }
+        var path = document.createElementNS(NS,'path');
+        path.setAttribute('d','M'+C[0]+' '+C[1]+' Q'+mx.toFixed(1)+' '+my.toFixed(1)+' '+p[0]+' '+p[1]);
+        path.setAttribute('class','cx-syn');
+        path.setAttribute('pathLength','100');
+        pair.appendChild(path);
+        paths.push(path);
+        var c = document.createElementNS(NS,'circle');
+        c.setAttribute('cx',p[0]); c.setAttribute('cy',p[1]);
+        c.setAttribute('r', i%5===0 ? 4.6 : 3.4);
+        c.setAttribute('class','cx-node' + (reduced ? '' : ' p'));
+        if (!reduced) c.style.animationDelay = ((i*0.37)%5).toFixed(2)+'s';
+        pair.appendChild(c);
+        g.appendChild(pair);
+      });
+      // halo + nœud Claude (centre réduit)
+      var halo = document.createElementNS(NS,'circle');
+      halo.setAttribute('cx',C[0]); halo.setAttribute('cy',C[1]); halo.setAttribute('r',13);
+      halo.setAttribute('class','cx-claude-halo');
+      g.appendChild(halo);
+      var cn = document.createElementNS(NS,'circle');
+      cn.setAttribute('cx',C[0]); cn.setAttribute('cy',C[1]); cn.setAttribute('r',7.5);
+      cn.setAttribute('class','cx-claude');
+      g.appendChild(cn);
+      svg.appendChild(g);
+      host.appendChild(svg);
+    }
+
+    var paused = false;
+    var fireTimer = null, slideTimer = null;
+
+    // influx : 1 synapse à la fois, rythme calme
+    function fireOnce(){
+      if (paused || reduced || !paths.length) return;
+      var p = paths[Math.floor(Math.random()*paths.length)];
+      p.classList.remove('fire','fire-orange'); void p.getBoundingClientRect();
+      p.classList.add('fire');
+      if (Math.random() < 0.25) p.classList.add('fire-orange');
+      setTimeout(function(){ p.classList.remove('fire','fire-orange'); }, 1700);
+    }
+    if (!reduced && paths.length) fireTimer = setInterval(function(){
+      fireOnce();
+      if (Math.random() < 0.5) setTimeout(fireOnce, 380 + Math.random()*520);
+    }, 1300);
+
+    // carrousel
+    var slides = [].slice.call(document.querySelectorAll('.art-carousel [data-art]'));
+    var i = 0;
+    function next(){
+      if (paused) return;
+      slides[i].classList.remove('is-active');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('is-active');
+    }
+    if (slides.length > 1 && !reduced) slideTimer = setInterval(next, 10000);
+
+    // pause / lecture
+    var btn = document.getElementById('car-pause');
+    if (btn) {
+      if (reduced) { paused = true; btn.setAttribute('aria-pressed','true'); btn.setAttribute('aria-label','Relancer l\u2019animation'); }
+      btn.addEventListener('click', function(){
+        paused = !paused;
+        btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+        btn.setAttribute('aria-label', paused ? 'Relancer l\u2019animation' : 'Mettre en pause l\u2019animation');
+        document.querySelectorAll('.cx-node.p, .cx-claude-halo, .cx-rot, .pair-ind').forEach(function(el){
+          el.style.animationPlayState = paused ? 'paused' : 'running';
+        });
+      });
+    }
+  })();
+</script>
+</body>
+</html>

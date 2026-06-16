@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Paramètres — StackProtocol</title>
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="account.css" />
+<style>
+  .block { padding: 26px; margin-bottom: 16px; }
+  .block h3 { font-family: var(--font-display); font-weight: 600; font-size: 17px; }
+  .block .bd { color: var(--muted); font-size: 13.5px; margin-top: 5px; line-height: 1.5; }
+  .frow { display: grid; grid-template-columns: 160px 1fr; gap: 18px; align-items: center; margin-top: 20px; }
+  .frow label { font-size: 14px; color: var(--ink-2); font-weight: 500; }
+  .field { display: flex; align-items: center; gap: 11px; padding: 0 15px; height: 48px; border-radius: var(--r); background: rgba(0,0,0,0.18); border: 1px solid var(--line-2); transition: border-color .2s, box-shadow .2s; }
+  .field:focus-within { border-color: var(--green); box-shadow: 0 0 0 3px rgba(60,229,163,0.16); }
+  .field input { flex: 1; background: none; border: 0; outline: none; color: var(--ink); font-family: var(--font-body); font-size: 15px; }
+  .field.ro { opacity: 0.7; }
+  .field.ro input { color: var(--muted); }
+  .tag-ro { font-size: 11px; color: var(--muted-2); }
+  .block .actions { margin-top: 22px; display: flex; gap: 12px; }
+
+  .toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .toggle-row:last-child { border-bottom: 0; }
+  .toggle-row .ti h4 { font-size: 14.5px; font-weight: 600; color: var(--ink); }
+  .toggle-row .ti p { font-size: 13px; color: var(--muted); margin-top: 3px; }
+  .switch { position: relative; width: 46px; height: 26px; flex-shrink: 0; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .switch .sl { position: absolute; inset: 0; border-radius: 99px; background: rgba(255,255,255,0.12); border: 1px solid var(--line-2); transition: .2s; cursor: pointer; }
+  .switch .sl::before { content: ""; position: absolute; width: 18px; height: 18px; left: 4px; top: 3px; border-radius: 50%; background: var(--muted); transition: .2s; }
+  .switch input:checked + .sl { background: rgba(60,229,163,0.25); border-color: rgba(60,229,163,0.5); }
+  .switch input:checked + .sl::before { transform: translateX(20px); background: var(--green); }
+
+  .rgpd { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 20px; }
+  .rgpd .opt { padding: 20px; border-radius: var(--r); border: 1px solid var(--line); background: var(--surface); }
+  .rgpd .opt h4 { font-family: var(--font-display); font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 9px; }
+  .rgpd .opt h4 svg { width: 17px; height: 17px; color: var(--green); }
+  .rgpd .opt p { font-size: 13px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+  .rgpd .opt .btn { margin-top: 16px; }
+  .danger { border-color: rgba(224,145,90,0.3) !important; background: rgba(224,145,90,0.05) !important; }
+  .danger h4 svg { color: var(--orange) !important; }
+  .btn-danger { background: rgba(224,145,90,0.12); color: #E0915A; border: 1px solid rgba(224,145,90,0.4); }
+  .btn-danger:hover { background: rgba(224,145,90,0.2); border-color: var(--orange); transform: translateY(-2px); }
+
+  .logout { margin-top: 24px; display: flex; justify-content: flex-end; }
+
+  @media (max-width: 640px) { .frow { grid-template-columns: 1fr; gap: 8px; } .rgpd { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="sp-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#159FCB"/></linearGradient>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="14" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="14" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="m22 10-10-5L2 10l10 5 10-5zM6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M2 10h20" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4v16l13-8z" fill="currentColor"/></symbol>
+  <symbol id="i-dl" viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m2 0v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<template id="mark-svg">
+  <svg viewBox="0 0 250 286" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="StackProtocol">
+    <defs>
+      <linearGradient id="solGreen" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#2ECE93"/></linearGradient>
+      <linearGradient id="solTeal" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#2ECE93"/><stop offset="100%" stop-color="#1593C6"/></linearGradient>
+      <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/><stop offset="45%" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+      <pattern id="stpGreen" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#43E7A6"/></pattern>
+      <pattern id="stpTeal" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#2ECE93"/></pattern>
+      <pattern id="stpBlue" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#1593C6"/></pattern>
+      <filter id="depth" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0a1414" flood-opacity="0.45"/></filter>
+    </defs>
+    <g transform="rotate(-7 125 143)">
+      <polygon points="139,8 179,48 139,88 99,48" fill="url(#stpGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#solGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#sheen)"/>
+      <polygon points="139,100 179,140 139,180 99,140" fill="url(#stpTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#solTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#sheen)"/>
+      <polygon points="139,192 179,232 139,272 99,232" fill="url(#stpBlue)" filter="url(#depth)"/>
+    </g>
+  </svg>
+</template>
+
+<div class="app">
+  <aside class="side">
+    <a class="logo brand" href="../index.html"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="navg" aria-label="Espace membre">
+      <a class="it" href="dashboard.html"><svg aria-hidden="true"><use href="#i-grid"/></svg>Tableau de bord</a>
+      <span class="lbl">Mes contenus</span>
+      <a class="it" href="library/pack-methode.html"><svg aria-hidden="true"><use href="#i-book"/></svg>Pack Méthode</a>
+      <a class="it" href="library/octans.html"><svg aria-hidden="true"><use href="#i-cpu"/></svg>Octans</a>
+      <a class="it" href="dashboard.html"><svg aria-hidden="true"><use href="#i-play"/></svg>Replays webinar</a>
+      <span class="lbl">Accompagnement</span>
+      <a class="it" href="dashboard.html"><svg aria-hidden="true"><use href="#i-cap"/></svg>Coaching</a>
+      <a class="it" href="dashboard.html"><svg aria-hidden="true"><use href="#i-cal"/></svg>Pass Série</a>
+      <span class="lbl">Compte</span>
+      <a class="it" href="billing.html"><svg aria-hidden="true"><use href="#i-card"/></svg>Facturation</a>
+      <a class="it on" href="settings.html" aria-current="page"><svg aria-hidden="true"><use href="#i-gear"/></svg>Paramètres</a>
+    </nav>
+    <div class="who">
+      <span class="av">B</span>
+      <div><div class="nm">Brice D.</div><div class="lv">Pack Méthode · L1</div></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <h1 class="title">Paramètres</h1>
+    <p class="sublead">Gère ton profil, tes préférences et tes données personnelles.</p>
+
+    <div class="sec-h">Profil</div>
+    <article class="card block">
+      <div class="frow">
+        <label for="set-prenom">Prénom</label>
+        <div class="field"><input id="set-prenom" type="text" value="Brice" /></div>
+      </div>
+      <div class="frow">
+        <label for="set-email">Email <span class="tag-ro">(identifiant)</span></label>
+        <div class="field ro"><input id="set-email" type="email" value="brice@exemple.fr" readonly /></div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary btn-sm" type="button">Enregistrer</button>
+        <span style="font-size:12.5px;color:var(--muted);align-self:center;">L'email sert d'identifiant de connexion — change-le en nous écrivant.</span>
+      </div>
+    </article>
+
+    <div class="sec-h">Communications</div>
+    <article class="card block">
+      <div class="toggle-row">
+        <div class="ti"><h4>Emails transactionnels</h4><p>Confirmations d'achat, accès, factures. Nécessaires au service.</p></div>
+        <label class="switch"><input type="checkbox" checked disabled /><span class="sl"></span></label>
+      </div>
+      <div class="toggle-row">
+        <div class="ti"><h4>Nouveautés &amp; webinars</h4><p>Maximum 1 email par mois. Aucun spam, désinscription en un clic.</p></div>
+        <label class="switch"><input type="checkbox" /><span class="sl"></span></label>
+      </div>
+    </article>
+
+    <div class="sec-h">Mes données (RGPD)</div>
+    <div class="rgpd">
+      <div class="opt">
+        <h4><svg aria-hidden="true"><use href="#i-dl"/></svg>Exporter mes données</h4>
+        <p>Reçois une copie de toutes tes données (profil, achats, accès) au format JSON, par email.</p>
+        <a class="btn btn-ghost btn-sm" href="mailto:contact@stackprotocol.fr?subject=Export%20de%20mes%20donn%C3%A9es%20RGPD">Demander l'export</a>
+      </div>
+      <div class="opt danger">
+        <h4><svg aria-hidden="true"><use href="#i-trash"/></svg>Supprimer mon compte</h4>
+        <p>Efface définitivement ton compte et tes données. Les factures sont conservées 10 ans (obligation légale).</p>
+        <button class="btn btn-danger btn-sm" type="button">Supprimer mon compte</button>
+      </div>
+    </div>
+    <p class="note-line" style="display:flex;align-items:center;gap:9px;margin-top:16px;font-size:12.5px;color:var(--muted);">Conformément au RGPD. Voir la <a href="../legal/rgpd.html" style="color:var(--green)">Politique de données</a>.</p>
+
+    <div class="logout">
+      <a class="btn btn-ghost btn-sm" href="../login.html"><svg aria-hidden="true" style="width:15px;height:15px"><use href="#i-out"/></svg>Se déconnecter</a>
+    </div>
+  </main>
+</div>
+
+<script>
+  (function(){var t=document.getElementById('mark-svg');document.querySelectorAll('[data-mark]').forEach(function(s,i){var node=t.content.cloneNode(true);var svg=node.querySelector('svg');svg.innerHTML=svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,'$1$2_'+i);s.appendChild(node);});})();
+</script>
+</body>
+</html>

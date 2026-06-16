@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cabinet conseil vs StackProtocol — le comparatif honnête</title>
+<meta name="description" content="Un cabinet conseil coûte 15 000 à 25 000€ par mois et garde la maîtrise. StackProtocol : tu apprends la méthode, tu gardes tes idées, à partir de 77€. Comparatif honnête." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Spectral:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="leftnav.css" />
+<link rel="stylesheet" href="subpage.css" />
+<style>
+  .ctable { width: 100%; border-collapse: collapse; }
+  .ctable th, .ctable td { padding: 16px 18px; text-align: left; border-bottom: 1px solid var(--line); font-size: 14.5px; vertical-align: top; }
+  .ctable thead th { font-family: var(--font-display); font-size: 14px; font-weight: 600; }
+  .ctable thead th.us { color: var(--green); }
+  .ctable thead th.them { color: var(--muted); }
+  .ctable td.crit { color: var(--muted); font-weight: 500; width: 30%; }
+  .ctable td.us { color: var(--ink); }
+  .ctable td.us b { color: var(--green); }
+  .ctable td.them { color: var(--ink-2); }
+  .ctable tbody tr:hover { background: rgba(255,255,255,0.015); }
+  .honest { display: flex; gap: 14px; align-items: flex-start; padding: 18px 22px; border-radius: var(--r); background: rgba(224,145,90,0.06); border: 1px solid rgba(224,145,90,0.22); max-width: 760px; margin: 0 auto; }
+  .honest svg { width: 20px; height: 20px; color: var(--orange); flex-shrink: 0; margin-top: 2px; }
+  .honest p { font-size: 14px; color: var(--ink-2); line-height: 1.55; }
+  .honest b { color: var(--ink); }
+  .when2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .when2 .col h3 { font-family: var(--font-display); font-weight: 600; font-size: 16px; display: flex; align-items: center; gap: 10px; }
+  .when2 .col.good h3 { color: var(--green); }
+  .when2 .col.them h3 { color: var(--muted); }
+  .when2 ul { list-style: none; margin: 16px 0 0; display: flex; flex-direction: column; gap: 11px; }
+  .when2 li { font-size: 14px; color: var(--ink-2); display: flex; align-items: flex-start; gap: 10px; line-height: 1.45; }
+  .when2 li .m { flex-shrink: 0; font-weight: 700; }
+  .when2 .good li .m { color: var(--green); }
+  .when2 .them li .m { color: var(--muted-2); }
+  @media (max-width:860px){ .when2{ grid-template-columns:1fr; } .ctable{ font-size:13px; } .ctable th,.ctable td{ padding:12px; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 16v-5M12 8h.01" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+</defs></svg>
+
+<template id="mark-svg">
+  <svg viewBox="0 0 250 286" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="StackProtocol">
+    <defs>
+      <linearGradient id="solGreen" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#2ECE93"/></linearGradient>
+      <linearGradient id="solTeal" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#2ECE93"/><stop offset="100%" stop-color="#1593C6"/></linearGradient>
+      <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/><stop offset="45%" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+      <pattern id="stpGreen" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#43E7A6"/></pattern>
+      <pattern id="stpTeal" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#2ECE93"/></pattern>
+      <pattern id="stpBlue" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#1593C6"/></pattern>
+      <filter id="depth" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0a1414" flood-opacity="0.45"/></filter>
+    </defs>
+    <g transform="rotate(-7 125 143)">
+      <polygon points="139,8 179,48 139,88 99,48" fill="url(#stpGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#solGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#sheen)"/>
+      <polygon points="139,100 179,140 139,180 99,140" fill="url(#stpTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#solTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#sheen)"/>
+      <polygon points="139,192 179,232 139,272 99,232" fill="url(#stpBlue)" filter="url(#depth)"/>
+    </g>
+  </svg>
+</template>
+
+<header class="subnav">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Accueil StackProtocol"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="links" aria-label="Navigation principale">
+      <a href="pour-qui.html">Pour qui</a>
+      <a href="la-methode.html">La méthode</a>
+      <a href="octans.html">Octans</a>
+      <a href="les-experts.html">Les experts</a>
+      <a href="souverainete.html" class="on">Souveraineté</a>
+      <a href="index.html#produits">Produits</a>
+      <a href="faq.html">FAQ</a>
+      <a href="cpf.html">CPF</a>
+    </nav>
+    <span class="spacer"></span>
+    <div class="actions">
+      <a class="login" href="login.html">Se connecter</a>
+      <a class="btn btn-primary btn-sm" href="orientation-gratuite.html">Orientation gratuite<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <button class="burger" aria-label="Menu" onclick="var l=document.querySelector('.subnav .links');l.style.display=l.style.display==='flex'?'':'flex';"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<main>
+  <div class="phead center wrap">
+    <span class="pill">Comparatif honnête</span>
+    <h1>Cabinet conseil <span class="em">ou méthode&nbsp;?</span></h1>
+    <p class="intro">Un cabinet fait le travail à ta place — et garde la maîtrise. StackProtocol t'apprend à le faire toi-même, en gardant tes idées. Voici la comparaison, sans enjoliver.</p>
+  </div>
+
+  <section class="section" style="padding-top:32px;">
+    <div class="wrap">
+      <div class="card" style="padding:8px 8px;overflow-x:auto;">
+        <table class="ctable">
+          <thead><tr><th>Critère</th><th class="us">StackProtocol</th><th class="them">Cabinet conseil</th></tr></thead>
+          <tbody>
+            <tr><td class="crit">Coût</td><td class="us"><b>77€ à 697€</b> une fois</td><td class="them">15 000€ à 25 000€ / mois</td></tr>
+            <tr><td class="crit">Tes idées</td><td class="us"><b>Restent chez toi</b>, en local</td><td class="them">Partagées avec une équipe entière</td></tr>
+            <tr><td class="crit">Ce que tu repars</td><td class="us">Une <b>méthode + des artefacts</b> réutilisables à vie</td><td class="them">Un livrable figé, à refaire à chaque besoin</td></tr>
+            <tr><td class="crit">Autonomie ensuite</td><td class="us"><b>Totale</b> — tu sais faire</td><td class="them">Dépendance — tu recommandes</td></tr>
+            <tr><td class="crit">Délai</td><td class="us">Tu démarres <b>aujourd'hui</b></td><td class="them">Semaines de cadrage, devis, onboarding</td></tr>
+            <tr><td class="crit">Sur-mesure</td><td class="us">Coaching ou Audit Grand Compte (7 790€)</td><td class="them">Oui, mais au prix fort</td></tr>
+            <tr><td class="crit">Confidentialité</td><td class="us"><b>Aucune donnée</b> chez nous</td><td class="them">NDA, mais brief diffusé en interne</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-bottom:8px;">
+    <div class="honest">
+      <svg aria-hidden="true"><use href="#i-info"/></svg>
+      <p><b>Soyons justes :</b> un cabinet apporte des choses qu'on n'a pas — une responsabilité contractuelle sur le livrable, une équipe qui exécute à ta place, un réseau. Si tu veux déléguer entièrement et que le budget suit, c'est un choix valable. StackProtocol est pour ceux qui veulent <b>apprendre à faire</b> et <b>garder la main.</b></p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:24px;" data-ln="Choisis StackProtocol si…">
+    <div class="wrap">
+      <div class="when2">
+        <div class="card cardx good">
+          <h3>Choisis StackProtocol si…</h3>
+          <ul>
+            <li><span class="m">✓</span>Tu veux <b>garder la maîtrise</b> de ton projet et tes idées</li>
+            <li><span class="m">✓</span>Tu préfères <b>apprendre une méthode</b> réutilisable à vie</li>
+            <li><span class="m">✓</span>Ton budget est <b>celui d'un solo / d'une PME</b></li>
+            <li><span class="m">✓</span>La <b>confidentialité</b> est critique (santé, juridique, R&D)</li>
+            <li><span class="m">✓</span>Tu veux <b>démarrer maintenant</b>, pas dans 3 semaines</li>
+          </ul>
+        </div>
+        <div class="card cardx them">
+          <h3>Choisis un cabinet si…</h3>
+          <ul>
+            <li><span class="m">·</span>Tu veux <b>déléguer entièrement</b>, sans rien apprendre</li>
+            <li><span class="m">·</span>Tu as un <b>budget grand compte</b> (15-25K€/mois)</li>
+            <li><span class="m">·</span>Tu as besoin d'une <b>responsabilité contractuelle</b> sur le livrable</li>
+            <li><span class="m">·</span>Tu veux une <b>équipe qui exécute</b> à ta place</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;" data-ln="Garde tes idées. Garde ton…">
+    <div class="wrap"><div class="card cta-strip">
+      <h2>Garde tes idées. Garde <span class="em">ton argent.</span></h2>
+      <p>Apprends la méthode à partir de 77€. Besoin d'un regard expert sur un projet construit ? L'Audit Grand Compte fait ~50% du prix d'un cabinet.</p>
+      <div class="cta"><a class="btn btn-primary" href="index.html#produits">Voir les packs<svg aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="btn btn-ghost" href="produits/audit-grand-compte.html">L'Audit Grand Compte</a></div>
+    </div></div>
+  </section>
+</main>
+
+<footer class="subfoot">
+  <div class="wrap">
+    <a class="logo" href="index.html"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="links" aria-label="Pied de page"><a href="souverainete.html">Souveraineté</a><a href="la-methode.html">La méthode</a><a href="faq.html">FAQ</a><a href="legal/cgv.html">CGV</a></nav>
+    <span class="fin">🇫🇷 OVH · Plausible · Stripe FR · 0 tracking</span>
+  </div>
+</footer>
+
+<script>
+  (function(){var t=document.getElementById('mark-svg');document.querySelectorAll('[data-mark]').forEach(function(s,i){var n=t.content.cloneNode(true);var svg=n.querySelector('svg');svg.innerHTML=svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,'$1$2_'+i);s.appendChild(n);});})();
+</script>
+<script src="leftnav.js"></script>
+</body>
+</html>

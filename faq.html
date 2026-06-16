@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FAQ — Questions fréquentes · StackProtocol</title>
+<meta name="description" content="Réponses aux questions fréquentes sur la méthode StackProtocol, Claude Code, les produits, la garantie 7 jours, les données et la facturation." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Spectral:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="leftnav.css" />
+<link rel="stylesheet" href="subpage.css" />
+<style>
+  .nav { position: sticky; top: 0; z-index: 50; background: rgba(43,46,46,0.72); backdrop-filter: blur(14px) saturate(140%); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; gap: 24px; height: 70px; }
+  .nav .spacer { flex: 1; }
+  .nav .back { font-size: 14.5px; font-weight: 500; color: var(--muted); display: inline-flex; align-items: center; gap: 8px; }
+  .nav .back:hover { color: var(--green); }
+  .nav .back svg { width: 16px; height: 16px; transform: rotate(180deg); }
+
+  .fhead { text-align: center; padding: 64px 0 8px; }
+  .fhead h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(32px, 4.6vw, 48px); letter-spacing: -0.025em; margin-top: 16px; }
+  .fhead p { color: var(--muted); font-size: 17px; margin: 14px auto 0; max-width: 520px; }
+
+  .faq { max-width: 800px; margin: 40px auto 0; padding: 0 28px; }
+  .qa { border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); margin-bottom: 12px; overflow: hidden; transition: border-color .2s; }
+  .qa[open] { border-color: rgba(60,229,163,0.3); }
+  .qa summary { list-style: none; cursor: pointer; padding: 20px 22px; display: flex; align-items: center; gap: 16px; font-family: var(--font-display); font-weight: 600; font-size: 16.5px; color: var(--ink); }
+  .qa summary::-webkit-details-marker { display: none; }
+  .qa summary .ico { width: 26px; height: 26px; flex-shrink: 0; border-radius: 7px; display: grid; place-items: center; border: 1px solid var(--line-2); color: var(--green); transition: transform .25s ease, background .2s; }
+  .qa summary .ico svg { width: 15px; height: 15px; }
+  .qa[open] summary .ico { transform: rotate(45deg); background: rgba(60,229,163,0.12); border-color: rgba(60,229,163,0.4); }
+  .qa summary .q { flex: 1; }
+  .qa .a { padding: 0 22px 22px 64px; }
+  .qa .a p { font-size: 15px; line-height: 1.7; color: var(--ink-2); }
+  .qa .a p + p { margin-top: 10px; }
+  .qa .a a { color: var(--green); text-decoration: underline; text-underline-offset: 2px; }
+  .qa .a strong { color: var(--ink); }
+
+  .more { max-width: 800px; margin: 36px auto 0; padding: 0 28px; }
+  .more .card { padding: 30px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .more h3 { font-family: var(--font-display); font-weight: 600; font-size: 19px; }
+  .more p { color: var(--muted); font-size: 14.5px; margin-top: 4px; }
+
+  footer { border-top: 1px solid var(--line); padding: 44px 0; margin-top: 60px; }
+  footer .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  footer .links { display: flex; gap: 22px; flex-wrap: wrap; }
+  footer .links a { font-size: 13.5px; color: var(--muted); }
+  footer .links a:hover { color: var(--green); }
+  footer .fin { font-size: 12.5px; color: var(--muted-2); }
+
+  @media (max-width: 600px) { .qa .a { padding-left: 22px; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="sp-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#159FCB"/></linearGradient>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+</defs></svg>
+
+<template id="mark-svg">
+  <svg viewBox="0 0 250 286" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="StackProtocol">
+    <defs>
+      <linearGradient id="solGreen" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#2ECE93"/></linearGradient>
+      <linearGradient id="solTeal" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#2ECE93"/><stop offset="100%" stop-color="#1593C6"/></linearGradient>
+      <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/><stop offset="45%" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+      <pattern id="stpGreen" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#43E7A6"/></pattern>
+      <pattern id="stpTeal" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#2ECE93"/></pattern>
+      <pattern id="stpBlue" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#1593C6"/></pattern>
+      <filter id="depth" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0a1414" flood-opacity="0.45"/></filter>
+    </defs>
+    <g transform="rotate(-7 125 143)">
+      <polygon points="139,8 179,48 139,88 99,48" fill="url(#stpGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#solGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#sheen)"/>
+      <polygon points="139,100 179,140 139,180 99,140" fill="url(#stpTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#solTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#sheen)"/>
+      <polygon points="139,192 179,232 139,272 99,232" fill="url(#stpBlue)" filter="url(#depth)"/>
+    </g>
+  </svg>
+</template>
+
+<header class="subnav">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Accueil StackProtocol"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="links" aria-label="Navigation principale">
+      <a href="pour-qui.html">Pour qui</a>
+      <a href="la-methode.html">La méthode</a>
+      <a href="octans.html">Octans</a>
+      <a href="les-experts.html">Les experts</a>
+      <a href="souverainete.html">Souveraineté</a>
+      <a href="index.html#produits">Produits</a>
+      <a href="faq.html" class="on">FAQ</a>
+      <a href="cpf.html">CPF</a>
+    </nav>
+    <span class="spacer"></span>
+    <div class="actions">
+      <a class="login" href="login.html">Se connecter</a>
+      <a class="btn btn-primary btn-sm" href="orientation-gratuite.html">Orientation gratuite<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <button class="burger" aria-label="Menu" onclick="var l=document.querySelector('.subnav .links');l.style.display=l.style.display==='flex'?'':'flex';"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<main>
+  <div class="fhead">
+    <span class="pill">FAQ</span>
+    <h1>Questions fréquentes</h1>
+    <p>Tout ce qu'on nous demande avant de se lancer. Une autre question&nbsp;? Écris-nous.</p>
+  </div>
+
+  <section class="faq" data-ln="Une autre question ?">
+
+    <details class="qa" open>
+      <summary><span class="ico"><svg aria-hidden="true"><use href="#i-plus"/></svg></span><span class="q">Faut-il déjà savoir coder pour suivre la méthode&nbsp;?</span></summary>
+      <div class="a"><p>Non. La méthode part du principe que c'est <strong><span class="claude-mark">Claude Code</span> qui code</strong> — ton rôle est de cadrer, d'orchestrer et de décider. Si tu sais formuler ce que tu veux construire, tu peux suivre. Les profils techniques iront simplement plus vite sur certaines parties.</p></div>
+    </details>
+
+    <details class="qa">
+      <summary><span class="ico"><svg aria-hidden="true"><use href="#i-plus"/></svg></span><span class="q">C'est quoi exactement la différence avec un cours en ligne&nbsp;?</span></summary>
+      <div class="a"><p>Un cours t'explique des concepts. StackProtocol te donne une <strong>méthode reproductible née d'un vrai projet</strong> (6 mois, 470 fichiers cohérents, audits passés) et des artefacts concrets : archétypes de CDC, templates, doctrines. Tu repars avec des outils que tu appliques le jour même, pas juste des notions.</p></div>
+    </details>
+
+    <details class="qa">
+      <summary><span class="ico"><svg aria-hidden="true"><use href="#i-plus"/></svg></span><span class="q">Les chiffres « ×16 » sont-ils réalistes pour moi&nbsp;?</span></summary>
+      <div class="a"><p>Honnêtement&nbsp;: le <strong>×16 est mon résultat après 6 mois</strong> de maturation sur un projet réel. Pour un débutant, le gain <strong>démarre autour de ×3 dès le Mois&nbsp;2</strong> et grandit avec la pratique. On préfère t'annoncer une progression réelle plutôt qu'une promesse magique.</p></div>
+    </details>
+
+    <details class="qa">
+      <summary><span class="ico"><svg aria-hidden="true"><use href="#i-plus"/></svg></span><span class="q">Quel produit choisir pour commencer&nbsp;?</span></summary>
+      <div class="a"><p>Si tu veux avancer en autonomie à ton rythme&nbsp;: le <a href="produits/pack-methode.html">Pack Méthode</a> (dès 77€). Si tu préfères voir la méthode appliquée en direct et poser tes questions&nbsp;: un <a href="produits/webinar.html">Webinar</a>. Pour un accompagnement sur ton projet précis&nbsp;: le <a href="produits/coaching.html">Coaching 1:1</a>.</p></div>
+    </details>
+
+    <details class="qa">
+      <summary><span class="ico"><svg aria-hidden="true"><use href="#i-plus"/></svg></span><span class="q">Comment fonctionne la garantie&nbsp;?</span></summary>
+      <div class="a"><p>Tous les produits sont couverts par une <strong>garantie satisfait ou remboursé de 7 jours, sans condition</strong>. Si ça ne te convient pas, un simple email à <a href="mailto:contact@stackprotocol.fr">contact@stackprotocol.fr</a> suffit, et on te rembourse intégralement. Détails dans les <a href="legal/cgv.html">CGV</a>.</p></div>
+    </details>
+
+    <details class="qa">
+      <summary><span class="ico"><svg aria-hidden="true"><use href="#i-plus"/></svg></span><span class="q">Le Pack est-il mis à jour&nbsp;?</span></summary>
+      <div class="a"><p>Oui. Le Pack Méthode est <strong>actualisé une fois par mois</strong> (<span class="claude-mark">Claude Code</span> évolue vite), et l'accès est <strong>à vie</strong>&nbsp;: tu bénéficies des mises à jour sans repayer.</p></div>
+    </details>
+
+    <details class="qa">
+      <summary><span class="ico"><svg aria-hidden="true"><use href="#i-plus"/></svg></span><span class="q">Pourquoi n'y a-t-il pas de mot de passe&nbsp;?</span></summary>
+      <div class="a"><p>Par choix de sécurité et de simplicité. On utilise des <strong>liens magiques</strong>&nbsp;: tu entres ton email, tu reçois un lien de connexion valable 15 minutes. Rien à retenir, rien à se faire voler. C'est plus sûr qu'un mot de passe réutilisé.</p></div>
+    </details>
+
+    <details class="qa">
+      <summary><span class="ico"><svg aria-hidden="true"><use href="#i-plus"/></svg></span><span class="q">Mes données sont-elles revendues ou pistées&nbsp;?</span></summary>
+      <div class="a"><p>Jamais. <strong>Aucun tracking comportemental, aucun cookie publicitaire, aucune revente.</strong> La mesure d'audience se fait via Plausible auto-hébergé (anonyme, sans cookie). Hébergement et prestataires français/UE (OVH, Brevo, Stripe). Voir la <a href="legal/rgpd.html">Politique RGPD</a>.</p></div>
+    </details>
+
+    <details class="qa">
+      <summary><span class="ico"><svg aria-hidden="true"><use href="#i-plus"/></svg></span><span class="q">Quand a lieu le prochain webinar&nbsp;?</span></summary>
+      <div class="a"><p>La première session est le <strong>mardi 30 juin 2026 à 19h</strong> (65 minutes). Toutes les formules incluent le replay, donc même si tu ne peux pas être en direct, tu ne perds rien.</p></div>
+    </details>
+
+    <details class="qa">
+      <summary><span class="ico"><svg aria-hidden="true"><use href="#i-plus"/></svg></span><span class="q">La méthode marche-t-elle pour n'importe quel projet&nbsp;?</span></summary>
+      <div class="a"><p>Oui&nbsp;: SaaS, app mobile, marque, cabinet libéral, plateforme, agence, e-commerce… La méthode est <strong>agnostique du type de projet</strong>. Ce qui change, c'est l'archétype de CDC dont tu pars — on en fournit 5 (MICRO, SAAS, CIVIC, MOBILE, DATA).</p></div>
+    </details>
+
+  </section>
+
+  <div class="more">
+    <div class="card">
+      <div>
+        <h3>Une autre question&nbsp;?</h3>
+        <p>Écris-nous, on répond personnellement sous 24&nbsp;h ouvrées.</p>
+      </div>
+      <a class="btn btn-primary" href="mailto:contact@stackprotocol.fr">Nous écrire<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="index.html"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="links" aria-label="Pied de page">
+      <a href="index.html">Accueil</a>
+      <a href="produits/pack-methode.html">Pack Méthode</a>
+      <a href="legal/cgv.html">CGV</a>
+      <a href="legal/rgpd.html">RGPD</a>
+    </nav>
+    <span class="fin">🇫🇷 OVH · Plausible · Stripe FR · 0 tracking</span>
+  </div>
+</footer>
+
+<script>
+  (function(){var t=document.getElementById('mark-svg');document.querySelectorAll('[data-mark]').forEach(function(s,i){var node=t.content.cloneNode(true);var svg=node.querySelector('svg');svg.innerHTML=svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,'$1$2_'+i);s.appendChild(node);});})();
+</script>
+<script src="leftnav.js"></script>
+</body>
+</html>

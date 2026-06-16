@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bienvenue — StackProtocol</title>
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Spectral:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  .shell { min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto; }
+  .top { padding: 22px 0; }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; }
+  .top .skip-all { font-size: 13px; color: var(--muted); }
+  .top .skip-all:hover { color: var(--ink); }
+
+  .center { display: grid; place-items: center; padding: 24px 0; }
+  .wiz { width: 100%; max-width: 620px; }
+
+  /* progress */
+  .steps-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 26px; }
+  .steps-bar .seg { height: 5px; flex: 1; border-radius: 99px; background: rgba(255,255,255,0.09); overflow: hidden; }
+  .steps-bar .seg i { display: block; height: 100%; width: 0; background: var(--grad); border-radius: 99px; transition: width .4s ease; }
+  .steps-bar .seg.done i { width: 100%; }
+  .steps-bar .seg.cur i { width: 100%; }
+
+  .panel { padding: 40px; position: relative; }
+  .step { display: none; animation: fade .35s ease both; }
+  .step.active { display: block; }
+  @keyframes fade { from { transform: translateY(8px); } to { transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .step { animation: none; } }
+
+  .eyrow { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+  .stepno { font-family: var(--font-display); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .stepno .opt { color: var(--muted-2); }
+
+  .emoji { font-size: 44px; text-align: center; margin-bottom: 12px; }
+  .step h1 { font-family: var(--font-display); font-weight: 700; font-size: 28px; letter-spacing: -0.02em; text-align: center; }
+  .step .center-sub { color: var(--ink-2); font-size: 16px; text-align: center; margin-top: 12px; line-height: 1.55; max-width: 440px; margin-left: auto; margin-right: auto; }
+  .step .micro { color: var(--muted); font-size: 13px; text-align: center; margin-top: 16px; }
+
+  .step h2 { font-family: var(--font-display); font-weight: 600; font-size: 22px; letter-spacing: -0.01em; }
+  .step .lead2 { color: var(--muted); font-size: 14.5px; margin-top: 6px; }
+
+  /* archetype grid */
+  .arch { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 20px; }
+  .arch.sec { grid-template-columns: repeat(3, 1fr); margin-top: 10px; }
+  .tile { position: relative; padding: 16px 10px; border-radius: var(--r); border: 1px solid var(--line-2); background: var(--surface); cursor: pointer; text-align: center; transition: border-color .18s, background .18s, transform .18s; }
+  .tile:hover { border-color: rgba(60,229,163,0.4); transform: translateY(-2px); }
+  .tile.sel { border-color: var(--green); background: linear-gradient(150deg, rgba(60,229,163,0.14), rgba(24,180,204,0.07)); box-shadow: inset 0 0 0 1px rgba(60,229,163,0.3); }
+  .tile .dot { width: 11px; height: 11px; border-radius: 50%; margin: 0 auto 9px; }
+  .tile .tt { font-family: var(--font-display); font-size: 12.5px; font-weight: 600; color: var(--ink); letter-spacing: 0.02em; }
+  .tile .td { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.3; }
+  .tile .soon { position: absolute; top: 7px; right: 7px; font-size: 8.5px; font-weight: 700; letter-spacing: 0.06em; color: var(--cyan); background: rgba(24,180,204,0.14); border: 1px solid rgba(24,180,204,0.3); padding: 2px 5px; border-radius: 99px; }
+  .tile.locked { opacity: 0.62; cursor: default; }
+  .tile.locked:hover { transform: none; border-color: var(--line-2); }
+  .quiz-hint { margin-top: 16px; font-size: 13px; color: var(--muted); text-align: center; }
+  .quiz-hint a { color: var(--green); font-weight: 600; }
+
+  /* radio list */
+  .radios { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+  .radio { display: flex; align-items: center; gap: 13px; padding: 15px 18px; border-radius: var(--r); border: 1px solid var(--line-2); background: var(--surface); cursor: pointer; transition: border-color .18s, background .18s; }
+  .radio:hover { border-color: rgba(60,229,163,0.4); }
+  .radio.sel { border-color: var(--green); background: linear-gradient(100deg, rgba(60,229,163,0.12), rgba(24,180,204,0.05)); }
+  .radio .rc { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--line-2); flex-shrink: 0; display: grid; place-items: center; transition: border-color .18s; }
+  .radio.sel .rc { border-color: var(--green); }
+  .radio.sel .rc::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--green); }
+  .radio .rt { font-size: 15px; color: var(--ink); font-weight: 500; }
+  .radio .rt small { display: block; color: var(--muted); font-weight: 400; font-size: 13px; margin-top: 1px; }
+
+  .info { display: flex; gap: 11px; align-items: flex-start; margin-top: 18px; padding: 14px 16px; border-radius: var(--r); background: rgba(60,229,163,0.06); border: 1px solid rgba(60,229,163,0.22); }
+  .info svg { width: 17px; height: 17px; color: var(--green); flex-shrink: 0; margin-top: 1px; }
+  .info p { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+
+  /* linkedin */
+  .li-why { list-style: none; margin: 16px 0 0; display: flex; flex-direction: column; gap: 9px; }
+  .li-why li { font-size: 14px; color: var(--ink-2); display: flex; align-items: flex-start; gap: 10px; }
+  .li-why li svg { width: 16px; height: 16px; color: var(--green); flex-shrink: 0; margin-top: 2px; }
+  .li-data { margin-top: 16px; padding: 14px 16px; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); }
+  .li-data .h { font-size: 12px; font-weight: 600; color: var(--muted-2); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 9px; }
+  .li-data .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .li-data .chip { font-size: 12.5px; color: var(--ink-2); background: rgba(255,255,255,0.04); border: 1px solid var(--line); padding: 4px 11px; border-radius: 99px; }
+  .li-data .no { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .li-data .no b { color: var(--ink-2); }
+  .btn-li { width: 100%; margin-top: 18px; background: #0A66C2; color: #fff; }
+  .btn-li:hover { background: #0959aa; transform: translateY(-2px); }
+
+  /* final reco */
+  .reco { margin-top: 20px; padding: 22px; border-radius: var(--r-lg); border: 1px solid rgba(60,229,163,0.32); background: linear-gradient(150deg, rgba(60,229,163,0.10), rgba(24,180,204,0.05)); }
+  .reco .rh { display: flex; align-items: center; gap: 11px; }
+  .reco .rh .ic { width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; background: rgba(60,229,163,0.16); border: 1px solid rgba(60,229,163,0.3); color: var(--green); flex-shrink: 0; }
+  .reco .rh .ic svg { width: 19px; height: 19px; }
+  .reco .rh h3 { font-family: var(--font-display); font-weight: 600; font-size: 16px; }
+  .reco .rh .min { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .reco ul { list-style: none; margin: 14px 0 16px; display: flex; flex-direction: column; gap: 7px; }
+  .reco ul li { font-size: 13.5px; color: var(--ink-2); display: flex; align-items: center; gap: 9px; }
+  .reco ul li svg { width: 15px; height: 15px; color: var(--green); flex-shrink: 0; }
+  .reco .btn { width: 100%; }
+  .persona { color: var(--green); font-weight: 600; }
+
+  /* footer nav */
+  .nav-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 28px; }
+  .nav-row .left { display: flex; gap: 10px; }
+  .skip { background: none; border: 0; color: var(--muted); font-size: 13.5px; cursor: pointer; padding: 13px 6px; }
+  .skip:hover { color: var(--ink); }
+  .center-cta { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 26px; }
+  .center-cta .btn { min-width: 220px; }
+
+  footer { padding: 22px 0; border-top: 1px solid var(--line); }
+  footer .wrap { text-align: center; font-size: 12px; color: var(--muted-2); }
+
+  @media (max-width: 600px) {
+    .panel { padding: 28px 22px; }
+    .arch { grid-template-columns: repeat(2, 1fr); }
+    .arch.sec { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="sp-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#159FCB"/></linearGradient>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5m7 7-7-7 7-7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 16v-5M12 8h.01" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4v16l13-8z" fill="currentColor"/></symbol>
+  <symbol id="i-li" viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4 0 4.8 2.6 4.8 6V21H17.6v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21H9z" fill="currentColor"/></symbol>
+</defs></svg>
+
+<template id="mark-svg">
+  <svg viewBox="0 0 250 286" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="StackProtocol">
+    <defs>
+      <linearGradient id="solGreen" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#2ECE93"/></linearGradient>
+      <linearGradient id="solTeal" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#2ECE93"/><stop offset="100%" stop-color="#1593C6"/></linearGradient>
+      <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/><stop offset="45%" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+      <pattern id="stpGreen" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#43E7A6"/></pattern>
+      <pattern id="stpTeal" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#2ECE93"/></pattern>
+      <pattern id="stpBlue" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#1593C6"/></pattern>
+      <filter id="depth" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0a1414" flood-opacity="0.45"/></filter>
+    </defs>
+    <g transform="rotate(-7 125 143)">
+      <polygon points="139,8 179,48 139,88 99,48" fill="url(#stpGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#solGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#sheen)"/>
+      <polygon points="139,100 179,140 139,180 99,140" fill="url(#stpTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#solTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#sheen)"/>
+      <polygon points="139,192 179,232 139,272 99,232" fill="url(#stpBlue)" filter="url(#depth)"/>
+    </g>
+  </svg>
+</template>
+
+<div class="shell">
+  <header class="top">
+    <div class="wrap">
+      <a class="logo" href="../index.html" aria-label="Accueil StackProtocol"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+      <a class="skip-all" href="dashboard.html">Passer l'introduction →</a>
+    </div>
+  </header>
+
+  <main class="center">
+    <div class="wiz">
+      <div class="steps-bar" aria-hidden="true">
+        <div class="seg cur"><i></i></div>
+        <div class="seg"><i></i></div>
+        <div class="seg"><i></i></div>
+        <div class="seg"><i></i></div>
+        <div class="seg"><i></i></div>
+      </div>
+
+      <section class="card panel">
+
+        <!-- ÉTAPE 1 -->
+        <div class="step active" data-step="1">
+          <div class="emoji">🎉</div>
+          <h1>Bienvenue <span id="name1">!</span></h1>
+          <p class="center-sub">Tu es au bon endroit. Voici ton espace. Je vais te poser 4 questions rapides pour t'orienter.</p>
+          <p class="micro">Total : 2 min · skippable à tout moment</p>
+          <div class="center-cta">
+            <button class="btn btn-primary" data-next>Allons-y<svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            <button class="skip" data-skip-all>Skipper · m'orienter seul·e</button>
+          </div>
+        </div>
+
+        <!-- ÉTAPE 2 -->
+        <div class="step" data-step="2">
+          <div class="eyrow"><span class="stepno">Étape 2 / 5</span></div>
+          <h2>📝 Sur quoi tu bosses&nbsp;?</h2>
+          <p class="lead2">Je personnalise ton espace selon ton archétype de projet.</p>
+          <div class="arch" data-group="projet">
+            <div class="tile" data-val="MICRO"><div class="dot" style="background:#2ECE93"></div><div class="tt">MICRO</div><div class="td">Solo / MVP</div></div>
+            <div class="tile" data-val="SAAS"><div class="dot" style="background:#1593C6"></div><div class="tt">SAAS</div><div class="td">SaaS B2B</div></div>
+            <div class="tile" data-val="PLATFORM"><div class="dot" style="background:#8B7CF6"></div><div class="tt">PLATFORM</div><div class="td">Multi-univers</div></div>
+            <div class="tile" data-val="MOBILE"><div class="dot" style="background:#E0915A"></div><div class="tt">MOBILE</div><div class="td">App mobile</div></div>
+            <div class="tile" data-val="DATA"><div class="dot" style="background:#E6C84F"></div><div class="tt">DATA</div><div class="td">Pipeline / IA</div></div>
+          </div>
+          <div class="arch sec" data-group="projet">
+            <div class="tile locked"><span class="soon">BIENTÔT</span><div class="dot" style="background:#C98BD6"></div><div class="tt">BRAND</div><div class="td">Marque</div></div>
+            <div class="tile locked"><span class="soon">BIENTÔT</span><div class="dot" style="background:#7FB5C9"></div><div class="tt">CABINET</div><div class="td">Libéral</div></div>
+            <div class="tile" data-val="UNSURE"><div class="dot" style="background:#7A8181"></div><div class="tt">🤷 Pas encore</div><div class="td">Je cherche</div></div>
+          </div>
+          <p class="quiz-hint">Pas sûr·e&nbsp;? <a href="#" onclick="return false">Fais le quiz 2 min pour t'aider</a></p>
+          <div class="nav-row">
+            <button class="btn btn-ghost btn-sm" data-prev><svg aria-hidden="true" style="width:15px;height:15px"><use href="#i-back"/></svg>Précédent</button>
+            <div class="left"></div>
+            <div style="display:flex;gap:10px;align-items:center;">
+              <button class="skip" data-skip>Passer</button>
+              <button class="btn btn-primary btn-sm" data-next>Suivant<svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ÉTAPE 3 -->
+        <div class="step" data-step="3">
+          <div class="eyrow"><span class="stepno">Étape 3 / 5</span></div>
+          <h2>🤖 Où en es-tu avec <span class="orange">Claude&nbsp;Code</span>&nbsp;?</h2>
+          <p class="lead2">Ça m'aide à te montrer le bon contenu en premier.</p>
+          <div class="radios" data-group="niveau">
+            <div class="radio" data-val="debut"><span class="rc"></span><span class="rt">Je commence <small>moins d'un mois</small></span></div>
+            <div class="radio" data-val="teste"><span class="rc"></span><span class="rt">J'ai testé <small>1 à 6 mois</small></span></div>
+            <div class="radio" data-val="regulier"><span class="rc"></span><span class="rt">J'utilise régulièrement <small>6 mois et plus</small></span></div>
+            <div class="radio" data-val="expert"><span class="rc"></span><span class="rt">Je connais bien <small>1 an et plus</small></span></div>
+          </div>
+          <div class="info"><svg aria-hidden="true"><use href="#i-info"/></svg><p>Tu pourras changer cette info plus tard dans tes paramètres.</p></div>
+          <div class="nav-row">
+            <button class="btn btn-ghost btn-sm" data-prev><svg aria-hidden="true" style="width:15px;height:15px"><use href="#i-back"/></svg>Précédent</button>
+            <div style="display:flex;gap:10px;align-items:center;">
+              <button class="skip" data-skip>Passer</button>
+              <button class="btn btn-primary btn-sm" data-next>Suivant<svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ÉTAPE 4 -->
+        <div class="step" data-step="4">
+          <div class="eyrow"><span class="stepno">Étape 4 / 5 <span class="opt">· optionnel</span></span></div>
+          <h2>🔗 Connecte ton LinkedIn</h2>
+          <p class="lead2">Pour créer du lien avec la communauté — entièrement optionnel.</p>
+          <ul class="li-why">
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Te présenter à la commu (ton métier visible).</span></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Croiser des contacts pro intéressants.</span></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Voir tes connexions communes avec d'autres membres.</span></li>
+          </ul>
+          <div class="li-data">
+            <div class="h">Ce que je collecte — data minimale</div>
+            <div class="chips"><span class="chip">Ton nom</span><span class="chip">Ton headline (métier)</span><span class="chip">L'URL de ton profil</span></div>
+            <p class="no"><b>Jamais</b> : tes connexions · tes posts · tes messages.</p>
+          </div>
+          <button class="btn btn-li" data-next><svg aria-hidden="true" style="width:17px;height:17px"><use href="#i-li"/></svg>Connecter LinkedIn</button>
+          <div class="nav-row">
+            <button class="btn btn-ghost btn-sm" data-prev><svg aria-hidden="true" style="width:15px;height:15px"><use href="#i-back"/></svg>Précédent</button>
+            <button class="skip" data-skip>Skipper · plus tard</button>
+          </div>
+        </div>
+
+        <!-- ÉTAPE 5 -->
+        <div class="step" data-step="5">
+          <div class="emoji">🚀</div>
+          <h1>Tu es prêt·e <span id="name5">!</span></h1>
+          <p class="center-sub">J'ai personnalisé ton espace pour ton archétype <span class="persona" id="persona">SAAS B2B</span>.</p>
+          <div class="reco">
+            <div class="rh">
+              <span class="ic"><svg aria-hidden="true"><use href="#i-play"/></svg></span>
+              <div><h3>Module 1 — Fondations CDC</h3><div class="min">15 min · quick win garanti</div></div>
+            </div>
+            <ul>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Pose toutes les bases de ton projet</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Tu repars avec ton premier CDC concret</li>
+            </ul>
+            <a class="btn btn-primary" href="library/module-1.html">Démarrer le Module 1<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+          <div class="center-cta">
+            <a class="skip" href="dashboard.html">Explorer mon espace librement</a>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">🤝 À ton rythme · reviens quand tu veux — © 2026 StackProtocol</div>
+  </footer>
+</div>
+
+<script>
+  (function(){
+    var t=document.getElementById('mark-svg');
+    document.querySelectorAll('[data-mark]').forEach(function(s,i){var node=t.content.cloneNode(true);var svg=node.querySelector('svg');svg.innerHTML=svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,'$1$2_'+i);s.appendChild(node);});
+
+    var TOTAL=5, cur=1;
+    var data={projet:null, niveau:null};
+    var steps=document.querySelectorAll('.step');
+    var segs=document.querySelectorAll('.steps-bar .seg');
+
+    var personaMap={MICRO:'MICRO (solo / MVP)',SAAS:'SAAS B2B',PLATFORM:'PLATFORM multi-univers',MOBILE:'MOBILE',DATA:'DATA / IA',UNSURE:'à définir ensemble'};
+    var nivMap={debut:'débutant',teste:'1-6 mois',regulier:'6 mois+',expert:'expert'};
+
+    function render(){
+      steps.forEach(function(s){ s.classList.toggle('active', +s.dataset.step===cur); });
+      segs.forEach(function(s,i){
+        s.classList.toggle('done', i<cur-1);
+        s.classList.toggle('cur', i===cur-1);
+      });
+      if(cur===5){
+        var p=data.projet&&personaMap[data.projet]?personaMap[data.projet]:'ton projet';
+        var n=data.niveau?(' · '+nivMap[data.niveau]):'';
+        document.getElementById('persona').textContent=p+n;
+      }
+    }
+    function go(n){ cur=Math.min(TOTAL,Math.max(1,n)); render(); document.querySelector('.center').scrollTop=0; }
+
+    document.querySelectorAll('[data-next]').forEach(function(b){ b.addEventListener('click',function(){ go(cur+1); }); });
+    document.querySelectorAll('[data-prev]').forEach(function(b){ b.addEventListener('click',function(){ go(cur-1); }); });
+    document.querySelectorAll('[data-skip]').forEach(function(b){ b.addEventListener('click',function(){ go(cur+1); }); });
+    document.querySelectorAll('[data-skip-all]').forEach(function(b){ b.addEventListener('click',function(){ window.location.href='dashboard.html'; }); });
+
+    // selections
+    document.querySelectorAll('[data-group] .tile[data-val]').forEach(function(tile){
+      tile.addEventListener('click',function(){
+        document.querySelectorAll('.arch .tile').forEach(function(x){ x.classList.remove('sel'); });
+        tile.classList.add('sel'); data.projet=tile.dataset.val;
+      });
+    });
+    document.querySelectorAll('[data-group="niveau"] .radio').forEach(function(r){
+      r.addEventListener('click',function(){
+        document.querySelectorAll('[data-group="niveau"] .radio').forEach(function(x){ x.classList.remove('sel'); });
+        r.classList.add('sel'); data.niveau=r.dataset.val;
+      });
+    });
+
+    // prénom depuis ?name=
+    var nm=new URLSearchParams(location.search).get('name');
+    if(nm){ document.getElementById('name1').textContent=nm+' !'; document.getElementById('name5').textContent=nm+' !'; }
+
+    render();
+  })();
+</script>
+</body>
+</html>

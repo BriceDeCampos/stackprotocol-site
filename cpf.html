@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Formation certifiante — bientôt éligible CPF · StackProtocol</title>
+<meta name="description" content="La formation « Méthodologue StackProtocol » (35h, titre RS, 4 blocs de compétences) prépare son éligibilité CPF pour fin 2026. Découvre le programme et inscris-toi à l'info." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Spectral:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="leftnav.css" />
+<link rel="stylesheet" href="subpage.css" />
+<style>
+  .nav { position: sticky; top: 0; z-index: 50; background: rgba(43,46,46,0.72); backdrop-filter: blur(14px) saturate(140%); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; gap: 24px; height: 70px; }
+  .nav .spacer { flex: 1; }
+  .nav .back { font-size: 14.5px; font-weight: 500; color: var(--muted); display: inline-flex; align-items: center; gap: 8px; }
+  .nav .back:hover { color: var(--ink); }
+  .nav .back svg { width: 16px; height: 16px; transform: rotate(180deg); }
+
+  .phero { padding: 64px 0 36px; text-align: center; }
+  .phero h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(32px, 4.8vw, 50px); line-height: 1.05; letter-spacing: -0.03em; margin-top: 16px; }
+  .phero h1 .grad-text { display: inline; }
+  .phero .sub { margin: 18px auto 0; font-size: 18px; line-height: 1.55; color: var(--ink-2); max-width: 600px; }
+  .phero .when { display: inline-flex; align-items: center; gap: 10px; margin-top: 20px; font-size: 13.5px; color: var(--muted); background: var(--surface); border: 1px solid var(--line); padding: 8px 16px; border-radius: 99px; }
+  .phero .when svg { width: 15px; height: 15px; color: var(--green); }
+
+  .honest { max-width: 720px; margin: 0 auto; display: flex; gap: 14px; align-items: flex-start; padding: 18px 22px; border-radius: var(--r); background: rgba(224,145,90,0.07); border: 1px solid rgba(224,145,90,0.25); }
+  .honest svg { width: 20px; height: 20px; color: var(--orange); flex-shrink: 0; margin-top: 2px; }
+  .honest p { font-size: 13.5px; color: var(--ink-2); line-height: 1.55; }
+  .honest b { color: var(--orange); }
+
+  .prog { max-width: 900px; margin: 0 auto; }
+  .meta3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .mc { padding: 22px; text-align: center; }
+  .mc .n { font-family: var(--font-display); font-weight: 700; font-size: 30px; background: var(--grad-135); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .mc .l { font-size: 13px; color: var(--muted); margin-top: 5px; }
+
+  .blocs { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-top: 16px; }
+  .bloc { padding: 24px; }
+  .bloc .bh { display: flex; align-items: center; gap: 12px; }
+  .bloc .bn { font-family: var(--font-display); font-weight: 700; font-size: 13px; color: var(--green); background: rgba(60,229,163,0.1); border: 1px solid rgba(60,229,163,0.28); padding: 4px 11px; border-radius: 99px; }
+  .bloc .bt { font-family: var(--font-display); font-weight: 600; font-size: 17px; }
+  .bloc .hrs { margin-left: auto; font-size: 12.5px; color: var(--muted); }
+  .bloc ul { list-style: none; margin: 16px 0 0; display: flex; flex-direction: column; gap: 8px; }
+  .bloc ul li { font-size: 13.5px; color: var(--ink-2); display: flex; align-items: flex-start; gap: 9px; line-height: 1.45; }
+  .bloc ul li svg { width: 15px; height: 15px; color: var(--green); flex-shrink: 0; margin-top: 2px; }
+
+  .timeline { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+  .tl { display: flex; gap: 18px; padding: 16px 0; }
+  .tl .dotcol { display: flex; flex-direction: column; align-items: center; }
+  .tl .d { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--line-2); flex-shrink: 0; margin-top: 3px; }
+  .tl.active .d { background: var(--green); border-color: var(--green); box-shadow: 0 0 10px rgba(60,229,163,0.6); }
+  .tl .line { width: 2px; flex: 1; background: var(--line); margin-top: 4px; }
+  .tl:last-child .line { display: none; }
+  .tl .ct h4 { font-family: var(--font-display); font-weight: 600; font-size: 15px; }
+  .tl .ct .ph { font-size: 12px; color: var(--green); font-weight: 600; }
+  .tl .ct p { font-size: 13.5px; color: var(--muted); margin-top: 4px; }
+
+  .reg { max-width: 540px; margin: 0 auto; padding: 32px; text-align: center; }
+  .reg h3 { font-family: var(--font-display); font-weight: 600; font-size: 22px; }
+  .reg p { color: var(--muted); font-size: 14.5px; margin-top: 8px; }
+  .reg form { display: flex; gap: 10px; margin-top: 20px; }
+  .reg .field { flex: 1; display: flex; align-items: center; gap: 10px; padding: 0 15px; height: 50px; border-radius: var(--r); background: rgba(0,0,0,0.18); border: 1px solid var(--line-2); }
+  .reg .field:focus-within { border-color: var(--green); box-shadow: 0 0 0 3px rgba(60,229,163,0.16); }
+  .reg .field input { flex: 1; background: none; border: 0; outline: none; color: var(--ink); font-size: 15px; }
+  .reg .ok { display: none; color: var(--green); font-weight: 600; font-size: 15px; margin-top: 16px; align-items: center; justify-content: center; gap: 9px; }
+  .reg .ok svg { width: 18px; height: 18px; }
+  .reg.sent form { display: none; }
+  .reg.sent .ok { display: flex; }
+  .reg .micro { font-size: 12px; color: var(--muted-2); margin-top: 14px; }
+
+  footer { border-top: 1px solid var(--line); padding: 44px 0; margin-top: 60px; }
+  footer .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  footer .links { display: flex; gap: 22px; flex-wrap: wrap; }
+  footer .links a { font-size: 13.5px; color: var(--muted); }
+  footer .links a:hover { color: var(--green); }
+  footer .fin { font-size: 12.5px; color: var(--muted-2); }
+
+  @media (max-width: 760px) { .meta3 { grid-template-columns: 1fr; } .blocs { grid-template-columns: 1fr; } .reg form { flex-direction: column; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="sp-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#159FCB"/></linearGradient>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="m22 10-10-5L2 10l10 5 10-5zM6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 16v-5M12 8h.01" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+</defs></svg>
+
+<template id="mark-svg">
+  <svg viewBox="0 0 250 286" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="StackProtocol">
+    <defs>
+      <linearGradient id="solGreen" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#2ECE93"/></linearGradient>
+      <linearGradient id="solTeal" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#2ECE93"/><stop offset="100%" stop-color="#1593C6"/></linearGradient>
+      <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/><stop offset="45%" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+      <pattern id="stpGreen" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#43E7A6"/></pattern>
+      <pattern id="stpTeal" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#2ECE93"/></pattern>
+      <pattern id="stpBlue" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#1593C6"/></pattern>
+      <filter id="depth" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0a1414" flood-opacity="0.45"/></filter>
+    </defs>
+    <g transform="rotate(-7 125 143)">
+      <polygon points="139,8 179,48 139,88 99,48" fill="url(#stpGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#solGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#sheen)"/>
+      <polygon points="139,100 179,140 139,180 99,140" fill="url(#stpTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#solTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#sheen)"/>
+      <polygon points="139,192 179,232 139,272 99,232" fill="url(#stpBlue)" filter="url(#depth)"/>
+    </g>
+  </svg>
+</template>
+
+<header class="subnav">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Accueil StackProtocol"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="links" aria-label="Navigation principale">
+      <a href="pour-qui.html">Pour qui</a>
+      <a href="la-methode.html">La méthode</a>
+      <a href="octans.html">Octans</a>
+      <a href="les-experts.html">Les experts</a>
+      <a href="souverainete.html">Souveraineté</a>
+      <a href="index.html#produits">Produits</a>
+      <a href="faq.html">FAQ</a>
+      <a href="cpf.html" class="on">CPF</a>
+    </nav>
+    <span class="spacer"></span>
+    <div class="actions">
+      <a class="login" href="login.html">Se connecter</a>
+      <a class="btn btn-primary btn-sm" href="orientation-gratuite.html">Orientation gratuite<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <button class="burger" aria-label="Menu" onclick="var l=document.querySelector('.subnav .links');l.style.display=l.style.display==='flex'?'':'flex';"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<main>
+  <section class="phero" data-ln="Bientôt éligible CPF.">
+    <div class="wrap">
+      <span class="pill">Formation certifiante</span>
+      <h1>Bientôt <span class="grad-text">éligible CPF</span>.</h1>
+      <p class="sub">« Méthodologue StackProtocol » devient une formation certifiante de 35&nbsp;h, visant un titre au Répertoire Spécifique — finançable par ton Compte Personnel de Formation.</p>
+      <div class="when"><svg aria-hidden="true"><use href="#i-cap"/></svg>Éligibilité visée : fin 2026 · après certification Qualiopi</div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-bottom:36px;">
+    <div class="honest">
+      <svg aria-hidden="true"><use href="#i-info"/></svg>
+      <p><b>Transparence totale :</b> la formation n'est <b>pas encore éligible CPF</b> aujourd'hui. L'éligibilité dépend de la certification Qualiopi (6&nbsp;à&nbsp;12&nbsp;mois) et du référencement officiel. Cette page présente le programme et te permet d'être prévenu·e dès que c'est ouvert — sans aucun engagement.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:24px;" data-ln="Le programme certifiant">
+    <div class="wrap prog">
+      <div class="section-head" style="text-align:center;max-width:none;margin-bottom:32px;">
+        <h2 style="margin-top:0;">Le programme certifiant</h2>
+        <p style="margin-left:auto;margin-right:auto;">35 heures, 4 blocs de compétences, une évaluation finale — équivalent à une semaine intensive.</p>
+      </div>
+
+      <div class="meta3">
+        <div class="card mc"><div class="n">35 h</div><div class="l">de formation</div></div>
+        <div class="card mc"><div class="n">4 blocs</div><div class="l">de compétences</div></div>
+        <div class="card mc"><div class="n">Titre RS</div><div class="l">Répertoire Spécifique</div></div>
+      </div>
+
+      <div class="blocs">
+        <article class="card bloc">
+          <div class="bh"><span class="bn">Bloc 1</span><span class="hrs">8 h</span></div>
+          <div class="bt" style="margin-top:12px;">Architecture CDC</div>
+          <ul>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Choisir la structure selon l'archétype</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Appliquer le pattern « Vue d'ensemble »</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Documenter des doctrines tranchées (ADRs)</li>
+          </ul>
+        </article>
+        <article class="card bloc">
+          <div class="bh"><span class="bn">Bloc 2</span><span class="hrs">10 h</span></div>
+          <div class="bt" style="margin-top:12px;">Orchestration <span class="claude-mark">Claude Code</span></div>
+          <ul>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Hooks anti-hallucination (settings.json)</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Skills procéduraux &amp; agents spécialistes</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Optimiser le workflow quotidien</li>
+          </ul>
+        </article>
+        <article class="card bloc">
+          <div class="bh"><span class="bn">Bloc 3</span><span class="hrs">8 h</span></div>
+          <div class="bt" style="margin-top:12px;">Méthode décisionnelle anti-biais</div>
+          <ul>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Reconnaître les biais cognitifs du solo</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Convoquer le Conseil prismes</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Synthétiser un verdict actionnable</li>
+          </ul>
+        </article>
+        <article class="card bloc">
+          <div class="bh"><span class="bn">Bloc 4</span><span class="hrs">9 h</span></div>
+          <div class="bt" style="margin-top:12px;">Suivi quotidien &amp; auto-audits</div>
+          <ul>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Audits transversaux OWASP · RGPD · ANSSI</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Anticiper le stratégique (droit · finance)</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Itérer la méthode chaque mois</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;" data-ln="Le calendrier · sans promesse…">
+    <div class="wrap">
+      <div class="section-head" style="text-align:center;max-width:none;margin-bottom:24px;">
+        <h2 style="margin-top:0;">Le calendrier · sans promesse en l'air</h2>
+      </div>
+      <div class="timeline">
+        <div class="tl active"><div class="dotcol"><span class="d"></span><span class="line"></span></div><div class="ct"><span class="ph">Maintenant</span><h4>Formation disponible en direct (hors CPF)</h4><p>Pack, webinars et coaching accessibles aujourd'hui, financement personnel ou entreprise.</p></div></div>
+        <div class="tl"><div class="dotcol"><span class="d"></span><span class="line"></span></div><div class="ct"><span class="ph">Fin 2026</span><h4>Certification Qualiopi + référencement</h4><p>Déclaration d'activité, audit Qualiopi, puis référencement officiel de la formation.</p></div></div>
+        <div class="tl"><div class="dotcol"><span class="d"></span><span class="line"></span></div><div class="ct"><span class="ph">2027</span><h4>Éligibilité CPF effective</h4><p>Financement via moncompteformation.gouv.fr et titre RS « Méthodologue StackProtocol ».</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;" data-ln="Préviens-moi à l'ouverture">
+    <div class="wrap">
+      <div class="card reg" id="reg">
+        <h3>Préviens-moi à l'ouverture</h3>
+        <p>Tu seras informé·e dès que la formation devient éligible CPF. Pas de spam, pas d'engagement.</p>
+        <form id="reg-form" novalidate>
+          <label class="field"><span class="sr-only">Email</span><input type="email" id="reg-email" placeholder="toi@exemple.fr" required aria-label="Adresse email" /></label>
+          <button class="btn btn-primary" type="submit">Me prévenir<svg aria-hidden="true" style="width:16px;height:16px"><use href="#i-arrow"/></svg></button>
+        </form>
+        <div class="ok"><svg aria-hidden="true"><use href="#i-check"/></svg>C'est noté — tu seras prévenu·e en premier.</div>
+        <p class="micro">Sans tracking · désinscription en 1 clic · données minimales (RGPD).</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="index.html"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="links" aria-label="Pied de page">
+      <a href="index.html">Accueil</a>
+      <a href="produits/pack-methode.html">Pack Méthode</a>
+      <a href="faq.html">FAQ</a>
+      <a href="legal/cgv.html">CGV</a>
+    </nav>
+    <span class="fin">🇫🇷 OVH · Plausible · Stripe FR · 0 tracking</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var t=document.getElementById('mark-svg');
+    document.querySelectorAll('[data-mark]').forEach(function(s,i){var node=t.content.cloneNode(true);var svg=node.querySelector('svg');svg.innerHTML=svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,'$1$2_'+i);s.appendChild(node);});
+    var f=document.getElementById('reg-form');
+    f.addEventListener('submit',function(e){
+      e.preventDefault();
+      var em=document.getElementById('reg-email').value.trim();
+      if(!em||em.indexOf('@')<1){document.getElementById('reg-email').focus();return;}
+      document.getElementById('reg').classList.add('sent');
+    });
+  })();
+</script>
+<script src="leftnav.js"></script>
+</body>
+</html>

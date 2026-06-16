@@ -1,0 +1,16 @@
+<svg viewBox="0 0 250 286" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sg" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#4DECAD"></stop><stop offset="100%" stop-color="#2ECE93"></stop></linearGradient>
+    <linearGradient id="st" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#2ECE93"></stop><stop offset="100%" stop-color="#1593C6"></stop></linearGradient>
+    <pattern id="pg" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#43E7A6"></rect></pattern>
+    <pattern id="pt" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#2ECE93"></rect></pattern>
+    <pattern id="pb" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#1593C6"></rect></pattern>
+  </defs>
+  <g transform="rotate(-7 125 143)">
+    <polygon points="139,8 179,48 139,88 99,48" fill="url(#pg)"></polygon>
+    <polygon points="93,54 133,94 93,134 53,94" fill="url(#sg)"></polygon>
+    <polygon points="139,100 179,140 139,180 99,140" fill="url(#pt)"></polygon>
+    <polygon points="185,146 225,186 185,226 145,186" fill="url(#st)"></polygon>
+    <polygon points="139,192 179,232 139,272 99,232" fill="url(#pb)"></polygon>
+  </g>
+</svg>

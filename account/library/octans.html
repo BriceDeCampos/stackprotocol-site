@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mon espace — Octans · StackProtocol</title>
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Spectral:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  .app { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+
+  /* sidebar */
+  .side { border-right: 1px solid var(--line); padding: 22px 16px; display: flex; flex-direction: column; gap: 6px; position: sticky; top: 0; height: 100vh; }
+  .side .brand { padding: 6px 10px 18px; }
+  .side .navg { display: flex; flex-direction: column; gap: 3px; }
+  .side .navg .lbl { font-family: var(--font-display); font-size: 10.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted-2); padding: 14px 12px 7px; }
+  .side a.it { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 11px; font-size: 14px; font-weight: 500; color: var(--muted); transition: background .18s, color .18s; }
+  .side a.it svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .side a.it:hover { background: var(--surface); color: var(--ink); }
+  .side a.it.on { background: linear-gradient(100deg, rgba(60,229,163,0.14), rgba(24,180,204,0.08)); color: var(--ink); box-shadow: inset 0 0 0 1px rgba(60,229,163,0.2); }
+  .side a.it.on svg { color: var(--green); }
+  .side .who { margin-top: auto; padding: 12px; border-top: 1px solid var(--line); display: flex; align-items: center; gap: 11px; }
+  .side .who .av { width: 34px; height: 34px; border-radius: 50%; background: var(--grad-135); color: #303434; display: grid; place-items: center; font-weight: 700; font-size: 14px; }
+  .side .who .nm { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .side .who .lv { font-size: 11px; color: var(--green); }
+
+  /* content */
+  .main { padding: 34px 40px 60px; max-width: 980px; }
+  .crumb { font-size: 12.5px; color: var(--muted-2); display: flex; align-items: center; gap: 8px; }
+  .crumb a { color: var(--muted); } .crumb a:hover { color: var(--green); }
+  h1.title { font-family: var(--font-display); font-weight: 700; font-size: 32px; letter-spacing: -0.02em; margin-top: 12px; }
+  .sublead { color: var(--muted); font-size: 15px; margin-top: 8px; max-width: 640px; line-height: 1.6; }
+
+  /* tier banner */
+  .tier { display: flex; align-items: center; gap: 16px; padding: 18px 20px; border-radius: var(--r-lg); margin-top: 24px; background: linear-gradient(150deg, rgba(60,229,163,0.12), rgba(24,180,204,0.05)); border: 1px solid rgba(60,229,163,0.26); }
+  .tier .ti { width: 46px; height: 46px; border-radius: 13px; flex-shrink: 0; display: grid; place-items: center; background: rgba(60,229,163,0.16); border: 1px solid rgba(60,229,163,0.34); color: var(--green); }
+  .tier .ti svg { width: 24px; height: 24px; }
+  .tier .tt { flex: 1; }
+  .tier .tt h4 { font-family: var(--font-display); font-weight: 600; font-size: 16px; }
+  .tier .tt p { font-size: 13px; color: var(--muted); margin-top: 3px; }
+  .tier .ver { font-family: var(--font-display); font-size: 12px; font-weight: 600; color: var(--ink-2); background: var(--surface-2); border: 1px solid var(--line-2); padding: 6px 11px; border-radius: 99px; }
+
+  .sec-h { font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 40px 0 8px; }
+  .sec-sub { font-size: 13.5px; color: var(--muted); margin-bottom: 16px; }
+
+  /* bundle card */
+  .bundle { border-radius: var(--r-lg); border: 1px solid var(--line); background: var(--surface); padding: 22px; margin-bottom: 14px; }
+  .bundle.cur { border-color: rgba(60,229,163,0.34); box-shadow: inset 0 0 0 1px rgba(60,229,163,0.14); }
+  .bundle .bh { display: flex; align-items: center; gap: 13px; }
+  .bundle .bh .bi { width: 40px; height: 40px; border-radius: 11px; flex-shrink: 0; display: grid; place-items: center; background: linear-gradient(150deg, rgba(60,229,163,0.16), rgba(24,180,204,0.10)); border: 1px solid rgba(60,229,163,0.22); color: var(--green); }
+  .bundle .bh .bi svg { width: 20px; height: 20px; }
+  .bundle .bh h3 { font-family: var(--font-display); font-weight: 600; font-size: 17px; }
+  .bundle .bh .pk { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .bundle .bh .badge { margin-left: auto; font-size: 11px; font-weight: 600; padding: 5px 10px; border-radius: 99px; }
+  .bundle .bh .badge.on { color: var(--green); background: rgba(60,229,163,0.12); border: 1px solid rgba(60,229,163,0.3); }
+  .bundle .bh .badge.lk { color: var(--muted); background: var(--surface-2); border: 1px solid var(--line-2); }
+  .bundle .desc { font-size: 13.5px; color: var(--muted); margin-top: 13px; line-height: 1.6; }
+
+  .files { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 16px; }
+  .file { display: flex; align-items: center; gap: 13px; padding: 14px; border-radius: var(--r); background: var(--bg-2); border: 1px solid var(--line); transition: border-color .2s; }
+  .file:hover { border-color: rgba(60,229,163,0.32); }
+  .file .fi { width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0; display: grid; place-items: center; background: linear-gradient(150deg, rgba(60,229,163,0.16), rgba(24,180,204,0.10)); border: 1px solid rgba(60,229,163,0.22); color: var(--green); }
+  .file .fi svg { width: 18px; height: 18px; }
+  .file .ft { flex: 1; min-width: 0; }
+  .file .ft .t { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+  .file .ft .s { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+  .file .dl { width: 36px; height: 36px; border-radius: 9px; background: var(--surface-2); border: 1px solid var(--line-2); display: grid; place-items: center; color: var(--ink-2); flex-shrink: 0; transition: all .2s; }
+  .file .dl:hover { color: var(--green); border-color: var(--green); }
+  .file .dl svg { width: 16px; height: 16px; }
+  .bundle.lk { opacity: 0.62; }
+  .bundle.lk .files { filter: grayscale(0.4); }
+  .bundle .upsell { display: inline-flex; align-items: center; gap: 7px; margin-top: 16px; font-size: 13.5px; font-weight: 600; color: var(--green); }
+  .bundle .upsell svg { width: 15px; height: 15px; }
+
+  .signed-note { display: flex; align-items: center; gap: 9px; margin-top: 16px; font-size: 12.5px; color: var(--muted); }
+  .signed-note svg { width: 15px; height: 15px; color: var(--green); }
+
+  /* install steps */
+  .steps { display: grid; gap: 11px; margin-top: 16px; }
+  .step { display: flex; gap: 14px; padding: 15px 17px; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); }
+  .step .num { width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0; display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; font-size: 13px; color: var(--green); background: rgba(60,229,163,0.12); border: 1px solid rgba(60,229,163,0.3); }
+  .step .st { flex: 1; }
+  .step .st h4 { font-size: 14px; font-weight: 600; color: var(--ink); }
+  .step .st p { font-size: 12.5px; color: var(--muted); margin-top: 3px; line-height: 1.55; }
+  .step .st code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11.5px; background: var(--bg-3); border: 1px solid var(--line); padding: 2px 6px; border-radius: 6px; color: var(--ink-2); }
+
+  /* evolve */
+  .evolve { display: flex; align-items: center; gap: 16px; padding: 20px; border-radius: var(--r-lg); background: linear-gradient(150deg, rgba(224,145,90,0.10), rgba(24,180,204,0.05)); border: 1px solid rgba(224,145,90,0.26); margin-top: 14px; }
+  .evolve .ei { width: 46px; height: 46px; border-radius: 13px; background: rgba(224,145,90,0.16); border: 1px solid rgba(224,145,90,0.36); display: grid; place-items: center; color: #E0915A; flex-shrink: 0; }
+  .evolve .ei svg { width: 24px; height: 24px; }
+  .evolve .et { flex: 1; }
+  .evolve .et h4 { font-family: var(--font-display); font-weight: 600; font-size: 16px; }
+  .evolve .et p { font-size: 13px; color: var(--muted); margin-top: 3px; line-height: 1.55; }
+
+  @media (max-width: 820px) {
+    .app { grid-template-columns: 1fr; }
+    .side { position: static; height: auto; flex-direction: row; flex-wrap: wrap; align-items: center; }
+    .side .navg { flex-direction: row; flex-wrap: wrap; }
+    .side .navg .lbl, .side .who { display: none; }
+    .main { padding: 24px 20px 50px; }
+    .files { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="sp-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#159FCB"/></linearGradient>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="14" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="14" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="m22 10-10-5L2 10l10 5 10-5zM6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M2 10h20" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4v16l13-8z" fill="currentColor"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-zip" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M10 7h2M10 10h2M10 13h2" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-pdf" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-json" viewBox="0 0 24 24"><path d="M8 3H6a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2 2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2M16 3h2a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2 2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-hook" viewBox="0 0 24 24"><path d="M18 6a4 4 0 0 1-8 0M14 6v9a4 4 0 0 1-8 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7L21 8m0-5v5h-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM23 21v-2a4 4 0 0 0-3-3.87M16 3.13A4 4 0 0 1 16 11" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-dl" viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 11V7a4 4 0 0 1 8 0v4" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<template id="mark-svg">
+  <svg viewBox="0 0 250 286" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="StackProtocol">
+    <defs>
+      <linearGradient id="solGreen" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#2ECE93"/></linearGradient>
+      <linearGradient id="solTeal" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#2ECE93"/><stop offset="100%" stop-color="#1593C6"/></linearGradient>
+      <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/><stop offset="45%" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+      <pattern id="stpGreen" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#43E7A6"/></pattern>
+      <pattern id="stpTeal" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#2ECE93"/></pattern>
+      <pattern id="stpBlue" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#1593C6"/></pattern>
+      <filter id="depth" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0a1414" flood-opacity="0.45"/></filter>
+    </defs>
+    <g transform="rotate(-7 125 143)">
+      <polygon points="139,8 179,48 139,88 99,48" fill="url(#stpGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#solGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#sheen)"/>
+      <polygon points="139,100 179,140 139,180 99,140" fill="url(#stpTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#solTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#sheen)"/>
+      <polygon points="139,192 179,232 139,272 99,232" fill="url(#stpBlue)" filter="url(#depth)"/>
+    </g>
+  </svg>
+</template>
+
+<div class="app">
+  <!-- SIDEBAR -->
+  <aside class="side">
+    <a class="logo brand" href="../../index.html"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="navg" aria-label="Espace membre">
+      <a class="it" href="../dashboard.html"><svg aria-hidden="true"><use href="#i-grid"/></svg>Tableau de bord</a>
+      <span class="lbl">Mes contenus</span>
+      <a class="it" href="pack-methode.html"><svg aria-hidden="true"><use href="#i-book"/></svg>Pack Méthode</a>
+      <a class="it on" href="octans.html" aria-current="page"><svg aria-hidden="true"><use href="#i-cpu"/></svg>Octans</a>
+      <a class="it" href="../dashboard.html"><svg aria-hidden="true"><use href="#i-play"/></svg>Replays webinar</a>
+      <span class="lbl">Accompagnement</span>
+      <a class="it" href="../dashboard.html"><svg aria-hidden="true"><use href="#i-cap"/></svg>Coaching</a>
+      <a class="it" href="../dashboard.html"><svg aria-hidden="true"><use href="#i-cal"/></svg>Pass Série</a>
+      <span class="lbl">Compte</span>
+      <a class="it" href="../billing.html"><svg aria-hidden="true"><use href="#i-card"/></svg>Facturation</a>
+      <a class="it" href="../settings.html"><svg aria-hidden="true"><use href="#i-gear"/></svg>Paramètres</a>
+    </nav>
+    <div class="who">
+      <span class="av">B</span>
+      <div><div class="nm">Brice D.</div><div class="lv">Pack Méthode · L1</div></div>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="main">
+    <div class="crumb"><a href="../dashboard.html">Mes contenus</a> › <span>Octans</span></div>
+    <h1 class="title">Octans — ton moteur à télécharger</h1>
+    <p class="sublead">Octans, c'est la constellation d'agents, de skills et de hooks qui déploie ton cahier des charges, boostée par <span class="claude-mark">Claude</span>. Tu l'installes dans ton vault et tu le gardes. <b>L'IA se remplace. Ta méthode, non.</b></p>
+
+    <!-- TIER -->
+    <div class="tier">
+      <span class="ti"><svg aria-hidden="true"><use href="#i-cpu"/></svg></span>
+      <div class="tt">
+        <h4>Ton niveau actuel : Pack Méthode</h4>
+        <p>Tu as accès aux templates de base d'Octans. Passe au bundle complet pour les skills, agents et hooks prêts à l'emploi.</p>
+      </div>
+      <span class="ver">Octans v1.0</span>
+    </div>
+
+    <!-- AUTONOMIE -->
+    <div class="sec-h">Les bundles Octans</div>
+    <p class="sec-sub">Chaque niveau de pack débloque une part d'Octans. Tu télécharges, tu installes, c'est à toi à vie.</p>
+
+    <div class="bundle cur">
+      <div class="bh">
+        <span class="bi"><svg aria-hidden="true"><use href="#i-bolt"/></svg></span>
+        <div><h3>Octans — Base</h3><div class="pk">Inclus avec le Pack Autonomie · 77€</div></div>
+        <span class="badge on">Débloqué</span>
+      </div>
+      <p class="desc">Les briques de départ à configurer toi-même : squelettes de skills, agents de base et templates de doctrine. Idéal pour comprendre la mécanique et l'adapter à ton projet.</p>
+      <div class="files">
+        <div class="file"><span class="fi"><svg aria-hidden="true"><use href="#i-zip"/></svg></span><div class="ft"><div class="t">Skills — squelettes</div><div class="s">ZIP · 120 Ko · 8 skills de base</div></div><a class="dl" href="#" aria-label="Télécharger les skills de base"><svg aria-hidden="true"><use href="#i-dl"/></svg></a></div>
+        <div class="file"><span class="fi"><svg aria-hidden="true"><use href="#i-zip"/></svg></span><div class="ft"><div class="t">Agents — base</div><div class="s">ZIP · 95 Ko · 6 agents à configurer</div></div><a class="dl" href="#" aria-label="Télécharger les agents de base"><svg aria-hidden="true"><use href="#i-dl"/></svg></a></div>
+        <div class="file"><span class="fi"><svg aria-hidden="true"><use href="#i-json"/></svg></span><div class="ft"><div class="t">Templates CLAUDE.md</div><div class="s">ZIP · 240 Ko</div></div><a class="dl" href="#" aria-label="Télécharger les templates"><svg aria-hidden="true"><use href="#i-dl"/></svg></a></div>
+        <div class="file"><span class="fi"><svg aria-hidden="true"><use href="#i-pdf"/></svg></span><div class="ft"><div class="t">Guide d'installation</div><div class="s">PDF · 12 pages · 2 Mo</div></div><a class="dl" href="#" aria-label="Télécharger le guide"><svg aria-hidden="true"><use href="#i-dl"/></svg></a></div>
+      </div>
+    </div>
+
+    <!-- MAITRISE -->
+    <div class="bundle lk">
+      <div class="bh">
+        <span class="bi"><svg aria-hidden="true"><use href="#i-cpu"/></svg></span>
+        <div><h3>Octans — Bundle complet</h3><div class="pk">Inclus avec le Pack Maîtrise · 297€</div></div>
+        <span class="badge lk">Non débloqué</span>
+      </div>
+      <p class="desc">Octans prêt à l'emploi : les 30 experts orchestrés, les skills configurés, les hooks de garde-fous et le settings.json complet. Tu lances, ça tourne — pas de configuration manuelle.</p>
+      <div class="files">
+        <div class="file"><span class="fi"><svg aria-hidden="true"><use href="#i-users"/></svg></span><div class="ft"><div class="t">30 agents experts</div><div class="s">ZIP · 7 catégories prêtes</div></div><a class="dl" href="../../produits/pack-methode.html" aria-label="Débloquer"><svg aria-hidden="true"><use href="#i-lock"/></svg></a></div>
+        <div class="file"><span class="fi"><svg aria-hidden="true"><use href="#i-bolt"/></svg></span><div class="ft"><div class="t">Skills configurés</div><div class="s">ZIP · audits, cascade, prismes</div></div><a class="dl" href="../../produits/pack-methode.html" aria-label="Débloquer"><svg aria-hidden="true"><use href="#i-lock"/></svg></a></div>
+        <div class="file"><span class="fi"><svg aria-hidden="true"><use href="#i-hook"/></svg></span><div class="ft"><div class="t">Hooks garde-fous</div><div class="s">ZIP · lexique, cohérence, sécurité</div></div><a class="dl" href="../../produits/pack-methode.html" aria-label="Débloquer"><svg aria-hidden="true"><use href="#i-lock"/></svg></a></div>
+        <div class="file"><span class="fi"><svg aria-hidden="true"><use href="#i-json"/></svg></span><div class="ft"><div class="t">settings.json complet</div><div class="s">prêt à coller dans ton vault</div></div><a class="dl" href="../../produits/pack-methode.html" aria-label="Débloquer"><svg aria-hidden="true"><use href="#i-lock"/></svg></a></div>
+      </div>
+      <a class="upsell" href="../../produits/pack-methode.html">Passer au Pack Maîtrise<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+
+    <!-- PRO -->
+    <div class="bundle lk">
+      <div class="bh">
+        <span class="bi"><svg aria-hidden="true"><use href="#i-cap"/></svg></span>
+        <div><h3>Octans — Sur-mesure</h3><div class="pk">Inclus avec le Pack Pro Accompagnement · 697€</div></div>
+        <span class="badge lk">Non débloqué</span>
+      </div>
+      <p class="desc">Tout le bundle complet, plus 3 doctrines taillées pour ton secteur et ton projet, co-construites pendant l'accompagnement. Octans devient ton moteur, pas un moteur générique.</p>
+      <div class="files">
+        <div class="file"><span class="fi"><svg aria-hidden="true"><use href="#i-cpu"/></svg></span><div class="ft"><div class="t">Bundle complet</div><div class="s">tout le contenu Maîtrise</div></div><a class="dl" href="../../produits/coaching.html" aria-label="Débloquer"><svg aria-hidden="true"><use href="#i-lock"/></svg></a></div>
+        <div class="file"><span class="fi"><svg aria-hidden="true"><use href="#i-cap"/></svg></span><div class="ft"><div class="t">3 doctrines sur-mesure</div><div class="s">co-construites avec toi</div></div><a class="dl" href="../../produits/coaching.html" aria-label="Débloquer"><svg aria-hidden="true"><use href="#i-lock"/></svg></a></div>
+      </div>
+      <a class="upsell" href="../../produits/coaching.html">Découvrir le Pack Pro Accompagnement<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+
+    <p class="signed-note"><svg aria-hidden="true"><use href="#i-lock"/></svg>Liens de téléchargement signés, valables 24&nbsp;h — renouvelables autant de fois que tu veux.</p>
+
+    <!-- INSTALL -->
+    <div class="sec-h">Installer Octans dans ton vault</div>
+    <div class="steps">
+      <div class="step"><span class="num">1</span><div class="st"><h4>Décompresse les bundles</h4><p>Extrais les ZIP. Tu obtiens les dossiers <code>.claude/skills</code>, <code>.claude/agents</code> et <code>.claude/hooks</code>.</p></div></div>
+      <div class="step"><span class="num">2</span><div class="st"><h4>Copie-les à la racine de ton vault</h4><p>Glisse le dossier <code>.claude/</code> à la racine de ton coffre Obsidian, à côté de ton <code>CLAUDE.md</code>.</p></div></div>
+      <div class="step"><span class="num">3</span><div class="st"><h4>Colle ton settings.json</h4><p>Ouvre <code>.claude/settings.json</code> et ajuste les chemins si besoin. Tout est documenté dans le guide.</p></div></div>
+      <div class="step"><span class="num">4</span><div class="st"><h4>Lance <span class="claude-mark">Claude Code</span></h4><p>Ouvre ton vault avec Claude Code : Octans charge ses agents, skills et hooks automatiquement. Tu peux commencer ton CDC.</p></div></div>
+    </div>
+
+    <!-- EVOLVE -->
+    <div class="sec-h">Octans évolue</div>
+    <div class="evolve">
+      <span class="ei"><svg aria-hidden="true"><use href="#i-refresh"/></svg></span>
+      <div class="et"><h4>Reviens télécharger la dernière version</h4><p>Octans s'améliore en continu — nouveaux experts, skills affinés, hooks renforcés. À chaque mise à jour, ta version est ici, gratuitement. Ton accès est à vie : le moteur reste à toi, même quand l'IA dessous change.</p></div>
+    </div>
+  </main>
+</div>
+
+<script>
+  (function(){var t=document.getElementById('mark-svg');document.querySelectorAll('[data-mark]').forEach(function(s,i){var node=t.content.cloneNode(true);var svg=node.querySelector('svg');svg.innerHTML=svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,'$1$2_'+i);s.appendChild(node);});})();
+</script>
+</body>
+</html>
