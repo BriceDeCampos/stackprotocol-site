@@ -1,0 +1,34 @@
+{
+  "version": "1.2",
+  "lastUpdate": "2026-06-17",
+  "total": {
+    "lines": 6490,
+    "components": 48,
+    "productionReady": 40,
+    "privateMoat": 4
+  },
+  "skills": {
+    "count": 28,
+    "lines": 3709,
+    "description": "pipeline cœur, enrichissement, audits"
+  },
+  "agents": {
+    "count": 11,
+    "lines": 1994,
+    "description": "frontend, backend, conformité, méthode"
+  },
+  "hooksAndCommands": {
+    "count": 9,
+    "lines": 787,
+    "description": "garde-fous mécaniques, gouvernance"
+  },
+  "argumentsPublics": [
+    "Aucun appel cloud caché — tourne en local sur votre machine.",
+    "Gouverné par hooks exécutables (seuils enforcés mécaniquement).",
+    "Multi-prismes cloisonnés — 8 styles de pensée indépendants.",
+    "Vérification de cohérence continue entre notes voisines.",
+    "Garde-fou anti-hallucination intégré (affirmations → questions sourcées).",
+    "Reproductible, paramétrable, versionné. Aucun composant figé."
+  ],
+  "etat": "40 composants production-ready · architecture v1.2 · 3 hooks de gouvernance (budget, lint, pre-commit)"
+}

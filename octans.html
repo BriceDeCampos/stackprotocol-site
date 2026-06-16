@@ -139,7 +139,7 @@
           <p class="otag" style="font-size:15px;color:var(--muted);margin-top:14px;">StackProtocol, c'est la <b>méthode</b>. Octans, c'est le moteur qui la fait tourner. On suit et anticipe les meilleures IA : agents et skills <b>toujours à jour</b>.</p>
           <div class="cta" style="margin-top:26px;">
             <a class="btn btn-primary" href="index.html#produits">Voir les packs<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <a class="btn btn-ghost" href="les-experts.html">Découvrir les 30 experts</a>
+            <a class="btn btn-ghost" href="les-experts.html">Découvrir l'équipe d'experts</a>
           </div>
         </div>
         <div class="constel" aria-hidden="true">
@@ -204,7 +204,7 @@
   <!-- LES 7 CATÉGORIES -->
   <section class="section" style="padding-top:0;" data-ln="Les 7 catégories d'experts">
     <div class="wrap">
-      <div class="section-head"><span class="eyebrow"><span class="dot"></span>L'équipe</span><h2>30 experts, 7 catégories.</h2></div>
+      <div class="section-head"><span class="eyebrow"><span class="dot"></span>L'équipe</span><h2>Équipe d'experts orchestrés, 7 catégories.</h2></div>
       <div class="cats">
         <div class="card cat"><div class="cn"><span class="dot"></span>Juridique &amp; conformité</div><p>CGV, RGPD, mentions, droits d'auteur, secteurs réglementés.</p></div>
         <div class="card cat"><div class="cn"><span class="dot"></span>Sécurité</div><p>OWASP, ANSSI, RLS, secrets, durcissement par défaut.</p></div>
@@ -213,10 +213,108 @@
         <div class="card cat"><div class="cn"><span class="dot"></span>Business</div><p>Modèle économique, pricing, go-to-market, vente B2B.</p></div>
         <div class="card cat"><div class="cn"><span class="dot"></span>Produit &amp; UX</div><p>Parcours, accessibilité (WCAG), anti-dark-pattern.</p></div>
         <div class="card cat"><div class="cn"><span class="dot"></span>Accompagnement</div><p>Mentor, posture, cadence, suivi quotidien.</p></div>
-        <div class="card cat" style="display:grid;place-items:center;text-align:center;"><a href="les-experts.html" style="color:var(--green);font-weight:600;font-size:13px;">Voir les 30 →</a></div>
+        <div class="card cat" style="display:grid;place-items:center;text-align:center;"><a href="les-experts.html" style="color:var(--green);font-weight:600;font-size:13px;">Voir l'équipe →</a></div>
       </div>
     </div>
   </section>
+
+  <!-- SOUS LE CAPOT — MOTEUR OCTANS EN CHIFFRES -->
+  <section class="section octans-stats" data-ln="Sous le capot">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Sous le capot</span>
+        <h2 id="os-headline">Le moteur Octans en chiffres.</h2>
+        <p class="lead" id="os-lead">
+          Pas une démo. Pas un wrapper Claude. Un moteur effectivement codé,
+          versionné, gouverné par hooks, et prêt à tourner sur votre machine
+          le jour de l'achat.
+        </p>
+      </div>
+
+      <div class="os-grid">
+        <div class="os-stat">
+          <div class="big" id="os-total-lines">6 490</div>
+          <div class="lbl">lignes de code et de doctrine</div>
+          <div class="sub">distribuées sur <span id="os-total-components">48</span> composants gouvernés</div>
+        </div>
+        <div class="os-stat">
+          <div class="big" id="os-skills-count">28</div>
+          <div class="lbl">skills exécutables</div>
+          <div class="sub"><span id="os-skills-lines">3 709</span> lignes — pipeline cœur, enrichissement, audits</div>
+        </div>
+        <div class="os-stat">
+          <div class="big" id="os-agents-count">11</div>
+          <div class="lbl">agents spécialisés</div>
+          <div class="sub"><span id="os-agents-lines">1 994</span> lignes — frontend, backend, conformité</div>
+        </div>
+        <div class="os-stat">
+          <div class="big" id="os-hookscmd-count">9</div>
+          <div class="lbl">hooks &amp; commandes vault</div>
+          <div class="sub"><span id="os-hookscmd-lines">787</span> lignes — garde-fous mécaniques, gouvernance</div>
+        </div>
+      </div>
+
+      <ul class="os-argu" id="os-argu">
+        <li><b>Aucun appel cloud caché.</b> Le moteur tourne en local sur votre machine. Pas de serveur intermédiaire entre votre projet et vous.</li>
+        <li><b>Gouverné par hooks exécutables.</b> Les seuils (profondeur, budget de questions, plafond de branches) sont enforcés mécaniquement, pas par bonne volonté.</li>
+        <li><b>Multi-prismes cloisonnés.</b> Les décisions structurantes passent au filtre de 8 prismes de pensée indépendants — socratique, contrarian, red team, pré-mortem, faisabilité, éthicien, premiers principes, président de synthèse.</li>
+        <li><b>Vérification de cohérence continue.</b> Le moteur boucle automatiquement entre les notes voisines de votre dossier pour détecter les contradictions de chiffres, de noms, de dates et d'engagements.</li>
+        <li><b>Garde-fou anti-hallucination intégré.</b> Les affirmations datées sont systématiquement converties en questions pointant vers des sources officielles vérifiables.</li>
+        <li><b>Reproductible, paramétrable, versionné.</b> Chaque composant a une version, un historique, une date de revue programmée. Aucun composant n'est figé.</li>
+      </ul>
+
+      <p class="os-note">
+        <span class="muted">État au <span id="os-date">17/06/2026</span> :</span>
+        <span id="os-etat">40 composants production-ready · architecture v1.2 · gouvernance par 3 hooks (budget, lint, pre-commit).</span>
+      </p>
+    </div>
+  </section>
+
+  <style>
+    .octans-stats .lead { font-size: 17px; line-height: 1.6; color: var(--muted, #a8b0ba); max-width: 640px; margin: 16px auto 0; text-align: center; }
+    .os-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 48px 0; }
+    .os-stat { padding: 28px 20px; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; background: rgba(255,255,255,0.02); }
+    .os-stat .big { font-family: 'Space Grotesk', sans-serif; font-size: 48px; font-weight: 600; color: var(--green); line-height: 1; margin-bottom: 10px; }
+    .os-stat .lbl { font-size: 14px; font-weight: 600; color: var(--ink, #e6e6e6); margin-bottom: 6px; }
+    .os-stat .sub { font-size: 13px; color: var(--muted, #a8b0ba); line-height: 1.5; }
+    .os-argu { list-style: none; padding: 0; margin: 0 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px 32px; }
+    .os-argu li { font-size: 15px; line-height: 1.65; color: var(--muted, #a8b0ba); padding-left: 24px; position: relative; }
+    .os-argu li:before { content: "→"; position: absolute; left: 0; color: var(--green); font-weight: 600; }
+    .os-argu b { color: var(--ink, #e6e6e6); font-weight: 600; }
+    .os-note { font-size: 13px; color: var(--muted, #a8b0ba); text-align: center; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .os-note .muted { color: rgba(168,176,186,0.6); }
+    @media (max-width: 768px) {
+      .os-grid { grid-template-columns: repeat(2, 1fr); }
+      .os-argu { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <script>
+    /* Compteur dynamique — lit site/data/octans-stats.json et met à jour le bloc */
+    (function() {
+      fetch('/data/octans-stats.json', { cache: 'no-cache' })
+        .then(function(r) { return r.ok ? r.json() : null; })
+        .then(function(s) {
+          if (!s) return;
+          var f = function(n) { return n.toLocaleString('fr-FR'); };
+          var el = function(id) { return document.getElementById(id); };
+          if (el('os-total-lines'))      el('os-total-lines').textContent = f(s.total.lines);
+          if (el('os-total-components')) el('os-total-components').textContent = s.total.components;
+          if (el('os-skills-count'))     el('os-skills-count').textContent = s.skills.count;
+          if (el('os-skills-lines'))     el('os-skills-lines').textContent = f(s.skills.lines);
+          if (el('os-agents-count'))     el('os-agents-count').textContent = s.agents.count;
+          if (el('os-agents-lines'))     el('os-agents-lines').textContent = f(s.agents.lines);
+          if (el('os-hookscmd-count'))   el('os-hookscmd-count').textContent = s.hooksAndCommands.count;
+          if (el('os-hookscmd-lines'))   el('os-hookscmd-lines').textContent = f(s.hooksAndCommands.lines);
+          if (el('os-date') && s.lastUpdate) {
+            var d = s.lastUpdate.split('-');
+            el('os-date').textContent = d[2] + '/' + d[1] + '/' + d[0];
+          }
+          if (el('os-etat') && s.etat) el('os-etat').textContent = s.etat;
+        })
+        .catch(function() { /* repli silencieux : les valeurs statiques restent */ });
+    })();
+  </script>
 
   <!-- OCTANS ÉVOLUE -->
   <section class="section" style="padding-top:0;" data-ln="Octans évolue avec toi">
@@ -252,17 +350,17 @@
           <thead><tr><th>Pack</th><th>Ce que tu obtiens d'Octans</th><th>Téléchargements</th></tr></thead>
           <tbody>
             <tr>
-              <td><span class="pp">Pack Autonomie</span><br /><span class="pr">77€</span></td>
+              <td><span class="pp">Pack Autonomie</span><br /><span class="pr">197€</span></td>
               <td class="feat">La méthode + les templates pour <b>configurer Octans toi-même</b> : skills et agents de base, prêts à coller dans Claude Code.</td>
               <td class="feat">Archétypes CDC · templates CLAUDE.md · guide méthode (PDF)</td>
             </tr>
             <tr class="hl">
-              <td><span class="pp">Pack Maîtrise</span><br /><span class="pr">297€</span></td>
-              <td class="feat">Les <b>30 experts orchestrés</b> + audits automatiques (sécurité, RGPD, a11y). La configuration Octans <b>complète</b>.</td>
+              <td><span class="pp">[NOM-PALIER-247]</span><br /><span class="pr">247€</span></td>
+              <td class="feat">Les <b>Équipe d'experts spécialisés orchestrés</b> + audits automatiques (sécurité, RGPD, a11y). La configuration Octans <b>complète</b>.</td>
               <td class="feat">Tout Autonomie + <b>bundle Octans</b> : skills/ · agents/ · hooks/ · settings.json</td>
             </tr>
             <tr>
-              <td><span class="pp">Pack Pro Accompagnement</span><br /><span class="pr">697€</span></td>
+              <td><span class="pp">Pack Accompagné</span><br /><span class="pr">547€</span></td>
               <td class="feat">Tout Maîtrise + Octans <b>réglé sur-mesure pour ton projet</b> : 3 doctrines dédiées + 1 séance de coaching 1h45.</td>
               <td class="feat">Tout Maîtrise + <b>3 doctrines sur-mesure</b> (livrées sous 24 h ouvrés) · mises à jour à vie</td>
             </tr>

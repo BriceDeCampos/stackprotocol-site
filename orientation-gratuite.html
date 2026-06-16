@@ -189,7 +189,7 @@
         <p class="rdesc" id="r-desc"></p>
         <div class="reco">
           <h4>Pack recommandé</h4>
-          <div class="pack" id="r-pack">Pack Maîtrise — <b>297€</b></div>
+          <div class="pack" id="r-pack">[NOM-PALIER-247] — <b>247€</b></div>
           <ul class="prios" id="r-prios"></ul>
         </div>
         <div class="cta">
@@ -250,11 +250,11 @@
       // pack selon need + budget
       var pack, price, href='index.html#produits';
       if(ans.need==='audit'){ pack='Audit Grand Compte'; price='7 790€ HT'; href='produits/audit-grand-compte.html'; }
-      else if(ans.need==='coach'){ pack='Pack Pro Accompagnement'; price='697€'; href='produits/pack-methode.html'; }
+      else if(ans.need==='coach'){ pack='Pack Accompagné'; price='547€'; href='produits/pack-methode.html'; }
       else {
-        if(ans.budget==='77'){ pack='Pack Autonomie'; price='77€'; }
-        else if(ans.budget==='697'){ pack='Pack Pro Accompagnement'; price='697€'; }
-        else { pack='Pack Maîtrise'; price='297€'; }
+        if(ans.budget==='197'){ pack='Pack Autonomie'; price='197€'; }
+        else if(ans.budget==='547'){ pack='Pack Accompagné'; price='547€'; }
+        else { pack='[NOM-PALIER-247]'; price='247€'; }
         href='produits/pack-methode.html';
       }
       var a=archDesc[ans.arch];
