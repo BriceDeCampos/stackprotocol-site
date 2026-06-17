@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mon parcours — Espace perso · StackProtocol</title>
+<meta name="description" content="Suis ton parcours Octans en 7 étapes : installation, cadrage, structuration, décisions, exploration, vérification, maintenance. Valide chaque étape au fur et à mesure." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Spectral:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="../subpage.css" />
+<style>
+  /* Top bar account */
+  .acct-bar { position: sticky; top: 0; z-index: 50; background: rgba(43,46,46,0.78); backdrop-filter: blur(14px) saturate(140%); border-bottom: 1px solid var(--line); }
+  .acct-bar .wrap { display: flex; align-items: center; gap: 22px; height: 64px; padding: 0 28px; }
+  .acct-bar .logo .wm { font-size: 17px; }
+  .acct-bar .spacer { flex: 1; }
+  .acct-bar .acct-links { display: flex; gap: 18px; align-items: center; }
+  .acct-bar .acct-links a { font-size: 14px; color: var(--muted); transition: color .15s; }
+  .acct-bar .acct-links a.on, .acct-bar .acct-links a:hover { color: var(--ink); }
+  .acct-bar .acct-links a.on { color: var(--green); }
+  .acct-bar .logout { font-size: 13px; color: var(--muted-2); border: 1px solid var(--line); padding: 6px 12px; border-radius: 8px; transition: all .15s; }
+  .acct-bar .logout:hover { border-color: var(--green); color: var(--green); }
+
+  /* Hero parcours */
+  .parc-hero { padding: 56px 0 32px; }
+  .parc-hero .wrap { max-width: 920px; margin: 0 auto; padding: 0 28px; }
+  .parc-hero h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(28px, 4vw, 40px); letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 8px; }
+  .parc-hero .sub { color: var(--muted); font-size: 16px; line-height: 1.55; }
+  .parc-hero .meta { display: flex; gap: 18px; align-items: center; margin-top: 18px; font-size: 13.5px; color: var(--muted); flex-wrap: wrap; }
+  .parc-hero .meta-item { display: flex; align-items: center; gap: 8px; }
+  .parc-hero .meta-item svg { width: 16px; height: 16px; color: var(--green); }
+
+  /* Progression bar */
+  .progress { padding: 0 0 32px; }
+  .progress .wrap { max-width: 920px; margin: 0 auto; padding: 0 28px; }
+  .progress-bar { position: relative; height: 8px; background: rgba(255,255,255,0.08); border-radius: 8px; overflow: hidden; }
+  .progress-fill { position: absolute; left: 0; top: 0; bottom: 0; background: linear-gradient(90deg, var(--green), var(--cyan, #18B4CC)); border-radius: 8px; transition: width .4s cubic-bezier(.5,0,.2,1); width: 0; }
+  .progress-label { display: flex; justify-content: space-between; margin-top: 10px; font-size: 13px; }
+  .progress-label .left { color: var(--ink); font-weight: 500; }
+  .progress-label .right { color: var(--muted); }
+
+  /* Timeline étapes */
+  .timeline { padding: 16px 0 80px; }
+  .timeline .wrap { max-width: 920px; margin: 0 auto; padding: 0 28px; }
+  .step { position: relative; padding: 24px 28px 24px 80px; background: rgba(255,255,255,0.018); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; margin-bottom: 14px; transition: border-color .2s, background .2s; }
+  .step:hover { border-color: rgba(60,229,163,0.18); }
+  .step.done { background: rgba(60,229,163,0.04); border-color: rgba(60,229,163,0.22); }
+  .step.current { border-color: rgba(60,229,163,0.4); box-shadow: 0 0 0 1px rgba(60,229,163,0.14), 0 12px 30px rgba(60,229,163,0.05); }
+  .step.locked { opacity: 0.45; cursor: not-allowed; }
+  .step-num { position: absolute; left: 24px; top: 24px; width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; font-size: 16px; background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid rgba(255,255,255,0.1); transition: all .2s; }
+  .step.done .step-num { background: var(--green); color: #0a0a0a; border-color: var(--green); }
+  .step.current .step-num { background: linear-gradient(150deg, rgba(60,229,163,0.2), rgba(24,180,204,0.1)); color: var(--green); border-color: rgba(60,229,163,0.4); }
+  .step-title { font-family: var(--font-display); font-weight: 600; font-size: 17px; color: var(--ink); margin: 0 0 4px; }
+  .step-tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .step.done .step-tag { color: var(--green); }
+  .step.current .step-tag { color: var(--green); }
+  .step-desc { color: var(--muted); font-size: 14px; line-height: 1.55; margin: 0 0 16px; }
+  .step-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .step-actions .btn-step { padding: 8px 14px; font-size: 13px; font-weight: 600; border-radius: 8px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; transition: all .15s; font-family: inherit; display: inline-flex; align-items: center; gap: 8px; }
+  .step-actions .btn-step:hover { border-color: var(--green); color: var(--green); }
+  .step-actions .btn-step.primary { background: var(--green); color: #0a0a0a; border-color: var(--green); }
+  .step-actions .btn-step.primary:hover { background: #4eecaf; }
+  .step-actions .btn-step svg { width: 14px; height: 14px; }
+  .step-validated-date { font-size: 12px; color: var(--muted-2); display: inline-flex; align-items: center; gap: 6px; margin-left: auto; }
+  .step-validated-date svg { width: 13px; height: 13px; color: var(--green); }
+  .step-help { font-size: 13px; color: var(--muted-2); margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.05); }
+  .step-help a { color: var(--green); text-decoration: underline; text-underline-offset: 2px; }
+
+  /* CTA accompagnement bottom */
+  .acct-cta { max-width: 920px; margin: 32px auto 80px; padding: 28px; background: linear-gradient(135deg, rgba(60,229,163,0.06), rgba(21,159,203,0.04)); border: 1px solid rgba(60,229,163,0.18); border-radius: 14px; text-align: center; }
+  .acct-cta h3 { font-family: var(--font-display); font-weight: 600; font-size: 20px; margin: 0 0 10px; }
+  .acct-cta p { color: var(--muted); font-size: 14px; margin: 0 0 18px; }
+  .acct-cta .btn { padding: 10px 22px; }
+
+  @media (max-width: 720px) {
+    .step { padding: 20px 18px 20px 70px; }
+    .step-num { left: 16px; top: 18px; width: 36px; height: 36px; font-size: 14px; }
+    .parc-hero .wrap, .progress .wrap, .timeline .wrap { padding: 0 18px; }
+    .acct-bar .wrap { padding: 0 18px; gap: 14px; }
+    .acct-bar .acct-links { gap: 12px; }
+    .acct-bar .acct-links a { font-size: 13px; }
+    .acct-bar .logout { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+</defs></svg>
+
+<!-- Top bar account -->
+<header class="acct-bar">
+  <div class="wrap">
+    <a class="logo" href="../index.html" aria-label="Accueil StackProtocol">
+      <span class="wm">Stack<b>Protocol</b></span>
+    </a>
+    <span class="spacer"></span>
+    <nav class="acct-links" aria-label="Espace perso">
+      <a href="dashboard.html">Tableau de bord</a>
+      <a href="parcours.html" class="on">Mon parcours</a>
+      <a href="library/octans.html">Téléchargements</a>
+      <a href="billing.html">Facturation</a>
+      <a href="settings.html">Compte</a>
+    </nav>
+    <a href="../index.html" class="logout">Se déconnecter</a>
+  </div>
+</header>
+
+<main>
+  <section class="parc-hero">
+    <div class="wrap">
+      <h1>Mon parcours Octans</h1>
+      <p class="sub">7 étapes guidées pour cadrer ton vrai projet de bout en bout. Tu valides chaque étape à ton rythme. L'étape suivante se déverrouille automatiquement.</p>
+      <div class="meta">
+        <span class="meta-item">
+          <svg aria-hidden="true"><use href="#i-calendar"/></svg>
+          Démarré le <span id="started-date">—</span>
+        </span>
+        <span class="meta-item">
+          <svg aria-hidden="true"><use href="#i-clock"/></svg>
+          <span id="elapsed-time">—</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="progress">
+    <div class="wrap">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <div class="progress-label">
+        <span class="left"><span id="progress-count">0</span> / 7 étapes</span>
+        <span class="right"><span id="progress-percent">0</span> %</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="timeline">
+    <div class="wrap" id="steps-container">
+      <!-- Les 7 étapes sont générées dynamiquement par JS -->
+    </div>
+
+    <div class="acct-cta">
+      <h3>Tu bloques sur une étape ?</h3>
+      <p>Réserve un appel d'accompagnement individuel — 147 € / 30 min. Direct avec Brice.</p>
+      <a class="btn btn-primary" href="../produits/coaching.html">Réserver un appel<svg aria-hidden="true" style="margin-left:8px;"><use href="#i-arrow"/></svg></a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="../index.html"><span class="wm">Stack<b>Protocol</b></span></a>
+    <nav class="links" aria-label="Pied de page">
+      <a href="../index.html">Accueil</a>
+      <a href="../legal/cgv.html">CGV</a>
+      <a href="../legal/rgpd.html">RGPD</a>
+      <a href="../legal/mentions.html">Mentions</a>
+    </nav>
+    <span class="fin">Paiement unique · Souveraineté locale · Sans tracking</span>
+  </div>
+</footer>
+
+<script>
+/* =============================================================
+   Espace perso — Parcours 7 étapes
+   Validation manuelle, stockage localStorage, déverrouillage progressif
+   ============================================================= */
+(function () {
+  'use strict';
+
+  var STORAGE_KEY = 'sp_parcours_v1';
+  var STARTED_KEY = 'sp_parcours_started';
+
+  var STEPS = [
+    {
+      id: 1, tag: 'Étape 1', title: 'Installer ton studio IA',
+      desc: 'VSCode + Claude Code + Obsidian + Git installés sur ta machine en 90 minutes. Ton premier dossier vide est prêt à recevoir tes idées.',
+      action: 'Voir le guide d\'installation', actionLink: '../system/merci.html'
+    },
+    {
+      id: 2, tag: 'Étape 2', title: 'Cadrer ton projet',
+      desc: '10 questions guidées (15 minutes). En sortie : ton intention, ton univers métier, tes contraintes, ton enjeu réel — écrits noir sur blanc.',
+      action: 'Lancer /interview-projet', actionLink: '#'
+    },
+    {
+      id: 3, tag: 'Étape 3', title: 'Structurer en arbre',
+      desc: 'Octans pioche dans ses branches curées et propose UN arbre adapté à ton projet. Tu vois d\'un coup d\'œil les zones à creuser et celles à laisser de côté.',
+      action: 'Lancer /arbre-questionnement', actionLink: '#'
+    },
+    {
+      id: 4, tag: 'Étape 4', title: 'Décider sans te tromper',
+      desc: 'Le Conseil débat sur tes décisions structurantes — 8 angles indépendants — synthèse en 1 action + 1 risque + 1 premier pas.',
+      action: 'Lancer /conseil', actionLink: '#'
+    },
+    {
+      id: 5, tag: 'Étape 5', title: 'Creuser les zones sensibles',
+      desc: 'Exploration profonde sourcée. Octans lit les sources officielles, marque ce qui est vérifié, signale les zones d\'hypothèse.',
+      action: 'Lancer l\'exploration', actionLink: '#'
+    },
+    {
+      id: 6, tag: 'Étape 6', title: 'Vérifier la cohérence',
+      desc: 'Boucles automatiques entre tes notes voisines. Tu détectes tes contradictions avant que ton banquier ne les voie.',
+      action: 'Lancer la vérification', actionLink: '#'
+    },
+    {
+      id: 7, tag: 'Étape 7', title: 'Maintenir vivant',
+      desc: 'Boucle ingénieur : 1 jour par mois. Octans te liste ce qui a vieilli, ce qui mérite d\'être revisité. Pas de stress quotidien.',
+      action: 'Programmer la boucle mensuelle', actionLink: '#'
+    }
+  ];
+
+  // Charge l'état depuis localStorage
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+    catch (e) { return {}; }
+  }
+  function saveState(state) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+  }
+  function getStartedDate() {
+    var d = localStorage.getItem(STARTED_KEY);
+    if (!d) {
+      d = new Date().toISOString();
+      try { localStorage.setItem(STARTED_KEY, d); } catch (e) {}
+    }
+    return d;
+  }
+  function formatDate(iso) {
+    if (!iso) return '—';
+    var d = new Date(iso);
+    return d.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  }
+  function elapsedDays(startedIso) {
+    if (!startedIso) return '—';
+    var start = new Date(startedIso);
+    var now = new Date();
+    var days = Math.floor((now - start) / (1000 * 60 * 60 * 24));
+    if (days === 0) return 'Aujourd\'hui';
+    if (days === 1) return 'Depuis hier';
+    return 'Depuis ' + days + ' jours';
+  }
+
+  // Rendu
+  function render() {
+    var state = loadState();
+    var startedIso = getStartedDate();
+    document.getElementById('started-date').textContent = formatDate(startedIso);
+    document.getElementById('elapsed-time').textContent = elapsedDays(startedIso);
+
+    var container = document.getElementById('steps-container');
+    container.innerHTML = '';
+
+    var doneCount = 0;
+    var firstUnchecked = null;
+
+    STEPS.forEach(function (step, idx) {
+      var isDone = !!state[step.id];
+      var prevDone = idx === 0 || !!state[STEPS[idx-1].id];
+      var isCurrent = !isDone && prevDone && firstUnchecked === null;
+      var isLocked = !isDone && !prevDone;
+
+      if (isDone) doneCount++;
+      if (isCurrent) firstUnchecked = step.id;
+
+      var stepEl = document.createElement('article');
+      stepEl.className = 'step' + (isDone ? ' done' : '') + (isCurrent ? ' current' : '') + (isLocked ? ' locked' : '');
+
+      var numEl = isDone
+        ? '<svg aria-hidden="true" style="width:20px;height:20px;color:#0a0a0a;"><use href="#i-check"/></svg>'
+        : step.id;
+
+      var actions = isLocked
+        ? '<span style="font-size:13px;color:var(--muted-2);">Verrouillée — termine l\'étape précédente d\'abord</span>'
+        : isDone
+          ? '<button type="button" class="btn-step" data-action="undo" data-step="' + step.id + '">Annuler la validation</button>' +
+            '<span class="step-validated-date"><svg aria-hidden="true"><use href="#i-check"/></svg>Validée le ' + formatDate(state[step.id]) + '</span>'
+          : '<a class="btn-step primary" href="' + step.actionLink + '">' + step.action + '<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>' +
+            '<button type="button" class="btn-step" data-action="validate" data-step="' + step.id + '">Marquer comme faite</button>';
+
+      var helpLine = (isCurrent || isDone) ? '' :
+        '<div class="step-help"><svg aria-hidden="true" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-right:4px;"><use href="#i-help"/></svg>Tu bloques ? <a href="../produits/coaching.html">Réserve un appel — 147 € / 30 min</a></div>';
+
+      if (isCurrent) {
+        helpLine = '<div class="step-help"><svg aria-hidden="true" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-right:4px;"><use href="#i-help"/></svg>Besoin d\'aide ? <a href="../produits/coaching.html">Réserve un appel — 147 € / 30 min</a></div>';
+      }
+
+      stepEl.innerHTML =
+        '<div class="step-num">' + numEl + '</div>' +
+        '<div class="step-tag">' + step.tag + '</div>' +
+        '<h3 class="step-title">' + step.title + '</h3>' +
+        '<p class="step-desc">' + step.desc + '</p>' +
+        '<div class="step-actions">' + actions + '</div>' +
+        helpLine;
+
+      container.appendChild(stepEl);
+    });
+
+    var percent = Math.round((doneCount / STEPS.length) * 100);
+    document.getElementById('progress-fill').style.width = percent + '%';
+    document.getElementById('progress-count').textContent = doneCount;
+    document.getElementById('progress-percent').textContent = percent;
+  }
+
+  // Actions (event delegation)
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-action]');
+    if (!btn) return;
+    var action = btn.getAttribute('data-action');
+    var stepId = btn.getAttribute('data-step');
+    var state = loadState();
+    if (action === 'validate') {
+      state[stepId] = new Date().toISOString();
+      saveState(state);
+      render();
+    } else if (action === 'undo') {
+      delete state[stepId];
+      saveState(state);
+      render();
+    }
+  });
+
+  // Initialisation
+  render();
+})();
+</script>
+<script src="../cookies-banner.js" defer></script>
+</body>
+</html>

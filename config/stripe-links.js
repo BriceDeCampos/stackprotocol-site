@@ -30,35 +30,39 @@
 
 window.SP_CONFIG = {
 
-  /* ---- 6 Payment Links Stripe (gamme canonique v2) ---- */
-  STRIPE_LINK_PACK_AUTONOMIE:        "",  // Pack Autonomie — 197€
-  STRIPE_LINK_PACK_AUTONOMIE_REDUIT: "",  // Pack Autonomie Réduit — 99€ (déclaratif)
-  STRIPE_LINK_PACK_INTERMEDIAIRE:    "",  // [NOM-PALIER-247] — 247€ (renommer après arbitrage Brice)
-  STRIPE_LINK_PACK_ACCOMPAGNE:       "",  // Pack Accompagné — 547€ ⭐
-  STRIPE_LINK_COACHING_SEANCE:       "",  // Coaching séance 1h45 — 197€
-  STRIPE_LINK_COACHING_FORFAIT:      "",  // Coaching forfait 3 séances — 497€
+  /* ---- 4 Payment Links Stripe (gamme canonique v3 — 2026-06-17) ---- */
+  STRIPE_LINK_PACK_CDC:           "",  // Pack CDC Méthode — 197€
+  STRIPE_LINK_PACK_CDC_REDUIT:    "",  // Pack CDC Méthode Réduit — 99€ (déclaratif)
+  STRIPE_LINK_ACCOMPAGNEMENT:     "",  // Accompagnement individuel — 147€/30min
+  STRIPE_LINK_MAJ_ABO:            "",  // Abonnement mises à jour — 7,70€/mois
+  STRIPE_LINK_MAJ_ONESHOT:        "",  // Achat one-shot version majeure — 197€
 
   /* ---- Alias rétro-compatibilité (anciennes clés HTML → nouvelles) ----
      Permet au HTML encore non refondu de résoudre vers le bon produit
      en attendant la passe de migration complète. À retirer une fois le HTML migré. */
   _ALIAS: {
-    /* Anciennes clés → nouvelles clés v2 */
-    STRIPE_LINK_PACK_AUTONOMIE_ETUDIANT: "STRIPE_LINK_PACK_AUTONOMIE_REDUIT",
-    STRIPE_LINK_PACK_METIER:             "STRIPE_LINK_PACK_INTERMEDIAIRE",
-    STRIPE_LINK_PACK_METIER_ACCOMPAGNE:  "STRIPE_LINK_PACK_ACCOMPAGNE",
-    /* Anciennes clés héritées de v1 (encore plus vieux) */
-    STRIPE_LINK_PACK_ESSENTIEL:  "STRIPE_LINK_PACK_AUTONOMIE",
-    STRIPE_LINK_PACK_STANDARD:   "STRIPE_LINK_PACK_INTERMEDIAIRE",
-    STRIPE_LINK_PACK_PRO:        "STRIPE_LINK_PACK_ACCOMPAGNE",
-    STRIPE_LINK_COACHING_DECLIC: "STRIPE_LINK_COACHING_SEANCE",
-    STRIPE_LINK_COACHING_SPRINT: "STRIPE_LINK_COACHING_FORFAIT",
-    STRIPE_LINK_PACK:            "STRIPE_LINK_PACK_AUTONOMIE",
-    STRIPE_LINK_WEBINAR_DEC:     "STRIPE_LINK_PACK_AUTONOMIE",
-    STRIPE_LINK_WEBINAR_STD:     "STRIPE_LINK_PACK_INTERMEDIAIRE",
-    STRIPE_LINK_WEBINAR_PRO:     "STRIPE_LINK_PACK_ACCOMPAGNE",
-    STRIPE_LINK_COACHING_PRO:    "STRIPE_LINK_COACHING_FORFAIT"
-    /* STRIPE_LINK_SERIE / STRIPE_LINK_PASS_SERIE : volontairement non mappés
-       (Pass Série en sas) → repli email tant que non commercialisé. */
+    /* Anciennes clés v2 (2026-06-15) → nouvelles clés v3 (2026-06-17) */
+    STRIPE_LINK_PACK_AUTONOMIE:          "STRIPE_LINK_PACK_CDC",
+    STRIPE_LINK_PACK_AUTONOMIE_REDUIT:   "STRIPE_LINK_PACK_CDC_REDUIT",
+    STRIPE_LINK_PACK_AUTONOMIE_ETUDIANT: "STRIPE_LINK_PACK_CDC_REDUIT",
+    STRIPE_LINK_PACK_INTERMEDIAIRE:      "STRIPE_LINK_PACK_CDC",  // Pack Autonomie Pro 247€ fusionne dans Pack CDC
+    STRIPE_LINK_PACK_ACCOMPAGNE:         "STRIPE_LINK_ACCOMPAGNEMENT",  // Pack Accompagné 547€ → accompagnement à l'heure
+    STRIPE_LINK_PACK_METIER:             "STRIPE_LINK_PACK_CDC",
+    STRIPE_LINK_PACK_METIER_ACCOMPAGNE:  "STRIPE_LINK_ACCOMPAGNEMENT",
+    STRIPE_LINK_COACHING_SEANCE:         "STRIPE_LINK_ACCOMPAGNEMENT",
+    STRIPE_LINK_COACHING_FORFAIT:        "STRIPE_LINK_ACCOMPAGNEMENT",
+    /* Anciennes clés héritées de v1 */
+    STRIPE_LINK_PACK_ESSENTIEL:  "STRIPE_LINK_PACK_CDC",
+    STRIPE_LINK_PACK_STANDARD:   "STRIPE_LINK_PACK_CDC",
+    STRIPE_LINK_PACK_PRO:        "STRIPE_LINK_ACCOMPAGNEMENT",
+    STRIPE_LINK_COACHING_DECLIC: "STRIPE_LINK_ACCOMPAGNEMENT",
+    STRIPE_LINK_COACHING_SPRINT: "STRIPE_LINK_ACCOMPAGNEMENT",
+    STRIPE_LINK_PACK:            "STRIPE_LINK_PACK_CDC",
+    STRIPE_LINK_WEBINAR_DEC:     "STRIPE_LINK_PACK_CDC",
+    STRIPE_LINK_WEBINAR_STD:     "STRIPE_LINK_PACK_CDC",
+    STRIPE_LINK_WEBINAR_PRO:     "STRIPE_LINK_ACCOMPAGNEMENT",
+    STRIPE_LINK_COACHING_PRO:    "STRIPE_LINK_ACCOMPAGNEMENT",
+    STRIPE_LINK_PACK_AUTONOMIE_PRO: "STRIPE_LINK_PACK_CDC"
   },
 
   /* ---- Ressources externes ---- */
