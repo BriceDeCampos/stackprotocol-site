@@ -103,7 +103,9 @@
   .hero .art { position: relative; }
   .cortex-wrap { display: flex; flex-direction: column; align-items: center; gap: 0; margin-top: -136px; }
   #cortex { width: 100%; max-width: 380px; margin: 0 auto 0 -40px; }
-  #cortex svg { width: 100%; height: auto; display: block; }
+  #cortex svg { width: 100%; height: auto; display: block; transform-origin: center center; animation: cxbreathe 40s ease-in-out infinite; }
+  /* Cortex : contracte → tient rétracté ~15s → agrandit → tient agrandi ~15s (boucle 40s) */
+  @keyframes cxbreathe { 0%, 37.5% { transform: scale(0.62); } 50%, 87.5% { transform: scale(1.28); } 100% { transform: scale(0.62); } }
   .cortex-legend { font-size: 13.5px; line-height: 1.55; color: var(--muted); text-align: left; margin: -34px 0 0; align-self: flex-start; }
   .cx-syn { stroke: url(#cxgrad); stroke-width: 1; fill: none; opacity: 0.22; }
   .cx-syn.fire { opacity: 0.9; stroke: #3CE5A3; stroke-width: 1.6; stroke-dasharray: 14 100; stroke-dashoffset: 114; animation: cxinflux 1.6s linear forwards; filter: drop-shadow(0 0 4px rgba(60,229,163,0.8)); }
@@ -121,6 +123,7 @@
   @keyframes cxhalo { 0%,100% { transform: scale(1); opacity: .7; } 50% { transform: scale(1.5); opacity: 0; } }
   @media (prefers-reduced-motion: reduce) {
     .cx-node.p, .cx-claude-halo, .cx-rot, .pair-ind { animation: none; }
+    #cortex svg { animation: none; }
     .cx-syn.fire { animation: none; stroke-dasharray: none; opacity: 0.22; stroke: url(#cxgrad); filter: none; }
   }
   /* pause carrousel (WCAG 2.2.2) */
