@@ -68,7 +68,7 @@
     var btn = document.createElement('button');
     btn.className = 'ln-toggle';
     btn.setAttribute('aria-label', 'Ouvrir le sommaire de la page');
-    btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round"/></svg>';
+    btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round"/></svg><span class="ln-toggle-label">Sur cette page</span>';
 
     function isDesktop() { return window.matchMedia('(min-width: 1024px)').matches; }
     function setCollapsed(on) {
