@@ -84,7 +84,7 @@
   }
 </style>
 </head>
-<body>
+<body data-sp-protect="true">
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
   <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -233,8 +233,8 @@
     },
     {
       id: 4, tag: 'Étape 4', title: 'Décider sans te tromper',
-      desc: 'Le Conseil débat sur tes décisions structurantes — 8 angles indépendants — synthèse en 1 action + 1 risque + 1 premier pas.',
-      action: 'Lancer /conseil', actionLink: '#'
+      desc: 'Le Conseil débat sur tes décisions structurantes — sous tous les angles — synthèse en 1 action + 1 risque + 1 premier pas.',
+      action: 'Lancer le Conseil', actionLink: '#'
     },
     {
       id: 5, tag: 'Étape 5', title: 'Creuser les zones sensibles',
@@ -367,6 +367,7 @@
   render();
 })();
 </script>
+<script src="../auth-guard.js"></script>
 <script src="../cookies-banner.js" defer></script>
 <script src="../brand.js" defer></script>
 </body>
