@@ -17,15 +17,20 @@
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-origin
   X-Permitted-Cross-Domain-Policies: none
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
 
 # ------------------------------------------------------------
-# 🔒 CONTENT-SECURITY-POLICY — à activer pour passer A → A+
+# 🔒 CONTENT-SECURITY-POLICY — ACTIVÉ 2026-06-17
 # ------------------------------------------------------------
-# NON activé pour l'instant : 2 bloquants à lever d'abord (passe Claude Design)
-#   1. Google Fonts externes (fonts.googleapis.com / fonts.gstatic.com)
-#      → contraire à la souveraineté + RGPD. Self-host les .woff2 d'abord.
-#   2. Scripts/styles inline présents dans les pages (ex. générateur SVG)
-#      → à externaliser OU à hasher (sha256) pour un CSP strict sans 'unsafe-inline'.
+# ✅ Blocker 1 levé : polices self-hostées (plus de fonts.googleapis/gstatic).
+#    → Aucune origine externe : default-src 'self'. Vérifié : 0 iframe, 0 script externe,
+#      les seuls https externes sont des liens <a> (navigations, non bloquées par CSP).
+# ⏳ Blocker 2 (pour A+ strict) : retirer 'unsafe-inline'. Styles/scripts inline
+#    encore présents (générateur SVG cortex, carrousel, style= inline). À externaliser
+#    OU hasher (sha256) — puis remplacer les 2 'unsafe-inline' ci-dessus.
+#
+# CSP CIBLE A+ (une fois l'inline retiré/hashé) :
+#   Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
 #
 # CSP CIBLE une fois les polices self-hostées et les inline retirés/hashés :
 #   Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
