@@ -32,10 +32,14 @@
 
   /* ===== HERO ===== */
   .hero { position: relative; padding: 56px 0 64px; overflow: hidden; }
-  .hero .roles-line { display: flex; align-items: center; gap: 11px; white-space: nowrap; font-size: 13.5px; font-weight: 500; letter-spacing: 0.04em; color: var(--muted); margin: -26px 0 34px; }
+  .hero .roles-line { display: flex; align-items: center; gap: 11px; flex-wrap: wrap; white-space: normal; font-size: 13.5px; font-weight: 500; letter-spacing: 0.04em; color: var(--muted); margin: 8px 0 28px; min-width: 0; max-width: 100%; }
   .hero .roles-line .sep { width: 5px; height: 5px; border-radius: 50%; background: var(--green); flex-shrink: 0; opacity: .85; }
-  .hero .roles-line .tl { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-weight: 600; }
-  @media (max-width: 900px) { .hero .roles-line { flex-wrap: wrap; white-space: normal; } }
+  .hero .roles-line .tl { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-weight: 600; flex-shrink: 0; }
+  .hero .roles-line span:last-child { min-width: 0; flex: 1 1 200px; }
+  @media (max-width: 640px) {
+    .hero .roles-line { font-size: 12.5px; flex-direction: column; align-items: flex-start; gap: 4px; }
+    .hero .roles-line .sep { display: none; }
+  }
   .hero .grid { display: grid; grid-template-columns: 1.12fr 0.88fr; gap: 56px; align-items: center; }
   .hero .lede { margin-top: -24px; }
   .hero .mark-xl { width: 270px; height: 338px; margin: 0 auto; filter: drop-shadow(0 20px 50px rgba(24,180,204,0.32)); animation: float 7s ease-in-out infinite; }
