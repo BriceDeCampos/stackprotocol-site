@@ -46,3 +46,21 @@
     node.parentNode.replaceChild(frag, node);
   });
 })();
+
+/* ============================================================
+   Nav active — marque la page courante (mot blanc + trait dégradé).
+   Détecte le fichier courant et l'associe au lien du menu principal.
+   ============================================================ */
+(function () {
+  try {
+    var here = (location.pathname.split('/').pop() || 'index.html');
+    if (here === '') here = 'index.html';
+    document.querySelectorAll('header .links a').forEach(function (a) {
+      var target = (a.getAttribute('href') || '').split('#')[0].split('/').pop();
+      if (target && target === here) {
+        a.classList.add('on');
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  } catch (e) {}
+})();
