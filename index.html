@@ -99,6 +99,18 @@
   @media (prefers-reduced-motion: reduce) { .pp-reveal li { opacity: 1 !important; animation: none !important; } }
   @media (prefers-reduced-motion: reduce) { .hero .art-slide { transition: none; } }
 
+  /* ===== Carrousel — texte en dégradé "AI Method Conductor" ===== */
+  .lede-carousel { position: relative; margin-top: 12px; }
+  .lede-carousel .art-carousel { height: 230px; margin-top: 0; }
+  .pp-2col { display: grid !important; grid-template-columns: 1fr 1fr; gap: 9px 20px; }
+  .pp-tight { gap: 5px 20px !important; }
+  .pp-tight li { font-size: 13px !important; line-height: 1.25 !important; }
+  .lede-carousel .pp-t, .lede-carousel .pp-list li, .lede-carousel .pp-list b, .lede-carousel .pp-s, .lede-carousel .pp-t .d {
+    background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent !important;
+  }
+  /* mots de liaison non importants → gris clair (le dégradé reste sur les mots-clés) */
+  .lede-carousel .pp-list .dim { background: none !important; -webkit-text-fill-color: var(--muted) !important; color: var(--muted) !important; }
+
   /* ===== Le Cortex — constellation neuronale ===== */
   .hero .art { position: relative; }
   .cortex-wrap { display: flex; flex-direction: column; align-items: center; gap: 0; margin-top: -136px; }
@@ -418,7 +430,7 @@
             <li style="font-size:13.5px;line-height:1.5;color:var(--ink-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--green);font-weight:700;">›</span>Agents et skills <b style="color:var(--ink);">toujours à jour</b>.</li>
           </ul>
         </div>
-        <div class="art-carousel" aria-label="Présentation animée">
+        <div class="lede-carousel"><div class="art-carousel" aria-label="Présentation animée">
           <div class="art-slide is-active art-stat art-promise" data-art>
             <div>
               <ul class="pp-list pp-reveal">
@@ -429,6 +441,41 @@
                 <li><b>Budget maîtrisé</b> — pas de refonte à mi-chemin</li>
                 <li><b>Décisions tranchées</b> — fini les allers-retours</li>
                 <li>Ton projet <b>lisible par n'importe quel dev</b></li>
+              </ul>
+            </div>
+          </div>
+          <div class="art-slide art-stat art-promise" data-art>
+            <div>
+              <div class="pp-t" style="font-size:17px;">Lancer un projet aujourd'hui, c'est jongler avec tout à la fois :</div>
+              <ul class="pp-list pp-reveal pp-2col pp-tight">
+                <li>Le code</li><li>Le design</li><li>Le copywriting</li><li>Le RGPD</li>
+                <li>La sécurité</li><li>L'accessibilité</li><li>Le SEO</li><li>Le marketing</li>
+                <li>La communication</li><li>Le financement</li><li>Le prévisionnel</li>
+                <li>La compta</li><li>Le juridique</li>
+              </ul>
+            </div>
+          </div>
+          <div class="art-slide art-stat art-promise" data-art>
+            <div>
+              <div class="pp-t" style="font-size:19px;">Ce que tu gagnes</div>
+              <ul class="pp-list pp-reveal">
+                <li><span class="dim">Des</span> semaines de cadrage gagnées</li>
+                <li>Zéro angle mort <span class="dim">: juridique, sécurité, RGPD anticipés</span></li>
+                <li><span class="dim">Les</span> erreurs coûteuses évitées</li>
+                <li>Un cap clair <span class="dim">du premier jour au lancement</span></li>
+                <li>Budget maîtrisé <span class="dim">— pas de refonte à mi-chemin</span></li>
+                <li>Décisions tranchées <span class="dim">— fini les allers-retours</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="art-slide art-stat art-promise" data-art>
+            <div>
+              <div class="pp-t" style="font-size:19px;">Une méthode éprouvée</div>
+              <ul class="pp-list pp-reveal">
+                <li>Méthode <b>testée pendant 6 mois</b></li>
+                <li>Agents et skills <b>hyper codés</b></li>
+                <li>À la <b>pointe d'ingénierie</b> &amp; constamment actualisés</li>
+                <li>Pour <b>tous vos projets</b></li>
               </ul>
             </div>
           </div>
@@ -483,7 +530,7 @@
               </ul>
             </div>
           </div>
-        </div>
+        </div></div>
         <button id="car-pause" class="car-pause" type="button" aria-pressed="false" aria-label="Mettre en pause l'animation">
           <svg class="ic-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
           <svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg>
@@ -501,34 +548,34 @@
       </div>
 
       <div class="packs">
-        <!-- Autonomie -->
-        <article class="card pack">
-          <div class="pn">Pack Autonomie</div>
-          <div class="ptag">Octans complet en autonomie. Moteur entier, tutoriels, support async. Pour démarrer seul.</div>
-          <div class="amt">197€<small>une fois</small></div>
-          <ul>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>La méthode complète en autonomie</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Archétypes de CDC + templates</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Accès à vie + mises à jour</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg><b>Whitelist écoles</b></li>
-          </ul>
-          <a class="btn btn-ghost" href="produits/pack-methode.html#etudiant">Détails</a>
-        </article>
-
-        <!-- Accompagné -->
+        <!-- Pack CDC Méthode -->
         <article class="card pack feat">
           <span class="pill badge">Le plus choisi</span>
-          <div class="pn">Pack Accompagné</div>
-          <div class="ptag">Pack Autonomie Pro + 2×30 min d'appels visio sur RDV pour valider ton approche en direct.</div>
-          <div class="amt">547€<small>une fois</small></div>
+          <div class="pn">Pack CDC Méthode</div>
+          <div class="ptag">Le moteur Octans + la méthode appliquée sur ton vrai projet. Tutoriels, archétypes, équipe d'experts. <b>Paiement unique.</b></div>
+          <div class="amt">197€<small>une fois · 99€ tarif réduit</small></div>
           <ul>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Tout le Pack Autonomie</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Équipe d'experts spécialisés orchestrés</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Octans complet (skills, agents, hooks)</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Archétypes CDC + templates CLAUDE.md</li>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Audits automatiques (sécurité, RGPD, a11y)</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Discord communauté</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Votre suivi</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Accès à vie + parcours espace perso</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><b>99€ tarif réduit</b> (étudiants, demandeurs d'emploi, minima sociaux)</li>
           </ul>
-          <a class="btn btn-primary" href="produits/pack-methode.html#standard">Détails<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-primary" href="produits/pack-methode.html">Voir le Pack<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </article>
+
+        <!-- Accompagnement individuel -->
+        <article class="card pack">
+          <div class="pn">Accompagnement individuel</div>
+          <div class="ptag">Appel/visio 1h avec Brice pour débloquer ton point dur. Questionnaire pré-entretien + RDV Cal.com.</div>
+          <div class="amt">147€<small>/ 1h</small></div>
+          <ul>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>1h de visio avec Brice (Cal.com)</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Questionnaire pré-entretien obligatoire</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Pour cadres en reconversion, indépendants, freelance</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><b>Tu achètes quand tu bloques</b> — pas de forfait</li>
+          </ul>
+          <a class="btn btn-ghost" href="produits/coaching.html">Détails</a>
         </article>
 
         <!-- Grand Compte -->
