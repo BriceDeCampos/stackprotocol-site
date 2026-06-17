@@ -65,10 +65,15 @@
 
     document.body.appendChild(nav);
 
+    var toggleWrap = document.createElement('div');
+    toggleWrap.className = 'ln-toggle-wrap';
+    toggleWrap.innerHTML = '<span class="ln-toggle-label">Sur cette page</span>';
+
     var btn = document.createElement('button');
     btn.className = 'ln-toggle';
     btn.setAttribute('aria-label', 'Ouvrir le sommaire de la page');
-    btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round"/></svg><span class="ln-toggle-label">Sur cette page</span>';
+    btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round"/></svg>';
+    toggleWrap.appendChild(btn);
 
     function isDesktop() { return window.matchMedia('(min-width: 1024px)').matches; }
     function setCollapsed(on) {
@@ -92,7 +97,7 @@
     });
     overlay.addEventListener('click', close);
     document.body.appendChild(overlay);
-    document.body.appendChild(btn);
+    document.body.appendChild(toggleWrap);
 
     // active state au scroll (déterministe : section dont le haut a dépassé la ligne des 90px)
     var order = sections.slice();
