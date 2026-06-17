@@ -84,6 +84,8 @@ a { color: inherit; text-decoration: none; }
 .orange { color: var(--orange); }
 /* doctrine « un seul accent chaud » : le mot Claude toujours en orange */
 .claude-mark { color: var(--orange); font-weight: inherit; }
+/* le mot Octans toujours dans le vert du site */
+.octans-mark { color: var(--green); font-weight: inherit; }
 
 /* ── Buttons ── */
 .btn {
