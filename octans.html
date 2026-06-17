@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Octans — la constellation d'agents et de skills · StackProtocol</title>
-<meta name="description" content="Octans, c'est le moteur de StackProtocol : une constellation d'agents et de skills — le cerveau d'ingénierie qui déploie ton cahier des charges, boosté par Claude. Toujours à jour." />
+<title>Octans â€” la constellation d'agents et de skills Â· StackProtocol</title>
+<meta name="description" content="Octans, c'est le moteur de StackProtocol : une constellation d'agents et de skills â€” le cerveau d'ingÃ©nierie qui dÃ©ploie ton cahier des charges, boostÃ© par Claude. Toujours Ã  jour." />
 <link rel="stylesheet" href="assets/fonts/fonts.css" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="stylesheet" href="styles.css" />
@@ -33,11 +33,15 @@
   .pil .k { font-size: 12px; font-family: var(--font-display); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); margin-top: 4px; }
   .pil p { font-size: 14px; color: var(--muted); margin-top: 10px; line-height: 1.55; }
 
-  .flow { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+  .flow { display: flex; flex-direction: column; gap: 6px; }
+  .fl-row { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: stretch; gap: 10px; }
   .fl { padding: 20px; text-align: center; }
   .fl .n { font-family: var(--font-display); font-weight: 700; font-size: 13px; color: var(--green); }
   .fl h4 { font-family: var(--font-display); font-weight: 600; font-size: 14.5px; margin-top: 8px; }
   .fl p { font-size: 12.5px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+  .fl-sep { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; padding: 0 2px; }
+  .fl-sep.h { flex-direction: row; padding: 4px 0; justify-content: center; }
+  .fl-sep span { width: 4px; height: 4px; border-radius: 50%; background: var(--green); opacity: 0.28; }
 
   .cats { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
   .cat { padding: 16px 18px; }
@@ -63,7 +67,7 @@
   .ptable td.feat { color: var(--ink-2); }
   .ptable tr.hl td { background: linear-gradient(100deg, rgba(60,229,163,0.07), rgba(24,180,204,0.03)); }
 
-  @media (max-width:860px){ .oct-hero,.pillars,.flow,.cats,.evo{ grid-template-columns:1fr; } .constel{ max-width:260px; } .ptable{ font-size:13px; } }
+  @media (max-width:860px){ .oct-hero,.pillars,.fl-row,.cats,.evo{ grid-template-columns:1fr; } .fl-sep{ display:none; } .constel{ max-width:260px; } .ptable{ font-size:13px; } }
 </style>
 </head>
 <body>
@@ -108,7 +112,8 @@
     <a class="logo" href="index.html" aria-label="Accueil StackProtocol"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
     <nav class="links" aria-label="Navigation principale">
       <a href="index.html">Accueil</a>
-      <a href="la-methode.html">La méthode</a>
+      <a href="qui-je-suis.html">PrÃ©sentation</a>
+      <a href="la-methode.html">La mÃ©thode</a>
       <a href="octans.html">Octans</a>
       <a href="produits/coaching.html">Accompagnement</a>
       <a href="pour-qui.html">Pour qui&#8239;?</a>
@@ -131,11 +136,11 @@
         <div>
           <span class="pill">Le moteur de StackProtocol</span>
           <div class="oname">Voici <span class="em">Octans</span>.</div>
-          <p class="otag">La <b>constellation</b> d'<b>agents</b> et de <b>skills</b> — le <b>cerveau d'ingénierie</b> qui déploie ton cahier des charges, boosté par <span class="claude-mark">Claude</span>.</p>
-          <p class="otag" style="font-size:15px;color:var(--muted);margin-top:14px;">StackProtocol, c'est la <b>méthode</b>. Octans, c'est le moteur qui la fait tourner. On suit et anticipe les meilleures IA : agents et skills <b>toujours à jour</b>.</p>
+          <p class="otag">La <b>constellation</b> d'<b>agents</b> et de <b>skills</b> â€” le <b>cerveau d'ingÃ©nierie</b> qui dÃ©ploie ton cahier des charges, boostÃ© par <span class="claude-mark">Claude</span>.</p>
+          <p class="otag" style="font-size:15px;color:var(--muted);margin-top:14px;">StackProtocol, c'est la <b>mÃ©thode</b>. Octans, c'est le moteur qui la fait tourner. On suit et anticipe les meilleures IA : agents et skills <b>toujours Ã  jour</b>.</p>
           <div class="cta" style="margin-top:26px;">
             <a class="btn btn-primary" href="index.html#produits">Voir les packs<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <a class="btn btn-ghost" href="les-experts.html">Découvrir l'équipe d'experts</a>
+            <a class="btn btn-ghost" href="les-experts.html">DÃ©couvrir l'Ã©quipe d'experts</a>
           </div>
         </div>
         <div class="constel" aria-hidden="true">
@@ -157,15 +162,15 @@
     </div>
   </section>
 
-  <!-- DEUX ENVIRONNEMENTS — slide doux d'arrivée -->
-  <section class="section oct-envs" data-ln="Deux manières d'utiliser Octans">
+  <!-- DEUX ENVIRONNEMENTS â€” slide doux d'arrivÃ©e -->
+  <section class="section oct-envs" data-ln="Deux maniÃ¨res d'utiliser Octans">
     <div class="wrap">
       <div class="oe-head">
         <span class="eyebrow"><span class="dot"></span>Deux environnements, un seul moteur</span>
         <h2>Octans s'installe sur ta machine. Tu choisis comment tu l'utilises.</h2>
         <p class="oe-lead">
-          Le moteur est le même dans les deux cas. Tu gardes la main sur
-          le confort que tu veux y mettre. Aucun choix n'est irréversible.
+          Le moteur est le mÃªme dans les deux cas. Tu gardes la main sur
+          le confort que tu veux y mettre. Aucun choix n'est irrÃ©versible.
         </p>
       </div>
 
@@ -177,42 +182,42 @@
           <p class="oe-sub">L'installation minimale. Tout marche, rien de superflu.</p>
 
           <ul class="oe-list">
-            <li><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Le moteur Octans tourne intégralement</li>
-            <li><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Édition Markdown directe dans VSCode</li>
-            <li><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Terminal intégré, Git, debug, extensions familières</li>
-            <li><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Idéal si tu codes déjà ou si tu veux la stack la plus légère</li>
-            <li><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Aucun setup Obsidian à apprendre</li>
+            <li><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Le moteur Octans tourne intÃ©gralement</li>
+            <li><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Ã‰dition Markdown directe dans VSCode</li>
+            <li><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Terminal intÃ©grÃ©, Git, debug, extensions familiÃ¨res</li>
+            <li><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>IdÃ©al si tu codes dÃ©jÃ  ou si tu veux la stack la plus lÃ©gÃ¨re</li>
+            <li><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Aucun setup Obsidian Ã  apprendre</li>
           </ul>
 
           <p class="oe-note">
-            <b>Pour qui :</b> développeurs, profils technique, utilisateurs
+            <b>Pour qui :</b> dÃ©veloppeurs, profils technique, utilisateurs
             qui veulent une stack minimale et un workflow code-centric.
           </p>
         </article>
 
         <!-- MODE 2 : VSCode + Obsidian -->
         <article class="oe-card oe-card-pref">
-          <div class="oe-tag">Recommandé · mode confort</div>
+          <div class="oe-tag">RecommandÃ© Â· mode confort</div>
           <h3>VSCode + Claude Code + Obsidian</h3>
-          <p class="oe-sub">La même installation, avec un explorateur de connaissances par-dessus.</p>
+          <p class="oe-sub">La mÃªme installation, avec un explorateur de connaissances par-dessus.</p>
 
           <ul class="oe-list">
             <li><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Tout ce que fait VSCode + Claude Code</li>
-            <li><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Vue du graphe — tu vois tes notes se relier</li>
+            <li><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Vue du graphe â€” tu vois tes notes se relier</li>
             <li><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Liens cliquables entre les notes (wikilinks)</li>
-            <li><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Requêtes sur tes notes (Dataview) et plugins riches</li>
-            <li><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Édition Markdown plus douce, palette de commandes, recherche avancée</li>
+            <li><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>RequÃªtes sur tes notes (Dataview) et plugins riches</li>
+            <li><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Ã‰dition Markdown plus douce, palette de commandes, recherche avancÃ©e</li>
           </ul>
 
           <p class="oe-note">
-            <b>Pour qui :</b> porteurs de projet, indépendants, étudiants,
-            entrepreneurs — tous ceux qui pensent en notes reliées plus
+            <b>Pour qui :</b> porteurs de projet, indÃ©pendants, Ã©tudiants,
+            entrepreneurs â€” tous ceux qui pensent en notes reliÃ©es plus
             qu'en lignes de code.
           </p>
         </article>
       </div>
 
-      <!-- BANDEAU : conséquences pour le livrable client -->
+      <!-- BANDEAU : consÃ©quences pour le livrable client -->
       <div class="oe-banner">
         <div class="oe-banner-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -222,12 +227,12 @@
           </svg>
         </div>
         <div class="oe-banner-text">
-          <h4>Ce que tu reçois à l'achat — quelle que soit ta config</h4>
+          <h4>Ce que tu reÃ§ois Ã  l'achat â€” quelle que soit ta config</h4>
           <ul>
-            <li>Le moteur complet dans un dossier <code>.claude/</code> à poser à la racine de ton projet.</li>
-            <li>Un guide d'installation pas-à-pas pour les deux modes (VSCode pur ou VSCode + Obsidian).</li>
-            <li>Une structure de dossier prête à remplir, adaptée à ton univers métier.</li>
-            <li>Tu peux migrer d'un mode à l'autre quand tu veux — le contenu est le même.</li>
+            <li>Le moteur complet dans un dossier <code>.claude/</code> Ã  poser Ã  la racine de ton projet.</li>
+            <li>Un guide d'installation pas-Ã -pas pour les deux modes (VSCode pur ou VSCode + Obsidian).</li>
+            <li>Une structure de dossier prÃªte Ã  remplir, adaptÃ©e Ã  ton univers mÃ©tier.</li>
+            <li>Tu peux migrer d'un mode Ã  l'autre quand tu veux â€” le contenu est le mÃªme.</li>
           </ul>
         </div>
       </div>
@@ -265,7 +270,7 @@
     .oe-banner-text h4 { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; margin: 0 0 12px; color: var(--ink, #e6e6e6); }
     .oe-banner-text ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
     .oe-banner-text li { font-size: 13.5px; line-height: 1.55; color: var(--muted, #a8b0ba); padding-left: 18px; position: relative; }
-    .oe-banner-text li:before { content: "·"; position: absolute; left: 4px; color: var(--green); font-weight: 700; top: -2px; font-size: 18px; }
+    .oe-banner-text li:before { content: "Â·"; position: absolute; left: 4px; color: var(--green); font-weight: 700; top: -2px; font-size: 18px; }
     .oe-banner-text code { font-family: 'JetBrains Mono', 'Cascadia Code', monospace; font-size: 12.5px; background: rgba(60,229,163,0.10); color: var(--green); padding: 1px 6px; border-radius: 4px; }
 
     @media (max-width: 880px) {
@@ -284,29 +289,29 @@
         <div class="card pil">
           <span class="ic"><svg aria-hidden="true"><use href="#i-users"/></svg></span>
           <div class="k">Les experts</div>
-          <h3>Une équipe d'agents spécialisés</h3>
-          <p class="pil-lead">Chaque agent porte un rôle précis et le défend. Tu en utilises 7 à 10 par projet, les autres veillent.</p>
+          <h3>Une Ã©quipe d'agents spÃ©cialisÃ©s</h3>
+          <p class="pil-lead">Chaque agent porte un rÃ´le prÃ©cis et le dÃ©fend. Tu en utilises 7 Ã  10 par projet, les autres veillent.</p>
           <ul class="pil-list">
-            <li>Juridique &amp; conformité</li>
-            <li>Sécurité &amp; durcissement</li>
-            <li>RGPD &amp; vie privée</li>
+            <li>Juridique &amp; conformitÃ©</li>
+            <li>SÃ©curitÃ© &amp; durcissement</li>
+            <li>RGPD &amp; vie privÃ©e</li>
             <li>Technique &amp; architecture</li>
-            <li>Business &amp; viabilité</li>
-            <li>Méthode &amp; cadrage</li>
+            <li>Business &amp; viabilitÃ©</li>
+            <li>MÃ©thode &amp; cadrage</li>
             <li>+ accompagnement, produit/UX</li>
           </ul>
         </div>
         <div class="card pil">
           <span class="ic"><svg aria-hidden="true"><use href="#i-bolt"/></svg></span>
           <div class="k">Les skills</div>
-          <h3>Des compétences réutilisables</h3>
-          <p class="pil-lead">Des savoir-faire encodés, déclenchés au bon moment.</p>
+          <h3>Des compÃ©tences rÃ©utilisables</h3>
+          <p class="pil-lead">Des savoir-faire encodÃ©s, dÃ©clenchÃ©s au bon moment.</p>
           <ul class="pil-list">
             <li>Cadrer un CDC</li>
-            <li>Auditer la sécurité</li>
-            <li>Vérifier les liens et la cohérence</li>
-            <li>Router vers le bon pack métier</li>
-            <li>Générer endpoints, migrations, tests</li>
+            <li>Auditer la sÃ©curitÃ©</li>
+            <li>VÃ©rifier les liens et la cohÃ©rence</li>
+            <li>Router vers le bon pack mÃ©tier</li>
+            <li>GÃ©nÃ©rer endpoints, migrations, tests</li>
             <li>Convoquer le Conseil pour trancher</li>
           </ul>
         </div>
@@ -314,12 +319,12 @@
           <span class="ic"><svg aria-hidden="true"><use href="#i-hook"/></svg></span>
           <div class="k">Les hooks</div>
           <h3>Les garde-fous automatiques</h3>
-          <p class="pil-lead">Des contrôles qui se déclenchent tout seuls. Octans ne dérape pas.</p>
+          <p class="pil-lead">Des contrÃ´les qui se dÃ©clenchent tout seuls. Octans ne dÃ©rape pas.</p>
           <ul class="pil-list">
-            <li>Lexique surveillé en continu</li>
-            <li>Cohérence vérifiée entre notes</li>
-            <li>Budget de questionnement borné</li>
-            <li>Doctrines appliquées en arrière-plan</li>
+            <li>Lexique surveillÃ© en continu</li>
+            <li>CohÃ©rence vÃ©rifiÃ©e entre notes</li>
+            <li>Budget de questionnement bornÃ©</li>
+            <li>Doctrines appliquÃ©es en arriÃ¨re-plan</li>
             <li>Anti-hallucination cousu dans le tissu</li>
           </ul>
         </div>
@@ -329,50 +334,61 @@
         .pil-lead { font-size: 14.5px; line-height: 1.55; color: var(--muted, #a8b0ba); margin: 0 0 16px; }
         .pil-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 12px; }
         .pil-list li { font-size: 14px; line-height: 1.5; color: var(--ink, #e6e6e6); padding: 6px 0 6px 20px; position: relative; }
-        .pil-list li:before { content: "›"; position: absolute; left: 4px; color: var(--green); font-weight: 700; top: 5px; }
+        .pil-list li:before { content: "â€º"; position: absolute; left: 4px; color: var(--green); font-weight: 700; top: 5px; }
       </style>
     </div>
   </section>
 
-  <!-- COMMENT ÇA MARCHE -->
-  <section class="section" style="padding-top:0;" data-ln="Comment Octans déploie ton CDC">
+  <!-- COMMENT Ã‡A MARCHE -->
+  <section class="section" style="padding-top:0;" data-ln="Comment Octans dÃ©ploie ton CDC">
     <div class="wrap">
-      <div class="section-head"><span class="eyebrow"><span class="dot"></span>Le flux</span><h2>Comment Octans déploie ton CDC.</h2></div>
+      <div class="section-head"><span class="eyebrow"><span class="dot"></span>Le flux</span><h2>Comment Octans dÃ©ploie ton CDC.</h2></div>
       <div class="flow">
-        <div class="card fl"><div class="n">1</div><h4>Tu poses ton projet</h4><p>Le questionnaire cadre ton idée — métier, ambition, contraintes.</p></div>
-        <div class="card fl"><div class="n">2</div><h4>Octans route</h4><p>Le bon pack métier se charge, les bons experts entrent en scène.</p></div>
-        <div class="card fl"><div class="n">3</div><h4><span class="claude-mark">Claude</span> exécute</h4><p>Agents et skills produisent ton CDC, en local, sur ta machine.</p></div>
-        <div class="card fl"><div class="n">4</div><h4>Les garde-fous veillent</h4><p>Hooks et audits vérifient sécurité, RGPD, cohérence à chaque étape.</p></div>
+        <div class="fl-row">
+          <div class="card fl"><div class="n">01</div><h4>Installe</h4><p>VSCode, Claude Code, Obsidian sur ta machine. Ton atelier IA prÃªt en 90 minutes.</p></div>
+          <div class="fl-sep" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="card fl"><div class="n">02</div><h4>Cadre ton projet</h4><p>Le questionnaire structure ton idÃ©e â€” mÃ©tier, ambition, contraintes.</p></div>
+          <div class="fl-sep" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="card fl"><div class="n">03</div><h4>Octans route</h4><p>Le bon pack expert se charge. Les spÃ©cialistes calibrÃ©s entrent en scÃ¨ne.</p></div>
+        </div>
+        <div class="fl-sep h" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="fl-row">
+          <div class="card fl"><div class="n">04</div><h4><span class="claude-mark">Claude</span> exÃ©cute</h4><p>Agents et skills gÃ©nÃ¨rent ton CDC complet, en local sur ta machine.</p></div>
+          <div class="fl-sep" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="card fl"><div class="n">05</div><h4>Tu valides</h4><p>Tu relis, tu ajustes, tu dÃ©cides. Brice disponible si tu bloques.</p></div>
+          <div class="fl-sep" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="card fl"><div class="n">06</div><h4>Les garde-fous veillent</h4><p>Hooks et audits automatiques â€” sÃ©curitÃ©, RGPD, cohÃ©rence Ã  chaque Ã©tape.</p></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- LES 7 CATÉGORIES -->
-  <section class="section" style="padding-top:0;" data-ln="Les 7 catégories d'experts">
+  <!-- LES 7 CATÃ‰GORIES -->
+  <section class="section" style="padding-top:0;" data-ln="Les 7 catÃ©gories d'experts">
     <div class="wrap">
-      <div class="section-head"><span class="eyebrow"><span class="dot"></span>L'équipe</span><h2>Équipe d'experts orchestrés, 7 catégories.</h2></div>
+      <div class="section-head"><span class="eyebrow"><span class="dot"></span>L'Ã©quipe</span><h2>Ã‰quipe d'experts orchestrÃ©s, 7 catÃ©gories.</h2></div>
       <div class="cats">
-        <div class="card cat"><div class="cn"><span class="dot"></span>Juridique &amp; conformité</div><p>CGV, RGPD, mentions, droits d'auteur, secteurs réglementés.</p></div>
-        <div class="card cat"><div class="cn"><span class="dot"></span>Sécurité</div><p>OWASP, ANSSI, RLS, secrets, durcissement par défaut.</p></div>
-        <div class="card cat"><div class="cn"><span class="dot"></span>Méthode &amp; cadrage</div><p>CDC, cascade pédagogique, doctrines, Conseil prismes.</p></div>
-        <div class="card cat"><div class="cn"><span class="dot"></span>Technique</div><p>Architecture, données, API, qualité du code, tests.</p></div>
-        <div class="card cat"><div class="cn"><span class="dot"></span>Business</div><p>Modèle économique, pricing, go-to-market, vente B2B.</p></div>
-        <div class="card cat"><div class="cn"><span class="dot"></span>Produit &amp; UX</div><p>Parcours, accessibilité (WCAG), anti-dark-pattern.</p></div>
+        <div class="card cat"><div class="cn"><span class="dot"></span>Juridique &amp; conformitÃ©</div><p>CGV, RGPD, mentions, droits d'auteur, secteurs rÃ©glementÃ©s.</p></div>
+        <div class="card cat"><div class="cn"><span class="dot"></span>SÃ©curitÃ©</div><p>OWASP, ANSSI, RLS, secrets, durcissement par dÃ©faut.</p></div>
+        <div class="card cat"><div class="cn"><span class="dot"></span>MÃ©thode &amp; cadrage</div><p>CDC, cascade pÃ©dagogique, doctrines, Conseil prismes.</p></div>
+        <div class="card cat"><div class="cn"><span class="dot"></span>Technique</div><p>Architecture, donnÃ©es, API, qualitÃ© du code, tests.</p></div>
+        <div class="card cat"><div class="cn"><span class="dot"></span>Business</div><p>ModÃ¨le Ã©conomique, pricing, go-to-market, vente B2B.</p></div>
+        <div class="card cat"><div class="cn"><span class="dot"></span>Produit &amp; UX</div><p>Parcours, accessibilitÃ© (WCAG), anti-dark-pattern.</p></div>
         <div class="card cat"><div class="cn"><span class="dot"></span>Accompagnement</div><p>Mentor, posture, cadence, suivi quotidien.</p></div>
-        <div class="card cat" style="display:grid;place-items:center;text-align:center;"><a href="les-experts.html" style="color:var(--green);font-weight:600;font-size:13px;">Voir l'équipe →</a></div>
+        <div class="card cat" style="display:grid;place-items:center;text-align:center;"><a href="les-experts.html" style="color:var(--green);font-weight:600;font-size:13px;">Voir l'Ã©quipe â†’</a></div>
       </div>
     </div>
   </section>
 
-  <!-- SOUS LE CAPOT — MOTEUR OCTANS EN CHIFFRES -->
+  <!-- SOUS LE CAPOT â€” MOTEUR OCTANS EN CHIFFRES -->
   <section class="section octans-stats" data-ln="Sous le capot">
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow"><span class="dot"></span>Sous le capot</span>
         <h2 id="os-headline">Le moteur Octans en chiffres.</h2>
         <p class="lead" id="os-lead">
-          Pas une démo. Pas un wrapper Claude. Un moteur effectivement codé,
-          versionné, gouverné par hooks, et prêt à tourner sur votre machine
+          Pas une dÃ©mo. Pas un wrapper Claude. Un moteur effectivement codÃ©,
+          versionnÃ©, gouvernÃ© par hooks, et prÃªt Ã  tourner sur votre machine
           le jour de l'achat.
         </p>
       </div>
@@ -381,37 +397,47 @@
         <div class="os-stat">
           <div class="big" id="os-total-lines">6 490</div>
           <div class="lbl">lignes de code et de doctrine</div>
-          <div class="sub">distribuées sur <span id="os-total-components">48</span> composants gouvernés</div>
+          <div class="sub">distribuÃ©es sur <span id="os-total-components">48</span> composants gouvernÃ©s</div>
         </div>
         <div class="os-stat">
           <div class="big" id="os-skills-count">28</div>
-          <div class="lbl">skills exécutables</div>
-          <div class="sub"><span id="os-skills-lines">3 709</span> lignes — pipeline cœur, enrichissement, audits</div>
+          <div class="lbl">skills exÃ©cutables</div>
+          <div class="sub"><span id="os-skills-lines">3 709</span> lignes â€” pipeline cÅ“ur, enrichissement, audits</div>
         </div>
         <div class="os-stat">
           <div class="big" id="os-agents-count">11</div>
-          <div class="lbl">agents spécialisés</div>
-          <div class="sub"><span id="os-agents-lines">1 994</span> lignes — frontend, backend, conformité</div>
+          <div class="lbl">agents spÃ©cialisÃ©s</div>
+          <div class="sub"><span id="os-agents-lines">1 994</span> lignes â€” frontend, backend, conformitÃ©</div>
         </div>
         <div class="os-stat">
           <div class="big" id="os-hookscmd-count">9</div>
           <div class="lbl">hooks &amp; commandes vault</div>
-          <div class="sub"><span id="os-hookscmd-lines">787</span> lignes — garde-fous mécaniques, gouvernance</div>
+          <div class="sub"><span id="os-hookscmd-lines">787</span> lignes â€” garde-fous mÃ©caniques, gouvernance</div>
         </div>
       </div>
 
       <ul class="os-argu" id="os-argu">
-        <li><b>Aucun appel cloud caché.</b> Le moteur tourne en local sur votre machine. Pas de serveur intermédiaire entre votre projet et vous.</li>
-        <li><b>Gouverné par hooks exécutables.</b> Les seuils (profondeur, budget de questions, plafond de branches) sont enforcés mécaniquement, pas par bonne volonté.</li>
-        <li><b>Multi-prismes cloisonnés.</b> Les décisions structurantes passent au filtre de plusieurs angles de pensée indépendants, pour trancher sans biais ni angle mort.</li>
-        <li><b>Vérification de cohérence continue.</b> Le moteur boucle automatiquement entre les notes voisines de votre dossier pour détecter les contradictions de chiffres, de noms, de dates et d'engagements.</li>
-        <li><b>Garde-fou anti-hallucination intégré.</b> Les affirmations datées sont systématiquement converties en questions pointant vers des sources officielles vérifiables.</li>
-        <li><b>Reproductible, paramétrable, versionné.</b> Chaque composant a une version, un historique, une date de revue programmée. Aucun composant n'est figé.</li>
+        <li><b>Aucun appel cloud cachÃ©.</b> Le moteur tourne en local sur votre machine. Pas de serveur intermÃ©diaire entre votre projet et vous.</li>
+        <li><b>GouvernÃ© par hooks exÃ©cutables.</b> Les seuils (profondeur, budget de questions, plafond de branches) sont enforcÃ©s mÃ©caniquement, pas par bonne volontÃ©.</li>
+        <li><b>Multi-prismes cloisonnÃ©s.</b> Les dÃ©cisions structurantes passent au filtre de plusieurs angles de pensÃ©e indÃ©pendants, pour trancher sans biais ni angle mort.</li>
+        <li><b>VÃ©rification de cohÃ©rence continue.</b> Le moteur boucle automatiquement entre les notes voisines de votre dossier pour dÃ©tecter les contradictions de chiffres, de noms, de dates et d'engagements.</li>
+        <li><b>Garde-fou anti-hallucination intÃ©grÃ©.</b> Les affirmations datÃ©es sont systÃ©matiquement converties en questions pointant vers des sources officielles vÃ©rifiables.</li>
+        <li><b>Reproductible, paramÃ©trable, versionnÃ©.</b> Chaque composant a une version, un historique, une date de revue programmÃ©e. Aucun composant n'est figÃ©.</li>
+        <li><b>MÃ©moire des dÃ©cisions.</b> Chaque choix structurant est consignÃ©, datÃ©, retrouvable. Aucune dÃ©cision ne se perd entre deux sessions de travail.</li>
+        <li><b>CohÃ©rence des fichiers.</b> Le moteur croise toutes les notes du dossier et dÃ©tecte les contradictions â€” chiffres, noms, dates, engagements â€” avant qu'elles coÃ»tent.</li>
+        <li><b>Exploration exhaustive.</b> Avant d'affirmer, Octans explore les pistes non Ã©videntes et balisÃ© les zones incertaines avec une transparence totale.</li>
+        <li><b>Skills enchaÃ®nÃ©s.</b> Une commande dÃ©clenche une sÃ©quence complÃ¨te â€” audit, correction, rapport â€” sans intervention manuelle entre les Ã©tapes.</li>
+        <li><b>ConformitÃ© anticipÃ©e.</b> RGPD, WCAG, CGV vÃ©rifiÃ©s en amont. Pas en urgence au go-live, quand il est trop tard pour changer d'architecture.</li>
+        <li><b>Sources vÃ©rifiÃ©es.</b> Les affirmations datÃ©es sont converties en questions pointant vers des sources officielles. Octans n'affirme pas ce qu'il ne peut pas sourcer.</li>
+        <li><b>Versionnage natif.</b> Chaque composant porte un numÃ©ro de version, une date de revue planifiÃ©e et un historique complet. Rien ne disparaÃ®t sans trace.</li>
+        <li><b>PrÃ©-mortem automatique.</b> Avant chaque dÃ©cision clÃ©, Octans simule les points de rupture potentiels et les signale avant qu'ils deviennent des coÃ»ts rÃ©els.</li>
+        <li><b>Actualisation continue.</b> Skills et agents se mettent Ã  jour. Ton CDC suit l'Ã©volution de tes outils sans tout reprendre de zÃ©ro.</li>
+        <li><b>SÃ©quenÃ§age priorisÃ©.</b> Octans cadre l'ordre des tÃ¢ches selon l'impact et les dÃ©pendances rÃ©elles â€” pas selon l'urgence perÃ§ue ou l'habitude.</li>
       </ul>
 
       <p class="os-note">
-        <span class="muted">État au <span id="os-date">17/06/2026</span> :</span>
-        <span id="os-etat">40 composants production-ready · architecture v1.2 · gouvernance par 3 hooks (budget, lint, pre-commit).</span>
+        <span class="muted">Ã‰tat au <span id="os-date">17/06/2026</span> :</span>
+        <span id="os-etat">40 composants production-ready Â· architecture v1.2 Â· gouvernance par 3 hooks (budget, lint, pre-commit).</span>
       </p>
     </div>
   </section>
@@ -425,7 +451,7 @@
     .os-stat .sub { font-size: 13px; color: var(--muted, #a8b0ba); line-height: 1.5; }
     .os-argu { list-style: none; padding: 0; margin: 0 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px 32px; }
     .os-argu li { font-size: 15px; line-height: 1.65; color: var(--muted, #a8b0ba); padding-left: 24px; position: relative; }
-    .os-argu li:before { content: "→"; position: absolute; left: 0; color: var(--green); font-weight: 600; }
+    .os-argu li:before { content: "â†’"; position: absolute; left: 0; color: var(--green); font-weight: 600; }
     .os-argu b { color: var(--ink, #e6e6e6); font-weight: 600; }
     .os-note { font-size: 13px; color: var(--muted, #a8b0ba); text-align: center; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); }
     .os-note .muted { color: rgba(168,176,186,0.6); }
@@ -436,7 +462,7 @@
   </style>
 
   <script>
-    /* Compteur dynamique — lit site/data/octans-stats.json et met à jour le bloc */
+    /* Compteur dynamique â€” lit site/data/octans-stats.json et met Ã  jour le bloc */
     (function() {
       fetch('/data/octans-stats.json', { cache: 'no-cache' })
         .then(function(r) { return r.ok ? r.json() : null; })
@@ -462,58 +488,58 @@
     })();
   </script>
 
-  <!-- OCTANS ÉVOLUE -->
-  <section class="section" style="padding-top:0;" data-ln="Octans évolue avec toi">
+  <!-- OCTANS Ã‰VOLUE -->
+  <section class="section" style="padding-top:0;" data-ln="Octans Ã©volue avec toi">
     <div class="wrap">
-      <div class="section-head"><span class="eyebrow"><span class="dot"></span>Vivant, pas figé</span><h2>Octans évolue — tu n'achètes pas une photo.</h2></div>
+      <div class="section-head"><span class="eyebrow"><span class="dot"></span>Vivant, pas figÃ©</span><h2>Octans Ã©volue â€” tu n'achÃ¨tes pas une photo.</h2></div>
       <div class="evo">
         <div class="card">
-          <h3><span class="ic"><svg aria-hidden="true"><use href="#i-refresh"/></svg></span>Toujours à jour</h3>
+          <h3><span class="ic"><svg aria-hidden="true"><use href="#i-refresh"/></svg></span>Toujours Ã  jour</h3>
           <ul>
-            <li><span class="m">›</span><span>On <b>suit et anticipe</b> les meilleures IA. Quand un modèle progresse, Octans en profite.</span></li>
-            <li><span class="m">›</span><span>De <b>nouveaux skills et agents</b> arrivent par vagues — métiers, audits, garde-fous.</span></li>
-            <li><span class="m">›</span><span>Mises à jour au choix : <b>abonnement 7,70 €/mois</b> ou <b>achat ponctuel</b> d'une version majeure. Jamais d'abonnement obligatoire.</span></li>
+            <li><span class="m">â€º</span><span>On <b>suit et anticipe</b> les meilleures IA. Quand un modÃ¨le progresse, Octans en profite.</span></li>
+            <li><span class="m">â€º</span><span>De <b>nouveaux skills et agents</b> arrivent par vagues â€” mÃ©tiers, audits, garde-fous.</span></li>
+            <li><span class="m">â€º</span><span>Mises Ã  jour au choix : <b>abonnement 7,70 â‚¬/mois</b> ou <b>achat ponctuel</b> d'une version majeure. Jamais d'abonnement obligatoire.</span></li>
           </ul>
         </div>
         <div class="card">
           <h3><span class="ic"><svg aria-hidden="true"><use href="#i-cpu"/></svg></span>Portable, jamais captif</h3>
           <ul>
-            <li><span class="m">›</span><span>Octans tourne <b>chez toi</b>, en local. Tes idées ne quittent pas ta machine.</span></li>
-            <li><span class="m">›</span><span>La méthode reste <b>la tienne</b> : tu peux changer d'IA, Octans s'adapte.</span></li>
-            <li><span class="m">›</span><span><em>« L'IA se remplace. Ta méthode, non. »</em></span></li>
+            <li><span class="m">â€º</span><span>Octans tourne <b>chez toi</b>, en local. Tes idÃ©es ne quittent pas ta machine.</span></li>
+            <li><span class="m">â€º</span><span>La mÃ©thode reste <b>la tienne</b> : tu peux changer d'IA, Octans s'adapte.</span></li>
+            <li><span class="m">â€º</span><span><em>Â« L'IA se remplace. Ta mÃ©thode, non. Â»</em></span></li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- OCTANS × PACKS -->
+  <!-- OCTANS Ã— PACKS -->
   <section class="section" style="padding-top:0;" data-ln="Octans dans chaque pack">
     <div class="wrap">
-      <div class="section-head"><span class="eyebrow"><span class="dot"></span>Ce que tu débloques</span><h2>Octans dans chaque pack.</h2></div>
+      <div class="section-head"><span class="eyebrow"><span class="dot"></span>Ce que tu dÃ©bloques</span><h2>Octans dans chaque pack.</h2></div>
       <div class="card" style="padding:6px 6px;overflow-x:auto;">
         <table class="ptable">
-          <thead><tr><th>Pack</th><th>Ce que tu obtiens d'Octans</th><th>Téléchargements</th></tr></thead>
+          <thead><tr><th>Pack</th><th>Ce que tu obtiens d'Octans</th><th>TÃ©lÃ©chargements</th></tr></thead>
           <tbody>
             <tr class="hl">
-              <td><span class="pp">Pack CDC Méthode</span><br /><span class="pr">197€</span></td>
-              <td class="feat">Octans <b>complet</b> : skills, agents, hooks, audits automatiques (sécurité, RGPD, a11y), équipe d'experts orchestrés. Tout dans ton vault local.</td>
-              <td class="feat">Bundle Octans : <code>skills/</code> · <code>agents/</code> · <code>hooks/</code> · <code>settings.json</code> · CLAUDE.md templates · archétypes CDC</td>
+              <td><span class="pp">Pack CDC MÃ©thode</span><br /><span class="pr">197â‚¬</span></td>
+              <td class="feat">Octans <b>complet</b> : skills, agents, hooks, audits automatiques (sÃ©curitÃ©, RGPD, a11y), Ã©quipe d'experts orchestrÃ©s. Tout dans ton vault local.</td>
+              <td class="feat">Bundle Octans : <code>skills/</code> Â· <code>agents/</code> Â· <code>hooks/</code> Â· <code>settings.json</code> Â· CLAUDE.md templates Â· archÃ©types CDC</td>
             </tr>
             <tr>
-              <td><span class="pp">Accompagnement individuel</span><br /><span class="pr">147€ / 1h</span></td>
-              <td class="feat">Visio 1h avec Brice pour <b>débloquer ton point dur</b> sur Octans. Questionnaire pré-entretien obligatoire + Cal.com.</td>
-              <td class="feat">Pas de téléchargement supplémentaire — Octans déjà installé via le Pack. Tu repars avec des doctrines ajustées.</td>
+              <td><span class="pp">Accompagnement individuel</span><br /><span class="pr">147â‚¬ / 1h</span></td>
+              <td class="feat">Visio 1h avec Brice pour <b>dÃ©bloquer ton point dur</b> sur Octans. Questionnaire prÃ©-entretien obligatoire + Cal.com.</td>
+              <td class="feat">Pas de tÃ©lÃ©chargement supplÃ©mentaire â€” Octans dÃ©jÃ  installÃ© via le Pack. Tu repars avec des doctrines ajustÃ©es.</td>
             </tr>
             <tr>
-              <td><span class="pp">Mises à jour</span><br /><span class="pr">7,70€/mois OU 197€</span></td>
-              <td class="feat">MAJ Octans en continu (abo) OU achat one-shot à la version majeure. <b>Aucun abo obligatoire.</b></td>
-              <td class="feat">Bundle Octans mis à jour à chaque release · changelog inclus</td>
+              <td><span class="pp">Mises Ã  jour</span><br /><span class="pr">7,70â‚¬/mois OU 197â‚¬</span></td>
+              <td class="feat">MAJ Octans en continu (abo) OU achat one-shot Ã  la version majeure. <b>Aucun abo obligatoire.</b></td>
+              <td class="feat">Bundle Octans mis Ã  jour Ã  chaque release Â· changelog inclus</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p class="note" style="margin-top:14px;"><svg aria-hidden="true" style="width:15px;height:15px;color:var(--green)"><use href="#i-shield"/></svg>Téléchargements en liens signés, valables 24&nbsp;h — renouvelables autant de fois que tu veux, dans ton espace.</p>
+      <p class="note" style="margin-top:14px;"><svg aria-hidden="true" style="width:15px;height:15px;color:var(--green)"><use href="#i-shield"/></svg>TÃ©lÃ©chargements en liens signÃ©s, valables 24&nbsp;h â€” renouvelables autant de fois que tu veux, dans ton espace.</p>
     </div>
   </section>
 
@@ -521,7 +547,7 @@
   <section class="section" style="padding-top:0;" data-ln="Mets Octans au travail">
     <div class="wrap"><div class="card cta-strip">
       <h2>Mets <span class="em">Octans</span> au travail sur ton projet.</h2>
-      <p>Un CDC complet, des experts orchestrés, des garde-fous automatiques — en local, à toi.</p>
+      <p>Un CDC complet, des experts orchestrÃ©s, des garde-fous automatiques â€” en local, Ã  toi.</p>
       <div class="cta"><a class="btn btn-primary" href="index.html#produits">Voir les packs<svg aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="btn btn-ghost" href="orientation-gratuite.html">Orientation gratuite</a></div>
     </div></div>
   </section>
@@ -532,46 +558,46 @@
     <div class="sp-foot-cols">
       <div class="sp-foot-about">
         <a class="logo" href="index.html" style="display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;"><span class="mark" data-mark style="width:36px;height:42px;display:inline-block;"></span><span class="wm" style="font-family:var(--font-display);font-weight:600;font-size:17px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);">Stack<b>Protocol</b></span></a>
-        <p style="font-size:13.5px;line-height:1.55;color:var(--muted);margin:0;max-width:340px;">Une méthode reproductible pour structurer ton projet en local, avec Claude Code. Tes idées restent chez toi. Souveraineté française · OVH · sans tracking.</p>
+        <p style="font-size:13.5px;line-height:1.55;color:var(--muted);margin:0;max-width:340px;">Une mÃ©thode reproductible pour structurer ton projet en local, avec Claude Code. Tes idÃ©es restent chez toi. SouverainetÃ© franÃ§aise Â· OVH Â· sans tracking.</p>
       </div>
       <div class="sp-foot-col">
         <h4>Explorer</h4>
         <a href="pour-qui.html">Pour qui</a>
-        <a href="la-methode.html">La méthode</a>
+        <a href="la-methode.html">La mÃ©thode</a>
         <a href="octans.html">Octans</a>
         <a href="le-cdc-portable.html">Le CDC portable</a>
-        <a href="souverainete.html">Souveraineté</a>
+        <a href="souverainete.html">SouverainetÃ©</a>
         <a href="cabinet-vs-stackprotocol.html">Cabinet vs StackProtocol</a>
       </div>
       <div class="sp-foot-col">
         <h4>Produits</h4>
-        <a href="produits/pack-methode.html">Pack CDC Méthode — 197 €</a>
-        <a href="produits/coaching.html">Accompagnement — 147 €/1h</a>
-        <a href="produits/pack-methode.html#maj">Mises à jour 7,70 €/mois</a>
+        <a href="produits/pack-methode.html">Pack CDC MÃ©thode â€” 197 â‚¬</a>
+        <a href="produits/coaching.html">Accompagnement â€” 147 â‚¬/1h</a>
+        <a href="produits/pack-methode.html#maj">Mises Ã  jour 7,70 â‚¬/mois</a>
         <a href="orientation-gratuite.html">Orientation gratuite</a>
-        <a href="cpf.html">CPF (bientôt)</a>
+        <a href="cpf.html">CPF (bientÃ´t)</a>
       </div>
       <div class="sp-foot-col">
-        <h4>Compte &amp; légal</h4>
+        <h4>Compte &amp; lÃ©gal</h4>
         <a href="login.html">Se connecter</a>
-        <a href="qui-je-suis.html">À propos · Brice</a>
+        <a href="qui-je-suis.html">Ã€ propos Â· Brice</a>
         <a href="faq.html">FAQ</a>
         <a href="legal/satisfaction.html">Politique de satisfaction</a>
         <a href="legal/cgv.html">CGV</a>
-        <a href="legal/mentions.html">Mentions légales</a>
-        <a href="legal/rgpd.html">RGPD &amp; données</a>
+        <a href="legal/mentions.html">Mentions lÃ©gales</a>
+        <a href="legal/rgpd.html">RGPD &amp; donnÃ©es</a>
       </div>
     </div>
     <div class="sp-foot-doctrines">
-      <span class="sp-d"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>0 mot de passe — magic links</span>
+      <span class="sp-d"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>0 mot de passe â€” magic links</span>
       <span class="sp-d"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Sans tracking comportemental</span>
-      <span class="sp-d"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Rétractation 14 jours</span>
+      <span class="sp-d"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>RÃ©tractation 14 jours</span>
       <span class="sp-d"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>WCAG 2.2 AA</span>
       <span class="sp-d"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>OVH France</span>
     </div>
     <div class="sp-foot-legal">
-      <span>© 2026 StackProtocol — Brice DeCampos. Tous droits réservés. · <a href="mailto:contact@stackprotocol.fr">contact@stackprotocol.fr</a></span>
-      <span>🇫🇷 Hébergement OVH · Plausible self-host · Brevo FR · Stripe FR · 0 tracking GAFAM</span>
+      <span>Â© 2026 StackProtocol â€” Brice DeCampos. Tous droits rÃ©servÃ©s. Â· <a href="mailto:contact@stackprotocol.fr">contact@stackprotocol.fr</a></span>
+      <span>ðŸ‡«ðŸ‡· HÃ©bergement OVH Â· Plausible self-host Â· Brevo FR Â· Stripe FR Â· 0 tracking GAFAM</span>
     </div>
   </div>
 </footer>

@@ -46,7 +46,7 @@
   @media (max-width: 720px) { .cards { grid-template-columns: 1fr; } .row2 { grid-template-columns: 1fr; } }
 </style>
 </head>
-<body>
+<body data-sp-protect="true">
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
   <linearGradient id="sp-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#159FCB"/></linearGradient>
@@ -171,6 +171,7 @@
 <script>
   (function(){var t=document.getElementById('mark-svg');document.querySelectorAll('[data-mark]').forEach(function(s,i){var node=t.content.cloneNode(true);var svg=node.querySelector('svg');svg.innerHTML=svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,'$1$2_'+i);s.appendChild(node);});})();
 </script>
+<script src="../auth-guard.js"></script>
 <script src="../cookies-banner.js" defer></script>
 <script src="../brand.js" defer></script>
 </body>

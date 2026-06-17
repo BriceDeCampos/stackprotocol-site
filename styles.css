@@ -116,9 +116,9 @@ header .links a.on::after, header .links a[aria-current="page"]::after {
 @media (prefers-reduced-motion: reduce) { .btn-breathe { animation: none; } }
 
 /* ── Logo mark ── */
-.logo { display: inline-flex; align-items: center; gap: 12px; }
-.logo .mark { width: 30px; height: 38px; flex-shrink: 0; filter: drop-shadow(0 4px 14px rgba(24,180,204,0.30)); }
-.logo .wm { font-family: var(--font-display); font-weight: 600; font-size: 19px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); }
+.logo { display: inline-flex; align-items: center; gap: 8px; }
+.logo .mark { width: 22px; height: 28px; flex-shrink: 0; filter: drop-shadow(0 3px 10px rgba(24,180,204,0.28)); }
+.logo .wm { font-family: var(--font-display); font-weight: 600; font-size: 14.5px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--ink); }
 .logo .wm b { font-weight: 600; color: var(--ink-2); }
 
 /* ── Pills / tags ── */

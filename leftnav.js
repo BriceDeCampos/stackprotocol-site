@@ -43,7 +43,10 @@
       if (!s.id) s.id = 'ln-sec-' + i;
       var a = document.createElement('a');
       a.href = '#' + s.id;
-      a.appendChild(document.createTextNode(s.getAttribute('data-ln')));
+      var lbl = document.createElement('span');
+      lbl.className = 'ln-label';
+      lbl.textContent = s.getAttribute('data-ln');
+      a.appendChild(lbl);
       var cnt = s.getAttribute('data-ln-count');
       if (cnt) {
         var c = document.createElement('span');
