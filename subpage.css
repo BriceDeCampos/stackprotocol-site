@@ -2,7 +2,7 @@
 .subnav { position: sticky; top: 0; z-index: 50; background: rgba(43,46,46,0.72); backdrop-filter: blur(14px) saturate(140%); border-bottom: 1px solid var(--line); }
 .subnav .wrap { display: flex; align-items: center; gap: 18px; height: 70px; max-width: none; padding: 0 28px 0 8px; }
 .subnav .links { display: flex; align-items: center; gap: 26px; margin-left: 8px; flex-wrap: nowrap; white-space: nowrap; }
-.subnav .links a { position: relative; font-size: 15.5px; font-weight: 500; color: var(--muted); transition: color .2s; padding-bottom: 4px; }
+.subnav .links a { position: relative; font-size: 14px; font-weight: 500; color: var(--muted); transition: color .2s; padding-bottom: 4px; }
 .subnav .links a:hover, .subnav .links a.on { color: var(--ink); }
 .subnav .links a.on::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; border-radius: 2px;
