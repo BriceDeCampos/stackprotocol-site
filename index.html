@@ -32,6 +32,9 @@
 
   /* ===== HERO ===== */
   .hero { position: relative; padding: 56px 0 64px; overflow: hidden; }
+  /* Pill garantie style btn-primary mini */
+  .gtag-btn { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #0a0a0a; background: var(--green); border-radius: 999px; margin-left: 10px; transition: background .15s; }
+  .gtag-btn:hover { background: #4eecaf; }
   .hero .roles-line { display: flex; align-items: center; gap: 11px; flex-wrap: wrap; white-space: normal; font-size: 13.5px; font-weight: 500; letter-spacing: 0.04em; color: var(--muted); margin: 8px 0 28px; min-width: 0; max-width: 100%; }
   .hero .roles-line .sep { width: 5px; height: 5px; border-radius: 50%; background: var(--green); flex-shrink: 0; opacity: .85; }
   .hero .roles-line .tl { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-weight: 600; flex-shrink: 0; }
@@ -396,17 +399,24 @@
         <h1 style="margin-top:0;font-size:clamp(26px,3.2vw,36px);">Préparer son projet · son CDC.
           <span class="h1-subline"><span class="h1-sub small h1-souv" style="margin-top:0;"><span class="dot-souv"></span>Cahier des charges en local.</span><span class="h1-sub small h1-souv" style="margin-top:0;"><span class="eq-souv">&gt;</span>Souveraineté.</span></span>
         </h1>
-        <p class="note" style="margin-top:10px;"><svg aria-hidden="true"><use href="#i-shield"/></svg>1 Jour de travail = 2 Mois de production<span class="gtag gtag-note">Garantie</span></p>
-        <p class="sub" style="margin-top:46px;"><b class="octans-tip">OCTANS</b><br /><span class="octans-side" style="margin-left:0;">Elle s'appelle <b style="color:#F2B186;font-weight:400;">Octans</b> — la <b style="color:var(--ink);font-weight:600;text-shadow:0 0 10px rgba(255,255,255,0.25);">constellation</b> d'<b style="color:var(--ink);font-weight:600;">agents</b> et de <b style="color:var(--ink);font-weight:600;">skills</b>.</span><br /><span class="sub-small">Architecte d'équipes <span class="em-txt">IA Experts</span> — le cerveau moteur puissant de StackProtocol, boosté par <span class="claude-mark">Claude</span>.</span><br /><span class="sub-small" style="color:var(--muted);">On suit et anticipe les meilleures IA — agents et skills toujours à jour.</span></p>
-        <div class="cta" style="margin-top:56px;">
+        <p class="note" style="margin-top:10px;"><svg aria-hidden="true"><use href="#i-shield"/></svg>1 Jour de travail = 2 Mois de production<a class="gtag-btn" href="legal/satisfaction.html">Garantie</a></p>
+        <div class="cta" style="margin-top:36px;">
           <a class="btn btn-sm btn-primary btn-breathe" href="#produits">Commencer<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a class="btn btn-sm btn-ghost" href="orientation-gratuite.html">Orientation gratuite</a>
+          <a class="btn btn-sm btn-primary" href="orientation-gratuite.html">Orientation gratuite</a>
         </div>
       </div>
       <div class="art">
         <div class="cortex-wrap">
           <div id="cortex" aria-hidden="true"></div>
           <p class="cortex-legend"><b style="color:var(--orange);font-weight:600;">Octans</b><br />Le cerveau d'ingénierie qui déploie ton cahier des charges.</p>
+        </div>
+        <div class="octans-block" style="margin:18px 0 22px;padding:18px 22px;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);border-radius:12px;">
+          <div style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:0.12em;color:var(--orange);">OCTANS</div>
+          <ul style="list-style:none;padding:0;margin:10px 0 0;display:flex;flex-direction:column;gap:8px;">
+            <li style="font-size:13.5px;line-height:1.5;color:var(--ink-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--green);font-weight:700;">›</span>La <b style="color:var(--ink);">constellation</b> d'<b style="color:var(--ink);">agents</b> et de <b style="color:var(--ink);">skills</b>.</li>
+            <li style="font-size:13.5px;line-height:1.5;color:var(--ink-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--green);font-weight:700;">›</span>Architecte d'<b style="color:var(--ink);">équipes IA Experts</b> — boosté par <span class="claude-mark">Claude</span>.</li>
+            <li style="font-size:13.5px;line-height:1.5;color:var(--ink-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--green);font-weight:700;">›</span>Agents et skills <b style="color:var(--ink);">toujours à jour</b>.</li>
+          </ul>
         </div>
         <div class="art-carousel" aria-label="Présentation animée">
           <div class="art-slide is-active art-stat art-promise" data-art>

@@ -12,21 +12,57 @@
 <link rel="stylesheet" href="../styles.css" />
 <link rel="stylesheet" href="../subpage.css" />
 <style>
-  .legal-hero { padding: 56px 24px 32px; text-align: center; max-width: 760px; margin: 0 auto; }
+  .legal-hero { padding: 56px 24px 24px; text-align: center; max-width: 760px; margin: 0 auto; }
   .legal-hero h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(32px, 4vw, 44px); line-height: 1.1; letter-spacing: -0.02em; margin: 12px 0; }
-  .legal-hero .sub { color: var(--muted); font-size: 16px; line-height: 1.6; }
-  .legal-content { max-width: 760px; margin: 0 auto 80px; padding: 0 24px; }
-  .legal-content section { margin-bottom: 38px; }
-  .legal-content h2 { font-family: var(--font-display); font-weight: 600; font-size: 22px; margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
-  .legal-content h3 { font-family: var(--font-display); font-weight: 600; font-size: 17px; margin: 22px 0 8px; color: var(--ink); }
-  .legal-content p, .legal-content li { font-size: 15px; line-height: 1.7; color: var(--ink-2); }
-  .legal-content ul { padding-left: 0; list-style: none; margin: 12px 0; }
-  .legal-content ul li { padding: 6px 0 6px 22px; position: relative; }
-  .legal-content ul li::before { content: "›"; position: absolute; left: 6px; color: var(--green); font-weight: 700; }
-  .legal-content .promise { padding: 20px 24px; background: rgba(60,229,163,0.05); border-left: 3px solid var(--green); border-radius: 8px; margin: 24px 0; font-size: 15px; }
+  .legal-hero .sub { color: var(--muted); font-size: 15px; line-height: 1.55; }
+
+  /* Slide éthique : 4 promesses visuelles */
+  .ethics-slide { max-width: 920px; margin: 30px auto 50px; padding: 0 24px; }
+  .ethics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .ethics-card { padding: 22px 18px; text-align: center; border: 1px solid rgba(60,229,163,0.18); border-radius: 14px; background: linear-gradient(135deg, rgba(60,229,163,0.05), rgba(21,159,203,0.03)); transition: transform .2s, border-color .2s; }
+  .ethics-card:hover { transform: translateY(-2px); border-color: rgba(60,229,163,0.4); }
+  .ethics-card svg { width: 28px; height: 28px; color: var(--green); margin-bottom: 12px; }
+  .ethics-card h3 { font-family: var(--font-display); font-weight: 600; font-size: 14.5px; margin: 0 0 6px; color: var(--ink); line-height: 1.3; }
+  .ethics-card p { font-size: 12.5px; line-height: 1.5; color: var(--muted); margin: 0; }
+
+  .legal-content { max-width: 720px; margin: 0 auto 80px; padding: 0 24px; }
+  .legal-content section { margin-bottom: 36px; }
+  .legal-content h2 { font-family: var(--font-display); font-weight: 600; font-size: 22px; margin: 0 0 16px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+  .legal-content h3 { font-family: var(--font-display); font-weight: 600; font-size: 16px; margin: 18px 0 8px; color: var(--ink); }
+  .legal-content p, .legal-content li { font-size: 15px; line-height: 1.65; color: var(--ink-2); }
+  .legal-content p { margin: 8px 0; }
+  .legal-content ul { padding-left: 0; list-style: none; margin: 10px 0; }
+  .legal-content ul li { padding: 5px 0 5px 20px; position: relative; }
+  .legal-content ul li::before { content: "›"; position: absolute; left: 4px; color: var(--green); font-weight: 700; top: 3px; }
+  .legal-content .promise { padding: 16px 20px; background: rgba(60,229,163,0.05); border-left: 3px solid var(--green); border-radius: 8px; margin: 18px 0; font-size: 14.5px; line-height: 1.55; }
   .legal-content .promise b { color: var(--ink); }
-  .legal-content .warn { padding: 14px 18px; background: rgba(255,180,0,0.05); border-left: 3px solid #f5a623; border-radius: 8px; margin: 18px 0; font-size: 14px; color: var(--ink-2); }
+  .legal-content .warn { padding: 12px 16px; background: rgba(255,180,0,0.05); border-left: 3px solid #f5a623; border-radius: 8px; margin: 14px 0; font-size: 13.5px; color: var(--ink-2); line-height: 1.55; }
   .legal-content a { color: var(--green); text-decoration: underline; text-underline-offset: 2px; }
+
+  /* Choice cards "Au moment de l'achat" */
+  .choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+  .choice-card { padding: 18px 18px; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; background: rgba(255,255,255,0.02); }
+  .choice-card h4 { font-family: var(--font-display); font-weight: 600; font-size: 14.5px; color: var(--ink); margin: 0 0 8px; display: flex; align-items: center; gap: 8px; }
+  .choice-card h4 svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .choice-card.green { border-color: rgba(60,229,163,0.25); background: rgba(60,229,163,0.04); }
+  .choice-card.green h4 svg { color: var(--green); }
+  .choice-card.orange { border-color: rgba(245,166,35,0.22); background: rgba(245,166,35,0.04); }
+  .choice-card.orange h4 svg { color: #f5a623; }
+  .choice-card ul { margin: 8px 0 0; padding: 0; list-style: none; }
+  .choice-card ul li { font-size: 13px; line-height: 1.5; color: var(--ink-2); padding: 3px 0 3px 16px; position: relative; }
+  .choice-card ul li::before { content: "·"; position: absolute; left: 4px; color: var(--muted); font-weight: 700; top: -2px; font-size: 18px; }
+
+  /* Contact card */
+  .contact-card { padding: 22px 26px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; margin: 16px 0; }
+  .contact-card .email-line { font-size: 17px; font-weight: 600; color: var(--ink); margin: 6px 0; }
+  .contact-card .email-line a { color: var(--green); }
+  .contact-card .where { font-size: 13px; color: var(--muted); margin-top: 10px; line-height: 1.5; }
+
+  @media (max-width: 720px) {
+    .ethics-grid { grid-template-columns: 1fr 1fr; }
+    .choice-grid { grid-template-columns: 1fr; }
+    .legal-content { padding: 0 18px; }
+  }
 </style>
 </head>
 <body>
@@ -35,6 +71,12 @@
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-unlock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7 11V7a5 5 0 0 1 9.9-1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m22 6-10 7L2 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
 </defs></svg>
 
 <template id="mark-svg">
@@ -71,101 +113,145 @@
 <main>
   <section class="legal-hero">
     <span class="pill" style="display:inline-block;padding:6px 14px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);background:rgba(60,229,163,0.08);border:1px solid rgba(60,229,163,0.22);border-radius:999px;">Politique de satisfaction</span>
-    <h1>Tu changes d'avis ? <span class="grad-text">14 jours pour te rétracter.</span></h1>
-    <p class="sub">Pas de piège, pas de surprise. On t'explique noir sur blanc ce qui est remboursable, dans quels délais, et comment procéder. Si on n'a pas tenu nos promesses, on te rend ton argent.</p>
+    <h1>14 jours pour <span class="grad-text">changer d'avis.</span></h1>
+    <p class="sub">Pas de piège. Pas de surprise. Voici comment ça marche, en clair.</p>
+  </section>
+
+  <!-- SLIDE ÉTHIQUE -->
+  <section class="ethics-slide">
+    <div class="ethics-grid">
+      <div class="ethics-card">
+        <svg aria-hidden="true"><use href="#i-shield"/></svg>
+        <h3>Tu changes d'avis</h3>
+        <p>14 jours pour te rétracter — aucune justification.</p>
+      </div>
+      <div class="ethics-card">
+        <svg aria-hidden="true"><use href="#i-heart"/></svg>
+        <h3>On joue cartes sur table</h3>
+        <p>Pas de petits caractères. Aucune surprise au remboursement.</p>
+      </div>
+      <div class="ethics-card">
+        <svg aria-hidden="true"><use href="#i-eye"/></svg>
+        <h3>Tu vois où va ton argent</h3>
+        <p>Paiement unique sécurisé. Pas d'abo caché.</p>
+      </div>
+      <div class="ethics-card">
+        <svg aria-hidden="true"><use href="#i-unlock"/></svg>
+        <h3>Aucun lock-in</h3>
+        <p>Tout reste sur ta machine. Tu pars quand tu veux.</p>
+      </div>
+    </div>
   </section>
 
   <div class="legal-content">
 
+    <!-- 1. RÉTRACTATION 14 J -->
     <section>
-      <h2>1. Droit de rétractation légal — 14 jours</h2>
-      <p>Conformément à l'<b>article L221-18 du Code de la consommation</b>, en tant que consommateur, tu disposes d'un <b>délai de 14 jours calendaires</b> à compter de la date de ton achat pour te rétracter et obtenir le remboursement intégral de ton paiement.</p>
-
-      <h3>Comment exercer ton droit de rétractation ?</h3>
+      <h2>1. Tes 14 jours pour te rétracter</h2>
+      <p>Tu as <b>14 jours</b> à compter de ton achat pour changer d'avis. C'est la loi (<a href="#">art. L221-18 du Code de la consommation</a>).</p>
       <ul>
-        <li>Envoie un email à <a href="mailto:contact@stackprotocol.fr">contact@stackprotocol.fr</a> avec l'objet « Rétractation [n° de commande] »</li>
-        <li>Reçois un accusé sous 24 h ouvrées</li>
-        <li>Remboursement effectué sous <b>14 jours maximum</b> sur le moyen de paiement initial</li>
+        <li>Tu nous écris à <a href="mailto:contact@stackprotocol.fr">contact@stackprotocol.fr</a></li>
+        <li>Tu reçois un accusé sous 24 h ouvrées</li>
+        <li>On te rembourse sous 14 jours maximum</li>
       </ul>
-
       <div class="promise">
-        🛡️ <b>Promesse simple</b> : pendant 14 jours, tu peux nous écrire et te faire rembourser sans devoir te justifier. Tu n'as même pas à invoquer un motif.
+        🛡️ <b>Notre engagement</b> : tu n'as pas à te justifier. Tu changes d'avis ? On rembourse.
       </div>
     </section>
 
+    <!-- 2. PACK CDC NUMÉRIQUE -->
     <section>
-      <h2>2. Cas particulier des produits numériques (Pack CDC Méthode)</h2>
-      <p>Le Pack CDC Méthode est un <b>contenu numérique non fourni sur support matériel</b>. La loi (article L221-28 du Code de la consommation) prévoit une exception au droit de rétractation pour ce type de produit <b>SI</b> deux conditions sont remplies :</p>
-      <ul>
-        <li>L'exécution a commencé avec ton <b>accord exprès préalable</b></li>
-        <li>Tu as <b>expressément renoncé</b> à ton droit de rétractation</li>
-      </ul>
+      <h2>2. Pack CDC Méthode — tu choisis quand télécharger</h2>
+      <p>Le Pack CDC est un produit numérique. La loi (<a href="#">art. L221-28</a>) prévoit qu'une fois téléchargé, ton droit de rétractation peut s'éteindre. <b>On t'explique ça avant l'achat</b> et on te laisse choisir :</p>
 
-      <h3>Notre engagement</h3>
-      <p>Au moment de l'achat, nous te demandons <b>explicitement</b> si tu souhaites un accès immédiat au téléchargement du zip Octans :</p>
-      <ul>
-        <li><b>Si tu choisis l'accès immédiat</b> → tu acceptes de renoncer à ton droit de rétractation. Le zip est livré dans la foulée. Remboursement non garanti après accès.</li>
-        <li><b>Si tu choisis d'attendre la fin du délai de 14 jours</b> → ton accès est différé. Tu gardes ton droit de rétractation pendant 14 jours.</li>
-      </ul>
+      <div class="choice-grid">
+        <div class="choice-card green">
+          <h4><svg aria-hidden="true"><use href="#i-check"/></svg>Option A — Accès immédiat</h4>
+          <ul>
+            <li>Tu télécharges le zip tout de suite</li>
+            <li>Tu démarres ton installation dans la foulée</li>
+            <li>En contrepartie : tu renonces à ta rétractation 14 j</li>
+          </ul>
+        </div>
+        <div class="choice-card orange">
+          <h4><svg aria-hidden="true"><use href="#i-shield"/></svg>Option B — Accès différé</h4>
+          <ul>
+            <li>Tu attends la fin du délai de 14 jours</li>
+            <li>Le zip est livré après ces 14 jours</li>
+            <li>Tu gardes ton droit de rétractation entier</li>
+          </ul>
+        </div>
+      </div>
 
       <div class="promise">
-        🛡️ <b>Notre engagement de bonne foi</b> : même si tu as choisi l'accès immédiat, si tu nous écris dans les 14 jours en expliquant que <b>la méthode ne te convient vraiment pas</b>, nous étudierons un geste commercial au cas par cas. <b>Pas de petits caractères, pas d'arnaque.</b>
+        🛡️ <b>Geste commercial</b> : même si tu as choisi l'accès immédiat, si la méthode ne te convient pas, écris-nous dans les 14 j. On étudie au cas par cas. <b>Pas de mauvaise foi de notre côté.</b>
       </div>
     </section>
 
+    <!-- 3. ACCOMPAGNEMENT -->
     <section>
-      <h2>3. Accompagnement individuel (147 € / 1h)</h2>
-      <p>Pour l'accompagnement individuel à l'heure, le droit de rétractation s'applique différemment selon le statut de la séance :</p>
+      <h2>3. Accompagnement individuel — 147 € / 1h</h2>
+      <p>Pour les séances individuelles, les règles sont simples :</p>
       <ul>
-        <li><b>Avant la séance</b> : annulation gratuite jusqu'à <b>24 heures avant</b> l'horaire prévu. Remboursement intégral sous 14 jours.</li>
-        <li><b>Moins de 24 h avant la séance</b> : la séance est due. Tu peux toutefois la <b>reprogrammer une fois</b> sans frais supplémentaires.</li>
-        <li><b>Après la séance</b> : la prestation a été délivrée. Pas de remboursement, sauf cas exceptionnel (panne technique de notre côté, séance écourtée sans rattrapage).</li>
+        <li><b>Avant J-1</b> (plus de 24 h avant) : annulation gratuite, remboursement intégral</li>
+        <li><b>Moins de 24 h avant</b> : tu peux reprogrammer une fois sans frais</li>
+        <li><b>Après la séance</b> : pas de remboursement (la prestation a été délivrée)</li>
       </ul>
-
       <div class="warn">
-        ⚠️ Le questionnaire pré-entretien est obligatoire <b>avant</b> la séance. S'il n'est pas rempli 24 h avant, nous nous réservons le droit de reporter la séance pour préserver sa qualité.
+        ⚠️ Le questionnaire pré-entretien est obligatoire. Sans questionnaire 24 h avant, on reporte la séance.
       </div>
     </section>
 
+    <!-- 4. ABO MAJ -->
     <section>
-      <h2>4. Abonnement mises à jour (7,70 € / mois)</h2>
-      <p>L'abonnement aux mises à jour est <b>sans engagement</b>. Tu peux résilier à tout moment, depuis ton espace perso ou par email.</p>
+      <h2>4. Abonnement mises à jour — 7,70 € / mois</h2>
       <ul>
-        <li>Résiliation effective <b>en fin de mois en cours</b></li>
-        <li>Tu conserves <b>l'accès à toutes les versions reçues</b> pendant ton abonnement</li>
-        <li>Pas de pénalité, pas de rétention forcée</li>
+        <li>Sans engagement</li>
+        <li>Résiliation à tout moment depuis ton espace perso</li>
+        <li>Résiliation effective fin du mois en cours</li>
+        <li>Tu conserves toutes les versions reçues pendant ton abonnement</li>
       </ul>
     </section>
 
+    <!-- 5+6 — Ce qu'on rembourse / pas -->
     <section>
-      <h2>5. Ce que nous remboursons</h2>
-      <ul>
-        <li>✅ Pack CDC Méthode : si rétractation dans les 14 j et que tu n'as pas choisi l'accès immédiat</li>
-        <li>✅ Accompagnement individuel : annulation > 24 h avant</li>
-        <li>✅ Abonnement MAJ : prorata du mois non consommé si bug majeur de notre côté</li>
-        <li>✅ Erreur de facturation, double paiement, panne technique</li>
-      </ul>
-
-      <h2>6. Ce que nous ne remboursons pas (et pourquoi)</h2>
-      <ul>
-        <li>❌ Pack CDC après accès immédiat consenti, sauf geste commercial</li>
-        <li>❌ Séance d'accompagnement déjà tenue</li>
-        <li>❌ Changement d'avis &gt; 14 jours après achat</li>
-        <li>❌ Insatisfaction liée à un manque d'investissement personnel (la méthode demande du travail — c'est dit clairement)</li>
-      </ul>
+      <h2>5. Ce qu'on rembourse</h2>
+      <div class="choice-grid">
+        <div class="choice-card green">
+          <h4><svg aria-hidden="true"><use href="#i-check"/></svg>Oui</h4>
+          <ul>
+            <li>Pack CDC en Option B (accès différé)</li>
+            <li>Pack CDC en Option A si geste commercial</li>
+            <li>Accompagnement annulé plus de 24 h avant</li>
+            <li>Abonnement : prorata si bug majeur de notre côté</li>
+            <li>Erreur de facturation · double paiement</li>
+          </ul>
+        </div>
+        <div class="choice-card orange">
+          <h4><svg aria-hidden="true"><use href="#i-x"/></svg>Non</h4>
+          <ul>
+            <li>Pack CDC après accès immédiat consenti</li>
+            <li>Séance déjà tenue</li>
+            <li>Changement d'avis &gt; 14 jours</li>
+            <li>Insatisfaction liée à un manque de travail personnel</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
+    <!-- 6. CONTACT -->
     <section>
-      <h2>7. Contact pour toute demande</h2>
-      <p>Pour toute question, réclamation, ou demande de rétractation :</p>
-      <ul>
-        <li>📧 Email : <a href="mailto:contact@stackprotocol.fr">contact@stackprotocol.fr</a></li>
-        <li>📍 Réponse sous 48 h ouvrées maximum</li>
-        <li>🇫🇷 Médiation de la consommation disponible si désaccord persistant (cf. <a href="cgv.html">CGV</a>)</li>
-      </ul>
+      <h2>6. Contact — où vont les messages ?</h2>
+      <div class="contact-card">
+        <p style="margin:0;font-size:14px;color:var(--muted);">📬 Adresse unique pour toute demande :</p>
+        <p class="email-line"><svg aria-hidden="true" style="width:18px;height:18px;vertical-align:middle;color:var(--green);margin-right:6px;"><use href="#i-mail"/></svg><a href="mailto:contact@stackprotocol.fr">contact@stackprotocol.fr</a></p>
+        <p class="where"><b>Où vont tes messages ?</b><br>Cette adresse est hébergée chez OVH (🇫🇷). Brice DeCampos (fondateur) lit personnellement chaque email. Aucune équipe support intermédiaire. Réponse sous <b>48 h ouvrées maximum</b>.</p>
+      </div>
 
-      <div class="promise">
-        🛡️ <b>Notre engagement final</b> : aucun client honnête n'est jamais reparti avec une mauvaise surprise. Si tu hésites, écris-nous <b>avant</b> d'acheter — on préfère répondre à 100 questions plutôt que dealer avec 1 déception.
+      <p style="margin-top:14px;font-size:14px;">En cas de désaccord persistant, tu peux saisir un médiateur de la consommation gratuitement (cf. <a href="cgv.html">CGV</a>).</p>
+
+      <div class="promise" style="margin-top:18px;">
+        🛡️ <b>Notre engagement final</b> : aucun client honnête n'est jamais reparti avec une mauvaise surprise. Si tu hésites, écris <b>avant</b> d'acheter. On préfère répondre à 100 questions plutôt que dealer avec 1 déception.
       </div>
     </section>
 
