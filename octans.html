@@ -288,22 +288,53 @@
         <div class="card pil">
           <span class="ic"><svg aria-hidden="true"><use href="#i-users"/></svg></span>
           <div class="k">Les experts</div>
-          <h3>30 agents spécialisés</h3>
-          <p>Juridique, sécurité, RGPD, technique, business, méthode… Chaque agent porte un rôle précis et le défend. Tu en utilises 7 à 10 par projet, les autres veillent.</p>
+          <h3>Une équipe d'agents spécialisés</h3>
+          <p class="pil-lead">Chaque agent porte un rôle précis et le défend. Tu en utilises 7 à 10 par projet, les autres veillent.</p>
+          <ul class="pil-list">
+            <li>Juridique &amp; conformité</li>
+            <li>Sécurité &amp; durcissement</li>
+            <li>RGPD &amp; vie privée</li>
+            <li>Technique &amp; architecture</li>
+            <li>Business &amp; viabilité</li>
+            <li>Méthode &amp; cadrage</li>
+            <li>+ accompagnement, produit/UX</li>
+          </ul>
         </div>
         <div class="card pil">
           <span class="ic"><svg aria-hidden="true"><use href="#i-bolt"/></svg></span>
           <div class="k">Les skills</div>
           <h3>Des compétences réutilisables</h3>
-          <p>Cadrer un CDC, auditer la sécurité, vérifier les liens, router vers le bon pack métier… Des savoir-faire encodés, déclenchés au bon moment.</p>
+          <p class="pil-lead">Des savoir-faire encodés, déclenchés au bon moment.</p>
+          <ul class="pil-list">
+            <li>Cadrer un CDC</li>
+            <li>Auditer la sécurité</li>
+            <li>Vérifier les liens et la cohérence</li>
+            <li>Router vers le bon pack métier</li>
+            <li>Générer endpoints, migrations, tests</li>
+            <li>Convoquer le Conseil pour trancher</li>
+          </ul>
         </div>
         <div class="card pil">
           <span class="ic"><svg aria-hidden="true"><use href="#i-hook"/></svg></span>
           <div class="k">Les hooks</div>
           <h3>Les garde-fous automatiques</h3>
-          <p>Des contrôles qui se déclenchent tout seuls : lexique surveillé, cohérence vérifiée, doctrines appliquées. Octans ne dérape pas.</p>
+          <p class="pil-lead">Des contrôles qui se déclenchent tout seuls. Octans ne dérape pas.</p>
+          <ul class="pil-list">
+            <li>Lexique surveillé en continu</li>
+            <li>Cohérence vérifiée entre notes</li>
+            <li>Budget de questionnement borné</li>
+            <li>Doctrines appliquées en arrière-plan</li>
+            <li>Anti-hallucination cousu dans le tissu</li>
+          </ul>
         </div>
       </div>
+
+      <style>
+        .pil-lead { font-size: 14.5px; line-height: 1.55; color: var(--muted, #a8b0ba); margin: 0 0 16px; }
+        .pil-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 12px; }
+        .pil-list li { font-size: 14px; line-height: 1.5; color: var(--ink, #e6e6e6); padding: 6px 0 6px 20px; position: relative; }
+        .pil-list li:before { content: "›"; position: absolute; left: 4px; color: var(--green); font-weight: 700; top: 5px; }
+      </style>
     </div>
   </section>
 
