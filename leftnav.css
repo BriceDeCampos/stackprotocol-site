@@ -24,7 +24,7 @@
 .left-nav a {
   display: flex; align-items: center; gap: 8px;
   padding: 9px 12px; line-height: 1.35;
-  border-left: 3px solid transparent; border-radius: 0 8px 8px 0;
+  border-left: 3px solid transparent; border-radius: 0;
   transition: background .18s, border-color .18s;
 }
 .left-nav a:hover { background: rgba(255,255,255,0.03); }

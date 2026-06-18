@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>StackProtocol â€” Construis ton projet sans envoyer une ligne sur leurs serveurs</title>
-<meta name="description" content="Octans â€” La mÃ©thode pour structurer ton projet en local : Claude Code + Ã©quipe d'experts. Tes idÃ©es 100% chez toi. Ã€ partir de 197â‚¬. Garanti 7 jours, sans tracking." />
+<title>StackProtocol — Construis ton projet sans envoyer une ligne sur leurs serveurs</title>
+<meta name="description" content="Octans — La méthode pour structurer ton projet en local : Claude Code + équipe d'experts. Tes idées 100% chez toi. À partir de 197€. Garanti 7 jours, sans tracking." />
 <link rel="stylesheet" href="assets/fonts/fonts.css" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="stylesheet" href="styles.css" />
@@ -58,7 +58,7 @@
   .hero .mark-md { width: 110px; height: 138px; margin: -26px auto 6px; animation: none; filter: drop-shadow(0 12px 32px rgba(24,180,204,0.32)); }
   .hero .mark-corner { position: absolute; right: -8px; top: -18px; width: 72px; height: 90px; margin: 0; z-index: 5; }
 
-  /* carrousel zone art : logo â†” stats */
+  /* carrousel zone art : logo ↔ stats */
   .hero .art-carousel { position: relative; width: 100%; height: 230px; margin-top: 8px; }
   .hero .art-slide { position: absolute; inset: 0; display: grid; place-items: start stretch; opacity: 0; transform: scale(0.96); transition: opacity .6s ease, transform .6s ease; pointer-events: none; }
   .hero .art-slide.is-active { opacity: 1; transform: scale(1); pointer-events: auto; }
@@ -70,7 +70,7 @@
   .hero .art-stat .as-w .d { -webkit-text-fill-color: var(--green); }
   .hero .art-stat .as-stack { display: inline-block; margin-top: 14px; font-family: var(--font-display); font-weight: 600; font-size: 0.62em; letter-spacing: 0.14em; text-transform: uppercase; -webkit-text-fill-color: var(--ink); color: var(--ink); }
   .hero .art-stat .as-stack b { font-weight: 600; -webkit-text-fill-color: var(--ink-2); color: var(--ink-2); }
-  /* slide Â« La promesse Â» */
+  /* slide « La promesse » */
   .hero .art-promise { text-align: left; }
   .hero .art-promise .pp-k { font-family: var(--font-display); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
   .hero .art-promise .pp-t { font-family: var(--font-display); font-weight: 700; font-size: 24px; letter-spacing: -0.01em; margin-top: 10px; color: var(--ink); }
@@ -81,7 +81,7 @@
   .hero .art-promise .pp-list b { font-family: var(--font-display); font-weight: 700; background: var(--grad-135); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
   .hero .art-promise .claude-mark { color: var(--orange); }
   .hero .art-promise .pp-s { margin: 12px 0 0; font-size: 15px; line-height: 1.55; color: var(--muted); max-width: 330px; }
-  /* liste Ã  rÃ©vÃ©lation douce, trait par trait */
+  /* liste à révélation douce, trait par trait */
   .pp-reveal li { opacity: 0; }
   .art-slide.is-active .pp-reveal li { animation: ppReveal 0.9s ease forwards; }
   .art-slide.is-active .pp-reveal li:nth-child(1) { animation-delay: .3s; }
@@ -99,7 +99,7 @@
   @media (prefers-reduced-motion: reduce) { .pp-reveal li { opacity: 1 !important; animation: none !important; } }
   @media (prefers-reduced-motion: reduce) { .hero .art-slide { transition: none; } }
 
-  /* ===== Carrousel â€” texte en dÃ©gradÃ© "AI Method Conductor" ===== */
+  /* ===== Carrousel — texte en dégradé "AI Method Conductor" ===== */
   .lede-carousel { position: relative; margin-top: 12px; }
   .lede-carousel .art-carousel { height: 230px; margin-top: 0; }
   .pp-2col { display: grid !important; grid-template-columns: 1fr 1fr; gap: 9px 20px; }
@@ -108,15 +108,15 @@
   .lede-carousel .pp-t, .lede-carousel .pp-list li, .lede-carousel .pp-list b, .lede-carousel .pp-s, .lede-carousel .pp-t .d {
     background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent !important;
   }
-  /* mots de liaison non importants â†’ gris clair (le dÃ©gradÃ© reste sur les mots-clÃ©s) */
+  /* mots de liaison non importants → gris clair (le dégradé reste sur les mots-clés) */
   .lede-carousel .pp-list .dim { background: none !important; -webkit-text-fill-color: var(--muted) !important; color: var(--muted) !important; }
 
-  /* ===== Le Cortex â€” constellation neuronale ===== */
+  /* ===== Le Cortex — constellation neuronale ===== */
   .hero .art { position: relative; }
   .cortex-wrap { display: flex; flex-direction: column; align-items: center; gap: 0; margin-top: -136px; }
   #cortex { width: 100%; max-width: 380px; margin: 0 auto 0 -40px; }
   #cortex svg { width: 100%; height: auto; display: block; transform-origin: center center; animation: cxbreathe 40s ease-in-out infinite; }
-  /* Cortex : contracte â†’ tient rÃ©tractÃ© ~15s â†’ agrandit â†’ tient agrandi ~15s (boucle 40s) */
+  /* Cortex : contracte → tient rétracté ~15s → agrandit → tient agrandi ~15s (boucle 40s) */
   @keyframes cxbreathe { 0%, 37.5% { transform: scale(0.62); } 50%, 87.5% { transform: scale(1.28); } 100% { transform: scale(0.62); } }
   .cortex-legend { font-size: 13.5px; line-height: 1.55; color: var(--muted); text-align: left; margin: -34px 0 0; align-self: flex-start; }
   .cx-syn { stroke: url(#cxgrad); stroke-width: 1; fill: none; opacity: 0.22; }
@@ -189,7 +189,7 @@
   .cas .ans p { font-size: 16px; line-height: 1.5; color: var(--ink-2); }
   .cas .ans p b { color: var(--ink); font-weight: 600; }
   .cas .ans .price { margin-top: 12px; font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--green); }
-  /* dÃ©pliants types de projets */
+  /* dépliants types de projets */
   .cas .pjwrap { padding: 0 28px 40px; }
   .cas .pj-intro { font-family: var(--font-display); font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 9px; margin-bottom: 14px; }
   .cas .pj-intro .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
@@ -223,7 +223,7 @@
   .manifeste .body strong { color: var(--ink); font-weight: 600; }
   .manifeste .sign { margin-top: 22px; font-family: var(--font-display); font-weight: 600; color: var(--green); }
 
-  /* ===== SOUVERAINETÃ‰ ===== */
+  /* ===== SOUVERAINETÉ ===== */
   .sov-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
   .sov-col { padding: 28px; }
   .sov-col.bad { border-color: rgba(224,145,90,0.25); }
@@ -267,7 +267,7 @@
   .b2b .bi p { font-size: 13px; color: var(--muted); margin-top: 4px; }
   .b2b .bi .amt { font-family: var(--font-display); font-weight: 700; font-size: 22px; margin-top: 8px; background: var(--grad-135); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 
-  /* ===== MÃ‰THODE / EXPERTS teasers ===== */
+  /* ===== MÉTHODE / EXPERTS teasers ===== */
   .piliers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
   .pilier { padding: 24px; }
   .pilier .pill { margin-bottom: 14px; }
@@ -325,7 +325,7 @@
     .expnums .e { padding: 12px 20px; }
     footer .cols { grid-template-columns: 1fr 1fr; gap: 28px; }
   }
-  /* â”€â”€ eyebrow gradient â€” mÃªme style que "AI Method Conductor" dans le hero â”€â”€ */
+  /* ── eyebrow gradient — même style que "AI Method Conductor" dans le hero ── */
   .section .eyebrow, .cas .eyebrow, .manifeste .eyebrow {
     background: var(--grad); -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -386,8 +386,8 @@
     </a>
     <nav class="links" aria-label="Navigation principale">
       <a href="index.html">Accueil</a>
-      <a href="qui-je-suis.html">PrÃ©sentation</a>
-      <a href="la-methode.html">La mÃ©thode</a>
+      <a href="qui-je-suis.html">Présentation</a>
+      <a href="la-methode.html">La méthode</a>
       <a href="octans.html">Octans</a>
       <a href="produits/coaching.html">Accompagnement</a>
       <a href="pour-qui.html">Pour qui&#8239;?</a>
@@ -414,8 +414,8 @@
     </div>
     <div class="wrap grid">
       <div class="lede">
-        <h1 style="margin-top:0;font-size:clamp(26px,3.2vw,36px);">PrÃ©parer son projet Â· son CDC.
-          <span class="h1-subline"><span class="h1-sub small h1-souv" style="margin-top:0;"><span class="dot-souv"></span>Cahier des charges en local.</span><span class="h1-sub small h1-souv" style="margin-top:0;"><span class="eq-souv">&gt;</span>SouverainetÃ©.</span></span>
+        <h1 style="margin-top:0;font-size:clamp(26px,3.2vw,36px);">Préparer son projet · son CDC.
+          <span class="h1-subline"><span class="h1-sub small h1-souv" style="margin-top:0;"><span class="dot-souv"></span>Cahier des charges en local.</span><span class="h1-sub small h1-souv" style="margin-top:0;"><span class="eq-souv">&gt;</span>Souveraineté.</span></span>
         </h1>
         <p class="note" style="margin-top:10px;"><svg aria-hidden="true"><use href="#i-shield"/></svg>1 Jour de travail = 2 Mois de production<a class="gtag-btn" href="legal/satisfaction.html">Garantie</a></p>
         <div class="cta" style="margin-top:36px;">
@@ -426,37 +426,37 @@
       <div class="art">
         <div class="cortex-wrap">
           <div id="cortex" aria-hidden="true"></div>
-          <p class="cortex-legend"><b style="color:var(--orange);font-weight:600;">Octans</b><br />Le cerveau d'ingÃ©nierie qui dÃ©ploie ton cahier des charges.</p>
+          <p class="cortex-legend"><b style="color:var(--orange);font-weight:600;">Octans</b><br />Le cerveau d'ingénierie qui déploie ton cahier des charges.</p>
         </div>
         <div class="octans-block" style="margin:18px 0 22px;padding:18px 22px;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);border-radius:12px;">
           <div style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:0.12em;color:var(--orange);">OCTANS</div>
           <ul style="list-style:none;padding:0;margin:10px 0 0;display:flex;flex-direction:column;gap:8px;">
-            <li style="font-size:13.5px;line-height:1.5;color:var(--ink-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--green);font-weight:700;">â€º</span>La <b style="color:var(--ink);">constellation</b> d'<b style="color:var(--ink);">agents</b> et de <b style="color:var(--ink);">skills</b>.</li>
-            <li style="font-size:13.5px;line-height:1.5;color:var(--ink-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--green);font-weight:700;">â€º</span>Architecte d'<b style="color:var(--ink);">Ã©quipes IA Experts</b> â€” boostÃ© par <span class="claude-mark">Claude</span>.</li>
-            <li style="font-size:13.5px;line-height:1.5;color:var(--ink-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--green);font-weight:700;">â€º</span>Agents et skills <b style="color:var(--ink);">toujours Ã  jour</b>.</li>
+            <li style="font-size:13.5px;line-height:1.5;color:var(--ink-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--green);font-weight:700;">›</span>La <b style="color:var(--ink);">constellation</b> d'<b style="color:var(--ink);">agents</b> et de <b style="color:var(--ink);">skills</b>.</li>
+            <li style="font-size:13.5px;line-height:1.5;color:var(--ink-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--green);font-weight:700;">›</span>Architecte d'<b style="color:var(--ink);">équipes IA Experts</b> — boosté par <span class="claude-mark">Claude</span>.</li>
+            <li style="font-size:13.5px;line-height:1.5;color:var(--ink-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--green);font-weight:700;">›</span>Agents et skills <b style="color:var(--ink);">toujours à jour</b>.</li>
           </ul>
         </div>
-        <div class="lede-carousel"><div class="art-carousel" aria-label="PrÃ©sentation animÃ©e">
+        <div class="lede-carousel"><div class="art-carousel" aria-label="Présentation animée">
           <div class="art-slide is-active art-stat art-promise" data-art>
             <div>
               <ul class="pp-list pp-reveal">
-                <li>Des <b>semaines de cadrage</b> gagnÃ©es</li>
-                <li><b>ZÃ©ro angle mort</b> : juridique, sÃ©curitÃ©, RGPD anticipÃ©s</li>
-                <li>Les <b>erreurs coÃ»teuses</b> Ã©vitÃ©es !</li>
+                <li>Des <b>semaines de cadrage</b> gagnées</li>
+                <li><b>Zéro angle mort</b> : juridique, sécurité, RGPD anticipés</li>
+                <li>Les <b>erreurs coûteuses</b> évitées !</li>
                 <li>Un <b>cap clair</b> du premier jour au lancement</li>
-                <li><b>Budget maÃ®trisÃ©</b> â€” pas de refonte Ã  mi-chemin</li>
-                <li><b>DÃ©cisions tranchÃ©es</b> â€” fini les allers-retours</li>
+                <li><b>Budget maîtrisé</b> — pas de refonte à mi-chemin</li>
+                <li><b>Décisions tranchées</b> — fini les allers-retours</li>
                 <li>Ton projet <b>lisible par n'importe quel dev</b></li>
               </ul>
             </div>
           </div>
           <div class="art-slide art-stat art-promise" data-art>
             <div>
-              <div class="pp-t" style="font-size:17px;">Lancer un projet aujourd'hui, c'est jongler avec tout Ã  la fois :</div>
+              <div class="pp-t" style="font-size:17px;">Lancer un projet aujourd'hui, c'est jongler avec tout à la fois :</div>
               <ul class="pp-list pp-reveal pp-2col pp-tight">
                 <li>Le code</li><li>Le design</li><li>Le copywriting</li><li>Le RGPD</li>
-                <li>La sÃ©curitÃ©</li><li>L'accessibilitÃ©</li><li>Le SEO</li><li>Le marketing</li>
-                <li>La communication</li><li>Le financement</li><li>Le prÃ©visionnel</li>
+                <li>La sécurité</li><li>L'accessibilité</li><li>Le SEO</li><li>Le marketing</li>
+                <li>La communication</li><li>Le financement</li><li>Le prévisionnel</li>
                 <li>La compta</li><li>Le juridique</li>
               </ul>
             </div>
@@ -465,22 +465,22 @@
             <div>
               <div class="pp-t" style="font-size:19px;">Ce que tu gagnes</div>
               <ul class="pp-list pp-reveal">
-                <li><span class="dim">Des</span> semaines de cadrage gagnÃ©es</li>
-                <li>ZÃ©ro angle mort <span class="dim">: juridique, sÃ©curitÃ©, RGPD anticipÃ©s</span></li>
-                <li><span class="dim">Les</span> erreurs coÃ»teuses Ã©vitÃ©es</li>
+                <li><span class="dim">Des</span> semaines de cadrage gagnées</li>
+                <li>Zéro angle mort <span class="dim">: juridique, sécurité, RGPD anticipés</span></li>
+                <li><span class="dim">Les</span> erreurs coûteuses évitées</li>
                 <li>Un cap clair <span class="dim">du premier jour au lancement</span></li>
-                <li>Budget maÃ®trisÃ© <span class="dim">â€” pas de refonte Ã  mi-chemin</span></li>
-                <li>DÃ©cisions tranchÃ©es <span class="dim">â€” fini les allers-retours</span></li>
+                <li>Budget maîtrisé <span class="dim">— pas de refonte à mi-chemin</span></li>
+                <li>Décisions tranchées <span class="dim">— fini les allers-retours</span></li>
               </ul>
             </div>
           </div>
           <div class="art-slide art-stat art-promise" data-art>
             <div>
-              <div class="pp-t" style="font-size:19px;">Une mÃ©thode Ã©prouvÃ©e</div>
+              <div class="pp-t" style="font-size:19px;">Une méthode éprouvée</div>
               <ul class="pp-list pp-reveal">
-                <li>MÃ©thode <b>testÃ©e pendant 6 mois</b></li>
-                <li>Agents et skills <b>hyper codÃ©s</b></li>
-                <li>Ã€ la <b>pointe d'ingÃ©nierie</b> &amp; constamment actualisÃ©s</li>
+                <li>Méthode <b>testée pendant 6 mois</b></li>
+                <li>Agents et skills <b>hyper codés</b></li>
+                <li>À la <b>pointe d'ingénierie</b> &amp; constamment actualisés</li>
                 <li>Pour <b>tous vos projets</b></li>
               </ul>
             </div>
@@ -489,16 +489,16 @@
             <div>
               <div class="pp-t" style="font-size:19px;">Petits et grands projets !</div>
               <ul class="pp-list pp-reveal pp-2col">
-                <li>Site vitrine Â· portfolio</li>
-                <li>Commerce Â· e-commerce</li>
-                <li>SaaS Â· app mobile</li>
-                <li>Marketplace Â· plateforme</li>
-                <li>Association Â· collectivitÃ©</li>
-                <li>Cabinet libÃ©ral Â· santÃ©</li>
-                <li>Restaurant Â· hÃ´tellerie</li>
-                <li>Artisan Â· producteur</li>
-                <li>Coaching Â· formation</li>
-                <li>Data Â· IA Â· agents</li>
+                <li>Site vitrine · portfolio</li>
+                <li>Commerce · e-commerce</li>
+                <li>SaaS · app mobile</li>
+                <li>Marketplace · plateforme</li>
+                <li>Association · collectivité</li>
+                <li>Cabinet libéral · santé</li>
+                <li>Restaurant · hôtellerie</li>
+                <li>Artisan · producteur</li>
+                <li>Coaching · formation</li>
+                <li>Data · IA · agents</li>
               </ul>
             </div>
           </div>
@@ -506,32 +506,32 @@
             <div>
               <div class="pp-t" style="font-size:19px;">Ce que tu obtiens</div>
               <ul class="pp-list pp-reveal">
-                <li>Un <b>CDC complet</b>, prÃªt pour <span class="claude-mark">Claude Code</span></li>
-                <li>Des <b>doctrines tranchÃ©es</b> â€” fini l'indÃ©cision</li>
-                <li>Des <b>audits automatiques</b> Ã  chaque Ã©tape</li>
-                <li>Un <b>suivi quotidien</b> planifiÃ©</li>
+                <li>Un <b>CDC complet</b>, prêt pour <span class="claude-mark">Claude Code</span></li>
+                <li>Des <b>doctrines tranchées</b> — fini l'indécision</li>
+                <li>Des <b>audits automatiques</b> à chaque étape</li>
+                <li>Un <b>suivi quotidien</b> planifié</li>
               </ul>
             </div>
           </div>
           <div class="art-slide art-stat art-promise" data-art>
             <div>
-              <div class="pp-t" style="font-size:19px;">SouverainetÃ© totale</div>
+              <div class="pp-t" style="font-size:19px;">Souveraineté totale</div>
               <ul class="pp-list pp-reveal">
                 <li>Tout <b>en local</b>, sur ton disque</li>
-                <li>Tes idÃ©es <b>restent chez toi</b></li>
-                <li><b>ZÃ©ro tracking</b>, zÃ©ro cloud imposÃ©</li>
-                <li>Aucune <b>dÃ©pendance</b> Ã  une plateforme</li>
-                <li>Tu gardes le <b>contrÃ´le total</b> de ton CDC</li>
+                <li>Tes idées <b>restent chez toi</b></li>
+                <li><b>Zéro tracking</b>, zéro cloud imposé</li>
+                <li>Aucune <b>dépendance</b> à une plateforme</li>
+                <li>Tu gardes le <b>contrôle total</b> de ton CDC</li>
               </ul>
             </div>
           </div>
           <div class="art-slide art-stat art-promise" data-art>
             <div>
-              <div class="pp-t" style="font-size:19px;">Sans prÃ©requis</div>
+              <div class="pp-t" style="font-size:19px;">Sans prérequis</div>
               <ul class="pp-list pp-reveal">
-                <li><b>Pas besoin d'Ãªtre dev</b> â€” guidÃ© pas Ã  pas</li>
-                <li>Ã€ <b>ton rythme</b>, en autonomie</li>
-                <li>Une mÃ©thode <b>reproductible</b> Ã  volontÃ©</li>
+                <li><b>Pas besoin d'être dev</b> — guidé pas à pas</li>
+                <li>À <b>ton rythme</b>, en autonomie</li>
+                <li>Une méthode <b>reproductible</b> à volonté</li>
                 <li><b>Garanti 7 jours</b>, sans condition</li>
               </ul>
             </div>
@@ -551,22 +551,22 @@
     <div class="wrap">
       <div class="section-head" style="display:flex;align-items:center;gap:26px;flex-wrap:nowrap;">
         <span class="eyebrow" style="margin-bottom:0;white-space:nowrap;flex-shrink:0;"><span class="dot"></span>Les packs</span>
-        <p style="white-space:nowrap;max-width:none;display:flex;align-items:center;gap:22px;font-size:14.5px;color:var(--ink);text-shadow:0 0 12px rgba(238,241,241,0.25);margin-top:0;">3 niveaux d'accompagnement <span style="color:var(--green);text-shadow:0 0 8px rgba(60,229,163,0.7);">Â·</span> Votre espace personnel</p>
+        <p style="white-space:nowrap;max-width:none;display:flex;align-items:center;gap:22px;font-size:14.5px;color:var(--ink);text-shadow:0 0 12px rgba(238,241,241,0.25);margin-top:0;">3 niveaux d'accompagnement <span style="color:var(--green);text-shadow:0 0 8px rgba(60,229,163,0.7);">·</span> Votre espace personnel</p>
       </div>
 
       <div class="packs">
-        <!-- Pack CDC MÃ©thode -->
+        <!-- Pack CDC Méthode -->
         <article class="card pack feat">
           <span class="pill badge">Le plus choisi</span>
-          <div class="pn">Pack CDC MÃ©thode</div>
-          <div class="ptag">Le moteur Octans + la mÃ©thode appliquÃ©e sur ton vrai projet. Tutoriels, archÃ©types, Ã©quipe d'experts. <b>Paiement unique.</b></div>
-          <div class="amt">197â‚¬<small>une fois Â· 99â‚¬ tarif rÃ©duit</small></div>
+          <div class="pn">Pack CDC Méthode</div>
+          <div class="ptag">Le moteur Octans + la méthode appliquée sur ton vrai projet. Tutoriels, archétypes, équipe d'experts. <b>Paiement unique.</b></div>
+          <div class="amt">197€<small>une fois · 99€ tarif réduit</small></div>
           <ul>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Octans complet (skills, agents, hooks)</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>ArchÃ©types CDC + templates CLAUDE.md</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Audits automatiques (sÃ©curitÃ©, RGPD, a11y)</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>AccÃ¨s Ã  vie + parcours espace perso</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg><b>99â‚¬ tarif rÃ©duit</b> (Ã©tudiants, demandeurs d'emploi, minima sociaux)</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Archétypes CDC + templates CLAUDE.md</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Audits automatiques (sécurité, RGPD, a11y)</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Accès à vie + parcours espace perso</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><b>99€ tarif réduit</b> (étudiants, demandeurs d'emploi, minima sociaux)</li>
           </ul>
           <a class="btn btn-primary" href="produits/pack-methode.html">Voir le Pack<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </article>
@@ -574,29 +574,29 @@
         <!-- Accompagnement individuel -->
         <article class="card pack">
           <div class="pn">Accompagnement individuel</div>
-          <div class="ptag">Appel/visio 1h avec Brice pour dÃ©bloquer ton point dur. Questionnaire prÃ©-entretien + RDV Cal.com.</div>
-          <div class="amt">147â‚¬<small>/ 1h</small></div>
+          <div class="ptag">Appel/visio 1h avec Brice pour débloquer ton point dur. Questionnaire pré-entretien + RDV Cal.com.</div>
+          <div class="amt">147€<small>/ 1h</small></div>
           <ul>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>1h de visio avec Brice (Cal.com)</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Questionnaire prÃ©-entretien obligatoire</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Pour cadres en reconversion, indÃ©pendants, freelance</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg><b>Tu achÃ¨tes quand tu bloques</b> â€” pas de forfait</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Questionnaire pré-entretien obligatoire</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Pour cadres en reconversion, indépendants, freelance</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><b>Tu achètes quand tu bloques</b> — pas de forfait</li>
           </ul>
-          <a class="btn btn-ghost" href="produits/coaching.html">DÃ©tails</a>
+          <a class="btn btn-ghost" href="produits/coaching.html">Détails</a>
         </article>
 
         <!-- Grand Compte -->
         <article class="card pack">
           <div class="pn">Audit Grand Compte</div>
           <div class="ptag">Pour les orgs : audit CDC complet (6 volets) + 2 sessions coaching. Rapport 30-50 pages.</div>
-          <div class="amt">7 790â‚¬<small>HT</small></div>
+          <div class="amt">7 790€<small>HT</small></div>
           <ul>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Audit 6 volets (cohÃ©rence, sÃ©curitÃ©, RGPD, a11y, souverainetÃ©, technique)</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Audit 6 volets (cohérence, sécurité, RGPD, a11y, souveraineté, technique)</li>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg><b>2 sessions coaching 1h</b> (installation + relecture)</li>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Rapport complet 30-50 pages + recommandations</li>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Support Phase 1 (installation)</li>
           </ul>
-          <a class="btn btn-ghost" href="produits/audit-grand-compte.html">DÃ©tails</a>
+          <a class="btn btn-ghost" href="produits/audit-grand-compte.html">Détails</a>
         </article>
       </div>
 
@@ -604,18 +604,18 @@
         <article class="card">
           <div class="bi">
             <h3>Coaching individuel</h3>
-            <p>En visio, sur ton projet rÃ©el. Audit + plan d'action.</p>
-            <div class="amt">197â‚¬ <small style="font-size:14px;color:var(--muted);-webkit-text-fill-color:var(--muted)">la sÃ©ance 1h45 Â· ou 497â‚¬ le forfait 3 sÃ©ances</small></div>
+            <p>En visio, sur ton projet réel. Audit + plan d'action.</p>
+            <div class="amt">197€ <small style="font-size:14px;color:var(--muted);-webkit-text-fill-color:var(--muted)">la séance 1h45 · ou 497€ le forfait 3 séances</small></div>
           </div>
-          <a class="btn btn-ghost btn-sm" href="produits/coaching.html">DÃ©tails</a>
+          <a class="btn btn-ghost btn-sm" href="produits/coaching.html">Détails</a>
         </article>
         <article class="card">
           <div class="bi">
-            <h3>Grand Compte â€” Accompagnement Souverain</h3>
-            <p>B2B premium Â· 6 volets Â· timeline 1 mois.</p>
-            <div class="amt">7 790â‚¬ <small style="font-size:14px;color:var(--muted);-webkit-text-fill-color:var(--muted)">HT</small></div>
+            <h3>Grand Compte — Accompagnement Souverain</h3>
+            <p>B2B premium · 6 volets · timeline 1 mois.</p>
+            <div class="amt">7 790€ <small style="font-size:14px;color:var(--muted);-webkit-text-fill-color:var(--muted)">HT</small></div>
           </div>
-          <a class="btn btn-ghost btn-sm" href="produits/audit-grand-compte.html">DÃ©tails</a>
+          <a class="btn btn-ghost btn-sm" href="produits/audit-grand-compte.html">Détails</a>
         </article>
       </div>
     </div>
@@ -626,13 +626,13 @@
     <div class="wrap">
       <span class="eyebrow"><span class="dot"></span>Cas concrets</span>
       <div class="ans" style="margin-top:16px;">
-        <p><b>Une seule mÃ©thode. Une seule formation sur les outils IA.</b> Tes idÃ©es Ã  100&nbsp;% sur ta machine â€” quel que soit le type de projet. NumÃ©rique et plus.</p>
-        <div class="price">Ã€ partir de 197â‚¬ Â· <a href="pour-qui.html" style="text-decoration:underline">tu fais quoi exactement&nbsp;?</a></div>
+        <p><b>Une seule méthode. Une seule formation sur les outils IA.</b> Tes idées à 100&nbsp;% sur ta machine — quel que soit le type de projet. Numérique et plus.</p>
+        <div class="price">À partir de 197€ · <a href="pour-qui.html" style="text-decoration:underline">tu fais quoi exactement&nbsp;?</a></div>
       </div>
     </div>
 
     <div class="pjwrap wrap" style="display:block;">
-      <div class="pj-intro"><span class="dot"></span>Tous les types de projets possibles avec la mÃ©thode</div>
+      <div class="pj-intro"><span class="dot"></span>Tous les types de projets possibles avec la méthode</div>
       <div class="pjgrid">
 
         <div class="pj">
@@ -640,9 +640,9 @@
           <div class="pj-body"><ul>
             <li>Site vitrine (avocat, comptable, consultant)</li>
             <li>Blog personnel ou professionnel</li>
-            <li>Portfolio crÃ©atif</li>
+            <li>Portfolio créatif</li>
             <li>Landing page produit</li>
-            <li>Site Ã©vÃ©nement (mariage, confÃ©rence, festival)</li>
+            <li>Site événement (mariage, conférence, festival)</li>
             <li>Site associatif loi 1901</li>
             <li>Campagne politique ou cause publique</li>
           </ul></div>
@@ -651,11 +651,11 @@
         <div class="pj">
           <button class="pj-head" type="button" aria-expanded="false"><span class="dot"></span>SaaS B2B<svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
           <div class="pj-body"><ul>
-            <li>Productivity (tÃ¢ches, notes, CRM lÃ©ger)</li>
+            <li>Productivity (tâches, notes, CRM léger)</li>
             <li>HR-tech (paie, recrutement, formation)</li>
             <li>Legal-tech (contrats, automation juridique)</li>
-            <li>Fintech (compta auto, facturation, trÃ©sorerie)</li>
-            <li>Health-tech (cabinet, tÃ©lÃ©mÃ©decine)</li>
+            <li>Fintech (compta auto, facturation, trésorerie)</li>
+            <li>Health-tech (cabinet, télémédecine)</li>
             <li>Edtech (LMS, formation continue)</li>
             <li>Sales-tech (CRM, prospection)</li>
             <li>Marketing-tech (newsletters, analytics)</li>
@@ -669,9 +669,9 @@
             <li>Civic-tech locale</li>
             <li>Cours en ligne</li>
             <li>Plateforme freelances</li>
-            <li>Plateforme contenus (podcasts, vidÃ©os)</li>
+            <li>Plateforme contenus (podcasts, vidéos)</li>
             <li>Plateforme collaborative / open source</li>
-            <li>Plateforme Ã©vÃ©nements</li>
+            <li>Plateforme événements</li>
           </ul></div>
         </div>
 
@@ -680,8 +680,8 @@
           <div class="pj-body"><ul>
             <li>Native iOS ou Android</li>
             <li>Flutter cross-platform</li>
-            <li>Messagerie chiffrÃ©e bout-en-bout</li>
-            <li>Tracking sportif / santÃ© / habitudes</li>
+            <li>Messagerie chiffrée bout-en-bout</li>
+            <li>Tracking sportif / santé / habitudes</li>
             <li>App B2B (compagnon d'un SaaS)</li>
             <li>PWA (Progressive Web App)</li>
           </ul></div>
@@ -690,9 +690,9 @@
         <div class="pj">
           <button class="pj-head" type="button" aria-expanded="false"><span class="dot"></span>Data + IA<svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
           <div class="pj-body"><ul>
-            <li>Pipeline ETL + dashboard dÃ©cisionnel</li>
-            <li>ModÃ¨le ML dÃ©ployÃ© + interface</li>
-            <li>AI Agent spÃ©cialisÃ© (juriste, mÃ©decinâ€¦)</li>
+            <li>Pipeline ETL + dashboard décisionnel</li>
+            <li>Modèle ML déployé + interface</li>
+            <li>AI Agent spécialisé (juriste, médecin…)</li>
             <li>Scraping / monitoring concurrentiel</li>
             <li>Analytics produit (usage, A/B test)</li>
             <li>Data product vendable (datasets, API)</li>
@@ -705,35 +705,35 @@
           <div class="pj-body"><ul>
             <li>Boutique e-commerce classique</li>
             <li>E-commerce headless (custom)</li>
-            <li>Restaurant + commande / rÃ©servation</li>
-            <li>Salon de coiffure + agenda + fidÃ©litÃ©</li>
-            <li>HÃ´tel + booking + parcours client</li>
-            <li>Marque B2C â€” partie digitale</li>
+            <li>Restaurant + commande / réservation</li>
+            <li>Salon de coiffure + agenda + fidélité</li>
+            <li>Hôtel + booking + parcours client</li>
+            <li>Marque B2C — partie digitale</li>
           </ul></div>
         </div>
 
         <div class="pj wide">
-          <button class="pj-head" type="button" aria-expanded="false"><span class="dot"></span>Et bien d'autres encoreâ€¦<svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <button class="pj-head" type="button" aria-expanded="false"><span class="dot"></span>Et bien d'autres encore…<svg class="chev" aria-hidden="true"><use href="#i-arrow"/></svg></button>
           <div class="pj-body"><ul>
-            <li>Plateforme Ã©ducative pour Ã©coles</li>
+            <li>Plateforme éducative pour écoles</li>
             <li>Outil interne entreprise (HRIS custom)</li>
             <li>Documentation produit publique</li>
-            <li>MÃ©thodologie business (livre + formation)</li>
-            <li>Process interne (manuel qualitÃ©)</li>
-            <li>Audit / migration de systÃ¨me existant</li>
+            <li>Méthodologie business (livre + formation)</li>
+            <li>Process interne (manuel qualité)</li>
+            <li>Audit / migration de système existant</li>
             <li>Projet open source pur</li>
             <li>IoT + cloud (smart home, ville intelligente)</li>
             <li>Quantum computing R&amp;D</li>
-            <li>Hardware connectÃ© + app</li>
-            <li>Cabinet libÃ©ral + RDV en ligne</li>
-            <li>Centre mÃ©dical + portail patient</li>
+            <li>Hardware connecté + app</li>
+            <li>Cabinet libéral + RDV en ligne</li>
+            <li>Centre médical + portail patient</li>
             <li>Artisan BTP + portfolio + devis</li>
-            <li>Association sportive + adhÃ©sions</li>
-            <li>CoopÃ©rative agricole + commercialisation</li>
+            <li>Association sportive + adhésions</li>
+            <li>Coopérative agricole + commercialisation</li>
             <li>Tiers-lieu + agenda + community</li>
             <li>AMAP + paniers + circuit court</li>
-            <li>MarchÃ© de producteurs + planning</li>
-            <li>Ã‰cole d'art + portfolio + admissions</li>
+            <li>Marché de producteurs + planning</li>
+            <li>École d'art + portfolio + admissions</li>
           </ul></div>
         </div>
 
@@ -747,26 +747,26 @@
       <span class="eyebrow"><span class="dot"></span>Pourquoi StackProtocol existe</span>
       <h2>On ne peut pas tout faire seul. Il faut de la structure pour avancer.</h2>
       <div class="body">
-        <p class="lead-in">Lancer un projet aujourd'hui, c'est jongler avec tout Ã  la foisÂ :</p>
+        <p class="lead-in">Lancer un projet aujourd'hui, c'est jongler avec tout à la fois :</p>
         <ul class="domains">
           <li>Le code</li>
           <li>Le design</li>
           <li>Le copywriting</li>
           <li>Le RGPD</li>
-          <li>La sÃ©curitÃ©</li>
-          <li>L'accessibilitÃ©</li>
+          <li>La sécurité</li>
+          <li>L'accessibilité</li>
           <li>Le SEO</li>
           <li>Le marketing</li>
           <li>La communication</li>
           <li>Le financement</li>
-          <li>Le prÃ©visionnel</li>
+          <li>Le prévisionnel</li>
           <li>La compta</li>
           <li>Le juridique</li>
         </ul>
-        <p><strong>Personne ne peut tout faire seul.</strong> Sauf une Ã©lite avec des moyens. Pour tous les autres, le manque de structure coÃ»te du temps, de l'argent, et de la fatigue.</p>
-        <p>Cette mÃ©thode a Ã©tÃ© construite et testÃ©e pendant 6 mois sur un projet civic-tech franÃ§ais complexe : <strong>470 fichiers cohÃ©rents, 9 doctrines tranchÃ©es, 4 audits passÃ©s.</strong> Aujourd'hui, je la rends accessible.</p>
+        <p><strong>Personne ne peut tout faire seul.</strong> Sauf une élite avec des moyens. Pour tous les autres, le manque de structure coûte du temps, de l'argent, et de la fatigue.</p>
+        <p>Cette méthode a été construite et testée pendant 6 mois sur un projet civic-tech français complexe : <strong>470 fichiers cohérents, 9 doctrines tranchées, 4 audits passés.</strong> Aujourd'hui, je la rends accessible.</p>
       </div>
-      <div class="sign">â€” Brice DeCampos</div>
+      <div class="sign">— Brice DeCampos</div>
     </div>
   </section>
 
@@ -774,58 +774,58 @@
 
 
 
-  <!-- ===== SOUVERAINETÃ‰ ===== -->
-  <section class="section" id="souverainete" data-ln="SouverainetÃ©" style="padding-top:0;">
+  <!-- ===== SOUVERAINETÉ ===== -->
+  <section class="section" id="souverainete" data-ln="Souveraineté" style="padding-top:0;">
     <div class="wrap">
       <div class="section-head" style="text-align:center;max-width:none;margin-bottom:36px;">
-        <span class="eyebrow" style="justify-content:center"><span class="dot"></span>Le diffÃ©renciateur</span>
-        <h2>Tes idÃ©es restent chez toi. Vraiment.</h2>
+        <span class="eyebrow" style="justify-content:center"><span class="dot"></span>Le différenciateur</span>
+        <h2>Tes idées restent chez toi. Vraiment.</h2>
         <p style="margin-left:auto;margin-right:auto;">La plupart des outils font vivre ton projet sur leurs serveurs. Pas StackProtocol.</p>
       </div>
       <div class="sov-grid">
         <div class="card sov-col bad">
           <h3><svg aria-hidden="true" style="width:18px;height:18px"><use href="#i-server"/></svg>Ce que les autres font</h3>
           <ul>
-            <li><span class="x">âœ•</span><span><b>Lovable / Bolt / v0</b> â†’ ton projet vit sur LEURS serveurs</span></li>
-            <li><span class="x">âœ•</span><span><b>Notion AI</b> â†’ tes notes nourrissent leur modÃ¨le</span></li>
-            <li><span class="x">âœ•</span><span><b>ChatGPT Plus</b> â†’ conversations indexÃ©es</span></li>
-            <li><span class="x">âœ•</span><span><b>Cabinet conseil</b> â†’ ton brief partagÃ© avec une Ã©quipe entiÃ¨re</span></li>
+            <li><span class="x">✕</span><span><b>Lovable / Bolt / v0</b> → ton projet vit sur LEURS serveurs</span></li>
+            <li><span class="x">✕</span><span><b>Notion AI</b> → tes notes nourrissent leur modèle</span></li>
+            <li><span class="x">✕</span><span><b>ChatGPT Plus</b> → conversations indexées</span></li>
+            <li><span class="x">✕</span><span><b>Cabinet conseil</b> → ton brief partagé avec une équipe entière</span></li>
           </ul>
         </div>
         <div class="card sov-col good">
           <h3><svg aria-hidden="true" style="width:18px;height:18px"><use href="#i-shield"/></svg>Ce que tu fais avec StackProtocol</h3>
           <ul>
-            <li><span class="v">âœ“</span><span>Tes fichiers sur <b>TON disque dur</b></span></li>
-            <li><span class="v">âœ“</span><span><span class="claude-mark">Claude Code</span> = <b>appels API directs</b> depuis ta machine</span></li>
-            <li><span class="v">âœ“</span><span>Git local = ton repo n'a pas besoin d'Ãªtre public</span></li>
-            <li><span class="v">âœ“</span><span><b>Aucune base de donnÃ©es StackProtocol</b> = on n'a pas tes donnÃ©es</span></li>
+            <li><span class="v">✓</span><span>Tes fichiers sur <b>TON disque dur</b></span></li>
+            <li><span class="v">✓</span><span><span class="claude-mark">Claude Code</span> = <b>appels API directs</b> depuis ta machine</span></li>
+            <li><span class="v">✓</span><span>Git local = ton repo n'a pas besoin d'être public</span></li>
+            <li><span class="v">✓</span><span><b>Aucune base de données StackProtocol</b> = on n'a pas tes données</span></li>
           </ul>
         </div>
       </div>
       <div class="sov-foot">
-        <a href="souverainete.html">Pour qui c'est critique (santÃ©, juridique, R&Dâ€¦)<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a href="souverainete.html">Pour qui c'est critique (santé, juridique, R&D…)<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
   </section>
 
   
 
-  <!-- ===== MÃ‰THODE (5 piliers teaser) ===== -->
-  <section class="section" id="methode" data-ln="La mÃ©thode" data-ln-count="3" style="padding-top:0;">
+  <!-- ===== MÉTHODE (5 piliers teaser) ===== -->
+  <section class="section" id="methode" data-ln="La méthode" data-ln-count="3" style="padding-top:0;">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>La mÃ©thode</span>
+        <span class="eyebrow"><span class="dot"></span>La méthode</span>
         <h2>5 piliers universels.</h2>
-        <p>Le mÃªme socle, quel que soit ton projet.</p>
+        <p>Le même socle, quel que soit ton projet.</p>
       </div>
       <div class="piliers">
-        <div class="card pilier"><span class="pill">Pilier 1</span><h3>Cascade pÃ©dagogique</h3><p>Pourquoi â†’ UI â†’ Backend â†’ Data. Ton projet devient lisible de bout en bout.</p></div>
-        <div class="card pilier"><span class="pill">Pilier 2</span><h3>Pattern Vue d'ensemble</h3><p>5 sous-sections canoniques pour cadrer ce que chaque brique fait â€” et ne fait pas.</p></div>
-        <div class="card pilier"><span class="pill">Pilier 3</span><h3>14 rÃ¨gles adaptables</h3><p>Tu pars de templates non-nÃ©gociables, tu les adaptes Ã  ton projet.</p></div>
-        <div class="card pilier"><span class="pill">Pilier 4</span><h3>Conseil prismes anti-biais</h3><p>Sous tous les angles. Des dÃ©cisions tranchÃ©es sans biais du solo.</p></div>
+        <div class="card pilier"><span class="pill">Pilier 1</span><h3>Cascade pédagogique</h3><p>Pourquoi → UI → Backend → Data. Ton projet devient lisible de bout en bout.</p></div>
+        <div class="card pilier"><span class="pill">Pilier 2</span><h3>Pattern Vue d'ensemble</h3><p>5 sous-sections canoniques pour cadrer ce que chaque brique fait — et ne fait pas.</p></div>
+        <div class="card pilier"><span class="pill">Pilier 3</span><h3>14 règles adaptables</h3><p>Tu pars de templates non-négociables, tu les adaptes à ton projet.</p></div>
+        <div class="card pilier"><span class="pill">Pilier 4</span><h3>Conseil prismes anti-biais</h3><p>Sous tous les angles. Des décisions tranchées sans biais du solo.</p></div>
         <div class="card pilier"><span class="pill">Pilier 5</span><h3>Des centaines de skills &amp; agents</h3><p>Tu invoques une commande dans <span class="claude-mark">Claude Code</span>, c'est fait.</p></div>
         <div class="card pilier" style="display:flex;flex-direction:column;justify-content:center;background:linear-gradient(150deg,rgba(60,229,163,0.10),rgba(24,180,204,0.06));">
-          <a href="la-methode.html" style="font-weight:600;color:var(--green);display:inline-flex;align-items:center;gap:8px;">Voir la mÃ©thode en dÃ©tail<svg aria-hidden="true" style="width:16px;height:16px"><use href="#i-arrow"/></svg></a>
+          <a href="la-methode.html" style="font-weight:600;color:var(--green);display:inline-flex;align-items:center;gap:8px;">Voir la méthode en détail<svg aria-hidden="true" style="width:16px;height:16px"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
     </div>
@@ -835,16 +835,16 @@
   <section class="section" id="experts" data-ln="Les experts" data-ln-count="30" style="padding-top:0;">
     <div class="wrap">
       <div class="section-head" style="text-align:center;max-width:none;">
-        <span class="eyebrow" style="justify-content:center"><span class="dot"></span>L'Ã©quipe</span>
-        <h2>30 spÃ©cialistes Â· orchestrÃ©s pour ton projet.</h2>
-        <p style="margin-left:auto;margin-right:auto;">Juridique, sÃ©curitÃ©, technique, business, mÃ©thode â€” une Ã©quipe virtuelle qui anticipe le stratÃ©gique.</p>
+        <span class="eyebrow" style="justify-content:center"><span class="dot"></span>L'équipe</span>
+        <h2>30 spécialistes · orchestrés pour ton projet.</h2>
+        <p style="margin-left:auto;margin-right:auto;">Juridique, sécurité, technique, business, méthode — une équipe virtuelle qui anticipe le stratégique.</p>
       </div>
       <div class="expnums">
-        <div class="e"><div class="n">29</div><div class="l">experts spÃ©cialistes</div></div>
-        <div class="e"><div class="n">7</div><div class="l">catÃ©gories</div></div>
-        <div class="e"><div class="n">7â€“10</div><div class="l">utilisÃ©s au quotidien</div></div>
+        <div class="e"><div class="n">29</div><div class="l">experts spécialistes</div></div>
+        <div class="e"><div class="n">7</div><div class="l">catégories</div></div>
+        <div class="e"><div class="n">7–10</div><div class="l">utilisés au quotidien</div></div>
       </div>
-      <div class="seemore"><a href="les-experts.html">DÃ©couvrir l'Ã©quipe d'experts<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+      <div class="seemore"><a href="les-experts.html">Découvrir l'équipe d'experts<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
     </div>
   </section>
 
@@ -852,11 +852,11 @@
   <section class="section" style="padding-top:0;">
     <div class="wrap">
       <div class="guar-band">
-        <span class="g"><svg aria-hidden="true"><use href="#i-shield"/></svg>RemboursÃ© 7 jours (Loi Hamon + clause d'essai)</span>
+        <span class="g"><svg aria-hidden="true"><use href="#i-shield"/></svg>Remboursé 7 jours (Loi Hamon + clause d'essai)</span>
         <span class="g"><svg aria-hidden="true"><use href="#i-lock"/></svg>0 mot de passe (magic links)</span>
         <span class="g"><svg aria-hidden="true"><use href="#i-check"/></svg>0 tracking comportemental</span>
         <span class="g"><svg aria-hidden="true"><use href="#i-check"/></svg>WCAG 2.2 AA</span>
-        <span class="g"><svg aria-hidden="true"><use href="#i-shield"/></svg>HÃ©bergement OVH France</span>
+        <span class="g"><svg aria-hidden="true"><use href="#i-shield"/></svg>Hébergement OVH France</span>
       </div>
     </div>
   </section>
@@ -866,8 +866,8 @@
     <div class="wrap">
       <div class="card ctaband">
         <div class="inner">
-          <h2>Tu ne sais pas par oÃ¹ <span class="em">commencer</span>&nbsp;?</h2>
-          <p>Fais l'orientation gratuite : ton archÃ©type, le pack recommandÃ© et tes 3 prioritÃ©s. Sans inscription, sans tracker.</p>
+          <h2>Tu ne sais pas par où <span class="em">commencer</span>&nbsp;?</h2>
+          <p>Fais l'orientation gratuite : ton archétype, le pack recommandé et tes 3 priorités. Sans inscription, sans tracker.</p>
           <div class="cta">
             <a class="btn btn-primary" href="orientation-gratuite.html">Faire l'orientation gratuite<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
             <a class="btn btn-ghost" href="#produits">Voir les packs</a>
@@ -884,46 +884,46 @@
     <div class="sp-foot-cols">
       <div class="sp-foot-about">
         <a class="logo" href="index.html" style="display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;"><span class="mark" data-mark style="width:36px;height:42px;display:inline-block;"></span><span class="wm" style="font-family:var(--font-display);font-weight:600;font-size:17px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);">Stack<b>Protocol</b></span></a>
-        <p style="font-size:13.5px;line-height:1.55;color:var(--muted);margin:0;max-width:340px;">Une mÃ©thode reproductible pour structurer ton projet en local, avec Claude Code. Tes idÃ©es restent chez toi. SouverainetÃ© franÃ§aise Â· OVH Â· sans tracking.</p>
+        <p style="font-size:13.5px;line-height:1.55;color:var(--muted);margin:0;max-width:340px;">Une méthode reproductible pour structurer ton projet en local, avec Claude Code. Tes idées restent chez toi. Souveraineté française · OVH · sans tracking.</p>
       </div>
       <div class="sp-foot-col">
         <h4>Explorer</h4>
         <a href="pour-qui.html">Pour qui</a>
-        <a href="la-methode.html">La mÃ©thode</a>
+        <a href="la-methode.html">La méthode</a>
         <a href="octans.html">Octans</a>
         <a href="le-cdc-portable.html">Le CDC portable</a>
-        <a href="souverainete.html">SouverainetÃ©</a>
+        <a href="souverainete.html">Souveraineté</a>
         <a href="cabinet-vs-stackprotocol.html">Cabinet vs StackProtocol</a>
       </div>
       <div class="sp-foot-col">
         <h4>Produits</h4>
-        <a href="produits/pack-methode.html">Pack CDC MÃ©thode â€” 197 â‚¬</a>
-        <a href="produits/coaching.html">Accompagnement â€” 147 â‚¬/1h</a>
-        <a href="produits/pack-methode.html#maj">Mises Ã  jour 7,70 â‚¬/mois</a>
+        <a href="produits/pack-methode.html">Pack CDC Méthode — 197 €</a>
+        <a href="produits/coaching.html">Accompagnement — 147 €/1h</a>
+        <a href="produits/pack-methode.html#maj">Mises à jour 7,70 €/mois</a>
         <a href="orientation-gratuite.html">Orientation gratuite</a>
-        <a href="cpf.html">CPF (bientÃ´t)</a>
+        <a href="cpf.html">CPF (bientôt)</a>
       </div>
       <div class="sp-foot-col">
-        <h4>Compte &amp; lÃ©gal</h4>
+        <h4>Compte &amp; légal</h4>
         <a href="login.html">Se connecter</a>
-        <a href="qui-je-suis.html">Ã€ propos Â· Brice</a>
+        <a href="qui-je-suis.html">À propos · Brice</a>
         <a href="faq.html">FAQ</a>
         <a href="legal/satisfaction.html">Politique de satisfaction</a>
         <a href="legal/cgv.html">CGV</a>
-        <a href="legal/mentions.html">Mentions lÃ©gales</a>
-        <a href="legal/rgpd.html">RGPD &amp; donnÃ©es</a>
+        <a href="legal/mentions.html">Mentions légales</a>
+        <a href="legal/rgpd.html">RGPD &amp; données</a>
       </div>
     </div>
     <div class="sp-foot-doctrines">
-      <span class="sp-d"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>0 mot de passe â€” magic links</span>
+      <span class="sp-d"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>0 mot de passe — magic links</span>
       <span class="sp-d"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Sans tracking comportemental</span>
-      <span class="sp-d"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>RÃ©tractation 14 jours</span>
+      <span class="sp-d"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Rétractation 14 jours</span>
       <span class="sp-d"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>WCAG 2.2 AA</span>
       <span class="sp-d"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>OVH France</span>
     </div>
     <div class="sp-foot-legal">
-      <span>Â© 2026 StackProtocol â€” Brice DeCampos. Tous droits rÃ©servÃ©s. Â· <a href="mailto:contact@stackprotocol.fr">contact@stackprotocol.fr</a></span>
-      <span>ðŸ‡«ðŸ‡· HÃ©bergement OVH Â· Plausible self-host Â· Brevo FR Â· Stripe FR Â· 0 tracking GAFAM</span>
+      <span>© 2026 StackProtocol — Brice DeCampos. Tous droits réservés. · <a href="mailto:contact@stackprotocol.fr">contact@stackprotocol.fr</a></span>
+      <span>🇫🇷 Hébergement OVH · Plausible self-host · Brevo FR · Stripe FR · 0 tracking GAFAM</span>
     </div>
   </div>
 </footer>
@@ -941,7 +941,7 @@
 </script>
 <script src="leftnav.js"></script>
 <script>
-  // dÃ©pliants types de projets (clic = Ã©pingle ouvert, survol = aperÃ§u)
+  // dépliants types de projets (clic = épingle ouvert, survol = aperçu)
   (function(){
     document.querySelectorAll('.pj-head').forEach(function(h){
       h.addEventListener('click', function(){
@@ -960,14 +960,14 @@
     var host = document.getElementById('cortex');
     var paths = [];
     if (host) {
-      // silhouette cortex abstraite (vue de profil) â€” 30 nÅ“uds experts
+      // silhouette cortex abstraite (vue de profil) — 30 nœuds experts
       var nodes = [
         [120,120],[160,86],[210,68],[262,64],[308,78],[344,108],[362,148],[364,192],[350,232],[322,264],
         [284,286],[240,296],[196,292],[156,276],[128,248],[112,212],[110,170],
         [170,140],[210,120],[255,110],[300,140],[322,190],[300,236],[255,256],[205,250],[165,220],
         [150,180],[252,182],[282,158],[230,148]
       ];
-      var C = [218,196]; // nÅ“ud central Claude
+      var C = [218,196]; // nœud central Claude
       var svg = document.createElementNS(NS,'svg');
       svg.setAttribute('viewBox','0 0 440 360');
       var defs = document.createElementNS(NS,'defs');
@@ -975,7 +975,7 @@
       svg.appendChild(defs);
       var g = document.createElementNS(NS,'g');
       if (!reduced) g.setAttribute('class','cx-rot');
-      // paires (synapse + nÅ“ud) indÃ©pendantes : rÃ©traction/repousse alÃ©atoire douce
+      // paires (synapse + nœud) indépendantes : rétraction/repousse aléatoire douce
       nodes.forEach(function(p,i){
         var mx = (C[0]+p[0])/2 + (p[1]-C[1])*0.12;
         var my = (C[1]+p[1])/2 - (p[0]-C[0])*0.12;
@@ -1000,7 +1000,7 @@
         pair.appendChild(c);
         g.appendChild(pair);
       });
-      // halo + nÅ“ud Claude (centre rÃ©duit)
+      // halo + nœud Claude (centre réduit)
       var halo = document.createElementNS(NS,'circle');
       halo.setAttribute('cx',C[0]); halo.setAttribute('cy',C[1]); halo.setAttribute('r',13);
       halo.setAttribute('class','cx-claude-halo');
@@ -1016,7 +1016,7 @@
     var paused = false;
     var fireTimer = null, slideTimer = null;
 
-    // influx : 1 synapse Ã  la fois, rythme calme
+    // influx : 1 synapse à la fois, rythme calme
     function fireOnce(){
       if (paused || reduced || !paths.length) return;
       var p = paths[Math.floor(Math.random()*paths.length)];
