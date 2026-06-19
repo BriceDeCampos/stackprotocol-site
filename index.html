@@ -330,6 +330,52 @@
     background: var(--grad); -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
+  /* ===== Bloc B Phase 0.7 — sections nouvelles 2026-06-19 ===== */
+
+  /* ── Le pitch (3 briques) ── */
+  .pitch-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; max-width: 980px; margin: 48px auto 0; }
+  .pitch-item { text-align: center; padding: 32px 22px; background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-radius: var(--r-lg); transition: border-color .2s, transform .2s; }
+  .pitch-item:hover { border-color: rgba(60,229,163,0.35); transform: translateY(-3px); }
+  .pitch-item .pitch-icon { font-size: 36px; margin-bottom: 14px; line-height: 1; }
+  .pitch-item h3 { font-family: var(--font-display); font-weight: 600; font-size: 17px; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.01em; }
+  .pitch-item p { font-size: 14.5px; line-height: 1.55; color: var(--muted); }
+  .pitch-item .grad-text { font-weight: 700; }
+
+  /* ── Octans = supervision (BLOC C 3 couches) ── */
+  .supervision-schema { display: flex; flex-direction: column; align-items: center; gap: 12px; max-width: 760px; margin: 48px auto 0; }
+  .supervision-schema .layer { width: 100%; padding: 22px 28px; border-radius: var(--r-lg); border: 1px solid var(--line); text-align: center; }
+  .supervision-schema .layer h3 { font-family: var(--font-display); font-weight: 600; font-size: 16px; margin-bottom: 6px; letter-spacing: -0.01em; }
+  .supervision-schema .layer p { font-size: 13.5px; color: var(--muted); line-height: 1.5; }
+  .supervision-schema .layer-projets { background: rgba(255,255,255,0.025); }
+  .supervision-schema .layer-octans { background: linear-gradient(135deg, rgba(60,229,163,0.08), rgba(24,180,204,0.06)); border-color: rgba(60,229,163,0.30); box-shadow: 0 0 24px rgba(60,229,163,0.10); }
+  .supervision-schema .layer-octans h3 { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .supervision-schema .layer-execution { background: rgba(255,255,255,0.018); }
+  .supervision-schema .layer-arrow { font-size: 22px; color: var(--green); opacity: 0.75; line-height: 1; }
+  .supervision-schema .exec-tools { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
+  .supervision-schema .exec-tools span { padding: 6px 14px; background: rgba(255,255,255,0.03); border: 1px solid var(--line-2); border-radius: var(--r-pill); font-size: 13px; color: var(--ink-2); font-family: var(--font-display); }
+  .supervision-quote { text-align: center; font-family: var(--font-editorial); font-size: 20px; color: var(--ink); margin-top: 40px; font-style: italic; max-width: 600px; margin-left: auto; margin-right: auto; }
+  .supervision-quote b { font-style: normal; color: var(--green); }
+  .supervision-compat { text-align: center; margin-top: 32px; }
+  .supervision-compat .compat-label { font-family: var(--font-display); font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .supervision-compat .compat-tags { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .supervision-compat .compat-tags span { padding: 8px 16px; background: rgba(60,229,163,0.06); border: 1px solid rgba(60,229,163,0.18); border-radius: var(--r-pill); font-size: 13.5px; color: var(--ink); font-family: var(--font-display); font-weight: 500; }
+  .supervision-compat .compat-tags .claude-tag { color: var(--orange); border-color: rgba(224,145,90,0.30); background: rgba(224,145,90,0.06); }
+  .supervision-compat .compat-tags .future-tag { opacity: 0.55; font-style: italic; }
+
+  /* ── La boucle (5 temps) ── */
+  .boucle { display: grid; grid-template-columns: repeat(5,1fr); gap: 14px; max-width: 1100px; margin: 48px auto 0; }
+  .boucle-step { text-align: center; padding: 24px 16px; background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-radius: var(--r-lg); position: relative; }
+  .boucle-step .step-num { font-family: var(--font-display); font-weight: 700; font-size: 12px; color: var(--green); letter-spacing: 0.08em; }
+  .boucle-step .step-icon { font-size: 28px; margin: 10px 0; line-height: 1; }
+  .boucle-step h4 { font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.01em; }
+  .boucle-step p { font-size: 12.5px; line-height: 1.5; color: var(--muted); }
+  .boucle-loop { text-align: center; margin-top: 28px; font-size: 13.5px; color: var(--muted); font-style: italic; }
+  .boucle-loop b { color: var(--green); font-style: normal; }
+  @media (max-width: 860px) {
+    .pitch-grid { grid-template-columns: 1fr; }
+    .boucle { grid-template-columns: repeat(2,1fr); }
+  }
 </style>
 </head>
 <body>
@@ -545,6 +591,34 @@
   </section>
 
 
+  <!-- ===== LE PITCH (Bloc B Phase 0.7 — 2026-06-19) ===== -->
+  <section class="section" data-ln="Le pitch" style="padding-top:60px;padding-bottom:80px;">
+    <div class="wrap">
+      <div class="section-head" style="text-align:center;max-width:none;margin-bottom:0;">
+        <span class="eyebrow" style="justify-content:center"><span class="dot"></span>En 1 phrase</span>
+        <h2 style="font-size:clamp(28px,4vw,42px);"><span class="grad-text">StackProtocol</span> = la méthode + <span class="grad-text">Octans</span>, le cerveau d'ingénierie.</h2>
+        <p style="margin-left:auto;margin-right:auto;max-width:680px;">Pour préparer ton projet, ton CDC, ta stack. Boosté par <span class="claude-mark">Claude</span>. <b>Toujours à jour.</b></p>
+      </div>
+      <div class="pitch-grid">
+        <div class="pitch-item">
+          <div class="pitch-icon">🧠</div>
+          <h3>La méthode</h3>
+          <p>5 piliers universels reproductibles, quel que soit ton projet.</p>
+        </div>
+        <div class="pitch-item">
+          <div class="pitch-icon">🌌</div>
+          <h3>Octans</h3>
+          <p>Le moteur : constellation d'<b>agents</b>, <b>skills</b> et <b>hooks</b>.</p>
+        </div>
+        <div class="pitch-item">
+          <div class="pitch-icon">🔒</div>
+          <h3>En local</h3>
+          <p>Exécuté sur ta machine. Tes idées ne sortent jamais.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== 3 CAS CONCRETS ===== -->
   <section class="cas" id="cas" data-ln="Cas concrets" data-ln-count="60">
     <div class="wrap">
@@ -697,6 +771,90 @@
 
 
 
+
+  <!-- ===== OCTANS = SUPERVISION (BLOC C Phase 0.7 — 2026-06-19) ===== -->
+  <section class="section" data-ln="Supervision">
+    <div class="wrap">
+      <div class="section-head" style="text-align:center;max-width:none;margin-bottom:0;">
+        <span class="eyebrow" style="justify-content:center"><span class="dot"></span>Le positionnement</span>
+        <h2>Octans ne remplace pas tes outils — il les <span class="grad-text">supervise</span>.</h2>
+        <p style="margin-left:auto;margin-right:auto;max-width:660px;">Tu ne descends pas au niveau de l'outil. Tu restes au niveau de la <b>méthode</b>.</p>
+      </div>
+      <div class="supervision-schema">
+        <div class="layer layer-projets">
+          <h3>🎯 Tes projets</h3>
+          <p>Tes CDC, tes objectifs, ta vision.</p>
+        </div>
+        <div class="layer-arrow">↓</div>
+        <div class="layer layer-octans">
+          <h3>🌌 Octans · Supervision</h3>
+          <p>Ingénierie & actualisation. Pilote, encadre, arbitre.</p>
+        </div>
+        <div class="layer-arrow">↓</div>
+        <div class="layer layer-execution">
+          <h3>⚙️ Exécution</h3>
+          <div class="exec-tools">
+            <span>Claude (IA)</span>
+            <span>Outils en ligne</span>
+            <span>VSCode + Obsidian</span>
+          </div>
+        </div>
+      </div>
+      <p class="supervision-quote">« L'IA se remplace. <b>Ta méthode, non.</b> »</p>
+      <div class="supervision-compat">
+        <div class="compat-label">Compatible avec</div>
+        <div class="compat-tags">
+          <span class="claude-tag">Claude Code</span>
+          <span>OpenCode</span>
+          <span class="future-tag">Hermès (à venir)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LA BOUCLE D'INGÉNIERIE (Bloc B Phase 0.7 — 2026-06-19) ===== -->
+  <section class="section" data-ln="La boucle" data-ln-count="5" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head" style="text-align:center;max-width:none;margin-bottom:0;">
+        <span class="eyebrow" style="justify-content:center"><span class="dot"></span>L'ingénierie continue</span>
+        <h2>La boucle Octans — <span class="grad-text">5 temps d'ingénieur</span>.</h2>
+        <p style="margin-left:auto;margin-right:auto;max-width:660px;">Du choix de la stack à la mise en production. Et ça nourrit le cycle suivant.</p>
+      </div>
+      <div class="boucle">
+        <div class="boucle-step">
+          <div class="step-num">01</div>
+          <div class="step-icon">🎯</div>
+          <h4>Préparer</h4>
+          <p>Stack, set-up, angles. Le bon outil pour le bon projet, justifié.</p>
+        </div>
+        <div class="boucle-step">
+          <div class="step-num">02</div>
+          <div class="step-icon">🔍</div>
+          <h4>Vérifier</h4>
+          <p>Cohérence, garde-fous, anti-hallucination. Avant de lancer.</p>
+        </div>
+        <div class="boucle-step">
+          <div class="step-num">03</div>
+          <div class="step-icon">🚀</div>
+          <h4>Déployer</h4>
+          <p>Mise en œuvre supervisée. L'outil exécute, Octans encadre.</p>
+        </div>
+        <div class="boucle-step">
+          <div class="step-num">04</div>
+          <div class="step-icon">🛡️</div>
+          <h4>Auditer</h4>
+          <p>Sécurité, RGPD, accessibilité. On mesure ce qui est produit.</p>
+        </div>
+        <div class="boucle-step">
+          <div class="step-num">05</div>
+          <div class="step-icon">✅</div>
+          <h4>Production</h4>
+          <p>Mise en service + actualisation. La boucle se referme.</p>
+        </div>
+      </div>
+      <p class="boucle-loop">↻ Ce qui sort de <b>Production</b> nourrit le <b>Préparer</b> du cycle suivant — c'est <b>l'ingénierie d'amélioration continue</b>.</p>
+    </div>
+  </section>
 
   <!-- ===== SOUVERAINETÉ ===== -->
   <section class="section" id="souverainete" data-ln="Souveraineté" style="padding-top:0;">
