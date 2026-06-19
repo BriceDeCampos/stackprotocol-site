@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Orientation gratuite — ton archétype en 5 questions · StackProtocol</title>
-<meta name="description" content="5 questions, 5 minutes, sans inscription ni tracker : on te dit ton archétype, le pack recommandé et tes 3 priorités." />
+<title>Orientation gratuite — votre archétype en 5 questions · StackProtocol</title>
+<meta name="description" content="5 questions, 5 minutes, sans inscription ni tracker : on vous dit votre archétype, le pack recommandé et vos 3 priorités." />
 <link rel="stylesheet" href="assets/fonts/fonts.css" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="stylesheet" href="styles.css" />
@@ -102,7 +102,7 @@
         </button>
         <div class="nav-menu" id="nav-offres-menu" role="menu" aria-label="Offres StackProtocol">
           <a href="produits/pack-methode.html" role="menuitem" class="nav-item">
-            <div class="nav-item-ico">🧠</div>
+            <div class="nav-item-ico" style="font-family:var(--font-display);font-weight:700;font-size:13px;color:var(--green);letter-spacing:0.05em;">CDC</div>
             <div class="nav-item-body">
               <div class="nav-item-title">Pack CDC Méthode <span class="nav-item-badge">+ Octans</span></div>
               <div class="nav-item-desc">Le moteur Octans + la méthode appliquée à votre projet</div>
@@ -110,7 +110,7 @@
             </div>
           </a>
           <a href="produits/pack-methode.html#maj" role="menuitem" class="nav-item">
-            <div class="nav-item-ico">🔄</div>
+            <div class="nav-item-ico" style="font-family:var(--font-display);font-weight:700;font-size:13px;color:var(--green);letter-spacing:0.05em;">MAJ</div>
             <div class="nav-item-body">
               <div class="nav-item-title">Mises à jour Octans</div>
               <div class="nav-item-desc">Abonnement continu ou achat ponctuel d'une version majeure</div>
@@ -136,7 +136,7 @@
 </header>
 
   <main class="center">
-    <section class="card quiz" data-ln="Ton projet, c'est avant tout ?">
+    <section class="card quiz" data-ln="Votre projet, c'est avant tout ?">
       <div class="progress" id="progress" aria-hidden="true">
         <div class="seg on"><i></i></div><div class="seg"><i></i></div><div class="seg"><i></i></div><div class="seg"><i></i></div><div class="seg"><i></i></div>
       </div>
@@ -145,7 +145,7 @@
         <!-- Q1 -->
         <div class="step active" data-step="0">
           <div class="qn">Question 1 / 5</div>
-          <h2>Ton projet, c'est avant tout&nbsp;?</h2>
+          <h2>Votre projet, c'est avant tout&nbsp;?</h2>
           <div class="opts">
             <button type="button" class="opt" data-arch="SAAS"><span class="k">A</span>Un outil que des gens utilisent au quotidien (SaaS, app)</button>
             <button type="button" class="opt" data-arch="PLATFORM"><span class="k">B</span>Une plateforme qui met en relation plusieurs acteurs</button>
@@ -156,7 +156,7 @@
         <!-- Q2 -->
         <div class="step" data-step="1">
           <div class="qn">Question 2 / 5</div>
-          <h2>Où en es-tu&nbsp;?</h2>
+          <h2>Où en es-vous&nbsp;?</h2>
           <div class="opts">
             <button type="button" class="opt" data-level="0"><span class="k">A</span>Juste une idée, rien d'écrit</button>
             <button type="button" class="opt" data-level="0"><span class="k">B</span>Quelques notes éparses</button>
@@ -167,7 +167,7 @@
         <!-- Q3 -->
         <div class="step" data-step="2">
           <div class="qn">Question 3 / 5</div>
-          <h2>Ton expérience avec <span class="claude-mark">Claude Code</span>&nbsp;?</h2>
+          <h2>Votre expérience avec <span class="claude-mark">Claude Code</span>&nbsp;?</h2>
           <div class="opts">
             <button type="button" class="opt" data-exp="0"><span class="k">A</span>Je débute totalement</button>
             <button type="button" class="opt" data-exp="1"><span class="k">B</span>Je l'utilise un peu, sans méthode</button>
@@ -177,7 +177,7 @@
         <!-- Q4 -->
         <div class="step" data-step="3">
           <div class="qn">Question 4 / 5</div>
-          <h2>Tu cherches surtout&nbsp;?</h2>
+          <h2>Vous cherches surtout&nbsp;?</h2>
           <div class="opts">
             <button type="button" class="opt" data-need="auto"><span class="k">A</span>Apprendre en autonomie, à mon rythme</button>
             <button type="button" class="opt" data-need="coach"><span class="k">B</span>Un coup de main personnalisé sur mon projet</button>
@@ -187,7 +187,7 @@
         <!-- Q5 -->
         <div class="step" data-step="4">
           <div class="qn">Question 5 / 5</div>
-          <h2>Ton budget pour démarrer&nbsp;?</h2>
+          <h2>Votre budget pour démarrer&nbsp;?</h2>
           <div class="opts">
             <button type="button" class="opt" data-budget="99"><span class="k">A</span>Tarif réduit — étudiant, demandeur d'emploi, minima sociaux (99 €)</button>
             <button type="button" class="opt" data-budget="197"><span class="k">B</span>Tarif normal — paiement unique (197 €)</button>
@@ -203,7 +203,7 @@
       <div class="result" id="result" role="status">
         <div class="ic"><svg aria-hidden="true"><use href="#i-compass"/></svg></div>
         <div class="archlabel" id="r-arch">Archétype SAAS</div>
-        <h2 id="r-title">Voici ton point de départ.</h2>
+        <h2 id="r-title">Voici votre point de départ.</h2>
         <p class="rdesc" id="r-desc"></p>
         <div class="reco">
           <h4>Pack recommandé</h4>
@@ -214,7 +214,7 @@
           <a class="btn btn-primary" id="r-cta" href="index.html#produits">Voir ce pack<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
           <button class="btn btn-ghost" type="button" onclick="location.reload()">Refaire le test</button>
         </div>
-        <p class="micro">Résultat calculé dans ton navigateur. Aucune donnée envoyée, aucun tracker.</p>
+        <p class="micro">Résultat calculé dans votre navigateur. Aucune donnée envoyée, aucun tracker.</p>
       </div>
     </section>
   </main>
@@ -224,7 +224,7 @@
     <div class="sp-foot-cols">
       <div class="sp-foot-about">
         <a class="logo" href="index.html" style="display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;"><span class="mark" data-mark style="width:36px;height:42px;display:inline-block;"></span><span class="wm" style="font-family:var(--font-display);font-weight:600;font-size:17px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);">Stack<b>Protocol</b></span></a>
-        <p style="font-size:13.5px;line-height:1.55;color:var(--muted);margin:0;max-width:340px;">Une méthode reproductible pour structurer ton projet en local, avec Claude Code. Tes idées restent chez toi. Souveraineté française · OVH · sans tracking.</p>
+        <p style="font-size:13.5px;line-height:1.55;color:var(--muted);margin:0;max-width:340px;">Une méthode reproductible pour structurer votre projet en local, avec Claude Code. Vos idées restent chez vous. Souveraineté française · OVH · sans tracking.</p>
       </div>
       <div class="sp-foot-col">
         <h4>Explorer</h4>
@@ -297,16 +297,16 @@
     });
 
     var archDesc={
-      SAAS:{l:'Archétype SAAS',d:'Un outil utilisé au quotidien. Tu pars de l\'archétype SAAS (35 fichiers) : authentification, abonnements, tableau de bord, sécurité.'},
-      PLATFORM:{l:'Archétype PLATFORM',d:'Une plateforme multi-acteurs. Tu pars de l\'archétype PLATFORM (60 fichiers) : rôles, mise en relation, paiements, modération.'},
-      MICRO:{l:'Archétype MICRO',d:'Un site vitrine ou une boutique. Tu pars de l\'archétype MICRO, léger et rapide, extensible vers l\'e-commerce.'},
-      DATA:{l:'Archétype DATA',d:'De la donnée ou un agent IA. Tu pars de l\'archétype DATA : pipeline, modèle, garde-fous et maîtrise des coûts LLM.'}
+      SAAS:{l:'Archétype SAAS',d:'Un outil utilisé au quotidien. Vous partez de l\'archétype SAAS (35 fichiers) : authentification, abonnements, tableau de bord, sécurité.'},
+      PLATFORM:{l:'Archétype PLATFORM',d:'Une plateforme multi-acteurs. Vous partez de l\'archétype PLATFORM (60 fichiers) : rôles, mise en relation, paiements, modération.'},
+      MICRO:{l:'Archétype MICRO',d:'Un site vitrine ou une boutique. Vous partez de l\'archétype MICRO, léger et rapide, extensible vers l\'e-commerce.'},
+      DATA:{l:'Archétype DATA',d:'De la donnée ou un agent IA. Vous partez de l\'archétype DATA : pipeline, modèle, garde-fous et maîtrise des coûts LLM.'}
     };
     var prioByArch={
-      SAAS:['Cadrer ton CDC avec l\'archétype SAAS','Modéliser tes tables + sécurité par défaut','Poser ton suivi quotidien'],
+      SAAS:['Cadrer votre CDC avec l\'archétype SAAS','Modéliser vos tables + sécurité par défaut','Poser votre suivi quotidien'],
       PLATFORM:['Définir les rôles et la mise en relation','Cadrer paiements + modération','Anticiper le RGPD multi-acteurs'],
-      MICRO:['Structurer ta vitrine + SEO','Préparer l\'extension boutique','Garder une base accessible (WCAG)'],
-      DATA:['Cadrer ton pipeline de données','Poser les garde-fous IA','Maîtriser les coûts LLM dès le départ']
+      MICRO:['Structurer votre vitrine + SEO','Préparer l\'extension boutique','Garder une base accessible (WCAG)'],
+      DATA:['Cadrer votre pipeline de données','Poser les garde-fous IA','Maîtriser les coûts LLM dès le départ']
     };
 
     function finish(){
