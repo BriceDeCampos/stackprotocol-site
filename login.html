@@ -171,9 +171,6 @@
 <script src="auth-guard.js"></script>
 <script>
   (function(){
-    // Déjà connecté → redirect direct vers espace ou next=
-    if(window.SPAuth && SPAuth.getUser()){ SPAuth.redirectAfterLogin(); return; }
-
     var t=document.getElementById('mark-svg');
     document.querySelectorAll('[data-mark]').forEach(function(s,i){var node=t.content.cloneNode(true);var svg=node.querySelector('svg');svg.innerHTML=svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,'$1$2_'+i);s.appendChild(node);});
     var form=document.getElementById('login-form');
@@ -183,8 +180,8 @@
       if(!email||email.indexOf('@')<1){document.getElementById('email').focus();return;}
       document.getElementById('sent-email').textContent=email;
       document.body.classList.add('is-sent');
-      // Mock Phase 0.5 : persiste session locale + redirect après 1,5 s
-      if(window.SPAuth){ SPAuth.signIn(email); setTimeout(function(){ SPAuth.redirectAfterLogin(); }, 1500); }
+      // Phase 0.6 : vraie demande de magic link (l'écran "vérifie tes mails" est déjà affiché).
+      if(window.SPAuth){ SPAuth.requestMagicLink(email).catch(function(err){ console.warn('[login] magic link:', err); }); }
     });
   })();
 </script>
