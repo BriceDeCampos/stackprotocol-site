@@ -64,3 +64,68 @@
     });
   } catch (e) {}
 })();
+
+/* ============================================================
+   Nav top dropdown — Offres ▾ (Phase 0.8 — 2026-06-19)
+   Click pour ouvrir/fermer · Escape pour fermer · click extérieur ferme
+   ============================================================ */
+(function () {
+  var dropdowns = document.querySelectorAll('[data-nav-dd]');
+  if (!dropdowns.length) return;
+
+  function closeAll(exceptFor) {
+    dropdowns.forEach(function (dd) {
+      if (dd !== exceptFor) {
+        dd.classList.remove('is-open');
+        var btn = dd.querySelector('.nav-trigger');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  dropdowns.forEach(function (dd) {
+    var btn = dd.querySelector('.nav-trigger');
+    if (!btn) return;
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = dd.classList.contains('is-open');
+      closeAll(dd);
+      if (isOpen) {
+        dd.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        dd.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    /* Hover desktop : ouvre au survol (UX standard) */
+    if (window.matchMedia('(min-width: 881px)').matches) {
+      var hoverTimer;
+      dd.addEventListener('mouseenter', function () {
+        clearTimeout(hoverTimer);
+        closeAll(dd);
+        dd.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+      });
+      dd.addEventListener('mouseleave', function () {
+        hoverTimer = setTimeout(function () {
+          dd.classList.remove('is-open');
+          btn.setAttribute('aria-expanded', 'false');
+        }, 180);
+      });
+    }
+  });
+
+  /* Fermeture sur click extérieur */
+  document.addEventListener('click', function (e) {
+    var inside = e.target.closest('[data-nav-dd]');
+    if (!inside) closeAll();
+  });
+
+  /* Fermeture sur Escape */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeAll();
+  });
+})();
