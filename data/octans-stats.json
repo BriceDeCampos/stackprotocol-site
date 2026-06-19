@@ -1,19 +1,19 @@
 {
-  "version": "1.2",
-  "lastUpdate": "2026-06-17",
+  "version": "1.3",
+  "lastUpdate": "2026-06-18",
   "total": {
-    "lines": 6490,
+    "lines": 6677,
     "components": 48,
     "productionReady": 40,
     "privateMoat": 4
   },
   "skills": {
-    "count": 28,
-    "lines": 3709,
+    "count": 30,
+    "lines": 3983,
     "description": "pipeline cœur, enrichissement, audits"
   },
   "agents": {
-    "count": 11,
+    "count": 10,
     "lines": 1994,
     "description": "frontend, backend, conformité, méthode"
   },
