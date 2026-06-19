@@ -139,10 +139,12 @@
     .cx-syn.fire { animation: none; stroke-dasharray: none; opacity: 0.22; stroke: url(#cxgrad); filter: none; }
   }
   /* pause carrousel (WCAG 2.2.2) */
-  .car-pause { position: absolute; right: 4px; bottom: -6px; width: 34px; height: 34px; border-radius: 9px; border: 1px solid var(--line-2); background: var(--surface); color: var(--ink-2); cursor: pointer; display: grid; place-items: center; transition: border-color .18s, background .18s; }
-  .car-pause:hover { border-color: var(--green); background: var(--surface-2); }
+  .car-pause { position: absolute; right: 4px; bottom: -6px; width: 34px; height: 34px; border-radius: 9px; border: 1px solid var(--line-2); background: var(--surface); color: var(--ink-2); cursor: pointer; display: grid; place-items: center; transition: border-color .18s, background .18s, color .18s, transform .18s; }
+  .car-pause:hover { border-color: var(--green); background: var(--surface-2); color: var(--green); }
   .car-pause svg { width: 15px; height: 15px; }
   .car-pause .ic-play { display: none; }
+  .car-replay { right: 44px; }
+  .car-replay:active svg { transform: rotate(-360deg); transition: transform .55s cubic-bezier(.4,1.4,.6,1); }
   .car-pause[aria-pressed="true"] .ic-pause { display: none; }
   .car-pause[aria-pressed="true"] .ic-play { display: block; }
 
@@ -469,12 +471,15 @@
     </div>
     <div class="wrap grid">
       <div class="lede">
-        <h1 style="margin-top:0;font-size:clamp(26px,3.2vw,36px);">Préparer son projet · son CDC.
-          <span class="h1-subline"><span class="h1-sub small h1-souv" style="margin-top:0;"><span class="dot-souv"></span>Cahier des charges en local.</span><span class="h1-sub small h1-souv" style="margin-top:0;"><span class="eq-souv">&gt;</span>Souveraineté.</span></span>
+        <h1 style="margin-top:0;font-size:clamp(28px,3.4vw,40px);line-height:1.05;">Arrêtez de prompter.<br><span class="grad-text">Architecturez votre IA.</span>
+          <span class="h1-subline"><span class="h1-sub small h1-souv" style="margin-top:0;"><span class="dot-souv"></span>Du CDC à la production.</span><span class="h1-sub small h1-souv" style="margin-top:0;"><span class="eq-souv">&gt;</span>De l'idée au produit.</span></span>
         </h1>
-        <p class="note" style="margin-top:10px;"><svg aria-hidden="true"><use href="#i-shield"/></svg>1 Jour de travail = 2 Mois de production<a class="gtag-btn" href="legal/satisfaction.html">Garantie</a></p>
-        <div class="cta" style="margin-top:36px;">
-          <a class="btn btn-sm btn-primary btn-breathe" href="#produits">Commencer<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <p style="margin-top:18px;font-size:15px;line-height:1.55;color:var(--ink-2);max-width:520px;">
+          StackProtocol vous livre <b style="color:var(--ink);">la méthode</b> (CDC reproductible) + <b style="color:var(--ink);">le moteur</b> (Octans : multi-agents · skills · hooks) + <b style="color:var(--ink);">votre studio</b> (VSCode + <span class="claude-mark">Claude Code</span> + Obsidian, prêt en 90 min).
+        </p>
+        <p class="note" style="margin-top:14px;"><svg aria-hidden="true"><use href="#i-shield"/></svg>Pas une formation jetable. Une infrastructure. À vous. À vie.<a class="gtag-btn" href="legal/satisfaction.html">Garantie</a></p>
+        <div class="cta" style="margin-top:30px;">
+          <a class="btn btn-sm btn-primary btn-breathe" href="#produits">Déployer mon Stack-Architecture<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
           <a class="btn btn-sm btn-primary" href="orientation-gratuite.html">Orientation gratuite</a>
         </div>
       </div>
@@ -592,6 +597,9 @@
             </div>
           </div>
         </div></div>
+        <button id="car-replay" class="car-pause car-replay" type="button" aria-label="Rejouer le hero depuis le début" title="↻ Rejouer le hero">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7M3 3v6h6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
         <button id="car-pause" class="car-pause" type="button" aria-pressed="false" aria-label="Mettre en pause l'animation">
           <svg class="ic-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
           <svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg>
@@ -1248,6 +1256,38 @@
         document.querySelectorAll('.cx-node.p, .cx-claude-halo, .cx-rot, .pair-ind').forEach(function(el){
           el.style.animationPlayState = paused ? 'paused' : 'running';
         });
+      });
+    }
+
+    // \u21bb Rejouer le hero depuis le d\u00e9but
+    var btnReplay = document.getElementById('car-replay');
+    if (btnReplay) {
+      btnReplay.addEventListener('click', function(){
+        // 1. Reset carrousel au slide 0
+        slides.forEach(function(s){ s.classList.remove('is-active'); });
+        i = 0;
+        slides[0].classList.add('is-active');
+        // 2. Relance l'animation des items (force reflow)
+        var activeReveal = slides[0].querySelector('.pp-reveal');
+        if (activeReveal) {
+          activeReveal.querySelectorAll('li').forEach(function(li){
+            li.style.animation = 'none';
+            li.offsetHeight; // trigger reflow
+            li.style.animation = '';
+          });
+        }
+        // 3. R\u00e9initialise le timer carrousel
+        if (slideTimer) { clearInterval(slideTimer); }
+        if (slides.length > 1 && !reduced && !paused) { slideTimer = setInterval(next, 10000); }
+        // 4. Si en pause, on d\u00e9pause
+        if (paused && btn) {
+          paused = false;
+          btn.setAttribute('aria-pressed', 'false');
+          btn.setAttribute('aria-label', 'Mettre en pause l\u2019animation');
+          document.querySelectorAll('.cx-node.p, .cx-claude-halo, .cx-rot, .pair-ind').forEach(function(el){
+            el.style.animationPlayState = 'running';
+          });
+        }
       });
     }
   })();
