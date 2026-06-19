@@ -372,9 +372,19 @@
   .boucle-step p { font-size: 12.5px; line-height: 1.5; color: var(--muted); }
   .boucle-loop { text-align: center; margin-top: 28px; font-size: 13.5px; color: var(--muted); font-style: italic; }
   .boucle-loop b { color: var(--green); font-style: normal; }
+  /* ── Vivant, pas figé (2 colonnes) ── */
+  .vivant-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 1000px; margin: 48px auto 0; }
+  .vivant-col { padding: 28px 26px; }
+  .vivant-col h3 { font-family: var(--font-display); font-weight: 600; font-size: 17px; color: var(--ink); margin-bottom: 18px; letter-spacing: -0.01em; }
+  .vivant-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+  .vivant-col ul li { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); display: flex; gap: 10px; align-items: flex-start; }
+  .vivant-col ul li .v-tick { color: var(--green); font-weight: 700; flex-shrink: 0; font-size: 16px; line-height: 1.5; }
+  .vivant-col ul li b { color: var(--ink); font-weight: 600; }
+
   @media (max-width: 860px) {
     .pitch-grid { grid-template-columns: 1fr; }
     .boucle { grid-template-columns: repeat(2,1fr); }
+    .vivant-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -1005,11 +1015,40 @@
     </div>
   </section>
 
+  <!-- ===== VIVANT, PAS FIGÉ (Bloc B Phase 0.7 — 2026-06-19) ===== -->
+  <section class="section" data-ln="Vivant" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head" style="text-align:center;max-width:none;margin-bottom:0;">
+        <span class="eyebrow" style="justify-content:center"><span class="dot"></span>Toujours à jour</span>
+        <h2>Octans <span class="grad-text">évolue</span> — tu n'achètes pas une photo.</h2>
+        <p style="margin-left:auto;margin-right:auto;max-width:640px;">Tu suis l'évolution des meilleures IA, sans tout reprendre de zéro. Et tu peux partir quand tu veux.</p>
+      </div>
+      <div class="vivant-grid">
+        <div class="card vivant-col">
+          <h3>🔄 Toujours à jour</h3>
+          <ul>
+            <li><span class="v-tick">›</span>On <b>suit et anticipe</b> les meilleures IA. Quand un modèle progresse, Octans en profite.</li>
+            <li><span class="v-tick">›</span>De nouveaux skills, agents et hooks arrivent <b>par vagues</b> — métiers, audits, garde-fous.</li>
+            <li><span class="v-tick">›</span>Mises à jour au choix : <b>abonnement 7,70 €/mois</b> ou achat one-shot 197 € version majeure. <b>Jamais d'abo obligatoire.</b></li>
+          </ul>
+        </div>
+        <div class="card vivant-col">
+          <h3>🔓 Portable, jamais captif</h3>
+          <ul>
+            <li><span class="v-tick">›</span>Octans tourne <b>chez toi, en local</b>. Tes idées ne quittent pas ta machine.</li>
+            <li><span class="v-tick">›</span>La méthode reste la tienne — tu peux <b>changer d'IA</b>, Octans s'adapte.</li>
+            <li><span class="v-tick">›</span>« <b>L'IA se remplace. Ta méthode, non.</b> »</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== GARANTIES ===== -->
   <section class="section" style="padding-top:0;">
     <div class="wrap">
       <div class="guar-band">
-        <span class="g"><svg aria-hidden="true"><use href="#i-shield"/></svg>Remboursé 7 jours (Loi Hamon + clause d'essai)</span>
+        <span class="g"><svg aria-hidden="true"><use href="#i-shield"/></svg>Rétractation 14 jours (Loi Hamon)</span>
         <span class="g"><svg aria-hidden="true"><use href="#i-lock"/></svg>0 mot de passe (magic links)</span>
         <span class="g"><svg aria-hidden="true"><use href="#i-check"/></svg>0 tracking comportemental</span>
         <span class="g"><svg aria-hidden="true"><use href="#i-check"/></svg>WCAG 2.2 AA</span>
