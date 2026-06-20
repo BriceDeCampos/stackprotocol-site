@@ -67,6 +67,45 @@
   .ptable td.feat { color: var(--ink-2); }
   .ptable tr.hl td { background: linear-gradient(100deg, rgba(60,229,163,0.07), rgba(24,180,204,0.03)); }
 
+  /* ===== COUVERTURE — 12 territoires × 60+ domaines ===== */
+  .cov-intro { text-align: center; max-width: 720px; margin: 0 auto 36px; font-size: 15px; color: var(--ink-2); line-height: 1.55; }
+  .cov-intro b { color: var(--ink); font-weight: 600; }
+
+  /* Bandeau 3 actions */
+  .cov-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 0 auto 56px; max-width: 980px; }
+  .cov-action { padding: 22px 22px; border: 1px solid var(--line); border-radius: var(--r, 14px); background: var(--surface); display: flex; flex-direction: column; gap: 8px; transition: border-color .25s, background .25s; }
+  .cov-action:hover { border-color: rgba(60,229,163,0.30); background: var(--surface-2); }
+  .cov-action-num { font-family: var(--font-display); font-weight: 700; font-size: 10.5px; letter-spacing: 0.16em; color: var(--green); }
+  .cov-action-h { font-family: var(--font-display); font-weight: 600; font-size: 17px; color: var(--ink); letter-spacing: -0.01em; }
+  .cov-action p { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 0; }
+
+  /* Grille 12 territoires */
+  .cov-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .cov-card { padding: 22px 22px 20px; border: 1px solid var(--line); border-radius: var(--r, 14px); background: var(--surface); display: flex; flex-direction: column; gap: 14px; transition: border-color .25s, background .25s, transform .25s; }
+  .cov-card:hover { border-color: rgba(60,229,163,0.32); background: var(--surface-2); transform: translateY(-2px); }
+  .cov-card-head { display: flex; align-items: baseline; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .cov-num { font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.14em; color: var(--green); flex-shrink: 0; }
+  .cov-card h3 { font-family: var(--font-display); font-weight: 600; font-size: 15.5px; color: var(--ink); letter-spacing: -0.01em; margin: 0; flex: 1; }
+  .cov-count { font-family: var(--font-display); font-size: 10.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); flex-shrink: 0; }
+  .cov-domains { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
+  .cov-domains li { font-size: 12.5px; line-height: 1.45; color: var(--ink-2); padding-left: 14px; position: relative; }
+  .cov-domains li::before { content: ""; position: absolute; left: 0; top: 8px; width: 6px; height: 1px; background: var(--green); opacity: 0.6; }
+
+  /* Variations chromatiques par groupe de 4 */
+  .cov-card.gr-cyan .cov-num { color: var(--cyan, #18B4CC); }
+  .cov-card.gr-cyan:hover { border-color: rgba(24,180,204,0.32); }
+  .cov-card.gr-cyan .cov-domains li::before { background: var(--cyan, #18B4CC); }
+  .cov-card.gr-orange .cov-num { color: var(--orange, #E0915A); }
+  .cov-card.gr-orange:hover { border-color: rgba(224,145,90,0.32); }
+  .cov-card.gr-orange .cov-domains li::before { background: var(--orange, #E0915A); }
+
+  .cov-foot { text-align: center; margin: 44px auto 0; font-size: 14px; color: var(--ink-2); }
+  .cov-foot b { color: var(--ink); font-weight: 600; }
+  .cov-foot .grad-text { font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: -0.005em; }
+
+  @media (max-width:1100px) { .cov-grid { grid-template-columns: repeat(2, 1fr); } .cov-actions { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width:680px) { .cov-grid, .cov-actions { grid-template-columns: 1fr; } }
+
   @media (max-width:860px){ .oct-hero,.pillars,.fl-row,.cats,.evo{ grid-template-columns:1fr; } .fl-sep{ display:none; } .constel{ max-width:260px; } .ptable{ font-size:13px; } }
 </style>
 </head>
@@ -397,6 +436,184 @@
         <div class="card cat"><div class="cn"><span class="dot"></span>Accompagnement</div><p>Mentor, posture, cadence, suivi quotidien.</p></div>
         <div class="card cat" style="display:grid;place-items:center;text-align:center;"><a href="les-experts.html" style="color:var(--green);font-weight:600;font-size:13px;">Voir l'équipe →</a></div>
       </div>
+    </div>
+  </section>
+
+  <!-- COUVERTURE — 12 territoires × 60+ domaines -->
+  <section class="section" style="padding-top:0;" data-ln="Couverture" data-ln-count="12">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>12 territoires · 60+ domaines</span>
+        <h2>Tout ce qu'Octans <span class="grad-text">prend en charge</span>.</h2>
+      </div>
+      <p class="cov-intro">Sur <b>chaque domaine</b> ci-dessous, Octans exécute trois actions enchaînées — pour produire un dossier cohérent du premier brief jusqu'à la mise en production.</p>
+
+      <!-- Bandeau 3 actions -->
+      <div class="cov-actions">
+        <div class="cov-action">
+          <span class="cov-action-num">01 · ACTION</span>
+          <div class="cov-action-h">Génère</div>
+          <p>Produit le contenu structuré — texte, spécification, schéma, code — directement utilisable.</p>
+        </div>
+        <div class="cov-action">
+          <span class="cov-action-num">02 · ACTION</span>
+          <div class="cov-action-h">Vérifie</div>
+          <p>Contrôle cohérence, sources, conformité, anti-hallucination, pré-mortem avant de valider.</p>
+        </div>
+        <div class="cov-action">
+          <span class="cov-action-num">03 · ACTION</span>
+          <div class="cov-action-h">Propage</div>
+          <p>Répercute chaque décision dans tous les domaines liés. Plus de silos, plus d'incohérences.</p>
+        </div>
+      </div>
+
+      <!-- Grille 12 territoires -->
+      <div class="cov-grid">
+
+        <article class="cov-card">
+          <div class="cov-card-head"><span class="cov-num">01</span><h3>Marque &amp; identité</h3><span class="cov-count">5 domaines</span></div>
+          <ul class="cov-domains">
+            <li>Naming (marque, produit, service, gamme)</li>
+            <li>Positionnement stratégique vs concurrents</li>
+            <li>Charte éditoriale &amp; tone of voice</li>
+            <li>Manifesto &amp; promesse de marque</li>
+            <li>Storytelling fondateur</li>
+          </ul>
+        </article>
+
+        <article class="cov-card">
+          <div class="cov-card-head"><span class="cov-num">02</span><h3>Identité visuelle</h3><span class="cov-count">5 domaines</span></div>
+          <ul class="cov-domains">
+            <li>Direction artistique &amp; moodboard</li>
+            <li>Charte graphique (palette, typo, grille)</li>
+            <li>Brief logo &amp; système d'identité</li>
+            <li>Design tokens &amp; design system</li>
+            <li>Iconographie &amp; illustrations</li>
+          </ul>
+        </article>
+
+        <article class="cov-card">
+          <div class="cov-card-head"><span class="cov-num">03</span><h3>Positionnement marché</h3><span class="cov-count">5 domaines</span></div>
+          <ul class="cov-domains">
+            <li>ICP &amp; personas</li>
+            <li>Étude concurrentielle structurée</li>
+            <li>Analyse SWOT &amp; 5 forces de Porter</li>
+            <li>Proposition de valeur unique (UVP)</li>
+            <li>Pricing &amp; packaging (paliers, offres)</li>
+          </ul>
+        </article>
+
+        <article class="cov-card gr-cyan">
+          <div class="cov-card-head"><span class="cov-num">04</span><h3>Communication</h3><span class="cov-count">5 domaines</span></div>
+          <ul class="cov-domains">
+            <li>Stratégie éditoriale multi-canal</li>
+            <li>Calendrier éditorial 12 mois</li>
+            <li>Posts LinkedIn / X / Instagram / TikTok</li>
+            <li>Newsletter &amp; séquences email</li>
+            <li>Communiqués de presse &amp; RP</li>
+          </ul>
+        </article>
+
+        <article class="cov-card gr-cyan">
+          <div class="cov-card-head"><span class="cov-num">05</span><h3>Marketing &amp; growth</h3><span class="cov-count">7 domaines</span></div>
+          <ul class="cov-domains">
+            <li>Funnel d'acquisition (TOFU / MOFU / BOFU)</li>
+            <li>Stratégie SEO (keywords, cocon, technique)</li>
+            <li>Stratégie SEA (Google, Meta, LinkedIn Ads)</li>
+            <li>Landing pages &amp; copy de conversion</li>
+            <li>Lead magnets &amp; aimants</li>
+            <li>Plan d'A/B testing</li>
+            <li>Email marketing &amp; automation</li>
+          </ul>
+        </article>
+
+        <article class="cov-card gr-cyan">
+          <div class="cov-card-head"><span class="cov-num">06</span><h3>Produit &amp; UX</h3><span class="cov-count">6 domaines</span></div>
+          <ul class="cov-domains">
+            <li>User research &amp; guides d'interview</li>
+            <li>Wireframes &amp; user flows</li>
+            <li>Architecture de l'information</li>
+            <li>Spécifications fonctionnelles</li>
+            <li>User stories (format Gherkin)</li>
+            <li>Roadmap produit (now / next / later)</li>
+          </ul>
+        </article>
+
+        <article class="cov-card gr-orange">
+          <div class="cov-card-head"><span class="cov-num">07</span><h3>Stack technique</h3><span class="cov-count">8 domaines</span></div>
+          <ul class="cov-domains">
+            <li>Architecture (mono/micro, SSR/SPA)</li>
+            <li>Stack front (React, Vue, vanilla…)</li>
+            <li>Stack back (FastAPI, Node, Rails…)</li>
+            <li>Base de données (Postgres, SQLite…)</li>
+            <li>Hébergeur (Cloudflare, OVH, AWS…)</li>
+            <li>Authentification, sécurité, RLS</li>
+            <li>CI/CD pipelines &amp; déploiement</li>
+            <li>Monitoring &amp; observabilité</li>
+          </ul>
+        </article>
+
+        <article class="cov-card gr-orange">
+          <div class="cov-card-head"><span class="cov-num">08</span><h3>CDC sites &amp; applis</h3><span class="cov-count">5 domaines</span></div>
+          <ul class="cov-domains">
+            <li>Sitemap &amp; arborescence</li>
+            <li>Spec front (composants, routes, états)</li>
+            <li>Spec back (endpoints, schémas, BDD)</li>
+            <li>Design system &amp; guide d'intégration</li>
+            <li>Plan de tests E2E &amp; QA</li>
+          </ul>
+        </article>
+
+        <article class="cov-card gr-orange">
+          <div class="cov-card-head"><span class="cov-num">09</span><h3>Légal &amp; conformité</h3><span class="cov-count">6 domaines</span></div>
+          <ul class="cov-domains">
+            <li>RGPD (registre, AIPD, DPO)</li>
+            <li>CGV / CGU / Mentions légales</li>
+            <li>Politique de confidentialité &amp; cookies</li>
+            <li>Conformité CNIL &amp; rétractation</li>
+            <li>Accessibilité WCAG 2.1 AA / RGAA</li>
+            <li>Conformité sectorielle (santé, finance…)</li>
+          </ul>
+        </article>
+
+        <article class="cov-card">
+          <div class="cov-card-head"><span class="cov-num">10</span><h3>Business &amp; finance</h3><span class="cov-count">5 domaines</span></div>
+          <ul class="cov-domains">
+            <li>Business plan structuré</li>
+            <li>Prévisionnel 3 ans (P&amp;L, cash-flow, BFR)</li>
+            <li>Plan de financement (CPF, BPI, levée, prêt)</li>
+            <li>Budget marketing &amp; CAC/LTV</li>
+            <li>Pitch deck investisseurs</li>
+          </ul>
+        </article>
+
+        <article class="cov-card">
+          <div class="cov-card-head"><span class="cov-num">11</span><h3>Commercial &amp; GTM</h3><span class="cov-count">6 domaines</span></div>
+          <ul class="cov-domains">
+            <li>Plan de lancement (J-90 → J+90)</li>
+            <li>Pipeline commercial &amp; CRM</li>
+            <li>Scripts d'appel &amp; playbook closing</li>
+            <li>Stratégie partenariats &amp; affiliation</li>
+            <li>Plan rétention &amp; upsell</li>
+            <li>Tableau de prospection &amp; qualification</li>
+          </ul>
+        </article>
+
+        <article class="cov-card">
+          <div class="cov-card-head"><span class="cov-num">12</span><h3>Opérations &amp; gouvernance</h3><span class="cov-count">6 domaines</span></div>
+          <ul class="cov-domains">
+            <li>Statuts juridiques &amp; forme sociétale</li>
+            <li>Fiches de poste &amp; grilles salariales</li>
+            <li>Processus internes (SOP) &amp; onboarding</li>
+            <li>Pré-mortem &amp; analyse de risques</li>
+            <li>Veille concurrentielle automatisée</li>
+            <li>Gouvernance des décisions (registre append-only)</li>
+          </ul>
+        </article>
+
+      </div>
+
+      <p class="cov-foot"><span class="grad-text">12 territoires · 69 domaines</span> · couverts en local, sans dépendance cloud — votre CDC vous appartient.</p>
     </div>
   </section>
 
