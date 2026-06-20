@@ -171,3 +171,20 @@
       });
   });
 })();
+
+/* ============================================================
+   Sidebar espace perso — marque l'onglet de la page courante (.on)
+   ============================================================ */
+(function () {
+  document.addEventListener("DOMContentLoaded", function () {
+    var here = (location.pathname.split("/").pop() || "index.html");
+    if (here === "") here = "index.html";
+    document.querySelectorAll(".side .navg a.it").forEach(function (a) {
+      var target = (a.getAttribute("href") || "").split("#")[0].split("/").pop();
+      if (target && target === here) {
+        a.classList.add("on");
+        a.setAttribute("aria-current", "page");
+      }
+    });
+  });
+})();
