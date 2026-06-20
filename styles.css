@@ -100,6 +100,10 @@ header .links a.on::after, header .links a[aria-current="page"]::after {
 /* le mot Octans toujours dans le vert du site */
 .octans-mark { color: var(--green); font-weight: inherit; }
 
+/* anti-flash : page protégée cachée jusqu'à vérif de session (auth-guard.js ajoute .sp-ready) */
+body[data-sp-protect="true"] { visibility: hidden; }
+body[data-sp-protect="true"].sp-ready { visibility: visible; }
+
 /* ── Buttons ── */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 9px;

@@ -153,6 +153,11 @@
   }
 
   // ---------- Auto-guard ----------
+  // Anti-flash : la page protégée est cachée par CSS (body[data-sp-protect]) ;
+  // on ne RÉVÈLE (.sp-ready) qu'une fois la session confirmée. Sur 401 → redirect
+  // (la page reste cachée, pas de flash du contenu protégé).
+  function reveal() { document.body.classList.add("sp-ready"); }
+
   document.addEventListener("DOMContentLoaded", function () {
     var protectedPage = document.body && document.body.dataset && document.body.dataset.spProtect === "true";
     if (!protectedPage) { wireDownloads(); return; }
@@ -162,12 +167,18 @@
         if (!res.auth) { redirectLogin(); return; }
         hydrate(res.data);
         wireDownloads();
+        reveal();
       })
       .catch(function () {
         // Backend injoignable → fallback dev mock
         var u = mockGet();
-        if (u) { hydrate({ email: u.email, orders: [], can_download_octans: false }); wireDownloads(); }
-        else { redirectLogin(); }
+        if (u) {
+          hydrate({ email: u.email, orders: [], can_download_octans: false });
+          wireDownloads();
+          reveal();
+        } else {
+          redirectLogin();
+        }
       });
   });
 })();
