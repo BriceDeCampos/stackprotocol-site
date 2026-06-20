@@ -388,6 +388,13 @@
   .boucle-step p { font-size: 12.5px; line-height: 1.5; color: var(--muted); }
   .boucle-loop { text-align: center; margin-top: 28px; font-size: 13.5px; color: var(--muted); font-style: italic; }
   .boucle-loop b { color: var(--green); font-style: normal; }
+  /* ── Cas concrets : réalisations ── */
+  .cas-card { transition: transform .25s, border-color .25s, box-shadow .25s; }
+  .cas-card:hover { transform: translateY(-3px); border-color: rgba(60,229,163,0.35); box-shadow: 0 18px 44px rgba(0,0,0,0.32), 0 0 0 1px rgba(60,229,163,0.10); }
+  @media (max-width: 720px) {
+    .cas-grid { grid-template-columns: 1fr !important; }
+  }
+
   /* ── Vivant, pas figé (2 colonnes) ── */
   .vivant-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 1000px; margin: 48px auto 0; }
   .vivant-col { padding: 28px 26px; }
@@ -691,10 +698,50 @@
     </div>
   </section>
 
-  <!-- ===== 3 CAS CONCRETS ===== -->
+  <!-- ===== CAS CONCRETS — réalisations + projets possibles ===== -->
   <section class="cas" id="cas" data-ln="Cas concrets" data-ln-count="60">
     <div class="wrap">
       <span class="eyebrow"><span class="dot"></span>Cas concrets</span>
+
+      <!-- Réalisations réelles -->
+      <div class="cas-real" style="margin-top:24px;">
+        <h2 style="font-family:var(--font-display);font-weight:600;font-size:clamp(24px,3vw,32px);letter-spacing:-0.02em;margin-bottom:24px;">Ce que la méthode a déjà cadré.</h2>
+
+        <div class="cas-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:32px;">
+
+          <article class="card cas-card" style="padding:26px;display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+              <span class="pill" style="background:rgba(60,229,163,0.10);border-color:rgba(60,229,163,0.30);color:var(--green);">SaaS · Méthode</span>
+              <span style="font-size:11.5px;color:var(--muted);font-family:var(--font-display);letter-spacing:0.10em;text-transform:uppercase;">Livré · 2026</span>
+            </div>
+            <h3 style="font-family:var(--font-display);font-weight:600;font-size:21px;letter-spacing:-0.01em;">StackProtocol</h3>
+            <p style="font-size:14.5px;color:var(--ink-2);line-height:1.55;">Le site et la méthode que vous regardez en ce moment. <b style="color:var(--ink);">Un CDC complet</b>, sourcé, cohérent, produit avec Octans en local — du positionnement à la livraison Stripe.</p>
+            <div style="display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:auto;padding-top:10px;border-top:1px solid var(--line);">
+              <span><b style="color:var(--green);">7</b> étapes CDC</span>
+              <span><b style="color:var(--green);">10</b> sections accueil</span>
+              <span><b style="color:var(--green);">5</b> Payment Links</span>
+            </div>
+          </article>
+
+          <article class="card cas-card" style="padding:26px;display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+              <span class="pill" style="background:rgba(224,145,90,0.08);border-color:rgba(224,145,90,0.30);color:var(--orange);">Marque · DNVB</span>
+              <span style="font-size:11.5px;color:var(--muted);font-family:var(--font-display);letter-spacing:0.10em;text-transform:uppercase;">En cours · ce week-end</span>
+            </div>
+            <h3 style="font-family:var(--font-display);font-weight:600;font-size:21px;letter-spacing:-0.01em;">Reine de Nuit</h3>
+            <p style="font-size:14.5px;color:var(--ink-2);line-height:1.55;">Création d'une <b style="color:var(--ink);">marque & identité</b> — CDC complet du brief au lancement, naming, positionnement, site e-commerce. <i>Cas client en cours de livraison.</i></p>
+            <div style="display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:auto;padding-top:10px;border-top:1px solid var(--line);">
+              <span><b style="color:var(--green);">CDC</b> brand</span>
+              <span><b style="color:var(--green);">e-commerce</b></span>
+              <span><b style="color:var(--green);">positionnement</b></span>
+            </div>
+          </article>
+
+        </div>
+
+        <p style="font-size:15px;color:var(--ink-2);text-align:center;margin-bottom:36px;font-style:italic;">… et <b style="color:var(--green);font-style:normal;">vous pouvez en faire d'autres</b> — quel que soit votre type de projet.</p>
+      </div>
+
       <div class="ans" style="margin-top:16px;">
         <p><b>Une seule méthode. Une seule formation sur les outils IA.</b> Vos idées à 100&nbsp;% sur votre machine — quel que soit le type de projet. Numérique et plus.</p>
         <div class="price">À partir de 197€ · <a href="pour-qui.html" style="text-decoration:underline">vous faites quoi exactement&nbsp;?</a></div>
