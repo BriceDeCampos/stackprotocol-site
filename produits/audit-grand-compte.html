@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Grand Compte — 7 790€ HT · StackProtocol</title>
-<meta name="description" content="J'audite votre Cahier des Charges existant sur 6 volets (cohérence, sécurité, RGPD, accessibilité, souveraineté) + 2 sessions d'accompagnement. Rapport 30-50 pages. ~50% du prix d'un cabinet senior." />
+<title>Grand Compte — 3 services B2B · StackProtocol</title>
+<meta name="description" content="3 services Grand Compte au choix : Octans installé chez vous en autonomie · CDC express livré en 1 semaine · Audit indépendant de votre existant (6 volets, 7 790€ HT). NDA, données en local, ~50% du prix d'un cabinet senior." />
 <link rel="stylesheet" href="../assets/fonts/fonts.css" />
 <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 <link rel="stylesheet" href="../styles.css" />
@@ -12,23 +12,48 @@
 <link rel="stylesheet" href="../subpage.css" />
 <style>
   .phero { padding: 56px 0 32px; }
-  .phero .grid { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 44px; align-items: start; }
-  .phero h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(32px, 4.6vw, 48px); line-height: 1.05; letter-spacing: -0.03em; margin-top: 16px; }
-  .phero .sub { margin-top: 18px; font-size: 17px; line-height: 1.55; color: var(--ink-2); max-width: 560px; }
-  .phero .sub b { color: var(--ink); }
-  .hero-points { list-style: none; margin: 22px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; max-width: 560px; }
-  .hero-points li { position: relative; padding-left: 22px; font-size: 16.5px; line-height: 1.5; color: var(--ink-2); }
-  .hero-points li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px rgba(60,229,163,0.6); }
-  .hero-points li b { color: var(--ink); }
-  .buy { padding: 26px; position: sticky; top: 88px; }
-  .buy .amt { font-family: var(--font-display); font-weight: 700; font-size: 40px; letter-spacing: -0.02em; background: var(--grad-135); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-  .buy .amt small { font-size: 15px; color: var(--muted); -webkit-text-fill-color: var(--muted); font-weight: 500; margin-left: 6px; }
-  .buy .ttc { font-size: 13px; color: var(--muted); margin-top: 2px; }
-  .buy .btn { width: 100%; margin-top: 20px; }
-  .buy ul { list-style: none; margin: 20px 0 0; display: flex; flex-direction: column; gap: 10px; }
-  .buy ul li { font-size: 13.5px; color: var(--ink-2); display: flex; align-items: flex-start; gap: 10px; }
-  .buy ul li svg { width: 16px; height: 16px; color: var(--green); flex-shrink: 0; margin-top: 2px; }
-  .buy .guar { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--muted); }
+  .phero-intro { text-align: center; max-width: 780px; margin: 0 auto 44px; }
+  .phero-intro h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(30px, 4.4vw, 46px); line-height: 1.06; letter-spacing: -0.03em; margin-top: 14px; }
+  .phero-intro h1 .em { color: var(--green); }
+  .phero-intro .sub { margin-top: 18px; font-size: 16.5px; line-height: 1.55; color: var(--ink-2); }
+  .phero-intro .sub b { color: var(--ink); font-weight: 600; }
+
+  /* Grille 3 services */
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .service-card { padding: 28px 26px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); display: flex; flex-direction: column; gap: 14px; transition: border-color .25s, background .25s, transform .25s; position: relative; }
+  .service-card:hover { border-color: rgba(60,229,163,0.32); background: var(--surface-2); transform: translateY(-3px); }
+  .service-card.svc-featured { border-color: rgba(60,229,163,0.45); background: linear-gradient(155deg, rgba(60,229,163,0.05), rgba(24,180,204,0.02)); }
+  .svc-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .svc-num { font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.18em; color: var(--green); }
+  .svc-tag { font-family: var(--font-display); font-weight: 600; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; background: rgba(255,255,255,0.04); border: 1px solid var(--line); color: var(--ink-2); }
+  .svc-badge { font-family: var(--font-display); font-weight: 700; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; background: rgba(60,229,163,0.14); border: 1px solid rgba(60,229,163,0.38); color: var(--green); margin-left: auto; }
+  .service-card h2 { font-family: var(--font-display); font-weight: 600; font-size: 21px; line-height: 1.18; letter-spacing: -0.015em; color: var(--ink); margin: 4px 0 0; }
+  .svc-pitch { font-size: 14px; line-height: 1.55; color: var(--ink-2); margin: 0; }
+  .svc-pitch b { color: var(--ink); font-weight: 600; }
+  .svc-list { list-style: none; padding: 0; margin: 4px 0 6px; display: flex; flex-direction: column; gap: 8px; }
+  .svc-list li { font-size: 13px; line-height: 1.5; color: var(--ink-2); padding-left: 16px; position: relative; }
+  .svc-list li::before { content: ""; position: absolute; left: 0; top: 8px; width: 8px; height: 1px; background: var(--green); opacity: 0.7; }
+  .svc-target { font-size: 12.5px; color: var(--muted); padding-top: 10px; border-top: 1px solid var(--line); line-height: 1.5; font-style: italic; }
+  .svc-price { display: flex; flex-direction: column; gap: 2px; margin-top: 6px; }
+  .svc-amt { font-family: var(--font-display); font-weight: 700; font-size: 30px; letter-spacing: -0.02em; background: var(--grad-135); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.1; }
+  .svc-amt small { font-size: 14px; color: var(--muted); -webkit-text-fill-color: var(--muted); font-weight: 500; margin-left: 4px; }
+  .svc-from { font-size: 12.5px; color: var(--muted); }
+  .service-card .btn { width: 100%; margin-top: 4px; }
+  .phero-foot { text-align: center; font-size: 12.5px; color: var(--muted); margin: 28px auto 0; max-width: 720px; line-height: 1.55; }
+
+  /* Section "Ce qu'on peut auditer" */
+  .auditables { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+  .audi-cat { padding: 22px 22px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+  .audi-cat:hover { border-color: rgba(60,229,163,0.30); background: var(--surface-2); }
+  .audi-cat-h { font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--green); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .audi-cat-h .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+  .audi-cat.gr-cyan .audi-cat-h, .audi-cat.gr-cyan .audi-cat-h .dot { color: var(--cyan, #18B4CC); background: transparent; }
+  .audi-cat.gr-cyan .audi-cat-h .dot { background: var(--cyan, #18B4CC); }
+  .audi-cat.gr-orange .audi-cat-h, .audi-cat.gr-orange .audi-cat-h .dot { color: var(--orange); background: transparent; }
+  .audi-cat.gr-orange .audi-cat-h .dot { background: var(--orange); }
+  .audi-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .audi-pill { font-family: var(--font-display); font-size: 12.5px; font-weight: 500; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,0.03); border: 1px solid var(--line); color: var(--ink-2); }
+  .audi-pill:hover { border-color: rgba(60,229,163,0.4); color: var(--ink); }
 
   .volets { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
   .compare { width: 100%; border-collapse: collapse; }
@@ -54,7 +79,8 @@
   .notwhat .n .x { color: var(--orange); font-weight: 700; flex-shrink: 0; }
 
   .cible { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  @media (max-width: 860px) { .phero .grid { grid-template-columns: 1fr; } .buy { position: static; } .volets { grid-template-columns: 1fr; } .notwhat, .cible { grid-template-columns: 1fr; } .compare { font-size: 13px; } }
+  @media (max-width: 1100px) { .services-grid, .auditables { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 720px) { .services-grid, .auditables { grid-template-columns: 1fr; } .volets { grid-template-columns: 1fr; } .notwhat, .cible { grid-template-columns: 1fr; } .compare { font-size: 13px; } }
 </style>
 </head>
 <body>
@@ -138,40 +164,160 @@
 </header>
 
 <main>
-  <section class="phero" data-ln="J'audite votre CDC">
-    <div class="wrap grid">
-      <div>
-        <span class="eyebrow"><span class="dot"></span>B2B Premium · Grand Compte</span>
-        <h1>J'audite votre Cahier des Charges. <span class="em">6 angles, 1 mois.</span></h1>
-        <p class="sub">Je viens auditer votre CDC <b>existant</b> — pas en démarrer un nouveau.</p>
-        <ul class="hero-points">
-          <li><b>6 volets</b> passés au crible</li>
-          <li>Rapport <b>30 à 50 pages</b> · 15 à 30 points concrets</li>
-          <li><b>2 sessions d'accompagnement individuel</b> pour calibrer votre plan d'action</li>
-          <li><b>~50 % du prix</b> d'un cabinet senior</li>
-        </ul>
+  <section class="phero" data-ln="3 services">
+    <div class="wrap">
+      <div class="phero-intro">
+        <span class="eyebrow" style="justify-content:center;"><span class="dot"></span>B2B Premium · Grand Compte</span>
+        <h1>3 services Grand Compte. <span class="em">Au choix.</span></h1>
+        <p class="sub">Octans <b>déployé chez vous</b>, votre CDC <b>livré en 1 semaine</b>, ou <b>audit indépendant</b> sur votre existant. Vous choisissez le niveau d'intervention.</p>
       </div>
-      <aside class="card buy">
-        <div class="amt">7 790€<small>HT</small></div>
-        <div class="ttc">soit 9 348€ TTC · ~155€ / point d'audit</div>
-        <a class="btn btn-primary" href="mailto:contact@stackprotocol.fr?subject=Audit%20Grand%20Compte%20StackProtocol">Appel découverte (30 min)<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        <ul>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Rapport 30-50 pages (Markdown + PDF)</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>2 sessions d'accompagnement 90 min</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Templates 23 ADRs + 5 patterns RLS adaptés</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>NDA signé avant démarrage</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Paiement 50% / 50% (Stripe ou virement)</li>
-        </ul>
-        <div class="guar">Loi Hamon 14j avant démarrage · garantie satisfaction (avoir 50% si &lt;15 points) · données stockées en local.</div>
-      </aside>
+
+      <div class="services-grid">
+
+        <!-- Service 1 : Octans Install Autonomie -->
+        <article class="service-card">
+          <div class="svc-head">
+            <span class="svc-num">01</span>
+            <span class="svc-tag">Déploiement</span>
+          </div>
+          <h2>Octans installé chez vous, en autonomie.</h2>
+          <p class="svc-pitch">La <b>méthode</b> et le <b>moteur</b> déployés en local dans votre équipe. Vos devs gardent la main — vous gagnez l'autonomie.</p>
+          <ul class="svc-list">
+            <li>Installation Octans on-premise (équipes internes)</li>
+            <li>Formation 2 jours équipe (CTO, devs, PM)</li>
+            <li>License interne + mises à jour incluses 12 mois</li>
+            <li>4 sessions de calibrage 90 min (mois 1, 2, 3, 6)</li>
+            <li>Templates ADRs + patterns RLS adaptés à votre stack</li>
+          </ul>
+          <div class="svc-target">Pour : DSI, CTO, équipe interne 10+ devs cherchant à intégrer la méthode dans leur processus.</div>
+          <div class="svc-price">
+            <span class="svc-amt">Sur devis</span>
+            <span class="svc-from">à partir de 24 990 € HT · délai 4-6 semaines</span>
+          </div>
+          <a class="btn btn-primary" href="mailto:contact@stackprotocol.fr?subject=Octans%20Install%20Autonomie%20%E2%80%94%20Grand%20Compte">Discuter mon déploiement<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </article>
+
+        <!-- Service 2 : CDC Express -->
+        <article class="service-card">
+          <div class="svc-head">
+            <span class="svc-num">02</span>
+            <span class="svc-tag">CDC Express</span>
+          </div>
+          <h2>Votre CDC livré en 1 semaine.</h2>
+          <p class="svc-pitch">6 angles · 1 mois → <b>1 semaine</b>. Quand l'opportunité ne peut pas attendre : levée de fonds, fenêtre marché, appel d'offres public.</p>
+          <ul class="svc-list">
+            <li>Sprint express : J+0 brief → J+5 livraison</li>
+            <li>CDC complet (Markdown + PDF, 30 à 50 pages)</li>
+            <li>6 angles : cohérence, sécurité, RGPD, A11y, souveraineté, plan</li>
+            <li>Sources documentées + arbitrages tracés</li>
+            <li>1 session calibrage 90 min en fin de sprint</li>
+          </ul>
+          <div class="svc-target">Pour : levée Seed/Série A, AO public, lancement urgent, fenêtre d'opportunité courte.</div>
+          <div class="svc-price">
+            <span class="svc-amt">12 790 €<small>HT</small></span>
+            <span class="svc-from">15 348 € TTC · sprint 5 jours ouvrés</span>
+          </div>
+          <a class="btn btn-primary" href="mailto:contact@stackprotocol.fr?subject=CDC%20Express%20%E2%80%94%20Grand%20Compte">Lancer mon CDC express<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </article>
+
+        <!-- Service 3 : Audit -->
+        <article class="service-card svc-featured">
+          <div class="svc-head">
+            <span class="svc-num">03</span>
+            <span class="svc-tag">Audit</span>
+            <span class="svc-badge">Le plus demandé</span>
+          </div>
+          <h2>Audit de votre existant. 6 angles, 1 mois.</h2>
+          <p class="svc-pitch">On audite votre CDC ou votre stack — <b>sans démarrer de zéro</b>. Regard indépendant, 30 à 50 pages, 15 à 30 points concrets.</p>
+          <ul class="svc-list">
+            <li>Rapport 30-50 pages (Markdown + PDF)</li>
+            <li>15-30 points concrets, hiérarchisés par impact</li>
+            <li>2 sessions d'accompagnement individuel 90 min</li>
+            <li>Templates 23 ADRs + 5 patterns RLS adaptés</li>
+            <li>~50 % du prix d'un cabinet senior</li>
+          </ul>
+          <div class="svc-target">Pour : Tech Lead/CTO 5+ devs, fondateur en levée, DSI civic-tech, cabinet voulant un regard externe.</div>
+          <div class="svc-price">
+            <span class="svc-amt">7 790 €<small>HT</small></span>
+            <span class="svc-from">9 348 € TTC · ~155 € / point d'audit</span>
+          </div>
+          <a class="btn btn-primary" href="mailto:contact@stackprotocol.fr?subject=Audit%20Grand%20Compte%20StackProtocol">Appel découverte (30 min)<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </article>
+
+      </div>
+
+      <p class="phero-foot">NDA signé avant démarrage · Loi Hamon 14 jours · Données stockées en local (jamais sur cloud tiers) · Paiement 50&nbsp;%/50&nbsp;% (Stripe ou virement).</p>
     </div>
   </section>
 
   <div class="wrap"><div class="divider-line"></div></div>
 
-  <section class="section" data-ln="Le rapport">
+  <!-- CE QU'ON PEUT AUDITER AVEC NOTRE STACK -->
+  <section class="section" data-ln="Ce qu'on audite">
     <div class="wrap">
-      <div class="section-head"><span class="eyebrow"><span class="dot"></span>Le rapport</span><h2>6 volets audités.</h2></div>
+      <div class="section-head"><span class="eyebrow"><span class="dot"></span>Service 03 · Audit en détail</span><h2>Ce qu'on peut auditer avec notre stack.</h2><p style="margin-top:14px;color:var(--ink-2);font-size:15px;max-width:680px;">Audit transversal : du code à la conformité, en passant par la doctrine documentaire. <b style="color:var(--ink);">Aucune zone laissée dans l'ombre.</b></p></div>
+
+      <div class="auditables">
+        <div class="audi-cat">
+          <div class="audi-cat-h"><span class="dot"></span>Architecture &amp; code</div>
+          <div class="audi-pills">
+            <span class="audi-pill">Front (React, Vue, vanilla)</span>
+            <span class="audi-pill">Back (FastAPI, Node, Rails)</span>
+            <span class="audi-pill">Base de données (PostgreSQL, SQLite)</span>
+            <span class="audi-pill">PostGIS &amp; spatial</span>
+            <span class="audi-pill">Indexes &amp; queries lentes</span>
+            <span class="audi-pill">RLS PostgreSQL</span>
+            <span class="audi-pill">API design &amp; contrats</span>
+            <span class="audi-pill">Architecture monorepo / micro</span>
+            <span class="audi-pill">Dette technique</span>
+            <span class="audi-pill">Couverture de tests</span>
+            <span class="audi-pill">CI/CD pipelines</span>
+            <span class="audi-pill">Pattern async / concurrence</span>
+          </div>
+        </div>
+
+        <div class="audi-cat gr-cyan">
+          <div class="audi-cat-h"><span class="dot"></span>Sécurité &amp; conformité</div>
+          <div class="audi-pills">
+            <span class="audi-pill">OWASP Top 10:2025</span>
+            <span class="audi-pill">ANSSI (recommandations)</span>
+            <span class="audi-pill">Threat model</span>
+            <span class="audi-pill">Gestion des secrets</span>
+            <span class="audi-pill">JWT &amp; auth</span>
+            <span class="audi-pill">Dépendances vulnérables</span>
+            <span class="audi-pill">RGPD : registre des traitements</span>
+            <span class="audi-pill">RGPD : bases légales</span>
+            <span class="audi-pill">RGPD : AIPD (si applicable)</span>
+            <span class="audi-pill">CNIL : droit de rétractation</span>
+            <span class="audi-pill">Article 20 (portabilité)</span>
+            <span class="audi-pill">CGV / CGU / Mentions légales</span>
+          </div>
+        </div>
+
+        <div class="audi-cat gr-orange">
+          <div class="audi-cat-h"><span class="dot"></span>Qualité, accessibilité &amp; doctrine</div>
+          <div class="audi-pills">
+            <span class="audi-pill">Accessibilité WCAG 2.2 AA</span>
+            <span class="audi-pill">RGAA 4 français</span>
+            <span class="audi-pill">Performance front (Core Web Vitals)</span>
+            <span class="audi-pill">Monitoring &amp; observabilité</span>
+            <span class="audi-pill">Souveraineté de la stack</span>
+            <span class="audi-pill">Dépendances cloud critiques</span>
+            <span class="audi-pill">Cohérence cascade documentaire</span>
+            <span class="audi-pill">Doctrines &amp; ADRs</span>
+            <span class="audi-pill">Cohérence wikilinks &amp; chiffres</span>
+            <span class="audi-pill">Naming &amp; versioning</span>
+            <span class="audi-pill">Pré-mortem &amp; risques</span>
+            <span class="audi-pill">Anti-hallucination LLM (si applicable)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;" data-ln="Le rapport">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow"><span class="dot"></span>Le rapport d'audit</span><h2>6 volets dans le livrable final.</h2></div>
       <div class="volets">
         <div class="card cardx"><span class="ic"><svg aria-hidden="true"><use href="#i-doc"/></svg></span><h3>Cohérence</h3><p>Architecture, cascade documentaire, doctrines, naming.</p></div>
         <div class="card cardx"><span class="ic"><svg aria-hidden="true"><use href="#i-shield"/></svg></span><h3>Sécurité</h3><p>OWASP Top 10:2025, dépendances, threat model.</p></div>
