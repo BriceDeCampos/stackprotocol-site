@@ -182,7 +182,7 @@
 
   /* ===== 3 CAS band ===== */
   .cas { background: linear-gradient(160deg, rgba(60,229,163,0.05), rgba(24,180,204,0.03)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .cas .wrap { padding: 40px 28px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 36px; align-items: center; }
+  .cas .wrap { padding: 40px 28px; display: block; }
   .cas .qs { display: flex; flex-direction: column; gap: 12px; }
   .cas .qs .q { font-family: var(--font-display); font-weight: 600; font-size: clamp(19px, 2.4vw, 25px); letter-spacing: -0.01em; color: var(--ink); display: flex; align-items: center; gap: 13px; }
   .cas .qs .q .ic { width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; background: rgba(60,229,163,0.12); border: 1px solid rgba(60,229,163,0.25); color: var(--green); flex-shrink: 0; }
@@ -212,6 +212,19 @@
   .pj.wide .pj-body ul { display: block; columns: 3; column-gap: 28px; }
   .pj.wide .pj-body li { break-inside: avoid; margin-bottom: 6px; }
   @media (prefers-reduced-motion: reduce) { .pj-body { transition: none; } }
+
+  /* ===== PORTABLE MARKDOWN (compatibilité IA) ===== */
+  .portable-md .md-stack { display: flex; flex-direction: column; gap: 22px; max-width: 920px; margin: 0 auto; }
+  .portable-md .md-cat { border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); padding: 18px 22px; transition: border-color .25s, background .25s; }
+  .portable-md .md-cat:hover { border-color: rgba(60,229,163,0.25); background: var(--surface-2); }
+  .portable-md .md-cat-title { display: flex; align-items: center; gap: 9px; font-family: var(--font-display); font-weight: 700; font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 13px; }
+  .portable-md .md-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .portable-md .md-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+  .portable-md .md-pill { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-display); font-size: 12.5px; font-weight: 500; padding: 5px 11px 5px 8px; border-radius: 999px; background: rgba(255,255,255,0.025); border: 1px solid var(--line); color: var(--ink-2); transition: border-color .2s, color .2s, background .2s; }
+  .portable-md .md-pill:hover { border-color: rgba(60,229,163,0.45); color: var(--ink); background: rgba(60,229,163,0.06); }
+  .portable-md .md-logo { width: 15px; height: 15px; flex-shrink: 0; filter: brightness(0) invert(1); opacity: 0.78; transition: opacity .2s; }
+  .portable-md .md-pill:hover .md-logo { opacity: 1; }
+  .portable-md .md-mono { width: 15px; height: 15px; border-radius: 50%; display: inline-grid; place-items: center; flex-shrink: 0; color: #fff; font-family: var(--font-display); font-weight: 700; font-size: 9px; line-height: 1; letter-spacing: 0; }
 
   /* ===== MANIFESTE ===== */
   .manifeste { max-width: 760px; margin: 0; text-align: left; }
@@ -317,7 +330,9 @@
     .hero .grid { grid-template-columns: 1fr; }
     .hero .mark-xl { width: 190px; height: 238px; order: -1; }
     .hero .art-carousel { height: 250px; }
-    .cas .wrap { grid-template-columns: 1fr; gap: 24px; }
+    .cas .wrap { padding: 32px 20px; }
+    .portable-md { padding: 40px 20px 20px !important; }
+    .portable-md .md-cat { padding: 14px 16px; }
     .pjgrid { grid-template-columns: 1fr; }
     .pj.wide .pj-body ul { columns: 1; }
     .sov-grid { grid-template-columns: 1fr; }
@@ -395,19 +410,47 @@
     .cas-grid { grid-template-columns: 1fr !important; }
   }
 
-  /* ── Vivant, pas figé (2 colonnes) ── */
-  .vivant-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 1000px; margin: 48px auto 0; }
-  .vivant-col { padding: 28px 26px; }
-  .vivant-col h3 { font-family: var(--font-display); font-weight: 600; font-size: 17px; color: var(--ink); margin-bottom: 18px; letter-spacing: -0.01em; }
-  .vivant-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
-  .vivant-col ul li { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); display: flex; gap: 10px; align-items: flex-start; }
-  .vivant-col ul li .v-tick { color: var(--green); font-weight: 700; flex-shrink: 0; font-size: 16px; line-height: 1.5; }
-  .vivant-col ul li b { color: var(--ink); font-weight: 600; }
+  /* ── MAJ (Mises à jour) ── */
+  /* ===== MAJ (Mises à jour) ===== */
+  .maj-section { padding-bottom: 80px; }
+  .maj-evolve { margin: 56px auto 0; }
+  .maj-evolve-title { font-family: var(--font-display); font-weight: 700; font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); text-align: center; margin-bottom: 24px; }
+  .maj-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .maj-feat { display: flex; gap: 14px; padding: 22px 22px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); transition: border-color .25s, background .25s, transform .25s; }
+  .maj-feat:hover { border-color: rgba(60,229,163,0.30); background: var(--surface-2); transform: translateY(-2px); }
+  .maj-icon { flex-shrink: 0; width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; background: rgba(60,229,163,0.10); border: 1px solid rgba(60,229,163,0.22); color: var(--green); }
+  .maj-icon svg { width: 19px; height: 19px; }
+  .maj-feat-body { display: flex; flex-direction: column; gap: 5px; }
+  .maj-feat-h { font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--ink); letter-spacing: -0.01em; }
+  .maj-feat-body p { font-size: 13.5px; line-height: 1.5; color: var(--ink-2); margin: 0; }
+
+  .maj-options { margin: 56px auto 0; }
+  .maj-opt-head { font-family: var(--font-display); font-weight: 700; font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); text-align: center; margin-bottom: 24px; }
+  .maj-opt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 880px; margin: 0 auto; }
+  .maj-opt { padding: 28px 26px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); display: flex; flex-direction: column; gap: 14px; transition: border-color .25s, background .25s; }
+  .maj-opt:hover { border-color: rgba(60,229,163,0.32); background: var(--surface-2); }
+  .maj-opt-tag { align-self: flex-start; font-family: var(--font-display); font-weight: 700; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: rgba(60,229,163,0.10); border: 1px solid rgba(60,229,163,0.32); color: var(--green); }
+  .maj-opt-price { display: flex; align-items: baseline; gap: 8px; }
+  .maj-opt-amount { font-family: var(--font-display); font-weight: 600; font-size: 36px; letter-spacing: -0.02em; color: var(--ink); line-height: 1; }
+  .maj-opt-unit { font-family: var(--font-display); font-size: 13px; color: var(--muted); font-weight: 500; }
+  .maj-opt-name { font-family: var(--font-display); font-weight: 600; font-size: 15.5px; color: var(--ink); letter-spacing: -0.005em; }
+  .maj-opt-list { list-style: none; padding: 0; margin: 4px 0 0; display: flex; flex-direction: column; gap: 9px; }
+  .maj-opt-list li { font-size: 13.5px; line-height: 1.5; color: var(--ink-2); padding-left: 18px; position: relative; }
+  .maj-opt-list li::before { content: ""; position: absolute; left: 0; top: 8px; width: 10px; height: 2px; background: var(--green); border-radius: 1px; }
+  .maj-options-foot { text-align: center; font-size: 13.5px; color: var(--muted); margin: 22px 0 0; font-style: italic; }
+
+  .maj-kicker { margin: 56px auto 0; text-align: center; max-width: 720px; padding: 28px 24px; border-top: 1px solid var(--line); }
+  .maj-kicker-quote { font-family: var(--font-editorial); font-style: italic; font-size: clamp(20px, 2.4vw, 26px); line-height: 1.35; color: var(--ink); letter-spacing: -0.01em; margin-bottom: 14px; }
+  .maj-kicker-sub { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); }
+  .maj-kicker-sub b { color: var(--ink); font-weight: 600; }
 
   @media (max-width: 860px) {
     .pitch-grid { grid-template-columns: 1fr; }
     .boucle { grid-template-columns: repeat(2,1fr); }
-    .vivant-grid { grid-template-columns: 1fr; }
+    .maj-features { grid-template-columns: 1fr; }
+    .maj-opt-grid { grid-template-columns: 1fr; }
+    .maj-opt-amount { font-size: 30px; }
+    .maj-kicker { padding: 24px 16px; }
   }
 </style>
 </head>
@@ -708,9 +751,9 @@
       </div>
 
       <!-- Réalisations réelles : maintenant SOUS l'intro -->
-      <div class="cas-real" style="margin-top:48px;">
+      <div class="cas-real" style="margin:48px auto 0;max-width:980px;">
         <h2 style="font-family:var(--font-display);font-weight:600;font-size:clamp(24px,3vw,32px);letter-spacing:-0.02em;margin-bottom:8px;">Ce que la méthode a déjà cadré.</h2>
-        <p style="color:var(--muted);font-size:15px;margin-bottom:28px;">Projets livrés et en cours — produits avec Octans en local, sur ma machine.</p>
+        <p style="color:var(--muted);font-size:15px;margin-bottom:28px;">Projets livrés et en cours — produits avec Octans en local, sur un PC HP obsolète de 2014, Windows 11, 16 Go RAM.</p>
 
         <div class="cas-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:24px;">
 
@@ -770,6 +813,61 @@
 
         <p style="font-size:15px;color:var(--ink-2);text-align:center;margin:24px 0 0;font-style:italic;">… et <b style="color:var(--green);font-style:normal;">vous pouvez en faire d'autres</b> — quel que soit votre type de projet.</p>
       </div>
+    </div>
+
+    <!-- Portable Markdown — votre CDC glissé-déposé partout -->
+    <div class="wrap portable-md" style="padding:64px 28px 24px;max-width:1080px;">
+      <div class="pj-intro" style="justify-content:center;"><span class="dot"></span>Compatible avec votre stack IA actuelle</div>
+      <h2 style="font-family:var(--font-display);font-weight:600;font-size:clamp(24px,3vw,32px);letter-spacing:-0.02em;text-align:center;margin:6px 0 10px;">Votre projet, glissé-déposé partout.</h2>
+      <p style="color:var(--ink-2);font-size:15.5px;line-height:1.55;text-align:center;max-width:720px;margin:0 auto 32px;">Le CDC produit par Octans est du <b style="color:var(--ink);">Markdown universel</b>. Pas de format propriétaire, pas de lock-in. <b style="color:var(--ink);">Glissez-déposez votre projet</b> dans n'importe quelle IA ou plateforme — celles que vous utilisez déjà.</p>
+
+      <div class="md-stack">
+        <div class="md-cat">
+          <div class="md-cat-title"><span class="md-dot" style="background:var(--green);"></span>Chat IA généralistes</div>
+          <div class="md-pills">
+            <span class="md-pill"><img class="md-logo" src="assets/logos/openai.svg" alt="" loading="lazy" width="16" height="16">ChatGPT</span>
+            <span class="md-pill"><img class="md-logo" src="assets/logos/anthropic.svg" alt="" loading="lazy" width="16" height="16">Claude</span>
+            <span class="md-pill"><img class="md-logo" src="assets/logos/googlegemini.svg" alt="" loading="lazy" width="16" height="16">Gemini</span>
+            <span class="md-pill"><img class="md-logo" src="assets/logos/mistralai.svg" alt="" loading="lazy" width="16" height="16">Mistral Le Chat</span>
+            <span class="md-pill"><img class="md-logo" src="assets/logos/perplexity.svg" alt="" loading="lazy" width="16" height="16">Perplexity</span>
+            <span class="md-pill"><span class="md-mono" style="background:#0078D4;">C</span>Copilot Microsoft</span>
+            <span class="md-pill"><img class="md-logo" src="assets/logos/x.svg" alt="" loading="lazy" width="16" height="16">Grok</span>
+            <span class="md-pill"><img class="md-logo" src="assets/logos/deepseek.svg" alt="" loading="lazy" width="16" height="16">DeepSeek</span>
+            <span class="md-pill"><img class="md-logo" src="assets/logos/huggingface.svg" alt="" loading="lazy" width="16" height="16">HuggingChat</span>
+          </div>
+        </div>
+
+        <div class="md-cat">
+          <div class="md-cat-title"><span class="md-dot" style="background:var(--cyan);"></span>Dev &amp; no-code IA</div>
+          <div class="md-pills">
+            <span class="md-pill"><img class="md-logo" src="assets/logos/cursor.svg" alt="" loading="lazy" width="16" height="16">Cursor</span>
+            <span class="md-pill"><img class="md-logo" src="assets/logos/windsurf.svg" alt="" loading="lazy" width="16" height="16">Windsurf</span>
+            <span class="md-pill"><img class="md-logo" src="assets/logos/anthropic.svg" alt="" loading="lazy" width="16" height="16">Claude Code</span>
+            <span class="md-pill"><img class="md-logo" src="assets/logos/openai.svg" alt="" loading="lazy" width="16" height="16">Codex</span>
+            <span class="md-pill"><img class="md-logo" src="assets/logos/vercel.svg" alt="" loading="lazy" width="16" height="16">v0 Vercel</span>
+            <span class="md-pill"><span class="md-mono" style="background:#FF4D9D;">L</span>Lovable</span>
+            <span class="md-pill"><span class="md-mono" style="background:#1389FD;">B</span>Bolt</span>
+            <span class="md-pill"><img class="md-logo" src="assets/logos/replit.svg" alt="" loading="lazy" width="16" height="16">Replit Agent</span>
+            <span class="md-pill"><img class="md-logo" src="assets/logos/githubcopilot.svg" alt="" loading="lazy" width="16" height="16">GitHub Copilot</span>
+          </div>
+        </div>
+
+        <div class="md-cat">
+          <div class="md-cat-title"><span class="md-dot" style="background:var(--orange);"></span>Productivité &amp; workspace</div>
+          <div class="md-pills">
+            <span class="md-pill"><img class="md-logo" src="assets/logos/notion.svg" alt="" loading="lazy" width="16" height="16">Notion AI</span>
+            <span class="md-pill"><img class="md-logo" src="assets/logos/obsidian.svg" alt="" loading="lazy" width="16" height="16">Obsidian</span>
+            <span class="md-pill"><img class="md-logo" src="assets/logos/openai.svg" alt="" loading="lazy" width="16" height="16">ChatGPT Projects</span>
+            <span class="md-pill"><img class="md-logo" src="assets/logos/anthropic.svg" alt="" loading="lazy" width="16" height="16">Claude Projects</span>
+            <span class="md-pill"><img class="md-logo" src="assets/logos/googlegemini.svg" alt="" loading="lazy" width="16" height="16">Gemini Workspace</span>
+            <span class="md-pill"><img class="md-logo" src="assets/logos/notebooklm.svg" alt="" loading="lazy" width="16" height="16">NotebookLM</span>
+            <span class="md-pill"><img class="md-logo" src="assets/logos/mistralai.svg" alt="" loading="lazy" width="16" height="16">Mistral Codestral</span>
+            <span class="md-pill"><img class="md-logo" src="assets/logos/ollama.svg" alt="" loading="lazy" width="16" height="16">Ollama (local)</span>
+          </div>
+        </div>
+      </div>
+
+      <p style="text-align:center;font-size:13.5px;color:var(--muted);margin:28px 0 0;font-style:italic;">Aucun lock-in. Votre CDC vous appartient — vous le déposez où vous voulez, vous le faites évoluer où vous voulez.</p>
     </div>
 
     <div class="pjwrap wrap" style="display:block;">
@@ -1126,30 +1224,77 @@
   </section>
 
   <!-- ===== VIVANT, PAS FIGÉ (Bloc B Phase 0.7 — 2026-06-19) ===== -->
-  <section class="section" data-ln="Vivant" style="padding-top:0;">
-    <div class="wrap">
+  <section class="section maj-section" data-ln="MAJ" style="padding-top:0;">
+    <div class="wrap" style="max-width:1080px;">
       <div class="section-head" style="text-align:center;max-width:none;margin-bottom:0;">
-        <span class="eyebrow" style="justify-content:center"><span class="dot"></span>Toujours à jour</span>
-        <h2>Octans <span class="grad-text">évolue</span> — vous n'achètes pas une photo.</h2>
-        <p style="margin-left:auto;margin-right:auto;max-width:640px;">Vous suis l'évolution des meilleures IA, sans tout reprendre de zéro. Et vous pouvez partir quand vous voulez.</p>
+        <span class="eyebrow" style="justify-content:center"><span class="dot"></span>Mises à jour</span>
+        <h2>Une méthode <span class="grad-text">vivante</span>. Pas une photo figée.</h2>
+        <p style="margin-left:auto;margin-right:auto;max-width:680px;">Octans évolue avec les meilleures IA. Vous restez à jour — <b>sans tout reprendre de zéro, sans abonnement obligatoire, sans lock-in.</b></p>
       </div>
-      <div class="vivant-grid">
-        <div class="card vivant-col">
-          <h3>🔄 Toujours à jour</h3>
-          <ul>
-            <li><span class="v-tick">›</span>On <b>suit et anticipe</b> les meilleures IA. Quand un modèle progresse, Octans en profite.</li>
-            <li><span class="v-tick">›</span>De nouveaux skills, agents et hooks arrivent <b>par vagues</b> — métiers, audits, garde-fous.</li>
-            <li><span class="v-tick">›</span>Mises à jour au choix : <b>abonnement 7,70 €/mois</b> ou achat one-shot 197 € version majeure. <b>Jamais d'abo obligatoire.</b></li>
-          </ul>
+
+      <!-- Bloc 1 : comment Octans évolue -->
+      <div class="maj-evolve">
+        <div class="maj-evolve-title">Comment Octans évolue</div>
+        <div class="maj-features">
+          <div class="maj-feat">
+            <span class="maj-icon"><svg aria-hidden="true"><use href="#i-cpu"/></svg></span>
+            <div class="maj-feat-body">
+              <div class="maj-feat-h">Suivi continu des IA</div>
+              <p>Claude, ChatGPT, Gemini, Mistral, Ollama… Quand un modèle progresse, Octans en profite.</p>
+            </div>
+          </div>
+          <div class="maj-feat">
+            <span class="maj-icon"><svg aria-hidden="true"><use href="#i-build"/></svg></span>
+            <div class="maj-feat-body">
+              <div class="maj-feat-h">Nouveaux skills par vagues</div>
+              <p>De nouveaux agents, hooks et skills métier arrivent régulièrement — toujours testés, documentés.</p>
+            </div>
+          </div>
+          <div class="maj-feat">
+            <span class="maj-icon"><svg aria-hidden="true"><use href="#i-shield"/></svg></span>
+            <div class="maj-feat-body">
+              <div class="maj-feat-h">Garde-fous renforcés</div>
+              <p>Anti-hallucination, RGPD, sécurité, accessibilité — les contrôles s'affinent à chaque version.</p>
+            </div>
+          </div>
         </div>
-        <div class="card vivant-col">
-          <h3>🔓 Portable, jamais captif</h3>
-          <ul>
-            <li><span class="v-tick">›</span>Octans tourne <b>chez vous, en local</b>. Vos idées ne quittent pas votre machine.</li>
-            <li><span class="v-tick">›</span>La méthode reste la tienne — vous pouvez <b>changer d'IA</b>, Octans s'adapte.</li>
-            <li><span class="v-tick">›</span>« <b>L'IA se remplace. Votre méthode, non.</b> »</li>
-          </ul>
+      </div>
+
+      <!-- Bloc 2 : 2 options de MAJ -->
+      <div class="maj-options">
+        <div class="maj-opt-head">Vos 2 façons de rester à jour</div>
+        <div class="maj-opt-grid">
+
+          <article class="maj-opt">
+            <div class="maj-opt-tag">Continuité</div>
+            <div class="maj-opt-price"><span class="maj-opt-amount">7,70&nbsp;€</span><span class="maj-opt-unit">/ mois</span></div>
+            <div class="maj-opt-name">Abonnement MAJ</div>
+            <ul class="maj-opt-list">
+              <li>Toutes les mises à jour mineures &amp; majeures</li>
+              <li>Nouveaux skills et agents au fil de l'eau</li>
+              <li>Résiliable à tout moment, sans frais</li>
+            </ul>
+          </article>
+
+          <article class="maj-opt">
+            <div class="maj-opt-tag" style="background:rgba(224,145,90,0.10);border-color:rgba(224,145,90,0.32);color:var(--orange);">Frugalité</div>
+            <div class="maj-opt-price"><span class="maj-opt-amount">197&nbsp;€</span><span class="maj-opt-unit">one-shot</span></div>
+            <div class="maj-opt-name">Achat ponctuel version majeure</div>
+            <ul class="maj-opt-list">
+              <li>Vous payez seulement quand une version majeure sort</li>
+              <li>Aucun engagement, aucun prélèvement récurrent</li>
+              <li>Vous décidez quand mettre à jour</li>
+            </ul>
+          </article>
+
         </div>
+        <p class="maj-options-foot">Jamais d'abonnement obligatoire. Vous gardez la main, toujours.</p>
+      </div>
+
+      <!-- Kicker portable -->
+      <div class="maj-kicker">
+        <div class="maj-kicker-quote">«&nbsp;L'IA se remplace. Votre méthode, non.&nbsp;»</div>
+        <div class="maj-kicker-sub">Octans tourne <b>chez vous, en local</b>. Vos idées ne quittent pas votre machine — et vous pouvez changer d'IA quand vous voulez.</div>
       </div>
     </div>
   </section>
