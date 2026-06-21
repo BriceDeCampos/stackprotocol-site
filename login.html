@@ -179,8 +179,17 @@
       if(!email||email.indexOf('@')<1){document.getElementById('email').focus();return;}
       document.getElementById('sent-email').textContent=email;
       document.body.classList.add('is-sent');
-      // Phase 0.6 : vraie demande de magic link (l'écran "vérifie tes mails" est déjà affiché).
-      if(window.SPAuth){ SPAuth.requestMagicLink(email).catch(function(err){ console.warn('[login] magic link:', err); }); }
+      // Backend EN LIGNE → vrai magic link (l'écran "vérifie tes mails" reste affiché).
+      // Backend ABSENT (aperçu/préprod) → connexion directe en mode aperçu pour visiter l'espace.
+      if(window.SPAuth){
+        SPAuth.requestMagicLink(email)
+          .then(function(r){ if(!r||!r.ok) throw new Error('no-backend'); })
+          .catch(function(){
+            document.body.classList.remove('is-sent');
+            SPAuth.signIn(email);            // session aperçu (mock localStorage)
+            SPAuth.redirectAfterLogin();      // → espace perso
+          });
+      }
     });
   })();
 </script>
