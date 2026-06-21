@@ -169,6 +169,16 @@
   // Câble les liens « Se déconnecter » (.logout / [data-sp-logout]) vers la vraie
   // déconnexion (POST /api/auth/logout + purge locale), partout, sans éditer les pages.
   function wireLogout() {
+    // Injecte un « Se déconnecter » dans le bloc utilisateur (.who) s'il manque.
+    document.querySelectorAll(".who").forEach(function (who) {
+      if (who.querySelector(".logout")) return;
+      var a = document.createElement("a");
+      a.className = "logout";
+      a.href = "#";
+      a.textContent = "Se déconnecter";
+      a.style.cssText = "margin-left:10px;font-size:12px;font-weight:600;color:var(--muted);border:1px solid var(--line);padding:6px 11px;border-radius:8px;white-space:nowrap;";
+      who.appendChild(a);
+    });
     document.querySelectorAll('.logout, [data-sp-logout]').forEach(function (el) {
       if (el.dataset.spLogoutWired) return;
       el.dataset.spLogoutWired = "1";
