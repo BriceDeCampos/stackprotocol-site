@@ -69,7 +69,7 @@
       fetch(api("/api/auth/logout"), { method: "POST", credentials: "include" })
         .catch(function () {})
         .finally(function () {
-          try { localStorage.removeItem(KEY); } catch (e) {}
+          try { localStorage.removeItem(KEY); localStorage.removeItem(LOGIN_AT_KEY); } catch (e) {}
           location.href = LOGIN;
         });
     },
@@ -101,6 +101,42 @@
     document.querySelectorAll(sel).forEach(function (el) { el.hidden = !show; });
   }
 
+  // ---------- Date / heure de connexion (affichée partout) ----------
+  var LOGIN_AT_KEY = "sp_login_at";
+  function pad2(n) { return (n < 10 ? "0" : "") + n; }
+  function formatLoginAt(ts) {
+    var d = new Date(ts);
+    return pad2(d.getDate()) + "/" + pad2(d.getMonth() + 1) + "/" + d.getFullYear() +
+      " à " + pad2(d.getHours()) + "h" + pad2(d.getMinutes());
+  }
+  function renderLoginTime() {
+    var ts = null;
+    try { ts = localStorage.getItem(LOGIN_AT_KEY); } catch (e) {}
+    // La page d'accueil post-connexion (welcome) fixe l'heure de connexion.
+    var isWelcome = /welcome/.test(location.pathname);
+    if (isWelcome || !ts) {
+      ts = String(Date.now());
+      try { localStorage.setItem(LOGIN_AT_KEY, ts); } catch (e) {}
+    }
+    var label = "Connecté · " + formatLoginAt(Number(ts));
+    var filled = false;
+    document.querySelectorAll("[data-sp-login]").forEach(function (el) {
+      el.textContent = label; filled = true;
+    });
+    // Auto-injection sous le bloc utilisateur si pas de hook explicite.
+    document.querySelectorAll("[data-sp-user-email]").forEach(function (em) {
+      var box = em.parentElement;
+      if (box && !box.querySelector(".sp-login-at")) {
+        var div = document.createElement("div");
+        div.className = "sp-login-at";
+        div.setAttribute("data-sp-login", "");
+        div.style.cssText = "font-size:11px;color:var(--muted-2,#8a8f8f);margin-top:3px;";
+        div.textContent = label;
+        box.appendChild(div);
+      }
+    });
+  }
+
   function hydrate(d) {
     if (!d) return;
     var email = d.email || "";
@@ -111,6 +147,7 @@
     setText('[data-account="tier"]', tier);
     toggle('[data-when="can-download"]', !!d.can_download_octans);
     toggle('[data-when="no-download"]', !d.can_download_octans);
+    renderLoginTime();
   }
 
   function redirectLogin() {
@@ -125,6 +162,19 @@
       el.addEventListener("click", function (e) {
         e.preventDefault();
         downloadOctans();
+      });
+    });
+  }
+
+  // Câble les liens « Se déconnecter » (.logout / [data-sp-logout]) vers la vraie
+  // déconnexion (POST /api/auth/logout + purge locale), partout, sans éditer les pages.
+  function wireLogout() {
+    document.querySelectorAll('.logout, [data-sp-logout]').forEach(function (el) {
+      if (el.dataset.spLogoutWired) return;
+      el.dataset.spLogoutWired = "1";
+      el.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (window.SPAuth && window.SPAuth.signOut) window.SPAuth.signOut();
       });
     });
   }
@@ -162,11 +212,14 @@
     var protectedPage = document.body && document.body.dataset && document.body.dataset.spProtect === "true";
     if (!protectedPage) { wireDownloads(); return; }
 
+    wireLogout();
+
     fetchSession()
       .then(function (res) {
         if (!res.auth) { redirectLogin(); return; }
         hydrate(res.data);
         wireDownloads();
+        wireLogout();
         reveal();
       })
       .catch(function () {
@@ -175,6 +228,7 @@
         if (u) {
           hydrate({ email: u.email, orders: [], can_download_octans: false });
           wireDownloads();
+          wireLogout();
           reveal();
         } else {
           redirectLogin();
