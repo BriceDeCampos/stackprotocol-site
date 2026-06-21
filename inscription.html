@@ -200,9 +200,6 @@
 <script src="auth-guard.js"></script>
 <script>
   (function(){
-    // Déjà connecté → redirect direct
-    if(window.SPAuth && SPAuth.getUser()){ SPAuth.redirectAfterLogin(); return; }
-
     var t=document.getElementById('mark-svg');
     document.querySelectorAll('[data-mark]').forEach(function(s,i){var node=t.content.cloneNode(true);var svg=node.querySelector('svg');svg.innerHTML=svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,'$1$2_'+i);s.appendChild(node);});
     var form=document.getElementById('signup-form');
@@ -214,8 +211,16 @@
       if(!cgu){document.getElementById('cgu').focus();return;}
       document.getElementById('sent-email').textContent=email;
       document.body.classList.add('is-sent');
-      // Mock Phase 0.5 : persiste session locale + redirect après 1,5 s
-      if(window.SPAuth){ SPAuth.signIn(email); setTimeout(function(){ SPAuth.redirectAfterLogin(); }, 1500); }
+      // Backend EN LIGNE → vrai magic link. Backend ABSENT (aperçu) → connexion directe.
+      if(window.SPAuth){
+        SPAuth.requestMagicLink(email)
+          .then(function(r){ if(!r||!r.ok) throw new Error('no-backend'); })
+          .catch(function(){
+            document.body.classList.remove('is-sent');
+            SPAuth.signIn(email);
+            SPAuth.redirectAfterLogin();
+          });
+      }
     });
   })();
 </script>
