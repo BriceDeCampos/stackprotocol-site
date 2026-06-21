@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Arbre des connecteurs — aperçu (StackProtocol)</title>
+<meta name="robots" content="noindex" />
+<link rel="stylesheet" href="../assets/fonts/fonts.css" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  /* ===== Section « Le flux » : idée → Octans → IA → connecteurs → projet ===== */
+  .flux { padding: 80px 0; }
+  .flux .lead { text-align: center; max-width: 640px; margin: 0 auto 14px; }
+  .flux h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(26px,4vw,40px); letter-spacing: -0.02em; text-align: center; }
+  .flux .sub { color: var(--muted); font-size: 16px; text-align: center; max-width: 620px; margin: 12px auto 48px; }
+
+  .pipe { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; align-items: stretch; position: relative; }
+  .node { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 20px 16px; display: flex; flex-direction: column; gap: 10px; position: relative; }
+  .node .k { font-family: var(--font-display); font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-2); }
+  .node h3 { font-family: var(--font-display); font-weight: 600; font-size: 16px; }
+  .node p { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+  .node .logos { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+  .chip { font-size: 11px; padding: 3px 9px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line-2); color: var(--ink-2); white-space: nowrap; }
+
+  /* Octans = hub central lumineux */
+  .node.hub { background: linear-gradient(155deg, rgba(60,229,163,0.12), rgba(24,180,204,0.05)); border-color: rgba(60,229,163,0.4); box-shadow: 0 0 0 1px rgba(60,229,163,0.15), 0 18px 50px rgba(24,180,204,0.12); }
+  .node.hub .k { color: var(--green); }
+  .node.hub h3 { font-size: 18px; }
+  .node.out { border-color: rgba(60,229,163,0.28); }
+
+  /* flèches entre les nœuds */
+  .pipe .node:not(:last-child)::after {
+    content: ""; position: absolute; right: -10px; top: 50%; width: 12px; height: 12px;
+    border-top: 1.5px solid var(--green); border-right: 1.5px solid var(--green);
+    transform: translateY(-50%) rotate(45deg); opacity: 0.6; z-index: 2;
+  }
+
+  .flux .legend { text-align: center; font-size: 12.5px; color: var(--muted-2); margin-top: 24px; }
+  .flux .legend b { color: var(--green); }
+
+  @media (max-width: 900px) {
+    .pipe { grid-template-columns: 1fr; }
+    .pipe .node:not(:last-child)::after { right: 50%; top: auto; bottom: -10px; transform: translateX(50%) rotate(135deg); }
+  }
+</style>
+</head>
+<body>
+
+<main class="wrap flux">
+  <span class="eyebrow" style="justify-content:center;"><span class="dot"></span>Le flux</span>
+  <h2>Votre idée entre. <span class="grad-text">Votre projet sort.</span></h2>
+  <p class="sub">Octans structure votre projet, pilote l'IA et branche vos outils. Vous gardez la main — en local.</p>
+
+  <div class="pipe">
+    <!-- 1 -->
+    <div class="node">
+      <span class="k">01 · Entrée</span>
+      <h3>Votre idée</h3>
+      <p>Un projet numérique : site, app, boutique, service.</p>
+    </div>
+
+    <!-- 2 : OCTANS (hub) -->
+    <div class="node hub">
+      <span class="k">02 · Le cerveau</span>
+      <h3>Octans</h3>
+      <p>Structure le CDC, construit l'arbre des décisions, vérifie, distribue.</p>
+    </div>
+
+    <!-- 3 : IA -->
+    <div class="node">
+      <span class="k">03 · L'IA</span>
+      <h3>Les moteurs IA</h3>
+      <p>Pilotés par Octans pour exécuter.</p>
+      <div class="logos"><span class="chip">Claude Code</span><span class="chip">Codex</span><span class="chip">Make</span><span class="chip">n8n</span></div>
+    </div>
+
+    <!-- 4 : Connecteurs -->
+    <div class="node">
+      <span class="k">04 · Vos connecteurs</span>
+      <h3>8 familles MCP</h3>
+      <div class="logos">
+        <span class="chip">Productivité</span><span class="chip">Design</span><span class="chip">CRM &amp; Sales</span>
+        <span class="chip">Dev &amp; DevOps</span><span class="chip">Data</span><span class="chip">Finance</span>
+        <span class="chip">Automatisation</span><span class="chip">Recherche</span>
+      </div>
+    </div>
+
+    <!-- 5 : Sortie -->
+    <div class="node out">
+      <span class="k">05 · Sortie</span>
+      <h3>Votre projet en ligne</h3>
+      <p>Livré, structuré, à vous — exécuté dans VS Code / Cursor.</p>
+    </div>
+  </div>
+
+  <p class="legend">Chaque famille MCP regroupe vos outils réels — <b>Stripe, Notion, Figma, GitHub, Slack, HubSpot, Drive…</b> — branchés à la demande.</p>
+</main>
+
+<script src="../brand.js" defer></script>
+</body>
+</html>
