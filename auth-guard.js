@@ -143,6 +143,8 @@
     setText('[data-sp-user-email]', email);
     setText('[data-account="email"]', email);
     setText('[data-sp-user-initial]', (email[0] || "U").toUpperCase());
+    // Champs de formulaire (input/textarea) : on remplit .value, pas textContent.
+    document.querySelectorAll('input[data-account="email"], input[data-sp-user-email]').forEach(function (i) { i.value = email; });
     var tier = (d.orders && d.orders.length) ? d.orders[0].product_key : "—";
     setText('[data-account="tier"]', tier);
     toggle('[data-when="can-download"]', !!d.can_download_octans);

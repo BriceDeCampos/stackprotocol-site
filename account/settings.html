@@ -123,7 +123,7 @@
       </div>
       <div class="frow">
         <label for="set-email">Email <span class="tag-ro">(identifiant)</span></label>
-        <div class="field ro"><input id="set-email" type="email" value="brice@exemple.fr" readonly /></div>
+        <div class="field ro"><input id="set-email" type="email" data-account="email" value="" placeholder="votre@email.fr" readonly /></div>
       </div>
       <div class="actions">
         <button class="btn btn-primary btn-sm" type="button">Enregistrer</button>
@@ -153,7 +153,7 @@
       <div class="opt danger">
         <h4><svg aria-hidden="true"><use href="#i-trash"/></svg>Supprimer mon compte</h4>
         <p>Efface définitivement votre compte et vos données. Les factures sont conservées 10 ans (obligation légale).</p>
-        <button class="btn btn-danger btn-sm" type="button">Supprimer mon compte</button>
+        <a class="btn btn-danger btn-sm" href="mailto:contact@stackprotocol.fr?subject=Suppression%20de%20mon%20compte&body=Bonjour%2C%20je%20demande%20la%20suppression%20d%C3%A9finitive%20de%20mon%20compte%20StackProtocol.">Demander la suppression</a>
       </div>
     </div>
     <p class="note-line" style="display:flex;align-items:center;gap:9px;margin-top:16px;font-size:12.5px;color:var(--muted);">Conformément au RGPD. Voir la <a href="../legal/rgpd.html" style="color:var(--green)">Politique de données</a>.</p>
