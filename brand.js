@@ -129,3 +129,31 @@
     if (e.key === 'Escape') closeAll();
   });
 })();
+
+/* ============================================================
+   Header public — état connecté. Si une session est active (cookie
+   .stackprotocol.fr), remplace « Se connecter » par « Mon espace ».
+   N'affecte que les pages publiques (les pages /account n'ont pas de a.login).
+   ============================================================ */
+(function () {
+  function apiBase() {
+    if (window.SP_API_BASE) return window.SP_API_BASE;
+    var h = location.hostname;
+    return (h === 'localhost' || h === '127.0.0.1' || h === '')
+      ? 'http://localhost:8000'
+      : 'https://api.stackprotocol.fr';
+  }
+  var loginLinks = document.querySelectorAll('a.login, a[href$="login.html"]');
+  if (!loginLinks.length) return;
+  fetch(apiBase() + '/api/account/me', { credentials: 'include' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      if (!d || !d.email) return;
+      loginLinks.forEach(function (a) {
+        a.textContent = 'Mon espace';
+        a.setAttribute('href', '/account/dashboard.html');
+        a.setAttribute('aria-label', 'Accéder à mon espace perso');
+      });
+    })
+    .catch(function () { /* hors-ligne / non connecté → on garde « Se connecter » */ });
+})();
