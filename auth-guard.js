@@ -128,6 +128,8 @@
   // logo (→ tableau de bord) + date/heure de connexion + Se déconnecter.
   function injectTopBar() {
     if (document.querySelector(".acct-top")) return;
+    // L'assistant welcome (plein écran, son propre en-tête) n'a pas de barre compte.
+    if (/\/welcome/.test(location.pathname)) return;
     var bar = document.createElement("header");
     bar.className = "acct-top";
     bar.innerHTML =
