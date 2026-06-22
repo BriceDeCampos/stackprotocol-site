@@ -141,11 +141,22 @@
       '<span class="at-when" data-sp-login></span>' +
       '<a class="at-logout logout" href="#">Se déconnecter</a>';
     document.body.insertBefore(bar, document.body.firstChild);
-    // Clone le logo SVG si un template mark-svg existe sur la page.
+    // Clone le logo SVG si un template mark-svg existe — en rendant ses IDs de
+    // dégradé uniques (suffixe _top) pour éviter tout conflit avec les autres logos.
     try {
       var tpl = document.getElementById("mark-svg");
       var slot = bar.querySelector("[data-mark]");
-      if (tpl && slot) { slot.appendChild(tpl.content.cloneNode(true)); }
+      if (tpl && slot) {
+        var node = tpl.content.cloneNode(true);
+        var svg = node.querySelector("svg");
+        if (svg) {
+          svg.innerHTML = svg.innerHTML.replace(
+            /(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,
+            "$1$2_top"
+          );
+        }
+        slot.appendChild(node);
+      }
     } catch (e) {}
   }
 
