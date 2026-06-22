@@ -119,22 +119,32 @@
       try { localStorage.setItem(LOGIN_AT_KEY, ts); } catch (e) {}
     }
     var label = "Connecté · " + formatLoginAt(Number(ts));
-    var filled = false;
     document.querySelectorAll("[data-sp-login]").forEach(function (el) {
-      el.textContent = label; filled = true;
+      el.textContent = label;
     });
-    // Auto-injection sous le bloc utilisateur si pas de hook explicite.
-    document.querySelectorAll("[data-sp-user-email]").forEach(function (em) {
-      var box = em.parentElement;
-      if (box && !box.querySelector(".sp-login-at")) {
-        var div = document.createElement("div");
-        div.className = "sp-login-at";
-        div.setAttribute("data-sp-login", "");
-        div.style.cssText = "font-size:11px;color:var(--muted-2,#8a8f8f);margin-top:3px;";
-        div.textContent = label;
-        box.appendChild(div);
-      }
-    });
+  }
+
+  // Injecte la BARRE DU HAUT (compte) en tête de chaque page protégée :
+  // logo (→ tableau de bord) + date/heure de connexion + Se déconnecter.
+  function injectTopBar() {
+    if (document.querySelector(".acct-top")) return;
+    var bar = document.createElement("header");
+    bar.className = "acct-top";
+    bar.innerHTML =
+      '<a class="at-logo" href="/account/dashboard.html" aria-label="Tableau de bord">' +
+        '<span class="mark" data-mark></span>' +
+        '<span class="wm">Stack<b>Protocol</b></span>' +
+      '</a>' +
+      '<span class="at-spacer"></span>' +
+      '<span class="at-when" data-sp-login></span>' +
+      '<a class="at-logout logout" href="#">Se déconnecter</a>';
+    document.body.insertBefore(bar, document.body.firstChild);
+    // Clone le logo SVG si un template mark-svg existe sur la page.
+    try {
+      var tpl = document.getElementById("mark-svg");
+      var slot = bar.querySelector("[data-mark]");
+      if (tpl && slot) { slot.appendChild(tpl.content.cloneNode(true)); }
+    } catch (e) {}
   }
 
   function hydrate(d) {
@@ -171,16 +181,6 @@
   // Câble les liens « Se déconnecter » (.logout / [data-sp-logout]) vers la vraie
   // déconnexion (POST /api/auth/logout + purge locale), partout, sans éditer les pages.
   function wireLogout() {
-    // Injecte un « Se déconnecter » dans le bloc utilisateur (.who) s'il manque.
-    document.querySelectorAll(".who").forEach(function (who) {
-      if (who.querySelector(".logout")) return;
-      var a = document.createElement("a");
-      a.className = "logout";
-      a.href = "#";
-      a.textContent = "Se déconnecter";
-      a.style.cssText = "margin-left:10px;font-size:12px;font-weight:600;color:var(--muted);border:1px solid var(--line);padding:6px 11px;border-radius:8px;white-space:nowrap;";
-      who.appendChild(a);
-    });
     document.querySelectorAll('.logout, [data-sp-logout]').forEach(function (el) {
       if (el.dataset.spLogoutWired) return;
       el.dataset.spLogoutWired = "1";
@@ -224,7 +224,17 @@
     var protectedPage = document.body && document.body.dataset && document.body.dataset.spProtect === "true";
     if (!protectedPage) { wireDownloads(); return; }
 
+    injectTopBar();
     wireLogout();
+
+    // Aperçu local (localhost) : pas de backend → on affiche l'espace perso avec
+    // des données de démo au lieu de rediriger vers /login. (Dev uniquement.)
+    if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+      hydrate({ email: "apercu@stackprotocol.fr", orders: [{ product_key: "pack-cdc" }], can_download_octans: true });
+      wireDownloads();
+      reveal();
+      return;
+    }
 
     fetchSession()
       .then(function (res) {
