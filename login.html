@@ -102,6 +102,10 @@
           <svg aria-hidden="true"><use href="#i-mail"/></svg>
           <input id="email" name="email" type="email" autocomplete="email" required placeholder="toi@exemple.fr" />
         </div>
+        <label for="remember-email" style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin:12px 0 4px;cursor:pointer;">
+          <input type="checkbox" id="remember-email" style="width:auto;height:auto;margin:0;accent-color:var(--green);" />
+          Se souvenir de mon adresse sur cet appareil
+        </label>
         <button class="btn btn-primary" type="submit">Recevoir mon lien<svg aria-hidden="true"><use href="#i-send"/></svg></button>
       </form>
 
@@ -173,10 +177,16 @@
     var t=document.getElementById('mark-svg');
     document.querySelectorAll('[data-mark]').forEach(function(s,i){var node=t.content.cloneNode(true);var svg=node.querySelector('svg');svg.innerHTML=svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,'$1$2_'+i);s.appendChild(node);});
     var form=document.getElementById('login-form');
+    var emailInput=document.getElementById('email');
+    var remember=document.getElementById('remember-email');
+    // Préremplit l'email si l'utilisateur avait coché « se souvenir ».
+    try{ var saved=localStorage.getItem('sp_last_email'); if(saved){ emailInput.value=saved; if(remember){ remember.checked=true; } } }catch(_){}
     form.addEventListener('submit',function(e){
       e.preventDefault();
-      var email=document.getElementById('email').value.trim();
-      if(!email||email.indexOf('@')<1){document.getElementById('email').focus();return;}
+      var email=emailInput.value.trim();
+      if(!email||email.indexOf('@')<1){emailInput.focus();return;}
+      // Mémorise (ou efface) l'email selon la case cochée.
+      try{ if(remember&&remember.checked){ localStorage.setItem('sp_last_email',email); } else { localStorage.removeItem('sp_last_email'); } }catch(_){}
       document.getElementById('sent-email').textContent=email;
       document.body.classList.add('is-sent');
       // Backend EN LIGNE → vrai magic link (l'écran "vérifie tes mails" reste affiché).
