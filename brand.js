@@ -53,11 +53,16 @@
    ============================================================ */
 (function () {
   try {
-    var here = (location.pathname.split('/').pop() || 'index.html');
-    if (here === '') here = 'index.html';
+    // Dernier segment normalisé : gère slash final (/octans/), .html (octans.html)
+    // et URLs propres (/octans) — fonctionne sur le live ET la v2 Astro.
+    function lastSeg(p) {
+      p = (p || '').split('#')[0].split('?')[0].replace(/\/+$/, '');
+      var seg = p.split('/').pop().replace(/\.html$/, '');
+      return seg || 'index';
+    }
+    var here = lastSeg(location.pathname);
     document.querySelectorAll('header .links a').forEach(function (a) {
-      var target = (a.getAttribute('href') || '').split('#')[0].split('/').pop();
-      if (target && target === here) {
+      if (lastSeg(a.getAttribute('href') || '') === here) {
         a.classList.add('on');
         a.setAttribute('aria-current', 'page');
       }
