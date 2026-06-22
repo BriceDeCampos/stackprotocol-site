@@ -3,47 +3,26 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Facturation — StackProtocol</title>
+<title>Accompagnement — StackProtocol</title>
 <meta name="robots" content="noindex" />
 <link rel="stylesheet" href="../assets/fonts/fonts.css" />
 <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 <link rel="stylesheet" href="../styles.css" />
 <link rel="stylesheet" href="account.css" />
 <style>
-  .sub-card { padding: 22px; display: flex; align-items: center; gap: 18px; }
-  .sub-card .ic { width: 46px; height: 46px; border-radius: 13px; display: grid; place-items: center; background: linear-gradient(150deg, rgba(60,229,163,0.16), rgba(24,180,204,0.10)); border: 1px solid rgba(60,229,163,0.22); color: var(--green); flex-shrink: 0; }
-  .sub-card .ic svg { width: 22px; height: 22px; }
-  .sub-card .si { flex: 1; }
-  .sub-card .si h3 { font-family: var(--font-display); font-weight: 600; font-size: 16px; }
-  .sub-card .si p { font-size: 13px; color: var(--muted); margin-top: 3px; }
-  .sub-card .badge-on { font-size: 11px; font-weight: 600; color: var(--green); background: rgba(60,229,163,0.12); border: 1px solid rgba(60,229,163,0.3); padding: 4px 11px; border-radius: 99px; }
-
-  .tbl { width: 100%; border-collapse: collapse; margin-top: 4px; }
-  .tbl thead th { text-align: left; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-2); padding: 0 0 12px; border-bottom: 1px solid var(--line); }
-  .tbl tbody td { padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 14px; color: var(--ink-2); vertical-align: middle; }
-  .tbl tbody tr:last-child td { border-bottom: 0; }
-  .tbl .prod { font-weight: 600; color: var(--ink); }
-  .tbl .amt { font-family: var(--font-display); font-weight: 600; color: var(--ink); }
-  .tbl .st { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: var(--green); }
-  .tbl .st svg { width: 14px; height: 14px; }
-  .tbl .dl { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; color: var(--green); }
-  .tbl .dl svg { width: 15px; height: 15px; }
-  .tbl th.r, .tbl td.r { text-align: right; }
-
-  .pm { padding: 20px 22px; display: flex; align-items: center; gap: 16px; }
-  .pm .cc { width: 46px; height: 32px; border-radius: 7px; background: linear-gradient(135deg, #3a3f3f, #2c3030); border: 1px solid var(--line-2); display: grid; place-items: center; color: var(--ink-2); flex-shrink: 0; font-family: var(--font-display); font-size: 10px; font-weight: 700; letter-spacing: 0.05em; }
-  .pm .pmi { flex: 1; }
-  .pm .pmi .t { font-size: 14px; font-weight: 600; color: var(--ink); }
-  .pm .pmi .s { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
-  .note-line { display: flex; align-items: center; gap: 9px; margin-top: 16px; font-size: 12.5px; color: var(--muted); }
-  .note-line svg { width: 15px; height: 15px; color: var(--green); }
-
-  @media (max-width: 640px) {
-    .tbl thead { display: none; }
-    .tbl tbody td { display: block; padding: 4px 0; border: 0; }
-    .tbl tbody tr { display: block; padding: 14px 0; border-bottom: 1px solid var(--line); }
-    .tbl td.r { text-align: left; }
-  }
+  .acc-hero { padding: 26px 28px; border: 1px solid rgba(60,229,163,0.25); border-radius: 16px; background: rgba(60,229,163,0.05); }
+  .acc-hero h2 { font-family: var(--font-display); font-weight: 700; font-size: 22px; }
+  .acc-hero .price { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--green); margin-top: 4px; }
+  .acc-hero p { color: var(--muted); margin-top: 12px; line-height: 1.6; }
+  .acc-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  .acc-list { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 10px; }
+  .acc-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--ink-2); }
+  .acc-list li svg { width: 17px; height: 17px; color: var(--green); flex-shrink: 0; margin-top: 2px; }
+  .acc-steps { display: grid; grid-template-columns: 1fr; gap: 10px; max-width: 560px; margin-top: 14px; }
+  .acc-step { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,0.018); }
+  .acc-step .n { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; font-size: 14px; background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--line); flex-shrink: 0; }
+  .acc-step h4 { font-size: 14.5px; font-weight: 600; }
+  .acc-step p { font-size: 13px; color: var(--muted); margin-top: 2px; }
 </style>
 </head>
 <body data-sp-protect="true">
@@ -51,16 +30,16 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
   <linearGradient id="sp-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#159FCB"/></linearGradient>
   <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="14" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="14" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4v16l13-8z" fill="currentColor"/></symbol>
   <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
   <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 19v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 9a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm13 10v-2a4 4 0 0 0-3-3.87M16 2.13A4 4 0 0 1 16 9.9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-cap" viewBox="0 0 24 24"><path d="m22 10-10-5L2 10l10 5 10-5zM6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
-  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
   <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M2 10h20" stroke="currentColor" stroke-width="1.7"/></symbol>
   <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
-  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4v16l13-8z" fill="currentColor"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-  <symbol id="i-dl" viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 11V7a4 4 0 0 1 8 0v4" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </defs></svg>
 
 <template id="mark-svg">
@@ -97,7 +76,7 @@
       <a class="it" href="library/octans.html"><svg aria-hidden="true"><use href="#i-cpu"/></svg>Octans</a>
       <a class="it" href="library/duo-ia.html"><svg aria-hidden="true"><use href="#i-users"/></svg>Vos 2 IA</a>
       <span class="lbl">Compte</span>
-      <a class="it" href="accompagnement.html"><svg aria-hidden="true"><use href="#i-cap"/></svg>Accompagnement</a>
+      <a class="it on" href="accompagnement.html"><svg aria-hidden="true"><use href="#i-cap"/></svg>Accompagnement</a>
       <a class="it" href="billing.html"><svg aria-hidden="true"><use href="#i-card"/></svg>Facturation</a>
       <a class="it" href="settings.html"><svg aria-hidden="true"><use href="#i-gear"/></svg>Paramètres</a>
     </nav>
@@ -108,41 +87,36 @@
   </aside>
 
   <main class="main">
-    <h1 class="title">Facturation</h1>
-    <p class="sublead">Vos achats, abonnements et factures — gérés en toute transparence via Stripe.</p>
+    <h1 class="title">Accompagnement individuel</h1>
+    <p class="sublead">Une heure de travail à deux sur votre vraie décision. Vous achetez quand vous bloquez — pas de forfait, pas d'engagement.</p>
 
-    <div class="sec-h">Abonnement en cours</div>
-    <article class="card sub-card">
-      <span class="ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span>
-      <div class="si">
-        <h3>Pack CDC Méthode — accès à vie</h3>
-        <p>Achat unique · aucun abonnement, aucun prélèvement récurrent</p>
+    <div class="acc-hero" style="margin-top:22px;">
+      <h2>Séance de cadrage — 1h en visio privée</h2>
+      <div class="price">147 € / 1h</div>
+      <p>Questionnaire pré-entretien obligatoire (rempli au moment de la réservation) · récap écrit + plan d'action sous 48 h · vous repartez avec une décision tranchée.</p>
+      <div class="acc-cta">
+        <a class="btn btn-primary" href="https://cal.com/stackprotocol/accompagnement-stackprotocol-cadrage-1h" target="_blank" rel="noopener noreferrer">Réserver mon créneau<svg aria-hidden="true" style="margin-left:8px;"><use href="#i-cal"/></svg></a>
+        <a class="btn btn-ghost" data-checkout="STRIPE_LINK_ACCOMPAGNEMENT" href="#">Acheter — 147 €<svg aria-hidden="true" style="margin-left:8px;"><use href="#i-arrow"/></svg></a>
       </div>
-      <span class="badge-on">Actif</span>
-    </article>
-    <p class="note-line"><svg aria-hidden="true"><use href="#i-check"/></svg>Le Pack CDC Méthode est un achat unique (accès à vie). Aucun prélèvement récurrent.</p>
-
-    <div class="sec-h">Historique des factures</div>
-    <div class="card" style="padding:18px 24px;">
-      <p style="font-size:13.5px;color:var(--muted);margin:0;line-height:1.6;">Ton reçu t'est envoyé par email après chaque achat (paiement sécurisé Stripe). L'historique détaillé de tes factures s'affichera ici prochainement.</p>
     </div>
 
-    <div class="sec-h">Moyen de paiement</div>
-    <article class="card pm">
-      <span class="cc">VISA</span>
-      <div class="pmi">
-        <div class="t">Carte se terminant par •••• 4242</div>
-        <div class="s">Gérée en sécurité par Stripe — nous ne stockons aucune donnée bancaire.</div>
-      </div>
-      <span class="btn btn-ghost btn-sm" style="opacity:.55;cursor:default;">Gérer sur Stripe (bientôt)</span>
-    </article>
-    <p class="note-line"><svg aria-hidden="true"><use href="#i-lock"/></svg>Paiements traités par Stripe (établissement français). Facturation conforme, TVA incluse.</p>
+    <div class="sec-h">Comment ça se passe</div>
+    <div class="acc-steps">
+      <div class="acc-step"><span class="n">1</span><div><h4>Questionnaire</h4><p>Vous le remplissez en réservant (besoin, stack, deadline…).</p></div></div>
+      <div class="acc-step"><span class="n">2</span><div><h4>Paiement</h4><p>147 € via Stripe — paiement unique pour la séance.</p></div></div>
+      <div class="acc-step"><span class="n">3</span><div><h4>Réservation</h4><p>Vous choisissez votre créneau sur Cal.com.</p></div></div>
+      <div class="acc-step"><span class="n">4</span><div><h4>Appel 1h</h4><p>Visio privée — direct, structuré, sur votre sujet, votre stack.</p></div></div>
+      <div class="acc-step"><span class="n">5</span><div><h4>Récap 48 h</h4><p>Synthèse écrite + actions concrètes + instructions pour votre IA.</p></div></div>
+    </div>
+
+    <ul class="acc-list">
+      <li><svg aria-hidden="true"><use href="#i-check"/></svg>Annulation gratuite jusqu'à 24 h avant la séance</li>
+      <li><svg aria-hidden="true"><use href="#i-check"/></svg>Aucun forfait, aucun engagement — vous achetez quand vous bloquez</li>
+    </ul>
   </main>
 </div>
 
-<script>
-  (function(){var t=document.getElementById('mark-svg');document.querySelectorAll('[data-mark]').forEach(function(s,i){var node=t.content.cloneNode(true);var svg=node.querySelector('svg');svg.innerHTML=svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,'$1$2_'+i);s.appendChild(node);});})();
-</script>
+<script src="../config/stripe-links.js"></script>
 <script src="../auth-guard.js"></script>
 <script src="../cookies-banner.js" defer></script>
 <script src="../brand.js" defer></script>
