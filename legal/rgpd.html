@@ -120,12 +120,21 @@
 
     <section id="partage">
       <h2><span class="no">6</span>Destinataires &amp; sous-traitants</h2>
-      <p>Vos données ne sont jamais vendues. Elles sont traitées par des sous-traitants strictement nécessaires, situés dans l'UE :</p>
+      <p>Vos données ne sont jamais vendues. Elles sont traitées par les prestataires strictement nécessaires :</p>
       <ul>
-        <li><strong>Stripe</strong> — traitement des paiements.</li>
-        <li><strong>Brevo</strong> (France) — envoi des emails transactionnels et liens magiques.</li>
+        <li><strong>Stripe</strong> — paiements. Stripe Payments Europe Ltd (Irlande) ; des transferts intra-groupe vers Stripe Inc. (USA) peuvent intervenir, encadrés par les Clauses Contractuelles Types.</li>
+        <li><strong>Brevo</strong> (France) — emails transactionnels et liens magiques.</li>
         <li><strong>OVH</strong> (France) — hébergement de la base et des contenus.</li>
+        <li><strong>Cloudflare, Inc.</strong> (USA) — diffusion (CDN) des pages du site. Transfert hors-UE encadré par le DPA Cloudflare / Clauses Contractuelles Types.</li>
       </ul>
+      <h3 style="font-family:var(--font-display);font-weight:600;font-size:16px;margin-top:24px;">Important — l'IA que vous utilisez (Claude Code)</h3>
+      <p>StackProtocol vend une <strong>méthode</strong> qui s'utilise avec <strong>Claude Code</strong>, l'outil d'<strong>Anthropic PBC</strong> (San Francisco, USA). StackProtocol n'est <strong>pas</strong> dans cette boucle et ne reçoit pas votre projet. En revanche, lorsque vous utilisez Claude Code, <strong>vos prompts et le contenu des fichiers lus dans le contexte sont envoyés à Anthropic (USA)</strong>, sous votre propre contrat Anthropic. Les conditions dépendent de votre formule :</p>
+      <ul>
+        <li><strong>Abonnement Claude grand public (Pro/Max)</strong> : vos échanges peuvent servir à l'entraînement des modèles (rétention jusqu'à 5 ans) <strong>sauf opt-out</strong> explicite dans vos réglages Anthropic.</li>
+        <li><strong>Clé API / Enterprise</strong> : pas d'entraînement sur vos données, rétention ~30 jours.</li>
+        <li><strong>Modèle 100 % local</strong> (Ollama, etc.) : aucune donnée ne quitte votre machine.</li>
+      </ul>
+      <p>Transfert hors-UE encadré par les Clauses Contractuelles Types d'Anthropic. Détails : <a class="lnk" href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener noreferrer">politique de confidentialité Anthropic</a>. Pour les usages sensibles (santé, juridique, R&amp;D), nous recommandons la clé API avec opt-out, ou un modèle local.</p>
     </section>
 
     <section id="cookies">
@@ -151,7 +160,7 @@
     <div class="sp-foot-cols">
       <div class="sp-foot-about">
         <a class="logo" href="../index.html" style="display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;"><span class="mark" data-mark style="width:36px;height:42px;display:inline-block;"></span><span class="wm" style="font-family:var(--font-display);font-weight:600;font-size:17px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);">Stack<b>Protocol</b></span></a>
-        <p style="font-size:13.5px;line-height:1.55;color:var(--muted);margin:0;max-width:340px;">Une méthode reproductible pour structurer votre projet en local, avec Claude Code. Vos idées restent chez vous. Souveraineté française · OVH · sans tracking.</p>
+        <p style="font-size:13.5px;line-height:1.55;color:var(--muted);margin:0;max-width:340px;">Une méthode reproductible pour structurer votre projet en local, avec Claude Code. Vos fichiers restent sur votre disque ; vos échanges avec Claude Code transitent vers Anthropic (USA), pas par nous. Hébergé en France (OVH).</p>
       </div>
       <div class="sp-foot-col">
         <h4>Explorer</h4>
@@ -189,7 +198,7 @@
     </div>
     <div class="sp-foot-legal">
       <span>© 2026 StackProtocol — Brice DeCampos. Tous droits réservés. · <a href="mailto:contact@stackprotocol.fr">contact@stackprotocol.fr</a></span>
-      <span>🇫🇷 Hébergement OVH · Plausible self-host · Brevo FR · Stripe FR · 0 tracking GAFAM</span>
+      <span>🇫🇷 Hébergement OVH · Plausible self-host · Brevo FR · Stripe FR · site sans tracking</span>
     </div>
   </div>
 </footer>

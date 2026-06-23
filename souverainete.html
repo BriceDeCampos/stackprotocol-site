@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Souveraineté — vos idées ne quittent jamais votre machine · StackProtocol</title>
+<title>Souveraineté — vos fichiers restent sur votre disque · StackProtocol</title>
 <meta name="description" content="Vos fichiers sur votre disque, Git en local, aucune base de données StackProtocol. Pour qui c'est critique : santé, juridique, R&D, défense, levée de fonds." />
 <link rel="stylesheet" href="assets/fonts/fonts.css" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -114,8 +114,8 @@
 <main>
   <div class="phead center wrap">
     <span class="eyebrow"><span class="dot"></span>Le différenciateur ultime</span>
-    <h1>Vos idées ne quittent <span class="em">jamais votre machine.</span></h1>
-    <p class="intro">La plupart des outils font vivre votre projet sur leurs serveurs. StackProtocol, non : vous apprends une méthode, vous l'appliques en local, avec <span class="claude-mark">Claude Code</span>. On n'a même pas de base de données pour stocker vos idées.</p>
+    <h1>Vos fichiers restent <span class="em">sur votre disque.</span></h1>
+    <p class="intro">La plupart des outils font vivre votre projet sur leurs serveurs. StackProtocol, non : on vous apprend une méthode, vous l'appliquez en local. <b>StackProtocol n'a aucune base de données et ne voit jamais votre projet.</b> Seule nuance, dite franchement : <span class="claude-mark">Claude Code</span> (l'IA que vous pilotez) échange avec Anthropic (USA) — et on vous apprend à <b>border ça</b> : clé API, opt-out d'entraînement, ou modèle 100 % local.</p>
   </div>
 
   <section class="section" style="padding-top:32px;" data-ln="Ce que les autres font">
@@ -134,7 +134,7 @@
           <h3><svg aria-hidden="true" style="width:18px;height:18px"><use href="#i-shield"/></svg>Ce que vous faites avec StackProtocol</h3>
           <ul>
             <li><span class="m">✓</span><span>Vos fichiers sur <b>votre disque dur</b>. Vous pouvez travailler hors-ligne.</span></li>
-            <li><span class="m">✓</span><span><span class="claude-mark">Claude Code</span> = <b>appels API directs</b> depuis votre machine vers Anthropic, rien ne transite par nous</span></li>
+            <li><span class="m">✓</span><span><span class="claude-mark">Claude Code</span> = appels directs vers Anthropic (USA), <b>sans passer par StackProtocol</b> — et configurable (clé API · opt-out · modèle local)</span></li>
             <li><span class="m">✓</span><span><b>Git en local</b> : votre repo n'a pas besoin d'être public ni hébergé chez un tiers</span></li>
             <li><span class="m">✓</span><span><b>Aucune base de données StackProtocol</b> ne contient votre projet — on n'a littéralement pas vos données</span></li>
           </ul>
@@ -145,11 +145,11 @@
 
   <section class="section" style="padding-top:0;" data-ln="Où vont vos données ? Nulle…">
     <div class="wrap">
-      <div class="section-head"><span class="eyebrow"><span class="dot"></span>Le flux réel</span><h2>Où vont vos données&nbsp;? Nulle part chez nous.</h2></div>
+      <div class="section-head"><span class="eyebrow"><span class="dot"></span>Le flux réel</span><h2>Où vont vos données&nbsp;? Jamais chez StackProtocol.</h2></div>
       <div class="flow">
-        <div class="card fl"><div class="n">1</div><h4>Votre machine</h4><p>Vous écris votre CDC dans vos fichiers locaux (Markdown).</p></div>
-        <div class="card fl"><div class="n">2</div><h4><span class="claude-mark">Claude Code</span></h4><p>Appel API direct votre machine → Anthropic. StackProtocol n'est pas dans la boucle.</p></div>
-        <div class="card fl"><div class="n">3</div><h4>Git local</h4><p>Versionné chez vous. Vous pousses où vous voulez, ou nulle part.</p></div>
+        <div class="card fl"><div class="n">1</div><h4>Votre machine</h4><p>Vous écrivez votre CDC dans vos fichiers locaux (Markdown).</p></div>
+        <div class="card fl"><div class="n">2</div><h4><span class="claude-mark">Claude Code</span></h4><p>Appel direct votre machine → Anthropic (USA). Vos prompts et les fichiers lus y transitent. StackProtocol n'est pas dans la boucle.</p></div>
+        <div class="card fl"><div class="n">3</div><h4>Git local</h4><p>Versionné chez vous. Vous poussez où vous voulez, ou nulle part.</p></div>
         <div class="card fl"><div class="n">4</div><h4>Ce qu'on voit</h4><p>Votre email d'achat. C'est tout. Pas votre projet, pas vos idées.</p></div>
       </div>
     </div>
@@ -163,6 +163,7 @@
         <div class="card cardx"><span class="ic"><svg aria-hidden="true"><use href="#i-scale"/></svg></span><h3>Juridique &amp; conseil</h3><p>Dossiers clients, secret professionnel, NDA : votre brief ne doit pas fuiter.</p></div>
         <div class="card cardx"><span class="ic"><svg aria-hidden="true"><use href="#i-flask"/></svg></span><h3>R&amp;D &amp; levée de fonds</h3><p>Propriété intellectuelle, secrets industriels, due diligence : votre avantage reste secret.</p></div>
       </div>
+      <p style="margin-top:22px;padding:16px 18px;border-radius:14px;border:1px solid rgba(224,145,90,0.3);background:rgba(224,145,90,0.07);font-size:13.5px;line-height:1.6;color:var(--ink-2);"><b>⚠️ À dire franchement.</b> Pour ces usages sensibles, la confidentialité n'est réelle qu'avec la <b>bonne configuration de Claude Code</b> : clé API Anthropic + opt-out d'entraînement, ou un <b>modèle 100 % local</b> (Ollama). Avec un abonnement Claude grand public, vos échanges peuvent être conservés et servir à l'entraînement. StackProtocol vous apprend à régler le niveau adapté à votre secteur — c'est précisément là notre valeur.</p>
     </div>
   </section>
 
@@ -180,7 +181,7 @@
     <div class="sp-foot-cols">
       <div class="sp-foot-about">
         <a class="logo" href="index.html" style="display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;"><span class="mark" data-mark style="width:36px;height:42px;display:inline-block;"></span><span class="wm" style="font-family:var(--font-display);font-weight:600;font-size:17px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);">Stack<b>Protocol</b></span></a>
-        <p style="font-size:13.5px;line-height:1.55;color:var(--muted);margin:0;max-width:340px;">Une méthode reproductible pour structurer votre projet en local, avec Claude Code. Vos idées restent chez vous. Souveraineté française · OVH · sans tracking.</p>
+        <p style="font-size:13.5px;line-height:1.55;color:var(--muted);margin:0;max-width:340px;">Une méthode reproductible pour structurer votre projet en local, avec Claude Code. Vos fichiers restent sur votre disque ; vos échanges avec Claude Code transitent vers Anthropic (USA), pas par nous. Hébergé en France (OVH).</p>
       </div>
       <div class="sp-foot-col">
         <h4>Explorer</h4>
@@ -218,7 +219,7 @@
     </div>
     <div class="sp-foot-legal">
       <span>© 2026 StackProtocol — Brice DeCampos. Tous droits réservés. · <a href="mailto:contact@stackprotocol.fr">contact@stackprotocol.fr</a></span>
-      <span>🇫🇷 Hébergement OVH · Plausible self-host · Brevo FR · Stripe FR · 0 tracking GAFAM</span>
+      <span>🇫🇷 Hébergement OVH · Plausible self-host · Brevo FR · Stripe FR · site sans tracking</span>
     </div>
   </div>
 </footer>

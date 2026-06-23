@@ -271,6 +271,23 @@
       </div>
     </article>
 
+    <!-- CONFIDENTIALITÉ -->
+    <div class="sec-h">🔒 Confidentialité — ce qui reste, ce qui sort, comment border</div>
+    <div class="lead-box" style="background:linear-gradient(150deg,rgba(224,145,90,0.08),rgba(24,180,204,0.04));border-color:rgba(224,145,90,0.25);">
+      <p style="margin-top:0;"><b>La vérité, sans enrobage.</b> Vos <b>fichiers, votre vault, votre méthode</b> restent sur votre disque. Mais comme <u>tout</u> assistant IA, <span class="claude-mark">Claude Code</span> envoie à Anthropic (USA, chiffré) : vos prompts, ses réponses, et le <b>contenu des fichiers qu'il lit</b>. Voici comment garder le contrôle — la plupart des gens l'ignorent, vous non.</p>
+      <ol class="steps" style="margin-top:14px;">
+        <li><b>Désactivez l'entraînement sur vos données</b> (abonnement Pro/Max). Par défaut, vos échanges peuvent servir à entraîner les modèles (rétention 5 ans) — sauf si vous coupez l'option dans les réglages de confidentialité de votre compte Claude.</li>
+        <li><b>Confidentialité maximale : utilisez une clé API</b> plutôt que l'abonnement grand public → <b>aucun entraînement</b>, rétention 30 jours.</li>
+        <li><b>Coupez la télémétrie</b> avec ces variables d'environnement : <code>DISABLE_TELEMETRY</code>, <code>DISABLE_ERROR_REPORTING</code>, <code>DISABLE_FEEDBACK_COMMAND</code>.</li>
+        <li><b>« Rien ne sort » pour de vrai ?</b> Seul un <b>modèle 100 % local</b> (Ollama, llama.cpp) le garantit — au prix de la puissance.</li>
+        <li><b>Vos transcrits locaux</b> sont stockés en clair dans <code>~/.claude/projects/</code> pendant 30 jours.</li>
+      </ol>
+      <div class="blocks" style="margin-top:14px;">
+        <a class="lblock" href="https://docs.claude.com/en/docs/claude-code/data-usage" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#i-book"/></svg>Doc officielle — usage des données (Anthropic)</a>
+        <a class="lblock" href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#i-ext"/></svg>Politique de confidentialité Anthropic</a>
+      </div>
+    </div>
+
     <!-- PROMPTS PRÊTS À L'EMPLOI -->
     <div class="sec-h">Vous bloquez&nbsp;? Copiez un de ces prompts dans <span class="claude-mark">Claude Code</span></div>
     <p style="font-size:13.5px;color:var(--muted);margin:-6px 0 6px;line-height:1.55;">Pas besoin de savoir quoi écrire. Copiez le prompt qui correspond à votre situation, collez-le dans <span class="claude-mark">Claude Code</span> (ou dans Claude sur le web), et laissez-vous guider. Il fait le travail, vous validez.</p>
@@ -293,6 +310,11 @@
       <div class="prompt">
         <div class="pq">📁 Démarrer mon premier projet</div>
         <div class="pt" data-prompt>Mon studio est installé. Aide-moi à créer le dossier de mon premier projet et un fichier CLAUDE.md de base, en m'expliquant simplement à quoi sert chaque fichier. Une étape à la fois, et attends ma validation.</div>
+        <button class="copy" type="button"><svg aria-hidden="true"><use href="#i-copy"/></svg>Copier le prompt</button>
+      </div>
+      <div class="prompt">
+        <div class="pq">🔒 Sécuriser ma confidentialité</div>
+        <div class="pt" data-prompt>Configure Claude Code pour un maximum de confidentialité sur Windows : aide-moi à désactiver l'entraînement sur mes données, à couper la télémétrie (DISABLE_TELEMETRY, DISABLE_ERROR_REPORTING, DISABLE_FEEDBACK_COMMAND), et explique-moi comment utiliser une clé API plutôt que mon abonnement grand public. Une étape à la fois.</div>
         <button class="copy" type="button"><svg aria-hidden="true"><use href="#i-copy"/></svg>Copier le prompt</button>
       </div>
     </div>
