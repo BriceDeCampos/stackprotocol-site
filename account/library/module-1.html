@@ -40,8 +40,7 @@
   .ck .box svg { width: 14px; height: 14px; color: #303434; opacity: 0; transition: opacity .15s; }
   .ck.done .box { background: var(--green); border-color: var(--green); }
   .ck.done .box svg { opacity: 1; }
-  .ck.auto .box { background: rgba(60,229,163,0.18); border-color: rgba(60,229,163,0.4); cursor: default; }
-  .ck.auto .box svg { opacity: 1; color: var(--green); }
+  .ck.auto .box { cursor: default; } /* la coche n'apparaît qu'avec .done (validé au scroll) */
   .ck .cm { flex: 1; min-width: 0; }
   .ck .cm h4 { font-size: 15px; font-weight: 600; color: var(--ink); }
   .ck.done .cm h4 { color: var(--ink-2); }
@@ -163,17 +162,22 @@
     <!-- CHECKLIST -->
     <div class="sec-h">Étapes interactives</div>
     <div class="checklist" id="checklist">
-      <div class="ck auto done" data-auto="1">
+      <div class="ck" data-ck data-key="archetype">
+        <span class="box" role="checkbox" aria-checked="false" tabindex="0"><svg aria-hidden="true"><use href="#i-check"/></svg></span>
+        <div class="cm">
+          <h4>Télécharger l'archétype SAAS</h4>
+          <p>Votre base de départ. Cliquez pour télécharger — l'étape se valide au clic.</p>
+          <div class="acts">
+            <a class="lk" href="#" data-dl data-download="octans"><svg aria-hidden="true"><use href="#i-dl"/></svg>Télécharger l'archétype</a>
+          </div>
+        </div>
+      </div>
+      <div class="ck auto" data-ck data-key="readme" data-auto-read>
         <span class="box"><svg aria-hidden="true"><use href="#i-check"/></svg></span>
-        <div class="cm"><h4>Télécharger l'archétype SAAS</h4><p>Fait automatiquement à l'ouverture du module.</p></div>
+        <div class="cm"><h4>Lire le README-SAAS.md</h4><p>Se valide automatiquement quand vous atteignez le bas du module.</p></div>
         <span class="tag">AUTO</span>
       </div>
-      <div class="ck auto done" data-auto="1">
-        <span class="box"><svg aria-hidden="true"><use href="#i-check"/></svg></span>
-        <div class="cm"><h4>Lire le README-SAAS.md</h4><p>Suivi automatiquement à la lecture.</p></div>
-        <span class="tag">AUTO</span>
-      </div>
-      <div class="ck" data-step>
+      <div class="ck" data-ck data-key="claude" data-step>
         <span class="box" role="checkbox" aria-checked="false" tabindex="0"><svg aria-hidden="true"><use href="#i-check"/></svg></span>
         <div class="cm">
           <h4>Créer votre fichier CLAUDE.md</h4>
@@ -183,7 +187,7 @@
           </div>
         </div>
       </div>
-      <div class="ck" data-step>
+      <div class="ck" data-ck data-key="note" data-step>
         <span class="box" role="checkbox" aria-checked="false" tabindex="0"><svg aria-hidden="true"><use href="#i-check"/></svg></span>
         <div class="cm">
           <h4>Créer votre 1ʳᵉ note « Vue d'ensemble »</h4>
@@ -193,7 +197,7 @@
           </div>
         </div>
       </div>
-      <div class="ck" data-step>
+      <div class="ck" data-ck data-key="capture">
         <span class="box" role="checkbox" aria-checked="false" tabindex="0"><svg aria-hidden="true"><use href="#i-check"/></svg></span>
         <div class="cm">
           <h4>Partager une capture à la commu <span style="color:var(--muted-2);font-weight:500">(optionnel)</span></h4>
@@ -237,52 +241,68 @@
     var t=document.getElementById('mark-svg');
     document.querySelectorAll('[data-mark]').forEach(function(s,i){var node=t.content.cloneNode(true);var svg=node.querySelector('svg');svg.innerHTML=svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,'$1$2_'+i);s.appendChild(node);});
 
-    var KEY='sp_module1_steps';
-    var steps=Array.prototype.slice.call(document.querySelectorAll('.ck[data-step]'));
+    var KEY='sp_module1_steps_v2';
+    var cks=Array.prototype.slice.call(document.querySelectorAll('.ck[data-ck]'));
     var saved={};
     try { saved=JSON.parse(localStorage.getItem(KEY)||'{}'); } catch(e){}
+    function keyOf(ck){ return ck.getAttribute('data-key'); }
+    function isDone(ck){ return ck.classList.contains('done'); }
+    function persist(){ try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch(e){} }
 
-    function totalDone(){
-      var auto=document.querySelectorAll('.ck.auto').length;
-      var manual=steps.filter(function(s){return s.classList.contains('done');}).length;
-      return auto+manual;
+    function setDone(ck, val){
+      ck.classList.toggle('done', val);
+      var b=ck.querySelector('.box');
+      if(b && b.getAttribute('role')==='checkbox') b.setAttribute('aria-checked', val?'true':'false');
+      saved[keyOf(ck)]=val;
+      persist();
+      render();
     }
     function render(){
-      var total=document.querySelectorAll('.ck').length;
-      var done=totalDone();
+      var total=cks.length;
+      var done=cks.filter(isDone).length;
       document.getElementById('qfill').style.width=(done/total*100)+'%';
       document.getElementById('qpct').textContent=done+' / '+total+' fait';
       // badge : débloqué quand les 2 étapes clés (CLAUDE.md + note) sont faites
-      var key1=steps[0].classList.contains('done');
-      var key2=steps[1].classList.contains('done');
+      var key1=document.querySelector('.ck[data-key="claude"]').classList.contains('done');
+      var key2=document.querySelector('.ck[data-key="note"]').classList.contains('done');
       var badge=document.getElementById('badge');
       if(key1&&key2){
         badge.classList.add('unlocked');
         document.getElementById('badge-title').textContent='🏆 Badge « Premier CDC créé » débloqué !';
-        document.getElementById('badge-sub').textContent='Bravo — vous avez posé les fondations. Partage-le à la commu si vous voulez.';
+        document.getElementById('badge-sub').textContent='Bravo — vous avez posé les fondations. Partagez-le à la commu si vous voulez.';
       } else {
         badge.classList.remove('unlocked');
         document.getElementById('badge-title').textContent='Badge « Premier CDC créé »';
-        document.getElementById('badge-sub').textContent='Crée votre CLAUDE.md + votre 1ʳᵉ note pour le débloquer.';
+        document.getElementById('badge-sub').textContent='Créez votre CLAUDE.md + votre 1ʳᵉ note pour le débloquer.';
       }
     }
-    steps.forEach(function(s,i){
-      if(saved['s'+i]) s.classList.add('done');
-      var box=s.querySelector('.box');
-      function toggle(){
-        s.classList.toggle('done');
-        box.setAttribute('aria-checked', s.classList.contains('done')?'true':'false');
-        saved['s'+i]=s.classList.contains('done');
-        try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch(e){}
-        render();
+
+    cks.forEach(function(ck){
+      if(saved[keyOf(ck)]) ck.classList.add('done');
+      var box=ck.querySelector('.box');
+      // étapes manuelles : la case se coche au clic / clavier
+      if(box && box.getAttribute('role')==='checkbox'){
+        var toggle=function(){ setDone(ck, !isDone(ck)); };
+        box.addEventListener('click',toggle);
+        box.addEventListener('keydown',function(e){ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); toggle(); } });
+        box.setAttribute('aria-checked', isDone(ck)?'true':'false');
       }
-      box.addEventListener('click',toggle);
-      box.addEventListener('keydown',function(e){ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); toggle(); } });
-      // clicking download also marks done
-      var dl=s.querySelector('[data-dl]');
-      if(dl) dl.addEventListener('click',function(){ if(!s.classList.contains('done')) toggle(); });
-      box.setAttribute('aria-checked', s.classList.contains('done')?'true':'false');
+      // cliquer un lien d'action valide l'étape ; le VRAI téléchargement est géré
+      // par auth-guard (data-download="octans") sur la même cible.
+      var dl=ck.querySelector('[data-dl]');
+      if(dl) dl.addEventListener('click',function(){ if(!isDone(ck)) setDone(ck, true); });
     });
+
+    // Lecture du README = validée quand on atteint le BAS du module (suivi réel).
+    var readCk=document.querySelector('.ck[data-auto-read]');
+    var sentinel=document.querySelector('.lnav');
+    if(readCk && sentinel && 'IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(entries){
+        entries.forEach(function(en){ if(en.isIntersecting && !isDone(readCk)){ setDone(readCk, true); io.disconnect(); } });
+      }, { threshold: 0.4 });
+      io.observe(sentinel);
+    } else if(readCk && saved[keyOf(readCk)]){ readCk.classList.add('done'); }
+
     render();
   })();
 </script>

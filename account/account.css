@@ -29,6 +29,10 @@
 .side .navg .lbl:first-child { margin-top: 0; border-top: none; }
 .side a.it { position: relative; display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 11px; font-size: 14px; font-weight: 500; color: var(--muted); transition: background .18s, color .18s; }
 .side a.it svg { width: 18px; height: 18px; flex-shrink: 0; transition: color .18s; }
+/* Icônes du menu : uniquement sur Tableau de bord (1er) et Paramètres (dernier) */
+.side .navg a.it svg { display: none; }
+.side .navg a.it:first-of-type svg,
+.side .navg a.it:last-of-type svg { display: block; }
 /* Survol = texte + icône s'éclairent (comme le menu public) */
 .side a.it:hover { background: var(--surface); color: var(--ink); }
 .side a.it:hover svg { color: var(--ink); }
