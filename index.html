@@ -247,6 +247,11 @@
   .manifeste .domains { list-style: none; display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 10px 22px; margin: 18px 0 0; max-width: 640px; padding: 0; }
   .manifeste .domains li { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-size: 15px; font-weight: 500; color: var(--ink-2); }
   .manifeste .domains li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+  /* "jongler" : phrase à gauche, liste des métiers à droite en face */
+  .manifeste .jongle-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 32px; align-items: start; }
+  .manifeste .jongle-row .lead-in { margin: 0; align-self: center; }
+  .manifeste .jongle-row .domains { margin: 0; max-width: none; }
+  @media (max-width: 720px) { .manifeste .jongle-row { grid-template-columns: 1fr; } }
   .manifeste .body strong { color: var(--ink); font-weight: 600; }
   .manifeste .sign { margin-top: 22px; font-family: var(--font-display); font-weight: 600; color: var(--green); }
 
@@ -562,7 +567,7 @@
   <!-- ===== HERO ===== -->
   <section class="hero">
     <div class="wrap">
-      <div class="roles-line" style="margin-bottom:30px;">
+      <div class="roles-line" style="margin:18px 0 4px;">
         <span class="tl">AI Method Conductor</span>
       </div>
     </div>
@@ -582,17 +587,15 @@
     </style>
     <div class="wrap grid">
       <div class="lede">
-        <span class="eyebrow" style="margin-bottom:24px;"><span class="dot"></span>Piloter vos IA &amp; automatisations · sur vos stacks et projets</span>
-        <h1 style="margin-top:0;font-size:clamp(28px,3.4vw,40px);line-height:1.05;">Arrêtez de prompter.<br><span class="grad-text">Architecturez votre IA.</span>
-          <span class="h1-subline" style="display:block;margin-top:18px;"><span class="h1-sub small h1-souv" style="margin-top:0;"><span class="dot-souv"></span>Se former sur la couche supérieure, avec vos propres projets &amp; outils.</span><span class="h1-sub small h1-souv" style="margin-top:0;"><span class="eq-souv">&gt;</span>Sur votre PC, en local · piloter seul·e · plusieurs projets &amp; IA · Vibecoding · MCP · Automatisations.</span></span>
+        <h1 style="margin-top:8px;font-size:clamp(27px,3.2vw,38px);line-height:1.1;">Piloter vos IA &amp; automatisations · sur vos stacks et projets.<br><span class="grad-text">Architecturez votre IA.</span>
+          <span class="h1-subline" style="display:block;margin-top:14px;font-size:14px;font-weight:400;color:var(--muted);line-height:1.5;">Sur votre PC, en local · plusieurs projets &amp; IA · Vibecoding · MCP · Automatisations.</span>
         </h1>
-        <p style="margin-top:28px;font-size:14.5px;line-height:1.55;color:var(--ink-2);max-width:520px;"><b style="color:var(--ink);">La méthode que tout le monde commence à faire.</b> Le stack des cadres en reconversion, SEO managers et vibe-codeurs. StackProtocol vous livre&nbsp;:</p>
+        <p style="margin-top:28px;font-size:14.5px;line-height:1.55;color:var(--ink-2);max-width:520px;"><b style="color:var(--ink);">Ne soyez pas en retard&nbsp;!</b> Le stack des cadres en reconversion, SEO managers et vibe-codeurs. StackProtocol vous livre&nbsp;:</p>
         <ul style="margin:14px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px;max-width:520px;">
           <li style="display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.5;color:var(--ink-2);"><svg aria-hidden="true" style="width:17px;height:17px;color:var(--green);flex-shrink:0;margin-top:2px;"><use href="#i-check"/></svg><span><b style="color:var(--ink);">La méthode</b> — CDC reproductible</span></li>
           <li style="display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.5;color:var(--ink-2);"><svg aria-hidden="true" style="width:17px;height:17px;color:var(--green);flex-shrink:0;margin-top:2px;"><use href="#i-check"/></svg><span><b style="color:var(--ink);">Le moteur</b> — Octans<span class="octa" aria-hidden="true"><svg viewBox="0 0 250 286" role="img" aria-label="Octans"><defs><linearGradient id="solGreen_octa" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#2ECE93"/></linearGradient><linearGradient id="solTeal_octa" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#28CDB6"/><stop offset="100%" stop-color="#1593C6"/></linearGradient><linearGradient id="sheen_octa" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/><stop offset="45%" stop-color="#ffffff" stop-opacity="0"/></linearGradient><pattern id="stpGreen_octa" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#43E7A6"/></pattern><pattern id="stpTeal_octa" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#26C6BE"/></pattern><pattern id="stpBlue_octa" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#1E84D0"/></pattern><filter id="depth_octa" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0a1414" flood-opacity="0.45"/></filter></defs><g transform="rotate(-7 125 143)"><polygon class="s-poly s1" points="139,8 179,48 139,88 99,48" fill="url(#stpGreen_octa)" filter="url(#depth_octa)"/><polygon class="pl pa" points="93,54 133,94 93,134 53,94" fill="url(#solGreen_octa)" filter="url(#depth_octa)"/><polygon points="93,54 133,94 93,134 53,94" fill="url(#sheen_octa)"/><polygon class="s-poly s2" points="139,100 179,140 139,180 99,140" fill="url(#stpTeal_octa)" filter="url(#depth_octa)"/><polygon class="pl pb" points="185,146 225,186 185,226 145,186" fill="url(#solTeal_octa)" filter="url(#depth_octa)"/><polygon points="185,146 225,186 185,226 145,186" fill="url(#sheen_octa)"/><polygon class="s-poly s3" points="139,192 179,232 139,272 99,232" fill="url(#stpBlue_octa)" filter="url(#depth_octa)"/></g></svg></span> : multi-agents · skills · hooks</span></li>
           <li style="display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.5;color:var(--ink-2);"><svg aria-hidden="true" style="width:17px;height:17px;color:var(--green);flex-shrink:0;margin-top:2px;"><use href="#i-check"/></svg><span><b style="color:var(--ink);">Votre studio</b> — VSCode + <span class="claude-mark">Claude Code</span> + Obsidian, prêt en 90&nbsp;min</span></li>
         </ul>
-        <p class="note" style="margin-top:14px;"><svg aria-hidden="true"><use href="#i-shield"/></svg>Pas une formation jetable. Une infrastructure. À vous. À vie.<a class="gtag-btn" href="legal/satisfaction.html">Garantie</a></p>
         <div class="cta" style="margin-top:30px;">
           <a class="btn btn-sm btn-primary btn-breathe" href="#produits">Déployer mon Stack-Architecture<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
           <a class="btn btn-sm btn-primary" href="orientation-gratuite.html">Orientation gratuite</a>
@@ -744,7 +747,7 @@
   <!-- ===== LE PITCH (Bloc B Phase 0.7 — 2026-06-19) ===== -->
   <section class="section" data-ln="Le pitch" style="padding-top:60px;padding-bottom:80px;">
     <div class="wrap">
-      <div class="section-head" style="text-align:center;max-width:none;margin-bottom:0;">
+      <div class="section-head" style="max-width:none;margin-bottom:0;">
         <span class="eyebrow"><span class="dot"></span>En 1 phrase</span>
         <h2 style="font-size:clamp(28px,4vw,42px);"><span class="grad-text">StackProtocol</span> = la méthode + <span class="grad-text">Octans</span>, le cerveau d'ingénierie.</h2>
         <p style="margin-left:auto;margin-right:auto;max-width:680px;">Pour préparer votre projet, votre CDC, votre stack. Boosté par <span class="claude-mark">Claude</span>. <b>Toujours à jour.</b></p>
@@ -1016,6 +1019,7 @@
       <span class="eyebrow"><span class="dot"></span>Pourquoi StackProtocol existe</span>
       <h2>On ne peut pas tout faire seul. Il faut de la structure pour avancer.</h2>
       <div class="body">
+        <div class="jongle-row">
         <p class="lead-in">Lancer un projet aujourd'hui, c'est jongler avec tout à la fois :</p>
         <ul class="domains">
           <li>Le code</li>
@@ -1032,6 +1036,7 @@
           <li>La compta</li>
           <li>Le juridique</li>
         </ul>
+        </div>
         <p><strong>Personne ne peut tout faire seul.</strong> Sauf une élite avec des moyens. Pour tous les autres, le manque de structure coûte du temps, de l'argent, et de la fatigue.</p>
         <p>Cette méthode a été construite et testée pendant 6 mois sur un projet civic-tech français complexe : <strong>470 fichiers cohérents, 9 doctrines tranchées, 4 audits passés.</strong> Aujourd'hui, je la rends accessible.</p>
       </div>
@@ -1046,7 +1051,7 @@
   <!-- ===== FLUX OCTANS (schéma pédagogique — 2026-06-23) ===== -->
   <section class="section" data-ln="Le flux" style="padding-top:0;">
     <div class="wrap">
-      <div class="section-head" style="text-align:center;max-width:none;">
+      <div class="section-head" style="max-width:none;">
         <span class="eyebrow"><span class="dot"></span>Comment ça marche</span>
         <h2>Le flux Octans — de votre idée au <span class="grad-text">CDC livré</span>.</h2>
         <p style="margin-left:auto;margin-right:auto;max-width:680px;">Vous arrivez avec une intention, même floue. Octans la transforme en cahier des charges <b>structuré, sourcé et cohérent</b> — et vous gardez la main à chaque étape.</p>
@@ -1107,7 +1112,7 @@
   <!-- ===== OCTANS = SUPERVISION (BLOC C Phase 0.7 — 2026-06-19) ===== -->
   <section class="section" data-ln="Supervision">
     <div class="wrap">
-      <div class="section-head" style="text-align:center;max-width:none;margin-bottom:0;">
+      <div class="section-head" style="max-width:none;margin-bottom:0;">
         <span class="eyebrow"><span class="dot"></span>Le positionnement</span>
         <h2>Octans ne remplace pas vos outils — il les <span class="grad-text">supervise</span>.</h2>
         <p style="margin-left:auto;margin-right:auto;max-width:660px;">Vous ne descendez pas au niveau de l'outil. Vous restez au niveau de la <b>méthode</b>.</p>
@@ -1147,7 +1152,7 @@
   <!-- ===== LA BOUCLE D'INGÉNIERIE (Bloc B Phase 0.7 — 2026-06-19) ===== -->
   <section class="section" data-ln="La boucle" data-ln-count="5" style="padding-top:0;">
     <div class="wrap">
-      <div class="section-head" style="text-align:center;max-width:none;margin-bottom:0;">
+      <div class="section-head" style="max-width:none;margin-bottom:0;">
         <span class="eyebrow"><span class="dot"></span>L'ingénierie continue</span>
         <h2>La boucle Octans — <span class="grad-text">5 temps d'ingénieur</span>.</h2>
         <p style="margin-left:auto;margin-right:auto;max-width:660px;">Du choix de la stack à la mise en production. Et ça nourrit le cycle suivant.</p>
@@ -1186,7 +1191,7 @@
   <!-- ===== SOUVERAINETÉ ===== -->
   <section class="section" id="souverainete" data-ln="Souveraineté" style="padding-top:0;">
     <div class="wrap">
-      <div class="section-head" style="text-align:center;max-width:none;margin-bottom:36px;">
+      <div class="section-head" style="max-width:none;margin-bottom:36px;">
         <span class="eyebrow"><span class="dot"></span>Le différenciateur</span>
         <h2>Vos fichiers restent sur votre disque. Vraiment.</h2>
         <p style="margin-left:auto;margin-right:auto;">La plupart des outils font vivre votre projet sur leurs serveurs. Pas StackProtocol.</p>
@@ -1301,7 +1306,7 @@
   <!-- ===== EXPERTS teaser ===== -->
   <section class="section" id="experts" data-ln="Les experts" data-ln-count="30" style="padding-top:0;">
     <div class="wrap">
-      <div class="section-head" style="text-align:center;max-width:none;">
+      <div class="section-head" style="max-width:none;">
         <span class="eyebrow"><span class="dot"></span>L'équipe</span>
         <h2>30 spécialistes · orchestrés pour votre projet.</h2>
         <p style="margin-left:auto;margin-right:auto;">Juridique, sécurité, technique, business, méthode — une équipe virtuelle qui anticipe le stratégique.</p>
@@ -1318,7 +1323,7 @@
   <!-- ===== VIVANT, PAS FIGÉ (Bloc B Phase 0.7 — 2026-06-19) ===== -->
   <section class="section maj-section" data-ln="MAJ" style="padding-top:0;">
     <div class="wrap" style="max-width:1080px;">
-      <div class="section-head" style="text-align:center;max-width:none;margin-bottom:0;">
+      <div class="section-head" style="max-width:none;margin-bottom:0;">
         <span class="eyebrow"><span class="dot"></span>Mises à jour</span>
         <h2>Une méthode <span class="grad-text">vivante</span>. Pas une photo figée.</h2>
         <p style="margin-left:auto;margin-right:auto;max-width:680px;">Octans évolue avec les meilleures IA. Vous restez à jour — <b>sans tout reprendre de zéro, sans abonnement obligatoire, sans lock-in.</b></p>
