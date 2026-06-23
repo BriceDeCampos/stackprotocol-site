@@ -566,14 +566,28 @@
         <span class="tl">AI Method Conductor</span>
       </div>
     </div>
+    <style>
+      .octa{display:inline-block;height:1.05em;width:auto;vertical-align:-0.18em;margin-left:6px;overflow:visible;}
+      .octa svg{height:100%;width:auto;display:inline-block;overflow:visible;}
+      .octa .s-poly{transform-box:fill-box;transform-origin:center top;}
+      .octa .s1{transform-origin:center bottom;animation:octaTurn 9s cubic-bezier(.55,0,.3,1) infinite;}
+      .octa .s2{animation:octaTurn 9s cubic-bezier(.55,0,.3,1) infinite 1.5s;}
+      .octa .s3{animation:octaTurn 9s cubic-bezier(.55,0,.3,1) infinite 3s;}
+      @keyframes octaTurn{0%,14%{transform:scaleY(1);}20%{filter:brightness(1.55);}30%{transform:scaleY(-1);}46%,100%{transform:scaleY(1);}}
+      .octa .pl{transform-box:fill-box;transform-origin:center;}
+      .octa .pa{animation:octaPulse 3.4s ease-in-out infinite;}
+      .octa .pb{animation:octaPulse 3.4s ease-in-out infinite 1.7s;}
+      @keyframes octaPulse{0%,100%{filter:brightness(1);}50%{filter:brightness(1.34);}}
+      @media (prefers-reduced-motion:reduce){.octa .s-poly,.octa .pl{animation:none!important;}}
+    </style>
     <div class="wrap grid">
       <div class="lede">
         <span class="eyebrow" style="margin-bottom:14px;"><span class="dot"></span>Piloter vos IA &amp; automatisations · sur vos stacks et projets</span>
         <h1 style="margin-top:0;font-size:clamp(28px,3.4vw,40px);line-height:1.05;">Arrêtez de prompter.<br><span class="grad-text">Architecturez votre IA.</span>
-          <span class="h1-subline"><span class="h1-sub small h1-souv" style="margin-top:0;"><span class="dot-souv"></span>Du CDC à la production.</span><span class="h1-sub small h1-souv" style="margin-top:0;"><span class="eq-souv">&gt;</span>De l'idée au produit.</span></span>
+          <span class="h1-subline"><span class="h1-sub small h1-souv" style="margin-top:0;"><span class="dot-souv"></span>Se former sur la couche supérieure, avec vos propres projets &amp; outils.</span><span class="h1-sub small h1-souv" style="margin-top:0;"><span class="eq-souv">&gt;</span>Sur votre PC, en local · piloter seul·e · plusieurs projets &amp; IA · Vibecoding · MCP · Automatisations.</span></span>
         </h1>
         <p style="margin-top:18px;font-size:15px;line-height:1.55;color:var(--ink-2);max-width:520px;">
-          StackProtocol vous livre <b style="color:var(--ink);">la méthode</b> (CDC reproductible) + <b style="color:var(--ink);">le moteur</b> (Octans : multi-agents · skills · hooks) + <b style="color:var(--ink);">votre studio</b> (VSCode + <span class="claude-mark">Claude Code</span> + Obsidian, prêt en 90 min).
+          StackProtocol vous livre <b style="color:var(--ink);">la méthode</b> (CDC reproductible) + <b style="color:var(--ink);">le moteur</b> (Octans<span class="octa" aria-hidden="true"><svg viewBox="0 0 250 286" role="img" aria-label="Octans"><defs><linearGradient id="solGreen_octa" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#2ECE93"/></linearGradient><linearGradient id="solTeal_octa" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#28CDB6"/><stop offset="100%" stop-color="#1593C6"/></linearGradient><linearGradient id="sheen_octa" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/><stop offset="45%" stop-color="#ffffff" stop-opacity="0"/></linearGradient><pattern id="stpGreen_octa" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#43E7A6"/></pattern><pattern id="stpTeal_octa" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#26C6BE"/></pattern><pattern id="stpBlue_octa" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#1E84D0"/></pattern><filter id="depth_octa" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0a1414" flood-opacity="0.45"/></filter></defs><g transform="rotate(-7 125 143)"><polygon class="s-poly s1" points="139,8 179,48 139,88 99,48" fill="url(#stpGreen_octa)" filter="url(#depth_octa)"/><polygon class="pl pa" points="93,54 133,94 93,134 53,94" fill="url(#solGreen_octa)" filter="url(#depth_octa)"/><polygon points="93,54 133,94 93,134 53,94" fill="url(#sheen_octa)"/><polygon class="s-poly s2" points="139,100 179,140 139,180 99,140" fill="url(#stpTeal_octa)" filter="url(#depth_octa)"/><polygon class="pl pb" points="185,146 225,186 185,226 145,186" fill="url(#solTeal_octa)" filter="url(#depth_octa)"/><polygon points="185,146 225,186 185,226 145,186" fill="url(#sheen_octa)"/><polygon class="s-poly s3" points="139,192 179,232 139,272 99,232" fill="url(#stpBlue_octa)" filter="url(#depth_octa)"/></g></svg></span> : multi-agents · skills · hooks) + <b style="color:var(--ink);">votre studio</b> (VSCode + <span class="claude-mark">Claude Code</span> + Obsidian, prêt en 90 min).
         </p>
         <p class="note" style="margin-top:14px;"><svg aria-hidden="true"><use href="#i-shield"/></svg>Pas une formation jetable. Une infrastructure. À vous. À vie.<a class="gtag-btn" href="legal/satisfaction.html">Garantie</a></p>
         <div class="cta" style="margin-top:30px;">
