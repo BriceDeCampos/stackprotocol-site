@@ -285,7 +285,9 @@
         : isDone
           ? '<button type="button" class="btn-step" data-action="undo" data-step="' + step.id + '">Annuler la validation</button>' +
             '<span class="step-validated-date"><svg aria-hidden="true"><use href="#i-check"/></svg>Validée le ' + formatDate(state[step.id]) + '</span>'
-          : '<a class="btn-step primary" href="' + step.actionLink + '">' + step.action + '<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>' +
+          : (step.actionLink && step.actionLink !== '#'
+              ? '<a class="btn-step primary" href="' + step.actionLink + '">' + step.action + '<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>'
+              : '<span class="step-do" style="font-size:13px;color:var(--muted);margin-right:10px;display:inline-flex;align-items:center;gap:6px;"><svg aria-hidden="true" style="width:14px;height:14px;"><use href="#i-cpu"/></svg>À réaliser dans votre studio Claude Code, puis :</span>') +
             '<button type="button" class="btn-step" data-action="validate" data-step="' + step.id + '">Marquer comme faite</button>';
 
       var helpLine = (isCurrent || isDone) ? '' :
