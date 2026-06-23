@@ -95,9 +95,9 @@
 
     <section id="heberg">
       <h2><span class="no">Art. 3</span>Hébergement</h2>
-      <p>Le site est hébergé en France, dans une logique de souveraineté des données :</p>
+      <p>Le backend et les contenus sont hébergés en France (OVH). La diffusion des pages (CDN) passe par Cloudflare (USA) :</p>
       <table class="meta-table">
-        <tr><td>Frontend / CDN</td><td>Cloudflare Pages</td></tr>
+        <tr><td>Frontend / CDN</td><td>Cloudflare Pages — Cloudflare, Inc. (USA)</td></tr>
         <tr><td>Backend / base de données</td><td>OVH SAS — 2 rue Kellermann, 59100 Roubaix, France</td></tr>
         <tr><td>Stockage des contenus</td><td>OVH Object Storage (France)</td></tr>
       </table>
@@ -105,11 +105,12 @@
 
     <section id="presta">
       <h2><span class="no">Art. 4</span>Prestataires tiers</h2>
-      <p>StackProtocol s'appuie sur des prestataires européens / français, sans transfert publicitaire vers les GAFAM :</p>
+      <p>StackProtocol limite ses prestataires au strict nécessaire, sans tracking publicitaire :</p>
       <ul>
-        <li><strong>Stripe</strong> — paiement en ligne sécurisé (établissement de paiement agréé).</li>
-        <li><strong>Brevo</strong> (ex-Sendinblue, France) — envoi des emails transactionnels et liens magiques.</li>
+        <li><strong>Stripe</strong> — paiement en ligne sécurisé (Stripe Payments Europe, Irlande ; groupe USA).</li>
+        <li><strong>Brevo</strong> (ex-Sendinblue, France) — emails transactionnels et liens magiques.</li>
         <li><strong>Plausible Analytics</strong> — mesure d'audience anonyme, auto-hébergée, sans cookie ni tracking comportemental.</li>
+        <li><strong>Anthropic</strong> (USA) — fournisseur de Claude Code, l'IA que vous pilotez vous-même. Vos prompts et les fichiers lus transitent vers Anthropic sous votre propre contrat (voir la <a class="lnk" href="rgpd.html#partage">politique de données</a>).</li>
       </ul>
     </section>
 
