@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Merci pour votre achat — StackProtocol</title>
+<meta name="robots" content="noindex" />
+<link rel="stylesheet" href="assets/fonts/fonts.css" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .shell { min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto; }
+  .topbar { padding: 22px 0; }
+  .topbar .wrap { display: flex; align-items: center; justify-content: center; }
+  .center { display: grid; place-items: center; padding: 28px 0 56px; }
+  .mwrap { width: 100%; max-width: 680px; text-align: center; padding: 0 24px; }
+  .okring { width: 72px; height: 72px; margin: 0 auto 22px; border-radius: 50%; display: grid; place-items: center; background: rgba(60,229,163,0.12); border: 1px solid rgba(60,229,163,0.4); color: var(--green); }
+  .okring svg { width: 34px; height: 34px; }
+  .mwrap h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(28px,4.4vw,42px); letter-spacing: -0.02em; line-height: 1.12; }
+  .mwrap .lead { font-size: 16px; color: var(--ink-2); line-height: 1.6; margin: 18px auto 0; max-width: 560px; }
+  .mwrap .cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+  .next { margin-top: 34px; text-align: left; background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-radius: var(--r); padding: 22px 24px; }
+  .next .h { font-family: var(--font-display); font-weight: 700; font-size: 12px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--green); margin-bottom: 12px; }
+  .next ol { margin: 0; padding-left: 20px; color: var(--ink-2); font-size: 14.5px; line-height: 1.7; }
+  .next a { color: var(--green); }
+  .mwrap .note { display: inline-flex; align-items: center; gap: 8px; justify-content: center; margin-top: 26px; font-size: 13px; color: var(--muted); }
+  .mwrap .note svg { width: 15px; height: 15px; color: var(--green); }
+  footer.sp { padding: 26px 0; border-top: 1px solid var(--line); }
+  footer.sp .wrap { text-align: center; font-size: 12.5px; color: var(--muted-2); line-height: 1.7; }
+  footer.sp a { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<template id="mark-svg">
+  <svg viewBox="0 0 250 286" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="StackProtocol">
+    <defs>
+      <linearGradient id="solGreen" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#2ECE93"/></linearGradient>
+      <linearGradient id="solTeal" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#2ECE93"/><stop offset="100%" stop-color="#1593C6"/></linearGradient>
+      <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/><stop offset="45%" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+      <pattern id="stpGreen" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#43E7A6"/></pattern>
+      <pattern id="stpTeal" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#2ECE93"/></pattern>
+      <pattern id="stpBlue" width="7.4" height="7.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="3.5" height="7.4" fill="#1593C6"/></pattern>
+      <filter id="depth" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0a1414" flood-opacity="0.45"/></filter>
+    </defs>
+    <g transform="rotate(-7 125 143)">
+      <polygon points="139,8 179,48 139,88 99,48" fill="url(#stpGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#solGreen)" filter="url(#depth)"/>
+      <polygon points="93,54 133,94 93,134 53,94" fill="url(#sheen)"/>
+      <polygon points="139,100 179,140 139,180 99,140" fill="url(#stpTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#solTeal)" filter="url(#depth)"/>
+      <polygon points="185,146 225,186 185,226 145,186" fill="url(#sheen)"/>
+      <polygon points="139,192 179,232 139,272 99,232" fill="url(#stpBlue)" filter="url(#depth)"/>
+    </g>
+  </svg>
+</template>
+
+<div class="shell">
+  <header class="topbar">
+    <div class="wrap">
+      <a class="logo" href="index.html" aria-label="Accueil StackProtocol"><span class="mark" data-mark></span><span class="wm">Stack<b>Protocol</b></span></a>
+    </div>
+  </header>
+
+  <main class="center">
+    <div class="mwrap">
+      <div class="okring"><svg aria-hidden="true"><use href="#i-check"/></svg></div>
+      <span class="eyebrow" style="justify-content:center;"><span class="dot"></span>Paiement confirmé</span>
+      <h1>Merci<span id="merci-prenom"></span> — c'est tout bon. <span class="octans-mark">Octans</span> est à vous.</h1>
+      <p class="lead"><b id="merci-produit" style="color:var(--ink);">Votre commande</b> est confirmée. On vient de vous envoyer un <b style="color:var(--ink);">lien d'accès magique par email</b> — cliquez dessus pour ouvrir votre espace perso (il expire dans 15 minutes).</p>
+
+      <div class="cta">
+        <a class="btn btn-primary" href="account/dashboard.html">Accéder à mon espace<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost" href="login.html">Renvoyer le lien de connexion</a>
+      </div>
+
+      <div class="next">
+        <div class="h">Et maintenant&nbsp;?</div>
+        <ol>
+          <li>Ouvrez l'email de StackProtocol et cliquez sur votre lien d'accès.</li>
+          <li>Dans votre espace, commencez par <b style="color:var(--ink);">installer votre studio</b> puis suivez le <b style="color:var(--ink);">parcours en 7 étapes</b>.</li>
+          <li>Bloqué&nbsp;? Réservez un <a href="produits/coaching.html">accompagnement individuel</a> quand vous voulez.</li>
+        </ol>
+      </div>
+
+      <p class="note"><svg aria-hidden="true"><use href="#i-shield"/></svg>Rétractation 14 jours (Loi Hamon) · paiement unique · aucune donnée bancaire stockée chez nous.</p>
+      <p style="margin-top:14px;font-size:13px;color:var(--muted);">Un souci avec votre accès&nbsp;? Écrivez-nous : <a href="mailto:contact@stackprotocol.fr" style="color:var(--green);">contact@stackprotocol.fr</a></p>
+    </div>
+  </main>
+
+  <footer class="sp">
+    <div class="wrap">
+      © 2026 StackProtocol — Brice DeCampos · <a href="legal/cgv.html">CGV</a> · <a href="legal/mentions.html">Mentions</a> · <a href="legal/rgpd.html">RGPD</a> · <a href="mailto:contact@stackprotocol.fr">contact@stackprotocol.fr</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+  (function(){
+    var t=document.getElementById('mark-svg');
+    document.querySelectorAll('[data-mark]').forEach(function(s,i){var node=t.content.cloneNode(true);var svg=node.querySelector('svg');svg.innerHTML=svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,'$1$2_'+i);s.appendChild(node);});
+    // Personnalisation légère depuis ?product=… &prenom=…
+    var qs=new URLSearchParams(location.search);
+    var LABELS={'pack-cdc':'Pack CDC Méthode (197 €)','pack-cdc-reduit':'Pack CDC Méthode — tarif réduit (99 €)','accompagnement':'Accompagnement individuel (147 € / 1h)','maj-abo':'Abonnement mises à jour (7,70 € / mois)','maj-oneshot':'Mise à jour — version majeure (197 €)'};
+    var p=(qs.get('product')||'').toLowerCase();
+    if(LABELS[p]){var el=document.getElementById('merci-produit'); if(el) el.textContent=LABELS[p];}
+    var prenom=qs.get('prenom');
+    if(prenom){var pn=document.getElementById('merci-prenom'); if(pn) pn.textContent=' '+prenom.replace(/[<>]/g,'');}
+  })();
+</script>
+<script src="brand.js" defer></script>
+<script src="cookies-banner.js" defer></script>
+</body>
+</html>
