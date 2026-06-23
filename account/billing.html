@@ -96,8 +96,8 @@
       <a class="it" href="library/pack-methode.html"><svg aria-hidden="true"><use href="#i-book"/></svg>Pack CDC Méthode</a>
       <a class="it" href="library/octans.html"><svg aria-hidden="true"><use href="#i-cpu"/></svg>Octans</a>
       <a class="it" href="library/duo-ia.html"><svg aria-hidden="true"><use href="#i-users"/></svg>Vos 2 IA</a>
-      <span class="lbl">Compte</span>
       <a class="it" href="accompagnement.html"><svg aria-hidden="true"><use href="#i-cap"/></svg>Accompagnement</a>
+      <span class="lbl">Compte</span>
       <a class="it" href="billing.html"><svg aria-hidden="true"><use href="#i-card"/></svg>Facturation</a>
       <a class="it" href="settings.html"><svg aria-hidden="true"><use href="#i-gear"/></svg>Paramètres</a>
     </nav>
@@ -111,14 +111,22 @@
     <h1 class="title">Facturation</h1>
     <p class="sublead">Vos achats, abonnements et factures — gérés en toute transparence via Stripe.</p>
 
-    <div class="sec-h">Abonnement en cours</div>
-    <article class="card sub-card">
+    <div class="sec-h">Mon accès</div>
+    <article class="card sub-card" data-when="can-download" hidden>
       <span class="ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span>
       <div class="si">
         <h3>Pack CDC Méthode — accès à vie</h3>
         <p>Achat unique · aucun abonnement, aucun prélèvement récurrent</p>
       </div>
       <span class="badge-on">Actif</span>
+    </article>
+    <article class="card sub-card" data-when="no-download" hidden>
+      <span class="ic"><svg aria-hidden="true"><use href="#i-cpu"/></svg></span>
+      <div class="si">
+        <h3>Aucun achat pour l'instant</h3>
+        <p>Le Pack CDC Méthode débloque tous vos contenus — paiement unique, accès à vie.</p>
+      </div>
+      <a class="btn btn-primary btn-sm" href="../produits/pack-methode.html">Découvrir — 197 €</a>
     </article>
     <p class="note-line"><svg aria-hidden="true"><use href="#i-check"/></svg>Le Pack CDC Méthode est un achat unique (accès à vie). Aucun prélèvement récurrent.</p>
 
@@ -129,12 +137,11 @@
 
     <div class="sec-h">Moyen de paiement</div>
     <article class="card pm">
-      <span class="cc">VISA</span>
+      <span class="ic"><svg aria-hidden="true"><use href="#i-lock"/></svg></span>
       <div class="pmi">
-        <div class="t">Carte se terminant par •••• 4242</div>
-        <div class="s">Gérée en sécurité par Stripe — nous ne stockons aucune donnée bancaire.</div>
+        <div class="t">Aucune carte enregistrée</div>
+        <div class="s">Chaque achat est ponctuel et sécurisé via Stripe — nous ne stockons aucune donnée bancaire.</div>
       </div>
-      <span class="btn btn-ghost btn-sm" style="opacity:.55;cursor:default;">Gérer sur Stripe (bientôt)</span>
     </article>
     <p class="note-line"><svg aria-hidden="true"><use href="#i-lock"/></svg>Paiements traités par Stripe (établissement français). Facturation conforme, TVA incluse.</p>
   </main>

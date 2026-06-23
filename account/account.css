@@ -23,7 +23,9 @@
 
 .side { border-right: 1px solid var(--line); padding: 20px 14px; display: flex; flex-direction: column; gap: 6px; position: sticky; top: 56px; height: calc(100vh - 56px); }
 .side .brand { display: none; } /* le logo est dans la barre du haut */
-.side .navg { display: flex; flex-direction: column; gap: 3px; }
+.side .navg { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+/* groupe « Compte » (Facturation + Paramètres) poussé tout en bas du menu */
+.side .navg .lbl:last-of-type { margin-top: auto; }
 /* Titres de section = séparateurs nets entre groupes (trait + libellé en capitales) */
 .side .navg .lbl { font-family: var(--font-display); font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-2); padding: 16px 12px 7px; margin-top: 12px; border-top: 1px solid var(--line); }
 .side .navg .lbl:first-child { margin-top: 0; border-top: none; }
