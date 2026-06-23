@@ -26,8 +26,9 @@
         numériques (Pack CDC, Réduit, MAJ abo, MAJ one-shot)
      4. Bascule LIVE
 
-   URL de succès Stripe à régler sur :
-     https://stackprotocol.fr/system/merci.html?product=<clé-produit>
+   URL de succès Stripe à régler sur (page LIVE créée 2026-06-23) :
+     https://stackprotocol.fr/merci?product=<clé-produit>
+     (clés produit : pack-cdc · pack-cdc-reduit · accompagnement · maj-abo · maj-oneshot)
 
    Tant qu'un lien vaut "" : repli sûr (email de contact), pas de 404.
    ============================================================ */
