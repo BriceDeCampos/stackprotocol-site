@@ -276,12 +276,17 @@
    Sidebar espace perso — marque l'onglet de la page courante (.on)
    ============================================================ */
 (function () {
+  // Dernier segment normalisé : gère slash final (/account/billing/), .html
+  // (billing.html) et URLs propres (/account/billing) — live ET v2 Astro.
+  function lastSeg(p) {
+    p = (p || "").split("#")[0].split("?")[0].replace(/\/+$/, "");
+    var seg = p.split("/").pop().replace(/\.html$/, "");
+    return seg || "index";
+  }
   document.addEventListener("DOMContentLoaded", function () {
-    var here = (location.pathname.split("/").pop() || "index.html");
-    if (here === "") here = "index.html";
+    var here = lastSeg(location.pathname);
     document.querySelectorAll(".side .navg a.it").forEach(function (a) {
-      var target = (a.getAttribute("href") || "").split("#")[0].split("/").pop();
-      if (target && target === here) {
+      if (lastSeg(a.getAttribute("href") || "") === here) {
         a.classList.add("on");
         a.setAttribute("aria-current", "page");
       }
