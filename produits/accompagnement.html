@@ -50,7 +50,19 @@
   footer .links a:hover { color: var(--green); }
   footer .fin { font-size: 12.5px; color: var(--muted-2); }
 
-  @media (max-width: 860px) { .tiers { grid-template-columns: 1fr; } }
+  .hero-points { list-style: none; margin: 22px auto 0; max-width: 470px; display: flex; flex-direction: column; gap: 13px; text-align: left; }
+  .hero-points li { display: flex; align-items: flex-start; gap: 12px; font-size: 15.5px; line-height: 1.5; color: var(--ink-2); }
+  .hero-points li svg { width: 19px; height: 19px; color: var(--green); flex-shrink: 0; margin-top: 1px; }
+  .hero-points li b { color: var(--ink); font-weight: 600; }
+
+  /* étapes + personas — cartes nettes */
+  .modules .card.mod { display: flex; gap: 16px; align-items: flex-start; padding: 22px 22px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,0.02); transition: border-color .18s, transform .18s, background .18s; }
+  .modules .card.mod:hover { border-color: rgba(60,229,163,0.35); transform: translateY(-2px); background: rgba(255,255,255,0.035); }
+  .modules .card.mod .num { flex-shrink: 0; width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; font-size: 16px; color: #0c1414; background: var(--grad-135, linear-gradient(135deg,#4DECAD,#159FCB)); }
+  .modules .card.mod h4 { font-family: var(--font-display); font-size: 15.5px; font-weight: 600; margin: 2px 0 5px; color: var(--ink); }
+  .modules .card.mod p { font-size: 13.5px; line-height: 1.55; color: var(--muted); margin: 0; }
+
+  @media (max-width: 860px) { .tiers { grid-template-columns: 1fr; } .modules { grid-template-columns: 1fr !important; } }
 </style>
 </head>
 <body>
@@ -133,9 +145,14 @@
   <section class="phero" data-ln="Accompagnement individuel">
     <div class="wrap">
       <span class="eyebrow"><span class="dot"></span>Accompagnement individuel · 147 € / 1h</span>
-      <h1>Une heure de travail à deux. Sur <span class="grad-text">votre vraie décision.</span></h1>
-      <p class="sub">Une séance de cadrage individuelle de 60 minutes en visio privée. Vous remplissez un questionnaire avant, on tranche votre décision pendant, vous repartez avec un récap écrit et un plan d'action concret — jamais un compte-rendu vague.</p>
-      <p class="sub" style="margin-top:12px;font-size:15px;color:var(--muted);">Pas de forfait, pas d'engagement. Vous réservez quand vous bloquez.</p>
+      <h1>Une heure de travail à deux.<br>Sur <span class="grad-text">votre vraie décision.</span></h1>
+      <p class="sub">Une séance de cadrage individuelle de 60 minutes en visio privée :</p>
+      <ul class="hero-points">
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Un questionnaire <b>avant</b> pour cadrer précisément votre besoin</li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>60 minutes en visio privée pour <b>trancher votre décision</b></li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Un récap écrit + un plan d'action concret — <b>jamais un compte-rendu vague</b></li>
+      </ul>
+      <p class="sub" style="margin-top:18px;font-size:15px;color:var(--muted);">Pas de forfait, pas d'engagement. Vous réservez quand vous bloquez.</p>
       <span class="when"><svg aria-hidden="true"><use href="#i-cal"/></svg>Réservation Cal.com · questionnaire pré-entretien obligatoire</span>
       <div style="display:flex;gap:18px;justify-content:center;margin-top:22px;flex-wrap:wrap;font-size:13px;color:var(--muted);">
         <span style="display:inline-flex;align-items:center;gap:7px;"><svg aria-hidden="true" style="width:15px;height:15px;color:var(--green);"><use href="#i-shield"/></svg>Annulation gratuite jusqu'à 24 h avant</span>
