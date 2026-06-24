@@ -23,17 +23,6 @@
     var list = document.createElement('div');
     list.className = 'ln-list'; nav.appendChild(list);
 
-    // entrée « Haut de page » en tête de liste
-    var topLink = document.createElement('a');
-    topLink.href = '#';
-    topLink.className = 'ln-top';
-    topLink.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" style="width:13px;height:13px;flex-shrink:0;"><path d="M12 19V5m-7 7 7-7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Haut de page';
-    topLink.addEventListener('click', function (e) {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      close();
-    });
-    list.appendChild(topLink);
 
     var overlay = document.createElement('div'); overlay.className = 'ln-overlay';
     function close() { nav.classList.remove('open'); overlay.classList.remove('show'); }
