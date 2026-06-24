@@ -162,3 +162,39 @@
     })
     .catch(function () { /* hors-ligne / non connecté → on garde « Se connecter » */ });
 })();
+
+/* ============================================================
+   Footer — compteur de visites RÉEL (backend auto-hébergé, sans tracking tiers).
+   Honnêteté : n'affiche RIEN tant que le backend ne renvoie pas de total.
+   Compte une visite au maximum 1× par session.
+   Backend attendu : GET/POST /api/stats/visits → { "total": <number> }.
+   ============================================================ */
+(function () {
+  function apiBase() {
+    if (window.SP_API_BASE) return window.SP_API_BASE;
+    var h = location.hostname;
+    return (h === 'localhost' || h === '127.0.0.1' || h === '')
+      ? 'http://localhost:8000'
+      : 'https://api.stackprotocol.fr';
+  }
+  var foot = document.querySelector('.sp-foot-legal')
+          || document.querySelector('footer .fin')
+          || document.querySelector('footer .wrap');
+  if (!foot) return;
+
+  var counted = false;
+  try { counted = sessionStorage.getItem('sp_visit_counted') === '1'; } catch (e) {}
+
+  fetch(apiBase() + '/api/stats/visits', { method: counted ? 'GET' : 'POST' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      if (!d || typeof d.total !== 'number') return; // pas de données → rien
+      try { sessionStorage.setItem('sp_visit_counted', '1'); } catch (e) {}
+      var span = document.createElement('span');
+      span.className = 'sp-visits';
+      span.style.cssText = 'font-size:12px;color:var(--muted-2);display:inline-flex;align-items:center;gap:6px;';
+      span.textContent = '👁 ' + d.total.toLocaleString('fr-FR') + ' visites';
+      foot.appendChild(span);
+    })
+    .catch(function () { /* backend indispo → aucun affichage (jamais de faux compteur) */ });
+})();
