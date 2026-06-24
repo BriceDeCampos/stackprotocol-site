@@ -149,7 +149,12 @@ body[data-sp-protect="true"].sp-ready { visibility: visible; }
 
 /* ── Section rhythm ── */
 .section { padding: 96px 0; position: relative; }
-.section-head { max-width: 720px; margin-bottom: 52px; }
+/* Section head = ALIGNÉ À GAUCHE par défaut. Plus jamais d'inline.
+   Modificateurs : .wide (bloc pleine largeur, texte gauche) · .center (centré, cas rare). */
+.section-head { max-width: 720px; margin-bottom: 52px; text-align: left; }
+.section-head.wide { max-width: none; }
+.section-head.center { text-align: center; }
+.section-head.center p { margin-left: auto; margin-right: auto; }
 .section-head h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(28px, 4vw, 42px); line-height: 1.08; letter-spacing: -0.02em; margin-top: 14px; }
 .section-head p { color: var(--muted); font-size: 17px; margin-top: 14px; max-width: 600px; }
 .divider-line { height: 1px; background: linear-gradient(90deg, transparent, var(--line-2), transparent); }
