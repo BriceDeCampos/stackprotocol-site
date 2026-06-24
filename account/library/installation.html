@@ -24,14 +24,24 @@
 
   .tool { border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--surface); margin-top: 18px; overflow: hidden; transition: border-color .2s, background .2s; }
   .tool.done { border-color: rgba(60,229,163,0.35); background: linear-gradient(100deg, rgba(60,229,163,0.06), rgba(24,180,204,0.03)); }
-  .tool .th { display: flex; align-items: center; gap: 14px; padding: 18px 20px; }
+  .tool .th { display: flex; align-items: center; gap: 14px; padding: 18px 20px; cursor: pointer; }
+  .tool .th:hover { background: rgba(255,255,255,0.015); }
   .tool .ti { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--surface-2); border: 1px solid var(--line-2); color: var(--green); flex-shrink: 0; }
   .tool .ti svg { width: 22px; height: 22px; }
   .tool .tt { flex: 1; min-width: 0; }
   .tool .tt h3 { font-family: var(--font-display); font-size: 16px; font-weight: 600; }
   .tool .tt p { font-size: 13px; color: var(--muted); margin-top: 2px; }
   .tool .tnum { font-family: var(--font-display); font-size: 12px; font-weight: 700; color: var(--muted-2); }
-  .tool .tb { padding: 0 20px 20px; }
+  .tool .chev { width: 20px; height: 20px; color: var(--muted-2); flex-shrink: 0; transition: transform .2s, color .2s; }
+  .tool.open .chev { transform: rotate(180deg); color: var(--green); }
+  .tool .tb { display: none; padding: 0 20px 20px; }
+  .tool.open .tb { display: block; }
+  .preq { font-size: 12.5px; color: var(--ink-2); background: rgba(24,180,204,0.06); border: 1px solid rgba(24,180,204,0.2); border-radius: 10px; padding: 10px 13px; margin: 2px 0 14px; line-height: 1.5; }
+  .preq b { color: var(--ink); }
+  .preq code { background: rgba(255,255,255,0.07); border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; font-size: 12px; color: var(--green); }
+  .helper-banner { background: linear-gradient(150deg, rgba(60,229,163,0.08), rgba(24,180,204,0.05)); border: 1px solid rgba(60,229,163,0.25); border-radius: var(--r); padding: 16px 18px; margin-top: 16px; font-size: 13.5px; color: var(--ink-2); line-height: 1.55; }
+  .helper-banner b { color: var(--ink); }
+  .helper-banner code { background: rgba(255,255,255,0.07); border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; font-size: 12px; color: var(--green); }
 
   .steps { list-style: none; margin: 4px 0 0; padding: 0; counter-reset: s; }
   .steps li { position: relative; padding: 8px 0 8px 40px; font-size: 14px; color: var(--ink-2); line-height: 1.55; counter-increment: s; cursor: pointer; transition: color .15s; }
@@ -153,6 +163,10 @@
       <div class="pills"><span class="pill">⏱ ~45 min</span><span class="pill">5 outils gratuits</span><span class="pill">Pas à pas, à votre rythme</span></div>
     </div>
 
+    <div class="helper-banner">
+      💡 <b>Deux façons de faire</b> — au choix. <b>(1) Manuel :</b> dépliez les blocs ci-dessous et suivez étape par étape. <b>(2) Avec l'IA :</b> si vous avez déjà <b>Claude Desktop</b> (l'app) ou <b>Claude Code</b>, copiez le prompt « 🚀 Installation guidée » (en bas de page) et collez-le — il vous installe tout en vous tenant la main. <span style="color:var(--muted);">Déjà certains outils ? Chaque bloc indique comment vérifier en 1 commande et passer.</span>
+    </div>
+
     <div class="qbar">
       <div class="bar"><i id="qfill"></i></div>
       <span class="pct" id="qpct">0 / 5 installé</span>
@@ -166,6 +180,7 @@
         <span class="tnum">ÉTAPE 1</span>
       </div>
       <div class="tb">
+          <div class="preq"><b>Déjà installé ?</b> Si VSCode s'ouvre déjà sur votre PC, cochez les étapes et passez au bloc suivant.</div>
         <ol class="steps">
           <li>Cliquez sur le bouton officiel ci-dessous pour ouvrir le site de VSCode.</li>
           <li>Cliquez sur le gros bouton bleu <b>« Download for Windows »</b> (le téléchargement démarre tout seul).</li>
@@ -190,6 +205,7 @@
         <span class="tnum">ÉTAPE 2</span>
       </div>
       <div class="tb">
+          <div class="preq"><b>Déjà là ?</b> Dans un terminal, tapez <code>node --version</code> — si un numéro s'affiche, c'est installé : cochez et passez.</div>
         <ol class="steps">
           <li>Ouvrez le site officiel ci-dessous.</li>
           <li>Cliquez sur le bouton <b>« LTS »</b> (version recommandée, la plus stable).</li>
@@ -212,6 +228,7 @@
         <span class="tnum">ÉTAPE 3</span>
       </div>
       <div class="tb">
+          <div class="preq"><b>Prérequis :</b> Node.js (bloc 2) installé. <b>Astuce :</b> l'app <b>Claude Desktop</b> peut vous guider, mais c'est Claude <b>Code</b> (dans le terminal) qu'Octans utilise.</div>
         <ol class="steps">
           <li>Dans VSCode, ouvrez le terminal (<b>Terminal → Nouveau terminal</b>).</li>
           <li>Copiez-collez cette commande, puis Entrée : <code>npm install -g @anthropic-ai/claude-code</code></li>
@@ -235,6 +252,7 @@
         <span class="tnum">ÉTAPE 4</span>
       </div>
       <div class="tb">
+          <div class="preq"><b>Déjà là ?</b> Tapez <code>git --version</code>. <b>Vous ne connaissez pas Git ?</b> Pas besoin de l'apprendre — Octans s'en sert pour vous ; suivez juste les étapes.</div>
         <ol class="steps">
           <li>Ouvrez le site officiel ci-dessous (le téléchargement Windows démarre seul).</li>
           <li>Ouvrez le fichier <code>Git-….exe</code>. À chaque écran, cliquez <b>Suivant</b> (les réglages par défaut conviennent parfaitement).</li>
@@ -258,6 +276,7 @@
         <span class="tnum">ÉTAPE 5</span>
       </div>
       <div class="tb">
+          <div class="preq"><b>Déjà installé ?</b> Si Obsidian s'ouvre déjà, créez simplement votre coffre (étape 3), cochez et passez.</div>
         <ol class="steps">
           <li>Ouvrez le site officiel ci-dessous et téléchargez la version Windows.</li>
           <li>Installez (double-clic sur le fichier téléchargé), puis ouvrez Obsidian.</li>
@@ -382,13 +401,15 @@
     tools.forEach(function(tl){
       var key=tl.getAttribute('data-key');
       var saved=prog.tools[key];
+      var th=tl.querySelector('.th');
+      if(th && !th.querySelector('.chev')){ var chev=document.createElement('span'); chev.className='chev'; chev.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>'; th.appendChild(chev); th.addEventListener('click',function(){ tl.classList.toggle('open'); }); }
       var lbl=tl.querySelector('.vbox .lbl');
       if(lbl && !lbl.getAttribute('data-done')) lbl.setAttribute('data-done', '✓ '+lbl.textContent.replace(/^C'est fait\s*[—-]\s*/,''));
       tl.querySelectorAll('.steps li').forEach(function(li,i){
         if(saved && saved.steps && saved.steps[String(i)]) li.classList.add('ok');
         li.setAttribute('role','checkbox'); li.setAttribute('tabindex','0');
         li.setAttribute('aria-checked', li.classList.contains('ok')?'true':'false');
-        function toggle(){ li.classList.toggle('ok'); li.setAttribute('aria-checked', li.classList.contains('ok')?'true':'false'); syncTool(tl); persist(); render(); }
+        function toggle(){ li.classList.toggle('ok'); li.setAttribute('aria-checked', li.classList.contains('ok')?'true':'false'); syncTool(tl); persist(); render(); maybeAdvance(tl); }
         li.addEventListener('click',toggle);
         li.addEventListener('keydown',function(e){ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); toggle(); } });
       });
@@ -397,11 +418,15 @@
         e.preventDefault();
         var lis=tl.querySelectorAll('.steps li'); var allDone=tl.classList.contains('done');
         lis.forEach(function(li){ li.classList.toggle('ok', !allDone); li.setAttribute('aria-checked', (!allDone)?'true':'false'); });
-        syncTool(tl); persist(); render();
+        syncTool(tl); persist(); render(); maybeAdvance(tl);
       });
       syncTool(tl);
     });
     persist(); render();
+    // accordéon : ouvre le 1er bloc non terminé · avance au suivant quand un bloc est complété
+    function firstPending(){ for(var i=0;i<tools.length;i++){ if(!tools[i].classList.contains('done')) return tools[i]; } return null; }
+    function maybeAdvance(tl){ if(tl.classList.contains('done')){ tl.classList.remove('open'); var nx=firstPending(); if(nx && nx!==tl) nx.classList.add('open'); } }
+    var fp=firstPending(); if(fp) fp.classList.add('open'); else if(tools[0]) tools[0].classList.add('open');
     // API interne (future formation certifiante — NON exposée à l'UI ni au marketing)
     window.SPCert={ get:function(){ try{return JSON.parse(localStorage.getItem(CERT)||'{}');}catch(e){return{};} } };
 
