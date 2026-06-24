@@ -18,12 +18,33 @@
   .oct-hero .otag { font-size: 17px; color: var(--ink-2); margin-top: 16px; line-height: 1.5; }
   .oct-hero .otag b { color: var(--ink); font-weight: 600; }
   /* constellation visual */
-  .constel { position: relative; aspect-ratio: 1/1; max-width: 360px; margin: 0 0 0 auto; }
-  .constel svg { width: 100%; height: 100%; }
-  .constel .star { fill: var(--green); }
-  .constel .star.b { fill: var(--cyan, #18B4CC); }
-  .constel .core { fill: url(#octCore); }
-  .constel line { stroke: rgba(60,229,163,0.28); stroke-width: 1; }
+  #cortex { width: 100%; max-width: 350px; margin: 0 0 0 auto; overflow: visible; }
+  #cortex svg { width: 100%; height: auto; display: block; transform-origin: center center; animation: cxbreathe 40s ease-in-out infinite; }
+  /* Cortex : contracte → tient rétracté 15 s → agrandit → tient agrandi 15 s (boucle) */
+  @keyframes cxbreathe { 0%,37.5% { transform: scale(0.8); } 50%,87.5% { transform: scale(1.12); } 100% { transform: scale(0.8); } }
+  .cx-syn { stroke: url(#cxgrad); stroke-width: 1; fill: none; opacity: 0.22; }
+  .cx-web { stroke: #FFFFFF; stroke-width: 0.6; fill: none; opacity: var(--wo, 0.06); }
+  .cx-web.w-strong { stroke-width: 1; }
+  .cx-spark { fill: #FFFFFF; opacity: 0; filter: drop-shadow(0 0 3px rgba(255,255,255,0.9)) drop-shadow(0 0 6px rgba(60,229,163,0.5)); animation: cxsparkfade 2.6s ease-in-out forwards; }
+  @keyframes cxsparkfade { 0% { opacity: 0; } 15% { opacity: 0.95; } 75% { opacity: 0.85; } 100% { opacity: 0; } }
+  .cx-syn.fire { opacity: 1; stroke: #5FFFC0; stroke-width: 2; stroke-dasharray: 16 100; stroke-dashoffset: 116; animation: cxinflux 1.6s linear forwards; filter: drop-shadow(0 0 7px rgba(60,229,163,1)) drop-shadow(0 0 14px rgba(60,229,163,0.55)); }
+  .cx-syn.fire.fire-orange { stroke: #F2A878; filter: drop-shadow(0 0 7px rgba(224,145,90,1)) drop-shadow(0 0 14px rgba(224,145,90,0.55)); }
+  .cx-rot { animation: cxspin 90s linear infinite; transform-origin: 218px 196px; }
+  @keyframes cxspin { to { transform: rotate(360deg); } }
+  .pair-ind { animation: pairPulse var(--pd, 12s) ease-in-out infinite; animation-delay: var(--pdl, 0s); transform-box: view-box; transform-origin: 218px 196px; }
+  @keyframes pairPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(var(--ps, 0.86)); } }
+  @keyframes cxinflux { to { stroke-dashoffset: 0; } }
+  .cx-node { fill: url(#cxgrad); }
+  .cx-node.p { animation: cxpulse 5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  @keyframes cxpulse { 0%,100% { opacity: 0.55; transform: scale(1); } 50% { opacity: 1; transform: scale(1.35); } }
+  .cx-claude { fill: var(--orange); filter: drop-shadow(0 0 10px rgba(224,145,90,0.65)); }
+  .cx-claude-halo { fill: none; stroke: rgba(224,145,90,0.35); stroke-width: 1.5; animation: cxhalo 4.5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  @keyframes cxhalo { 0%,100% { transform: scale(1); opacity: .7; } 50% { transform: scale(1.5); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .cx-node.p, .cx-claude-halo, .cx-rot, .pair-ind { animation: none; }
+    #cortex svg { animation: none; }
+    .cx-syn.fire { animation: none; stroke-dasharray: none; opacity: 0.22; stroke: url(#cxgrad); filter: none; }
+  }
 
   .pillars { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
   .pil { padding: 26px; }
@@ -106,7 +127,7 @@
   @media (max-width:1100px) { .cov-grid { grid-template-columns: repeat(2, 1fr); } .cov-actions { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width:680px) { .cov-grid, .cov-actions { grid-template-columns: 1fr; } }
 
-  @media (max-width:860px){ .oct-hero,.pillars,.fl-row,.cats,.evo{ grid-template-columns:1fr; } .fl-sep{ display:none; } .constel{ max-width:260px; } .ptable{ font-size:13px; } }
+  @media (max-width:860px){ .oct-hero,.pillars,.fl-row,.cats,.evo{ grid-template-columns:1fr; } .fl-sep{ display:none; } #cortex{ max-width:260px; } .ptable{ font-size:13px; } }
 </style>
 </head>
 <body>
@@ -202,21 +223,7 @@
             <a class="btn btn-ghost" href="les-experts.html">Découvrir l'équipe d'experts</a>
           </div>
         </div>
-        <div class="constel" aria-hidden="true">
-          <svg viewBox="0 0 200 200">
-            <defs><radialGradient id="octCore" cx="0.5" cy="0.5" r="0.5"><stop offset="0%" stop-color="#4DECAD"/><stop offset="100%" stop-color="#159FCB"/></radialGradient></defs>
-            <line x1="100" y1="100" x2="42" y2="40"/><line x1="100" y1="100" x2="160" y2="52"/>
-            <line x1="100" y1="100" x2="170" y2="120"/><line x1="100" y1="100" x2="120" y2="172"/>
-            <line x1="100" y1="100" x2="48" y2="158"/><line x1="100" y1="100" x2="28" y2="104"/>
-            <line x1="42" y1="40" x2="160" y2="52"/><line x1="160" y1="52" x2="170" y2="120"/>
-            <line x1="170" y1="120" x2="120" y2="172"/><line x1="120" y1="172" x2="48" y2="158"/>
-            <line x1="48" y1="158" x2="28" y2="104"/><line x1="28" y1="104" x2="42" y2="40"/>
-            <circle class="core" cx="100" cy="100" r="11"/>
-            <circle class="star" cx="42" cy="40" r="4.5"/><circle class="star b" cx="160" cy="52" r="5.5"/>
-            <circle class="star" cx="170" cy="120" r="4"/><circle class="star b" cx="120" cy="172" r="5"/>
-            <circle class="star" cx="48" cy="158" r="4.5"/><circle class="star b" cx="28" cy="104" r="4"/>
-          </svg>
-        </div>
+        <div id="cortex" aria-hidden="true"></div>
       </div>
     </div>
   </section>
@@ -844,5 +851,6 @@
 <script src="leftnav.js"></script>
 <script src="./cookies-banner.js" defer></script>
 <script src="brand.js" defer></script>
+<script src="cortex.js" defer></script>
 </body>
 </html>
