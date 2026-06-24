@@ -34,9 +34,11 @@
   .tool .tb { padding: 0 20px 20px; }
 
   .steps { list-style: none; margin: 4px 0 0; padding: 0; counter-reset: s; }
-  .steps li { position: relative; padding: 9px 0 9px 34px; font-size: 14px; color: var(--ink-2); line-height: 1.55; border-top: 1px solid var(--line); counter-increment: s; }
-  .steps li:first-child { border-top: none; }
-  .steps li::before { content: counter(s); position: absolute; left: 0; top: 9px; width: 22px; height: 22px; border-radius: 50%; background: var(--surface-2); border: 1px solid var(--line-2); color: var(--ink-2); font-family: var(--font-display); font-size: 11.5px; font-weight: 700; display: grid; place-items: center; }
+  .steps li { position: relative; padding: 8px 0 8px 40px; font-size: 14px; color: var(--ink-2); line-height: 1.55; counter-increment: s; cursor: pointer; transition: color .15s; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: 6px; width: 26px; height: 26px; border-radius: 8px; background: var(--surface-2); border: 2px solid var(--line-2); color: var(--ink-2); font-family: var(--font-display); font-size: 12.5px; font-weight: 700; display: grid; place-items: center; transition: all .18s; }
+  .steps li:hover::before { border-color: var(--green); color: var(--green); }
+  .steps li.ok::before { content: ""; background: var(--green); border-color: var(--green); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23303434' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 13 4 4L19 7'/%3E%3C/svg%3E"); background-size: 15px; background-repeat: no-repeat; background-position: center; }
+  .steps li.ok { color: var(--muted); }
   .steps code { background: rgba(255,255,255,0.07); border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; font-size: 12.5px; color: var(--green); }
 
   .blocks { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
@@ -49,7 +51,7 @@
   .vid-slot { margin-top: 12px; border: 1px dashed var(--line-2); border-radius: 10px; padding: 14px 16px; font-size: 12.5px; color: var(--muted-2); display: flex; align-items: center; gap: 10px; }
   .vid-slot svg { width: 18px; height: 18px; color: var(--orange); flex-shrink: 0; }
 
-  .validate-row { display: flex; align-items: center; gap: 12px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+  .validate-row { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
   .vbox { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; font-size: 14px; font-weight: 600; }
   .vbox .box { width: 24px; height: 24px; border-radius: 7px; border: 2px solid var(--line-2); display: grid; place-items: center; transition: all .18s; }
   .vbox .box svg { width: 14px; height: 14px; color: #303434; opacity: 0; transition: opacity .15s; }
@@ -336,10 +338,42 @@
     var t=document.getElementById('mark-svg');
     document.querySelectorAll('[data-mark]').forEach(function(s,i){var node=t.content.cloneNode(true);var svg=node.querySelector('svg');svg.innerHTML=svg.innerHTML.replace(/(id="|url\(#)(solGreen|solTeal|sheen|stpGreen|stpTeal|stpBlue|depth)/g,'$1$2_'+i);s.appendChild(node);});
 
-    var KEY='sp_install_steps';
+    // ===== Progression par étape + scaffolding certification (interne, NON communiqué) =====
+    var KEY='sp_install_steps';     // legacy (compat anciennes données)
+    var CERT='sp_cert_progress';    // structure riche réservée à la future formation certifiante
     var tools=Array.prototype.slice.call(document.querySelectorAll('.tool[data-tool]'));
-    var saved={};
-    try{ saved=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){}
+    var prog={}; try{ prog=JSON.parse(localStorage.getItem(CERT)||'{}'); }catch(e){}
+    if(!prog.tools) prog.tools={};
+    prog.version=1;
+    function nowISO(){ try{ return new Date().toISOString(); }catch(e){ return ''; } }
+
+    function persist(){
+      var totSteps=0, okSteps=0, doneTools=0;
+      tools.forEach(function(tl){
+        var lis=tl.querySelectorAll('.steps li'); totSteps+=lis.length;
+        var n=0; lis.forEach(function(li){ if(li.classList.contains('ok')) n++; });
+        okSteps+=n; if(lis.length && n===lis.length) doneTools++;
+      });
+      prog.totalSteps=totSteps; prog.completedSteps=okSteps;
+      prog.percent= totSteps ? Math.round(okSteps/totSteps*100) : 0;
+      prog.completedTools=doneTools; prog.totalTools=tools.length; prog.updatedAt=nowISO();
+      if(prog.percent===100){ if(!prog.completedAt) prog.completedAt=nowISO(); } else { prog.completedAt=null; }
+      try{ localStorage.setItem(CERT,JSON.stringify(prog)); }catch(e){}
+      var legacy={}; tools.forEach(function(tl){ legacy[tl.getAttribute('data-key')]=tl.classList.contains('done'); });
+      try{ localStorage.setItem(KEY,JSON.stringify(legacy)); }catch(e){}
+    }
+    function syncTool(tl){
+      var key=tl.getAttribute('data-key');
+      var lis=Array.prototype.slice.call(tl.querySelectorAll('.steps li'));
+      var done=0; lis.forEach(function(li){ if(li.classList.contains('ok')) done++; });
+      var all= lis.length>0 && done===lis.length;
+      tl.classList.toggle('done', all);
+      var lbl=tl.querySelector('.vbox .lbl');
+      if(lbl) lbl.textContent= all ? (lbl.getAttribute('data-done')||'Installé ✓') : (done+' / '+lis.length+' étape'+(lis.length>1?'s':''));
+      var t=prog.tools[key]||(prog.tools[key]={steps:{},done:false,doneAt:null});
+      t.steps={}; lis.forEach(function(li,i){ if(li.classList.contains('ok')) t.steps[i]=nowISO(); });
+      t.done=all; t.doneAt= all ? (t.doneAt||nowISO()) : null;
+    }
     function render(){
       var done=tools.filter(function(t){return t.classList.contains('done');}).length;
       document.getElementById('qfill').style.width=(done/tools.length*100)+'%';
@@ -347,18 +381,29 @@
     }
     tools.forEach(function(tl){
       var key=tl.getAttribute('data-key');
-      if(saved[key]) tl.classList.add('done');
-      var input=tl.querySelector('[data-validate]');
-      var label=tl.querySelector('.vbox');
-      if(label) label.addEventListener('click',function(e){
-        e.preventDefault();
-        tl.classList.toggle('done');
-        saved[key]=tl.classList.contains('done');
-        try{ localStorage.setItem(KEY,JSON.stringify(saved)); }catch(e){}
-        render();
+      var saved=prog.tools[key];
+      var lbl=tl.querySelector('.vbox .lbl');
+      if(lbl && !lbl.getAttribute('data-done')) lbl.setAttribute('data-done', '✓ '+lbl.textContent.replace(/^C'est fait\s*[—-]\s*/,''));
+      tl.querySelectorAll('.steps li').forEach(function(li,i){
+        if(saved && saved.steps && saved.steps[String(i)]) li.classList.add('ok');
+        li.setAttribute('role','checkbox'); li.setAttribute('tabindex','0');
+        li.setAttribute('aria-checked', li.classList.contains('ok')?'true':'false');
+        function toggle(){ li.classList.toggle('ok'); li.setAttribute('aria-checked', li.classList.contains('ok')?'true':'false'); syncTool(tl); persist(); render(); }
+        li.addEventListener('click',toggle);
+        li.addEventListener('keydown',function(e){ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); toggle(); } });
       });
+      var vbox=tl.querySelector('.vbox');
+      if(vbox) vbox.addEventListener('click',function(e){
+        e.preventDefault();
+        var lis=tl.querySelectorAll('.steps li'); var allDone=tl.classList.contains('done');
+        lis.forEach(function(li){ li.classList.toggle('ok', !allDone); li.setAttribute('aria-checked', (!allDone)?'true':'false'); });
+        syncTool(tl); persist(); render();
+      });
+      syncTool(tl);
     });
-    render();
+    persist(); render();
+    // API interne (future formation certifiante — NON exposée à l'UI ni au marketing)
+    window.SPCert={ get:function(){ try{return JSON.parse(localStorage.getItem(CERT)||'{}');}catch(e){return{};} } };
 
     // Prompts — copier dans le presse-papier + feedback « Copié ✓ »
     document.querySelectorAll('.prompt .copy').forEach(function(btn){
