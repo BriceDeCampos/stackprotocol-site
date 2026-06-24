@@ -23,6 +23,16 @@
   .acc-step .n { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; font-size: 14px; background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--line); flex-shrink: 0; }
   .acc-step h4 { font-size: 14.5px; font-weight: 600; }
   .acc-step p { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .acc-personas { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-top: 4px; }
+  .acc-persona { padding: 16px 18px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,0.018); }
+  .acc-persona h4 { font-size: 14px; font-weight: 600; color: var(--ink); }
+  .acc-persona p { font-size: 12.5px; color: var(--muted); margin-top: 5px; line-height: 1.5; }
+  .acc-bio { padding: 22px 24px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,0.02); max-width: 680px; }
+  .acc-bio p { font-size: 13.5px; line-height: 1.62; color: var(--ink-2); margin: 0; }
+  .acc-bio .loc { font-size: 12.5px; color: var(--muted); margin-top: 12px; }
+  .acc-bio a.lk { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--green); font-weight: 600; margin-top: 14px; text-decoration: underline; text-underline-offset: 3px; }
+  .acc-bio a.lk svg { width: 14px; height: 14px; }
+  @media (max-width: 560px) { .acc-personas { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body data-sp-protect="true">
@@ -113,6 +123,21 @@
       <li><svg aria-hidden="true"><use href="#i-check"/></svg>Annulation gratuite jusqu'à 24 h avant la séance</li>
       <li><svg aria-hidden="true"><use href="#i-check"/></svg>Aucun forfait, aucun engagement — vous achetez quand vous bloquez</li>
     </ul>
+
+    <div class="sec-h">Pour qui c'est utile</div>
+    <div class="acc-personas">
+      <div class="acc-persona"><h4>Cadres en reconversion</h4><p>Vous voulez structurer une bascule de carrière sans vous louper.</p></div>
+      <div class="acc-persona"><h4>Freelances · indé</h4><p>Vous voulez trancher une décision sur votre offre, votre positionnement, votre pricing.</p></div>
+      <div class="acc-persona"><h4>SEO · marketers</h4><p>Vous voulez clarifier une stratégie de contenu, un plan d'attaque sur 90 jours.</p></div>
+      <div class="acc-persona"><h4>Porteurs de projet</h4><p>Vous voulez stress-tester votre idée avant de vous lancer ou d'investir.</p></div>
+    </div>
+
+    <div class="sec-h">Avec qui vous allez parler</div>
+    <div class="acc-bio">
+      <p>Vous parlez directement avec <b>Brice DeCampos</b>, fondateur de StackProtocol. 6 mois à développer seul un projet civic-tech français complet avec Claude, et à développer <b>Octans Ultra RAG</b> : <b>1217 fichiers cohérents</b>, base de 21 tables, audits <b>OWASP · RGPD · ANSSI</b> passés. La méthode dont on va parler ensemble, je l'ai éprouvée sur un vrai projet sérieux et plusieurs clients.</p>
+      <p class="loc">📍 Aix · Marseille · Nice · Montpellier · Monaco · à distance 🇫🇷</p>
+      <a class="lk" href="https://www.linkedin.com/in/brice-de-campos-100700b4/" target="_blank" rel="noopener noreferrer">Mon parcours complet (LinkedIn)<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
   </main>
 </div>
 
