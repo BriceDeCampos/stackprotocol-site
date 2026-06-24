@@ -129,6 +129,16 @@ body[data-sp-protect="true"].sp-ready { visibility: visible; }
 /* ── Logo mark ── */
 .logo { display: inline-flex; align-items: center; gap: 8px; }
 .logo .mark { width: 22px; height: 28px; flex-shrink: 0; filter: drop-shadow(0 3px 10px rgba(24,180,204,0.28)); }
+/* Logo ANIME dans la nav : cubes stries qui se retournent en cascade + pulse des cubes pleins */
+header .logo .mark svg g polygon { transform-box: fill-box; }
+header .logo .mark svg g polygon:nth-child(1) { transform-origin: center bottom; animation: navlogoFlip 9s cubic-bezier(.55,0,.3,1) infinite; }
+header .logo .mark svg g polygon:nth-child(4) { transform-origin: center top; animation: navlogoFlip 9s cubic-bezier(.55,0,.3,1) infinite 1.5s; }
+header .logo .mark svg g polygon:nth-child(7) { transform-origin: center top; animation: navlogoFlip 9s cubic-bezier(.55,0,.3,1) infinite 3s; }
+header .logo .mark svg g polygon:nth-child(2) { transform-origin: center; animation: navlogoPulse 3.4s ease-in-out infinite; }
+header .logo .mark svg g polygon:nth-child(5) { transform-origin: center; animation: navlogoPulse 3.4s ease-in-out infinite 1.7s; }
+@keyframes navlogoFlip { 0%,14% { transform: scaleY(1); } 20% { filter: brightness(1.55); } 30% { transform: scaleY(-1); } 46%,100% { transform: scaleY(1); } }
+@keyframes navlogoPulse { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.34); } }
+@media (prefers-reduced-motion: reduce) { header .logo .mark svg g polygon { animation: none !important; } }
 .logo .wm { font-family: var(--font-display); font-weight: 600; font-size: 14.5px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--ink); }
 .logo .wm b { font-weight: 600; color: var(--ink-2); }
 

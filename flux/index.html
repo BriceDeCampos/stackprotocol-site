@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>StackProtocol — Le flux Octans</title>
+<link rel="stylesheet" href="/assets/fonts/fonts.css" />
+<style>
+  :root{
+    --bg:#0A0E0E; --bg-2:#15191A; --green:#3CE5A3; --cyan:#18B4CC; --orange:#E0915A;
+    --ink:#EEF1F1; --ink-2:#C9CFCF; --muted:#9CA3A3; --muted-2:#6E7474;
+    --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.16);
+    --surface:rgba(255,255,255,.03); --surface-2:rgba(255,255,255,.06);
+    --grad:linear-gradient(100deg,#3CE5A3,#18B4CC);
+    --fd:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+    --fb:'Inter',ui-sans-serif,system-ui,sans-serif;
+    --mono:ui-monospace,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{font-family:var(--fb);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;overflow:hidden;}
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(900px 640px at 50% 8%, rgba(60,229,163,.06), transparent 60%);}
+  body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+    background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+    background-size:42px 42px;}
+
+  .top{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;gap:18px;padding:20px 32px;}
+  .brand{display:inline-flex;align-items:center;gap:11px;}
+  .brand .mk{width:22px;height:22px;border-radius:6px;background:var(--grad);display:grid;place-items:center;}
+  .brand .mk i{width:7px;height:7px;border-radius:50%;background:var(--bg);}
+  .brand .wm{font-family:var(--fd);font-weight:500;font-size:16px;}
+  .brand .wm b{font-weight:700;}
+  .top .sep{width:1px;height:24px;background:var(--line-2);}
+  .top h1{font-family:var(--fd);font-weight:600;font-size:16px;color:var(--ink-2);}
+  .top h1 b{color:var(--green);font-weight:600;}
+  .top .sp{flex:1;}
+  .top .hint{font-family:var(--mono);font-size:12px;color:var(--muted-2);display:flex;align-items:center;gap:8px;}
+  .top .hint .k{border:1px solid var(--line-2);border-radius:5px;padding:2px 7px;color:var(--muted);}
+
+  .stage{position:absolute;inset:0;z-index:1;overflow:hidden;}
+  .scaler{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);transform-origin:center center;}
+  .board{position:relative;display:flex;flex-direction:row-reverse;align-items:stretch;gap:60px;width:max-content;height:730px;padding:48px 14px 14px;}
+  .board svg.wires{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:1;}
+
+  /* zones */
+  .zone{position:relative;display:flex;flex-direction:row-reverse;align-items:stretch;gap:48px;border-radius:24px;padding:18px 26px;}
+  .zone::before{content:attr(data-zone);position:absolute;top:-14px;left:24px;font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:3px 12px;border-radius:999px;}
+  .zone.online{background:linear-gradient(180deg,rgba(24,180,204,.05),rgba(24,180,204,.015));border:1px solid rgba(24,180,204,.18);}
+  .zone.online::before{content:"En ligne · cloud";color:var(--cyan);background:var(--bg-2);border:1px solid rgba(24,180,204,.3);}
+  .zone.local{background:linear-gradient(180deg,rgba(60,229,163,.06),rgba(60,229,163,.02));border:1px solid rgba(60,229,163,.22);}
+  .zone.local::before{content:"Local · sur votre machine";color:var(--green);background:var(--bg-2);border:1px solid rgba(60,229,163,.34);}
+  .zone.mcp{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));border:1px solid var(--line-2);}
+  .zone.mcp::before{content:"MCP · le pont";color:var(--ink-2);background:var(--bg-2);border:1px solid var(--line-2);}
+  .zone.online.inner{padding-top:0;align-self:stretch;align-items:center;flex-direction:row-reverse;}
+  .zone.online.inner::before{top:-14px;}
+
+  .col{position:relative;display:flex;flex-direction:column;justify-content:center;gap:11px;z-index:2;}
+  .col-cap{position:absolute;top:-2px;left:0;right:0;text-align:center;font-family:var(--fd);font-weight:600;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2);white-space:nowrap;}
+  .col .stack{display:flex;flex-direction:column;justify-content:center;gap:11px;margin-top:18px;flex:1;}
+  .c-llm{width:196px;}
+  .c-mcp{width:212px;}
+  .c-auto{width:180px;}
+  .c-editors{width:178px;}
+  .c-localauto{width:180px;justify-content:center;}
+  .c-localauto .stack{justify-content:center;flex:none;margin-top:0;}
+  .c-localauto .col-cap{position:static;transform:none;white-space:normal;line-height:1.4;max-width:160px;margin:0 auto 12px;}
+  .tri{align-self:center;display:flex;align-items:center;gap:5px;z-index:4;}
+  .tri .ch{width:11px;height:11px;border-top:2px solid #3CE5A3;border-right:2px solid #3CE5A3;transform:rotate(45deg);filter:drop-shadow(0 0 4px rgba(60,229,163,.6));animation:chPulse 1.4s ease-in-out infinite;}
+  .tri .ch.lft{transform:rotate(225deg);}
+  .tri .ch:nth-child(1){animation-delay:0s;}
+  .tri .ch:nth-child(2){animation-delay:.2s;}
+  .tri .ch:nth-child(3){animation-delay:.4s;}
+  .zlink{margin:0 -22px;}
+  .zbridge{margin:0 -26px;}
+  .ztri{margin:0 6px;}
+  @keyframes chPulse{0%,100%{opacity:.4;}50%{opacity:1;}}
+
+  .chip{position:relative;display:flex;align-items:center;gap:11px;border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:10px 13px;cursor:pointer;color:var(--ink);font-family:var(--fb);transition:border-color .18s,background .18s,transform .18s;}
+  .chip:hover{border-color:rgba(60,229,163,.45);background:var(--surface-2);transform:translateY(-1px);}
+  .chip.active{border-color:var(--green);background:rgba(60,229,163,.08);box-shadow:0 0 0 1px rgba(60,229,163,.25),0 0 24px rgba(60,229,163,.14);}
+  .chip .ico{flex-shrink:0;width:28px;height:28px;display:grid;place-items:center;}
+  .chip .ico svg{width:100%;height:100%;}
+  .chip .ico .mono{font-family:var(--fd);font-weight:700;font-size:13px;}
+  .chip .tx{min-width:0;display:flex;flex-direction:column;gap:1px;}
+  .chip .tx .nm{font-family:var(--fd);font-weight:600;font-size:13px;line-height:1.15;white-space:nowrap;color:var(--ink);}
+  .chip .tx .sub{font-size:10.5px;color:var(--muted);line-height:1.25;}
+  .chip.auto .tx .sub{white-space:normal;}
+  .chip.auto .tx .nm{white-space:normal;}
+  .chip.auto{border-style:dashed;border-color:rgba(24,180,204,.3);}
+
+  /* OCTANS box — englobe les agents d'exécution */
+  .c-octans{width:330px;}
+  .octans-box{position:relative;display:flex;flex-direction:column;align-items:center;gap:14px;height:100%;justify-content:center;
+    border:1px solid rgba(60,229,163,.4);border-radius:22px;padding:24px 22px;
+    background:radial-gradient(circle at 50% 30%,rgba(60,229,163,.10),rgba(24,180,204,.03) 70%);
+    box-shadow:0 0 0 1px rgba(60,229,163,.1),0 0 60px rgba(60,229,163,.14);cursor:pointer;}
+  .octans-box .obadge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);font-family:var(--fd);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--green);background:var(--bg-2);border:1px solid rgba(60,229,163,.4);border-radius:999px;padding:4px 14px;white-space:nowrap;}
+  .octans-box .cx{width:170px;height:170px;}
+  .octans-box .cx svg{width:100%;height:100%;display:block;transform-origin:center;animation:breathe 9s ease-in-out infinite;}
+  @keyframes breathe{0%,100%{transform:scale(.97);}50%{transform:scale(1.06);}}
+  .octans-box .hlabel{font-family:var(--fd);font-weight:700;font-size:22px;letter-spacing:-.01em;margin-top:-6px;}
+  .octans-box .hlabel .em{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .octans-box .agents{display:flex;flex-direction:column;gap:9px;width:100%;}
+  .octans-box .agents-cap{font-family:var(--fd);font-weight:600;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2);text-align:center;}
+  .octans-box .chip{background:rgba(0,0,0,.22);}
+  .octans-box .ogroup{width:100%;display:flex;flex-direction:column;gap:8px;}
+  .octans-box .ogcap{font-family:var(--fd);font-weight:600;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2);}
+  .octans-box .odiv{width:100%;height:1px;margin:4px 0;background:linear-gradient(90deg,transparent,rgba(60,229,163,.28),transparent);}
+  .octans-box .oarrow{display:grid;place-items:center;margin:1px 0;}
+  .octans-box .oarrow svg{width:18px;height:22px;filter:drop-shadow(0 0 6px rgba(24,180,204,.5));}
+
+  /* detail panel */
+  .panel{position:fixed;top:0;right:0;height:100%;width:380px;z-index:30;background:rgba(16,19,19,.96);backdrop-filter:blur(16px);border-left:1px solid var(--line-2);
+    transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-30px 0 70px rgba(0,0,0,.4);}
+  .panel.open{transform:none;}
+  .panel .ph{display:flex;align-items:center;gap:14px;padding:26px 26px 18px;border-bottom:1px solid var(--line);}
+  .panel .ph .pico{width:44px;height:44px;border-radius:11px;display:grid;place-items:center;background:var(--surface-2);border:1px solid var(--line);flex-shrink:0;}
+  .panel .ph .pico svg{width:26px;height:26px;}
+  .panel .ph .pt{flex:1;min-width:0;}
+  .panel .ph .pt .pk{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);}
+  .panel .ph .pt h2{font-family:var(--fd);font-weight:700;font-size:21px;margin-top:3px;}
+  .panel .close{width:34px;height:34px;border-radius:50%;border:1px solid var(--line-2);background:none;color:var(--muted);cursor:pointer;display:grid;place-items:center;flex-shrink:0;transition:color .18s;}
+  .panel .close:hover{color:var(--ink);}
+  .panel .close svg{width:16px;height:16px;}
+  .panel .pb{padding:22px 26px;overflow-y:auto;flex:1;}
+  .panel .pdesc{font-size:14px;color:var(--ink-2);line-height:1.6;}
+  .panel .plist-t{font-family:var(--fd);font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:22px 0 12px;}
+  .panel .pitems{display:flex;flex-wrap:wrap;gap:8px;}
+  .panel .pitems span{font-size:13px;color:var(--ink-2);border:1px solid var(--line);border-radius:8px;padding:7px 12px;background:var(--surface-2);}
+
+  .legend{position:fixed;bottom:22px;left:32px;z-index:20;display:flex;gap:22px;font-size:12px;color:var(--muted);font-family:var(--fd);}
+  .legend .it{display:flex;align-items:center;gap:8px;}
+  .legend .sw{width:16px;height:16px;border-radius:5px;border:1px solid var(--line-2);}
+
+  @media(prefers-reduced-motion:reduce){.octans-box .cx svg{animation:none;}}
+</style>
+</head>
+<body>
+  <div class="top">
+    <span class="brand"><span class="mk"><i></i></span><span class="wm">Stack<b>Protocol</b></span></span>
+    <span class="sep"></span>
+    <h1>Le flux <b>Octans</b> — vos LLM &amp; outils en ligne, orchestrés en local</h1>
+    <span class="sp"></span>
+    <span class="hint"><span class="k">clic</span> sur un nœud pour le détail</span>
+  </div>
+
+  <div class="stage">
+    <div class="scaler" id="scaler">
+      <div class="board" id="board">
+        <svg class="wires" id="wires" viewBox="0 0 1500 730" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="wg" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#18B4CC"/><stop offset="100%" stop-color="#3CE5A3"/>
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <!-- ZONE MCP (englobe En ligne) -->
+        <div class="zone mcp" data-zone="mcp">
+          <div class="zone online inner" data-zone="online">
+            <div class="col c-llm" data-col="llm"><div class="col-cap">LLMs</div><div class="stack" id="stack-llm"></div></div>
+            <div class="col c-auto" data-col="auto"><div class="col-cap">Automatisations cloud</div><div class="stack" id="stack-auto"></div></div>
+          </div>
+          <div class="tri ztri" aria-hidden="true"><span class="ch lft"></span><span class="ch"></span></div>
+          <div class="col c-mcp" data-col="mcp"><div class="col-cap">Connecteurs MCP</div><div class="stack" id="stack-mcp"></div></div>
+        </div>
+
+        <!-- ZONE LOCALE -->
+        <div class="zbridge tri" aria-hidden="true"><span class="ch lft"></span><span class="ch"></span></div>
+        <div class="zone local" data-zone="local">
+          <div class="col c-localauto" data-col="localauto"><div class="col-cap">Automatisations locales · hors Octans</div><div class="stack" id="stack-localauto"></div></div>
+          <div class="zlink tri" aria-hidden="true"><span class="ch lft"></span><span class="ch"></span></div>
+          <div class="col c-octans">
+            <div class="octans-box" id="octansBox">
+              <div class="obadge">Octans · CLAUDE.md</div>
+              <div class="cx" id="cortex"></div>
+              <div class="hlabel"><span class="em">Octans</span></div>
+              <div class="agents-cap">instruit Claude Code → exécute · actionne MCP · appelle n8n</div>
+              <div class="ogroup"><div class="ogcap">Exécution</div><div class="agents" id="stack-agents"></div></div>
+              <div class="oarrow" aria-hidden="true"><svg viewBox="0 0 24 34" fill="none" stroke="#18B4CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v26M6 10l6-6 6 6M6 24l6 6 6-6"/></svg></div>
+              <div class="ogroup"><div class="ogcap">Atelier IDE : exécuteur principal</div><div class="agents" id="stack-editors"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span class="it"><span class="sw" style="background:rgba(24,180,204,.18);border-color:rgba(24,180,204,.4)"></span>En ligne · cloud</span>
+    <span class="it"><span class="sw" style="background:rgba(60,229,163,.18);border-color:rgba(60,229,163,.5)"></span>Local · votre machine</span>
+  </div>
+
+  <aside class="panel" id="panel" aria-hidden="true">
+    <div class="ph">
+      <div class="pico" id="pIco"></div>
+      <div class="pt"><div class="pk" id="pKind"></div><h2 id="pName"></h2></div>
+      <button class="close" id="pClose" aria-label="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="pb">
+      <p class="pdesc" id="pDesc"></p>
+      <div id="pListWrap" hidden>
+        <div class="plist-t" id="pListTitle">Outils connectés</div>
+        <div class="pitems" id="pItems"></div>
+      </div>
+    </div>
+  </aside>
+
+<script src="flux-data.js"></script>
+<script src="flux-cortex.js"></script>
+<script src="flux-render.js"></script>
+</body>
+</html>
