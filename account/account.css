@@ -19,9 +19,9 @@
 .acct-top .at-logout:hover { border-color: var(--green); color: var(--green); }
 
 /* ===== APP : sidebar gauche + contenu ===== */
-.app { display: grid; grid-template-columns: 248px 1fr; min-height: calc(100vh - 56px); }
+.app { display: grid; grid-template-columns: 204px 1fr; min-height: calc(100vh - 56px); }
 
-.side { border-right: 1px solid var(--line); padding: 20px 14px; display: flex; flex-direction: column; gap: 6px; position: sticky; top: 56px; height: calc(100vh - 56px); }
+.side { border-right: 1px solid var(--line); padding: 18px 10px; display: flex; flex-direction: column; gap: 6px; position: sticky; top: 56px; height: calc(100vh - 56px); }
 .side .brand { display: none; } /* le logo est dans la barre du haut */
 .side .navg { display: flex; flex-direction: column; gap: 3px; flex: 1; }
 /* groupe « Compte » (Facturation + Paramètres) poussé tout en bas du menu */
