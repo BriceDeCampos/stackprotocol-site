@@ -158,8 +158,10 @@
   <main class="main">
     <div class="crumb"><a href="../dashboard.html">Mes contenus</a> › <span>Pack CDC Méthode</span></div>
     <h1 class="title">Pack CDC Méthode</h1>
-    <p class="sublead">6 modules vidéo + vos archétypes, templates et guide. Accès à vie.</p>
+    <p class="sublead">Vos archétypes, templates et guide méthode. Accès à vie.</p>
 
+    <!-- SECTION MODULES VIDÉO — masquée pour le moment (gardée en code, à réactiver) -->
+    <div style="display:none" aria-hidden="true" data-hidden-videos>
     <div class="progress">
       <div class="bar"><i style="width:16%"></i></div>
       <span class="pct">1 module disponible</span>
@@ -199,10 +201,17 @@
       <div class="info"><div class="n">MODULE 06</div><h4>Suivi quotidien</h4><div class="meta">ToDo · ADRs · cadence</div></div>
       <div class="stat"><span class="done" style="opacity:.55"><svg aria-hidden="true"><use href="#i-lock"/></svg>Bientôt</span></div>
     </div>
+    </div><!-- /section modules vidéo masquée -->
 
     <!-- FICHIERS -->
     <div class="sec-h">Téléchargement</div>
-    <a class="btn btn-primary" href="#" data-download="octans" style="margin-bottom:14px;"><svg aria-hidden="true" style="width:16px;height:16px;margin-right:8px;"><use href="#i-dl"/></svg>Tout télécharger — octans.zip</a>
+    <div data-when="can-download">
+      <a class="btn btn-primary" href="#" data-download="octans" style="margin-bottom:14px;"><svg aria-hidden="true" style="width:16px;height:16px;margin-right:8px;"><use href="#i-dl"/></svg>Tout télécharger — octans.zip</a>
+    </div>
+    <div data-when="no-download" style="border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:14px;background:rgba(255,255,255,0.02);">
+      <p style="font-size:14px;color:var(--ink-2);margin:0 0 12px;">Le téléchargement d'<b>octans.zip</b> s'active dès votre achat du <b>Pack CDC Méthode</b>.</p>
+      <a class="btn btn-primary btn-sm" href="../../offres.html">Voir les offres</a>
+    </div>
     <p style="font-size:13px;color:var(--muted);margin:0 0 12px;">Un seul fichier <b>octans.zip</b> regroupe l'ensemble de vos ressources :</p>
     <div class="files">
       <div class="file"><span class="fi"><svg aria-hidden="true"><use href="#i-zip"/></svg></span><div class="ft"><div class="t">5 archétypes CDC</div><div class="s">MICRO · SAAS · CIVIC · MOBILE · DATA</div></div></div>
